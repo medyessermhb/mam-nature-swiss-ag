@@ -271,8 +271,8 @@ export default function Solutions() {
               <div className={styles.componentTextContent}>
                 <p>{section.desc}</p>
                 <ul className={`${styles.componentSpecs} ${section.id === 'complete-system' ? styles.transparentSpecs : ''}`}>
-                  {section.specs.map((spec, idx) => (
-                    <li key={idx}>
+                  {section.specs.map((spec: any, idx) => (
+                      <li key={idx}>
                       <spec.icon className={styles.specIcon} />
                       <div className={styles.specContent}>
                         {spec.label && <strong>{spec.label} </strong>}
