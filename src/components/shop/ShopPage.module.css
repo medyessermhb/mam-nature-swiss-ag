@@ -1,0 +1,77 @@
+.shopContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 20px 60px;
+}
+
+.shopHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.shopHeader h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #2C3E50;
+  margin-bottom: 10px;
+}
+
+.shopHeader p {
+  font-size: 1.1rem;
+  color: #64748B;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.filterControls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.filterSelect {
+  padding: 10px 15px;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-family: inherit;
+  color: #2C3E50;
+  background: white;
+  cursor: pointer;
+}
+
+.layoutTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #2C3E50;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 991px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .shopContainer {
+    padding-top: 100px;
+  }
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+  .filterControls {
+    flex-direction: column;
+  }
+  .shopHeader h1 {
+    font-size: 2.2rem;
+  }
+}

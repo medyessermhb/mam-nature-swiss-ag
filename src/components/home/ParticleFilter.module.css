@@ -1,0 +1,127 @@
+/* src/components/home/ParticleFilter.module.css */
+
+.section {
+  --brand-red: #D52D25;
+  --text-dark: #1f2937;
+  --text-light: #4b5563;
+  --bg-white: #FFFFFF;
+  --bg-light-gray: #f9fafb;
+  --border-color: #e5e7eb;
+  --icon-blue: #52c3ff;
+  --success-green: #10b981;
+
+  padding: 2rem 1.5rem;
+  background-color: var(--bg-light-gray);
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: center;
+  text-align: left;
+  gap: 2rem;
+}
+
+/* Image Block */
+.imageBlock {
+  text-align: center;
+}
+
+.imageBlock img {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Text Block */
+.headline {
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+  text-transform: uppercase;
+  color: var(--brand-red);
+}
+
+.subheadline {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 1rem 0;
+}
+
+.description {
+  color: var(--text-light);
+  margin: 0 0 2rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.descriptionIcon {
+  font-size: 1.2rem;
+  color: var(--icon-blue);
+  margin-top: 5px;
+  min-width: 20px;
+}
+
+/* Features Grid */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.featureCard {
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  border-radius: 12px;
+  align-items: center;
+  text-align: center;
+}
+
+.featureIcon {
+  font-size: 1.75rem;
+  color: var(--icon-blue);
+  width: 32px;
+  height: 32px;
+}
+
+.featureCard strong {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+.featureCard p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .imageBlock {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,129 @@
+/* src/styles/HomeSidebar.module.css */
+
+.sidebarContainer {
+  position: fixed;
+  left: 0;
+  width: 180px;
+  background: white;
+  padding: 0; /* Remove padding to let Flexbox handle spacing */
+  z-index: 40;
+  
+  /* FLEXBOX CENTERING MAGIC */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers Vertical */
+  align-items: center;     /* Centers Horizontal */
+  
+  border-right: 1px solid #f1f5f9;
+  
+  /* Animation states */
+  opacity: 0;
+  transform: translateX(-20px); /* Slide in from left */
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Space between links */
+  width: 100%;
+  padding: 0 10px; /* Safety padding sides */
+}
+
+.link {
+  display: flex;
+  justify-content: center; /* Center text inside link box */
+  align-items: center;
+  text-align: center;
+  
+  padding: 12px 10px;
+  color: #64748b;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  
+  font-weight: 600;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.link:hover {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.active {
+  background: #D52D25 !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(213, 45, 37, 0.2);
+}
+
+.active:hover {
+  background: #b91c1c !important;
+}
+
+/* === MOBILE STYLES (Horizontal Scroll) === */
+@media (max-width: 1024px) {
+  .sidebarContainer {
+    position: fixed;
+    top: 0 !important; /* Force top on mobile if needed, or rely on JS top */
+    left: 0;
+    width: 100%;
+    height: auto !important; /* Override JS height calculation */
+    
+    flex-direction: row;
+    justify-content: flex-start; /* Start from left for scrolling */
+    align-items: center;
+    
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    
+    transform: translateY(-100%); /* Slide down from top */
+    padding: 0;
+  }
+
+  .visible {
+    transform: translateY(0);
+  }
+
+  .nav {
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 12px 15px;
+    gap: 10px;
+    width: 100%;
+    
+    /* Hide Scrollbar */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+  }
+  
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .link {
+    width: auto;
+    padding: 8px 16px;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px; /* Pill shape on mobile */
+  }
+  
+  .active {
+    border-color: #D52D25;
+  }
+}

@@ -1,0 +1,344 @@
+/* src/styles/Checkout.module.css */
+
+/* Global layout and background */
+.pageWrapper {
+  background-color: #F8FAFC; /* Subtle off-white background */
+  min-height: 100vh;
+}
+
+.checkoutContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 140px 20px 80px;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr; /* Slightly wider form area */
+  gap: 40px;
+}
+
+/* Main Form Card */
+.formCard {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+/* Headers */
+.mainHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #F1F5F9;
+}
+
+.mainHeader h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.sectionHeader h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #334155;
+  margin: 0;
+}
+
+.headerIcon {
+  color: #D52D25;
+}
+
+/* Form Layout & Inputs */
+.section {
+  margin-bottom: 40px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #64748b; /* Softer gray */
+}
+
+.input, .select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #E2E8F0;
+  background-color: #F8FAFC; /* Slight tint */
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #1e293b;
+  transition: all 0.2s ease-in-out;
+}
+
+.input::placeholder {
+  color: #94a3b8;
+}
+
+.input:focus, .select:focus {
+  background-color: #fff;
+  border-color: #D52D25;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(213, 45, 37, 0.1);
+}
+
+/* Modern Billing Toggle */
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 25px 0;
+  padding: 16px;
+  background: #F1F5F9;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.checkboxWrapper:hover {
+  background: #E2E8F0;
+}
+
+.checkboxWrapper input {
+  width: 20px;
+  height: 20px;
+  accent-color: #D52D25;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* Modern Payment Tabs */
+.paymentTabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.paymentTab {
+  padding: 20px 15px;
+  border: 2px solid #E2E8F0;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #64748b;
+}
+
+.paymentTab:hover {
+  border-color: #cbd5e1;
+  background: #F8FAFC;
+}
+
+.paymentTab.active {
+  border-color: #D52D25;
+  background: #fff;
+  color: #D52D25;
+  box-shadow: 0 4px 12px rgba(213, 45, 37, 0.15);
+  transform: translateY(-2px);
+}
+
+.tabIcon {
+  transition: transform 0.2s;
+}
+.paymentTab.active .tabIcon {
+  transform: scale(1.1);
+}
+
+.tabLabel {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+/* Payment Content Areas */
+.paymentContent {
+  padding: 25px;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  background: #FAFAFA;
+}
+
+.stripeElementBox {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.manualPaymentInfo {
+  text-align: center;
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 20px 0;
+}
+
+/* Order Summary Card (Right Column) */
+.summaryBox {
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+  position: sticky;
+  top: 120px;
+  border: 1px solid #F1F5F9;
+}
+
+.summaryHeader {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #F1F5F9;
+}
+.summaryHeader h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #1a202c;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  font-size: 1rem;
+  color: #475569;
+}
+
+.itemName {
+    font-weight: 600;
+    color: #334155;
+    display: block;
+}
+.itemQty {
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.itemPrice {
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.subtotalRow {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #E2E8F0;
+}
+
+.summaryTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 2px solid #E2E8F0;
+}
+
+.totalLabel {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #475569;
+}
+
+.totalAmount {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #1a202c;
+    line-height: 1;
+}
+
+/* Modern Pay Button */
+.payButton {
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(135deg, #D52D25 0%, #b91c1c 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px rgba(213, 45, 37, 0.2);
+}
+
+.payButton:disabled {
+  background: #cbd5e1;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.payButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 10px rgba(213, 45, 37, 0.3);
+}
+
+.secureBadge {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #64748B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.errorMsg {
+  color: #b91c1c;
+  font-size: 0.95rem;
+  margin-top: 20px;
+  padding: 15px;
+  background: #FEF2F2;
+  border-radius: 8px;
+  border: 1px solid #FECACA;
+  text-align: center;
+  font-weight: 600;
+}
+
+@media (max-width: 991px) {
+  .checkoutContainer {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .summaryBox {
+    position: static;
+    order: -1; /* Summary first on mobile */
+  }
+  .paymentTabs {
+      grid-template-columns: 1fr; /* Stack tabs on mobile */
+  }
+}

@@ -1,0 +1,130 @@
+.pageBg {
+  background-color: #f7f9fc;
+  min-height: 100vh;
+  padding: 60px 20px;
+}
+
+.legalContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 60px;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.backNav {
+  margin-bottom: 30px;
+}
+
+.backNav a {
+  color: #4a5568;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.backNav a:hover {
+  color: #D52D25;
+}
+
+.header {
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 40px;
+  margin-bottom: 50px;
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+
+.companyMeta {
+  font-size: 0.95rem;
+  color: #4a5568;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.companyMeta p {
+  margin: 4px 0;
+  text-align: left;
+}
+
+.companyMeta a {
+  color: #D52D25;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.noticeBox {
+  background-color: #fff5f5;
+  border-left: 4px solid #D52D25;
+  padding: 20px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #742a2a;
+  line-height: 1.6;
+}
+
+.mainContent article {
+  margin-bottom: 45px;
+}
+
+.mainContent h2 {
+  font-size: 1.2rem;
+  color: #D52D25;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 10px;
+  font-weight: 700;
+}
+
+.mainContent p {
+  margin-bottom: 15px;
+  color: #4a5568;
+  text-align: justify;
+  line-height: 1.7;
+}
+
+.mainContent ul {
+  margin-bottom: 20px;
+  padding-left: 20px;
+  color: #4a5568;
+}
+
+.mainContent li {
+  margin-bottom: 8px;
+}
+
+.footer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-top: 50px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .pageBg { padding: 0; }
+  .legalContainer {
+    border-radius: 0;
+    padding: 30px 20px;
+    box-shadow: none;
+  }
+  .companyMeta { grid-template-columns: 1fr; }
+  .header h1 { font-size: 1.6rem; }
+}

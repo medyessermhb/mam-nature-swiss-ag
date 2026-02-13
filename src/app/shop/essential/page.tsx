@@ -1,0 +1,372 @@
+'use client';
+
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  ChevronLeft, ChevronRight, FileText, Award, 
+  Check, Gem, ArrowLeftRight, Gauge, Wrench, CalendarCheck, ShieldCheck, X, AlertCircle
+} from 'lucide-react';
+import styles from '@/styles/Product.module.css';
+import { usePricing } from '@/context/PricingContext';
+import { useCart } from '@/context/CartContext';
+import { useLanguage } from '@/context/LanguageContext'; 
+
+const PRODUCT_ID = 'mam-nature-essential-set';
+const PRODUCT_NAME = "THE ESSENTIAL";
+
+const PRICE_MAP: Record<string, number> = {
+  Morocco: 8580,     // MAD
+  Switzerland: 760,  // CHF
+  Europe: 820        // EUR
+};
+
+const CONTENT_EN = {
+  nav: {
+    product: 'Product',
+    details: 'Technical Details',
+    install: 'Installation',
+    maint: 'Maintenance',
+    reports: 'Reports'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    subtitle: 'Water Fine Filter + Cartridge',
+    btnAdd: 'Add to Cart',
+    priceTBD: 'Price Coming Soon',
+    descBold: 'Complete whole-house filtration system. Delivered with 1 x Filter Housing and 1 x Filter Cartridge included.',
+    desc: "Selective filtration: preserves the water's structure and composition. This means all essential minerals and trace elements remain in your drinking water while protecting your entire home's plumbing."
+  },
+  details: {
+    title: 'Unique Quadruple Filtration System',
+    list: [
+      { label: 'Physical:', text: '20 µm and 5 µm membrane filter' },
+      { label: 'Activated Carbon:', text: 'adsorption filtration' },
+      { label: 'Aqualen™:', text: 'Adsorbent fibers for efficient heavy metal filtration' },
+      { label: 'Ionized Silver:', text: 'sterility in the filter cartridge without silver entering the drinking water.' }
+    ],
+    reduces: 'Reduces: chlorine, chloroform, pesticides, petrochemicals, phenol, microplastics, heavy metals up to 97 – 99 %',
+    specs: {
+      material: { title: 'Material', val: '316L stainless steel housing & food-grade parts' },
+      conn: { title: 'Connections', val: '1 inch (2 3/4 inch adapters included)' },
+      flow: { title: 'Flow Rate', val: '1.5 m³/h (at 4 bar)' }
+    }
+  },
+  install: {
+    title: 'Installation',
+    cardTitle: 'Professional Installation',
+    cardText: 'The Essential Set is installed directly on your main water line by a qualified plumber, ensuring filtered water for every tap in your house. Its compact design allows for easy integration.'
+  },
+  maint: {
+    title: 'Maintenance & Warranty',
+    maintTitle: 'Simplified Maintenance',
+    maintText: 'Maintenance required: Filter cartridge change every 150 m³ (on average 1 x per year)',
+    warrantyTitle: 'Excellence Warranty',
+    warrantyYears: '10 YEARS',
+    warrantyText: "Made of durable medical-grade stainless steel, the housing of your filter is covered by a 10-year manufacturer's warranty."
+  },
+  reports: {
+    title: 'Reports & Certificates',
+    btnPerf: 'View Performance Report',
+    btnCert: 'See Swiss Certification'
+  }
+};
+
+const CONTENT_FR = {
+  nav: {
+    product: 'Produit',
+    details: 'Détails Techniques',
+    install: 'Installation',
+    maint: 'Entretien',
+    reports: 'Rapports'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    subtitle: 'Filtre à Eau Fin + Cartouche',
+    btnAdd: 'Ajouter au panier',
+    priceTBD: 'Prix à venir',
+    descBold: 'Système de filtration complet pour toute la maison. Livré avec 1 x Boîtier de Filtre et 1 x Cartouche Filtrante.',
+    desc: "Filtration sélective : préserve la structure de l'eau et sa composition. Cela signifie que tous les minéraux essentiels restent dans votre eau potable tout en protégeant la plomberie de toute votre maison."
+  },
+  details: {
+    title: 'Système Unique de Quadruple Filtration',
+    list: [
+      { label: 'Physique :', text: 'Filtre à membrane 20 µm et 5 µm' },
+      { label: 'Charbon Actif :', text: 'filtration par adsorption' },
+      { label: 'Aqualen™ :', text: 'Fibres adsorbantes pour une filtration efficace des métaux lourds' },
+      { label: 'Argent Ionisé :', text: "stérilité dans la cartouche filtrante sans que l'argent ne pénètre dans l'eau potable." }
+    ],
+    reduces: 'Réduit : chlore, chloroforme, pesticides, produits pétrochimiques, phénol, microplastiques, métaux lourds jusqu\'à 97 – 99 %',
+    specs: {
+      material: { title: 'Matériau', val: 'Boîtier en acier inoxydable 316L & pièces alimentaires' },
+      conn: { title: 'Connexions', val: '1 pouce (2 adaptateurs 3/4 pouces inclus)' },
+      flow: { title: 'Débit', val: '1,5 m³/h (à 4 bars)' }
+    }
+  },
+  install: {
+    title: 'Installation',
+    cardTitle: 'Installation Professionnelle',
+    cardText: "Le Set Essentiel est installé directement sur votre arrivée d'eau principale par un plombier qualifié, garantissant une eau filtrée à chaque robinet. Son design compact permet une intégration facile."
+  },
+  maint: {
+    title: 'Maintenance & Garantie',
+    maintTitle: 'Maintenance Simplifiée',
+    maintText: 'Entretien requis : Changement de cartouche filtrante tous les 150 m³ (en moyenne 1 x par an)',
+    warrantyTitle: 'Garantie d\'Excellence',
+    warrantyYears: '10 ANS',
+    warrantyText: "Fabriqué en acier inoxydable de qualité médicale durable, le boîtier de votre filtre est couvert par une garantie constructeur de 10 ans."
+  },
+  reports: {
+    title: 'Rapports & Certificats',
+    btnPerf: 'Voir le Rapport de Performance',
+    btnCert: 'Voir la Certification Suisse'
+  }
+};
+
+export default function EssentialFilterPage() {
+  const { getPrice, isLoading, currency } = usePricing();
+  const { addToCart } = useCart();
+  const { language } = useLanguage();
+  
+  const isFrench = language === 'fr';
+  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeSection, setActiveSection] = useState('produit');
+  const [modalUrl, setModalUrl] = useState<string | null>(null);
+
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+
+  const IMAGES = [
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/FINE%20FILTER.png",
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/CARTRIDGE.png"
+  ];
+
+  const currentRegion = currency === 'MAD' ? 'Morocco' : currency === 'CHF' ? 'Switzerland' : 'Europe';
+  const rawPrice = PRICE_MAP[currentRegion] || PRICE_MAP['Europe'];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActiveSection(entry.target.id);
+      });
+    }, { rootMargin: '-40% 0px -60% 0px' });
+
+    Object.values(sectionRefs.current).forEach((el) => { if (el) observer.observe(el); });
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = window.innerWidth <= 991 ? 150 : 150;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
+  };
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % IMAGES.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
+
+  const handleAddToCart = () => {
+    if (rawPrice === 0) return; 
+    const currencyCode = currency === 'MAD' ? 'Dhs' : currency || 'EUR';
+
+    addToCart({
+      id: PRODUCT_ID,
+      name: PRODUCT_NAME,
+      price: rawPrice,
+      currency: currencyCode,
+      image: IMAGES[0]
+    });
+  };
+
+  return (
+    <div className={styles.pageWrapper}>
+      
+      {/* SIDEBAR NAV */}
+      <aside className={styles.stickyNav}>
+        <nav>
+          <ul className={styles.navList}>
+            {[
+              { id: 'produit', label: content.nav.product },
+              { id: 'details', label: content.nav.details },
+              { id: 'installation', label: content.nav.install },
+              { id: 'maintenance', label: content.nav.maint },
+              { id: 'rapports', label: content.nav.reports }
+            ].map(item => (
+              <li key={item.id}>
+                <button 
+                  className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
+                  onClick={() => scrollTo(item.id)}
+                >
+                  {item.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+
+      <main className={styles.contentArea}>
+        
+        {/* 1. PRODUCT SECTION */}
+        <section id="produit" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['produit'] = el }}>
+          <div className={styles.productGrid}>
+            <div className={styles.productGallery}>
+              {/* Note: In mobile, CSS grid auto-moves thumbnails to the left based on these DOM nodes */}
+              <div className={styles.thumbnailList}>
+                {IMAGES.map((img, idx) => (
+                  <img 
+                    key={idx} 
+                    src={img} 
+                    className={`${styles.thumbnail} ${idx === currentSlide ? styles.active : ''}`} 
+                    onClick={() => setCurrentSlide(idx)} 
+                    alt="thumbnail"
+                  />
+                ))}
+              </div>
+              <div className={styles.mainImageContainer}>
+                <div className={styles.sliderWrapper} style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+                  {IMAGES.map((img, idx) => (
+                    <img key={idx} src={img} alt={`${PRODUCT_NAME} View ${idx + 1}`} className={styles.sliderImage} />
+                  ))}
+                </div>
+                <button className={`${styles.sliderBtn} ${styles.prevBtn}`} onClick={prevSlide}><ChevronLeft size={32}/></button>
+                <button className={`${styles.sliderBtn} ${styles.nextBtn}`} onClick={nextSlide}><ChevronRight size={32}/></button>
+              </div>
+            </div>
+
+            <div className={styles.productDetails}>
+              <div className={styles.productInfoMobile}>
+                <h1 className={styles.productTitle}>{content.product.title}</h1>
+                <h2 className={styles.productSubtitle}>{content.product.subtitle}</h2>
+                <div className={styles.productPrice}>
+                  {isLoading 
+                    ? 'Loading...' 
+                    : rawPrice > 0 
+                      ? getPrice(PRODUCT_ID) 
+                      : <span style={{color: '#D52D25', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '8px'}}><AlertCircle size={20} /> {content.product.priceTBD}</span>
+                  }
+                </div>
+              </div>
+              <div className={styles.cartForm}>
+                <button 
+                  className={styles.addToCartButton} 
+                  onClick={handleAddToCart}
+                  disabled={rawPrice === 0} 
+                  style={{ opacity: rawPrice === 0 ? 0.5 : 1, cursor: rawPrice === 0 ? 'not-allowed' : 'pointer' }}
+                >
+                  {rawPrice === 0 ? content.product.priceTBD : content.product.btnAdd}
+                </button>
+              </div>
+              <div className={styles.productShortDescription}>
+                <p><strong>{content.product.descBold}</strong></p>
+                <p>{content.product.desc}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 2. DETAILS SECTION */}
+        <section id="details" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['details'] = el }}>
+          <div className={styles.sectionHeader}><h2>{content.details.title}</h2></div>
+          
+          <ul className={styles.detailsList}>
+            {content.details.list.map((item, idx) => (
+              <li key={idx}>
+                <Check className={styles.listIcon} size={20} />
+                <div><strong>{item.label}</strong> {item.text}</div>
+              </li>
+            ))}
+          </ul>
+          
+          <p style={{marginTop: '1.5rem', color: '#64748B'}}><strong>{content.details.reduces}</strong></p>
+
+          <div className={styles.specGrid}>
+            <div className={styles.specCard}>
+              <Gem className={styles.specIcon} />
+              <h4>{content.details.specs.material.title}</h4>
+              <p>{content.details.specs.material.val}</p>
+            </div>
+            <div className={styles.specCard}>
+              <ArrowLeftRight className={styles.specIcon} />
+              <h4>{content.details.specs.conn.title}</h4>
+              <p>{content.details.specs.conn.val}</p>
+            </div>
+            <div className={styles.specCard}>
+              <Gauge className={styles.specIcon} />
+              <h4>{content.details.specs.flow.title}</h4>
+              <p>{content.details.specs.flow.val}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. INSTALLATION SECTION */}
+        <section id="installation" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['installation'] = el }}>
+          <div className={styles.sectionHeader}><h2>{content.install.title}</h2></div>
+          <div className={styles.installationCard}>
+             <h3><Wrench className={styles.redIcon} /> {content.install.cardTitle}</h3>
+             <p>{content.install.cardText}</p>
+          </div>
+        </section>
+
+        {/* 4. MAINTENANCE SECTION */}
+        <section id="maintenance" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['maintenance'] = el }}>
+          <div className={styles.sectionHeader}><h2>{content.maint.title}</h2></div>
+          <div className={styles.maintenanceGrid}>
+            <div className={styles.maintenanceCard}>
+              <h3><CalendarCheck className={styles.redIcon} /> {content.maint.maintTitle}</h3>
+              <p>{content.maint.maintText}</p>
+            </div>
+            <div className={styles.warrantyCard}>
+              <h3><ShieldCheck className={styles.redIcon} /> {content.maint.warrantyTitle}</h3>
+              <div className={styles.warrantyHighlight}>{content.maint.warrantyYears.split(' ')[0]} <span>{content.maint.warrantyYears.split(' ')[1]}</span></div>
+              <p>{content.maint.warrantyText}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. REPORTS SECTION */}
+        <section id="rapports" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['rapports'] = el }}>
+          <div className={styles.sectionHeader}><h2>{content.reports.title}</h2></div>
+          <div className={styles.reportGrid}>
+            <button 
+              className={styles.reportLink} 
+              onClick={() => setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/The%20Swiss%20Water%20Cartridge_Retention%20Rates_Certificated%20ETH%20Zurich.pdf")}
+            >
+              <FileText className={styles.reportIcon} size={24} /> {content.reports.btnPerf}
+            </button>
+            <button 
+              className={styles.reportLink} 
+              onClick={() => setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf")}
+            >
+              <Award className={styles.reportIcon} size={24} /> {content.reports.btnCert}
+            </button>
+          </div>
+        </section>
+
+      </main>
+
+      {/* PDF/IMAGE MODAL */}
+      {modalUrl && (
+        <div className={styles.modalOverlay} onClick={() => setModalUrl(null)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalHeader}>
+              <span className={styles.modalTitle}>Document Preview</span>
+              <button className={styles.modalCloseBtn} onClick={() => setModalUrl(null)}><X size={32} /></button>
+            </div>
+            <div className={styles.modalBody}>
+              <iframe 
+                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`} 
+                style={{width:'100%', height:'100%', border:'none'}} 
+                title="Document Preview"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

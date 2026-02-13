@@ -1,0 +1,477 @@
+/* src/styles/HydrogenBooster.module.css */
+
+/* --- RESET & VARIABLES --- */
+.pageWrapper {
+  font-family: 'Inter', sans-serif;
+  color: #2C3E50;
+  line-height: 1.6;
+  background: #ffffff;
+  width: 100%;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+  padding: 0;
+  background-color: #F8FAFC;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 4rem;
+}
+
+.heroContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  padding-top: 4rem;
+}
+
+.heroContent {
+  order: 1; /* Desktop default */
+  text-align: left;
+  position: relative;
+  z-index: 50;
+}
+
+.heroImageWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  order: 2;
+  min-height: 600px;
+  z-index: 1;
+}
+
+/* Hero Pill */
+.heroPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #000000;
+  font-weight: 900;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+}
+
+.heroPillDot {
+  width: 8px; 
+  height: 8px; 
+  background-color: #D52D25;
+  border-radius: 50%;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.titleMain {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #2C3E50;
+  margin: 0 0 20px 0;
+}
+
+.textHighlight {
+  color: #D52D25;
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.featuresList li {
+  font-size: 0.95rem;
+  color: #576778;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.checkIcon {
+  color: #D52D25;
+  margin-top: 5px;
+}
+
+.priceTag {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #D52D25;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.addToCartButton {
+  background-color: #D52D25;
+  color: white;
+  padding: 18px 40px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(213, 45, 37, 0.2);
+}
+
+.addToCartButton:hover {
+  background-color: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px rgba(213, 45, 37, 0.3);
+}
+
+/* Background Circle */
+.heroBgCircle {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #E2E8F0;
+  z-index: 0;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.heroProductImg {
+  position: relative;
+  z-index: 10;
+  width: auto;
+  height: 550px;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+  transition: transform 0.7s ease;
+}
+
+.heroProductImg:hover {
+  transform: scale(1.05);
+}
+
+/* Floating Badges */
+.heroBadgesStack {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 20;
+}
+
+.heroFloatingBadge {
+  background: white;
+  padding: 12px 16px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 180px;
+  animation: floatBadge 4s ease-in-out infinite;
+}
+
+/* Stagger animations */
+.heroFloatingBadge:nth-child(1) { animation-delay: 0s; }
+.heroFloatingBadge:nth-child(2) { animation-delay: 1s; }
+.heroFloatingBadge:nth-child(3) { animation-delay: 2s; }
+.heroFloatingBadge:nth-child(4) { animation-delay: 0.5s; }
+.heroFloatingBadge:nth-child(5) { animation-delay: 1.5s; }
+
+.badgeIcon {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: #EFF6FF; color: #3B82F6;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconGreen { background: #ecfdf5; color: #10b981; }
+.iconPurple { background: #f3e8ff; color: #a855f7; }
+.iconOrange { background: #ffedd5; color: #f97316; }
+.iconRed { background: #fef2f2; color: #ef4444; }
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .5; }
+}
+
+/* --- CONTENT LAYOUT --- */
+.contentGrid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  align-items: start;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 100px;
+  height: calc(100vh - 100px);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.sidebarLink {
+  color: #576778;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  text-align: left;
+}
+
+.sidebarLink:hover {
+  background: #F8FAFC;
+  color: #2C3E50;
+}
+
+.sidebarLink.active {
+  color: #D52D25;
+  background-color: #FEF2F2;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(213, 45, 37, 0.05);
+}
+
+.contentColumn {
+  padding: 0 40px;
+  min-width: 0;
+}
+
+.section {
+  padding: 80px 0;
+  scroll-margin-top: 100px;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+  color: #2C3E50;
+}
+
+/* --- BENTO GRID --- */
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bentoCard {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid #E2E8F0;
+  transition: transform 0.3s ease;
+}
+
+.bentoCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+.bentoDark {
+  background: #2C3E50;
+  color: #ffffff;
+  grid-row: span 2;
+}
+
+.bentoDark p { color: #94a3b8; }
+.bentoDark .iconCircle { background-color: rgba(255,255,255,0.1); }
+.bentoDark .bentoIcon { color: #ffffff; }
+
+.bentoWide { grid-column: span 2; }
+
+.iconCircle {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background-color: #FEF2F2;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10px;
+}
+
+.bentoIcon { font-size: 1.8rem; color: #D52D25; }
+
+.bentoCard h3 { margin: 0; font-size: 1.25rem; font-weight: 700; }
+.bentoCard p { margin: 0; font-size: 0.95rem; color: #576778; }
+
+/* --- STEPS --- */
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stepItem {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 30px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.stepItem::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 60%);
+  z-index: 1;
+}
+
+.stepNumber {
+  position: absolute; top: 20px; left: 20px;
+  width: 40px; height: 40px;
+  line-height: 40px; border-radius: 50%;
+  background: #D52D25; color: white;
+  font-weight: 800; text-align: center; z-index: 2;
+}
+
+.stepContent { position: relative; z-index: 2; }
+.stepContent h3 { font-size: 1.75rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+
+/* --- SCIENCE & REPORTS --- */
+.scienceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.scienceCard {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #E2E8F0;
+  color: #2C3E50;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.scienceCard:hover {
+  border-color: #D52D25;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(213, 45, 37, 0.08);
+}
+
+.scienceIconBox {
+  width: 50px; height: 50px;
+  background: rgba(213, 45, 37, 0.08);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: #D52D25;
+}
+
+/* --- MODAL --- */
+.modalOverlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8); z-index: 2000;
+  display: flex; justify-content: center; align-items: center; padding: 20px;
+}
+
+.modalContent {
+  background: white; width: 100%; max-width: 900px; height: 90vh;
+  border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
+}
+
+.modalHeader {
+  padding: 15px 20px; border-bottom: 1px solid #E2E8F0;
+  display: flex; justify-content: space-between; align-items: center;
+  background: #F8FAFC;
+}
+
+.modalCloseBtn {
+  background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;
+}
+
+.modalBody {
+  flex-grow: 1; background: #f1f5f9; padding: 20px; overflow-y: auto;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 1023px) {
+  .heroContainer { grid-template-columns: 1fr; gap: 40px; padding-top: 2rem; }
+  .heroContent { order: 2; text-align: center; }
+  .heroImageWrapper { order: 1; min-height: 400px; }
+  .heroBgCircle { width: 300px; height: 300px; }
+  .heroProductImg { height: 350px; }
+  
+  .contentGrid { display: block; }
+  
+  .sidebar {
+    position: sticky; top: 70px; height: auto;
+    flex-direction: row; overflow-x: auto;
+    padding: 10px 20px; background: rgba(255,255,255,0.95);
+    z-index: 900; border-bottom: 1px solid #E2E8F0;
+  }
+  
+  .sidebarNav { flex-direction: row; width: auto; }
+  .sidebarLink { white-space: nowrap; padding: 8px 16px; }
+  
+  .contentColumn { padding: 0 20px; }
+  .bentoGrid, .stepsGrid { grid-template-columns: 1fr; }
+  .bentoWide, .bentoDark { grid-column: span 1; grid-row: auto; }
+  
+  .heroBadgesStack {
+    position: relative; transform: none; top: auto; left: auto;
+    flex-direction: row; flex-wrap: wrap; justify-content: center; margin-top: -30px;
+  }
+  .heroFloatingBadge { padding: 8px 12px; min-width: auto; font-size: 0.8rem; }
+}
