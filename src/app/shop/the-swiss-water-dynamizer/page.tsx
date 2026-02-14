@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  ChevronLeft, ChevronRight, Plus, Minus, FileText, Award, 
-  Star, Shield, Gauge, Activity, X, Droplet, 
+import {
+  ChevronLeft, ChevronRight, Plus, Minus, FileText, Award,
+  Star, Shield, Gauge, Activity, X, Droplet,
   CheckCircle, XCircle, Wrench, CalendarCheck, ShieldCheck, Infinity as InfinityIcon
 } from 'lucide-react';
 import styles from '@/styles/Product.module.css';
@@ -155,10 +155,10 @@ export default function DynamizerPage() {
   const { getPrice, isLoading, currency } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
-  
+
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
-  
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
@@ -228,21 +228,21 @@ export default function DynamizerPage() {
 
   return (
     <div className={styles.pageWrapper}>
-      
+
       {/* SIDEBAR NAV */}
       <aside className={styles.stickyNav}>
         <nav>
           <ul className={styles.navList}>
             {[
-              {id: 'produit', label: content.nav.product}, 
-              {id: 'usages', label: content.nav.benefits}, 
-              {id: 'details', label: content.nav.details}, 
-              {id: 'installation', label: content.nav.install}, 
-              {id: 'maintenance', label: content.nav.maint}, 
-              {id: 'sciences', label: content.nav.science}
+              { id: 'produit', label: content.nav.product },
+              { id: 'usages', label: content.nav.benefits },
+              { id: 'details', label: content.nav.details },
+              { id: 'installation', label: content.nav.install },
+              { id: 'maintenance', label: content.nav.maint },
+              { id: 'sciences', label: content.nav.science }
             ].map(item => (
               <li key={item.id}>
-                <button 
+                <button
                   data-section={item.id}
                   className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
                   onClick={() => scrollTo(item.id)}
@@ -256,9 +256,9 @@ export default function DynamizerPage() {
       </aside>
 
       <main className={styles.contentArea}>
-        
+
         {/* 1. PRODUCT SECTION */}
-        <section id="produit" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['produit'] = el }}>
+        <section id="produit" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['produit'] = el }}>
           <div className={styles.productGrid}>
             <div className={styles.productGallery}>
               <div className={styles.mainImageContainer}>
@@ -272,11 +272,11 @@ export default function DynamizerPage() {
               </div>
               <div className={styles.thumbnailList}>
                 {IMAGES.map((img, idx) => (
-                  <img 
-                    key={idx} 
-                    src={img} 
-                    className={`${styles.thumbnail} ${idx === currentSlide ? styles.active : ''}`} 
-                    onClick={() => setCurrentSlide(idx)} 
+                  <img
+                    key={idx}
+                    src={img}
+                    className={`${styles.thumbnail} ${idx === currentSlide ? styles.active : ''}`}
+                    onClick={() => setCurrentSlide(idx)}
                     alt="thumbnail"
                   />
                 ))}
@@ -291,8 +291,8 @@ export default function DynamizerPage() {
                 </div>
               </div>
               <div className={styles.cartForm}>
-                <button 
-                  className={styles.addToCartButton} 
+                <button
+                  className={styles.addToCartButton}
                   onClick={handleAddToCart}
                 >
                   {content.product.btnAdd}
@@ -308,7 +308,7 @@ export default function DynamizerPage() {
         </section>
 
         {/* 2. BENEFITS SECTION */}
-        <section id="usages" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['usages'] = el }}>
+        <section id="usages" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['usages'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.benefits.title}</h2></div>
           <div className={styles.usagesGrid}>
             <div className={styles.usageCard} style={{ backgroundImage: `url('https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/coffee%20big.webp')` }}>
@@ -343,12 +343,12 @@ export default function DynamizerPage() {
         </section>
 
         {/* 3. DETAILS / PROBLEM & SOLUTION SECTION */}
-        <section id="details" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['details'] = el }}>
+        <section id="details" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['details'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.details.title}</h2></div>
-          <p style={{marginBottom: '2rem'}}>{content.details.intro}</p>
-          
+          <p style={{ marginBottom: '2rem' }}>{content.details.intro}</p>
+
           <div className={styles.productGrid}>
-            
+
             {/* COLUMN 1: PROBLEM */}
             <div className={styles.flowColumn}>
               <h3>{content.details.problem.title}</h3>
@@ -456,21 +456,21 @@ export default function DynamizerPage() {
         </section>
 
         {/* 4. INSTALLATION SECTION */}
-        <section id="installation" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['installation'] = el }}>
+        <section id="installation" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['installation'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.install.title}</h2></div>
           <div className={styles.installationCard}>
-             <div className={styles.videoContainer}>
-               <div style={{width:'100%', height:'100%', background:'#000', display:'flex', alignItems:'center', justifyContent:'center', color:'white'}}>
-                 [Installation Video Placeholder]
-               </div>
-             </div>
-             <h3><Wrench className={styles.specIcon} /> {content.install.cardTitle}</h3>
-             <p>{content.install.cardText}</p>
+            <div className={styles.videoContainer}>
+              <div style={{ width: '100%', height: '100%', background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
+                [Installation Video Placeholder]
+              </div>
+            </div>
+            <h3><Wrench className={styles.specIcon} /> {content.install.cardTitle}</h3>
+            <p>{content.install.cardText}</p>
           </div>
         </section>
 
         {/* 5. MAINTENANCE SECTION */}
-        <section id="maintenance" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['maintenance'] = el }}>
+        <section id="maintenance" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['maintenance'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.maint.title}</h2></div>
           <div className={styles.maintenanceGrid}>
             <div className={styles.maintenanceCard}>
@@ -486,11 +486,11 @@ export default function DynamizerPage() {
         </section>
 
         {/* 6. SCIENCE SECTION */}
-        <section id="sciences" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['sciences'] = el }}>
+        <section id="sciences" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['sciences'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.science.title}</h2></div>
           <div className={styles.reportGrid}>
-            <button 
-              className={styles.reportLink} 
+            <button
+              className={styles.reportLink}
               onClick={() => {
                 setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/ISO.pdf");
                 setIsLoadingPdf(true);
@@ -502,7 +502,8 @@ export default function DynamizerPage() {
         </section>
 
       </main>
-{ setModalUrl(null); setIsLoadingPdf(false); }}>
+      {modalUrl && (
+        <div className={styles.modalOverlay} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <div className={styles.modalHeader}>
               <span className={styles.modalTitle}>Document Preview</span>
@@ -510,16 +511,16 @@ export default function DynamizerPage() {
             </div>
             <div className={styles.modalBody}>
               {isLoadingPdf && (
-                <div style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10}}>
-                  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem'}}>
-                    <div style={{width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite'}} />
-                    <p style={{color: '#64748b', fontSize: '0.9rem'}}>Loading PDF...</p>
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Loading PDF...</p>
                   </div>
                 </div>
               )}
-              <iframe 
+              <iframe
                 src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
-                style={{width:'100%', height:'100%', border:'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease'}} 
+                style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
                 title="Document Preview"
                 onLoad={() => setIsLoadingPdf(false)}
               />
@@ -528,10 +529,7 @@ export default function DynamizerPage() {
               @keyframes spin {
                 to { transform: rotate(360deg); }
               }
-            `}</styletyle={{width:'100%', height:'100%', border:'none'}} 
-                title="Document Preview"
-              />
-            </div>
+            `}</style>
           </div>
         </div>
       )}
