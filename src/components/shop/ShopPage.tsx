@@ -30,7 +30,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Water Fine Filter',
     slug: 'essential',
     priceKey: 'mam-nature-essential-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ESSENTIAL%20(1).webp',
     imageHeight: 300,
     features: [
       "Medical-grade stainless steel construction.",
@@ -48,7 +48,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Fine Filter + Particle Filter',
     slug: 'essential-plus',
     priceKey: 'mam-nature-essential-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ESSENTIAL%20PLUS%20(1).webp',
     imageHeight: 300,
     features: [
       "Dual protection: physical and selective filtration.",
@@ -131,41 +131,23 @@ const PRODUCTS_EN: ProductType[] = [
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
-  // 7. PARTICLE & LIME SET
+  // 7. WATER PARTICLE FILTER
   {
-    id: 'mam-nature-particle-lime-set',
-    name: 'PARTICLE & LIME SET',
-    subtitle: 'Sediment + Scale Protection',
-    slug: 'particle-lime-set',
-    priceKey: 'mam-nature-particle-lime-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particle%20+%20water%20lime.webp',
-    imageHeight: 300,
-    features: [
-      "Dual protection for plumbing and appliances.",
-      "Stops sand and rust with automatic backwash.",
-      "Converts hard limescale into soft aragonite.",
-      "Zero salt, zero chemicals, zero waste.",
-      "No maintenance needed for scale protection."
-    ]
-  },
-
-  // --- INDIVIDUAL COMPONENTS ---
-  {
-    id: 'the-swiss-water-dynamizer',
-    name: 'THE SWISS WATER DYNAMIZER',
-    subtitle: 'Water Revitalizer',
-    slug: 'the-swiss-water-dynamizer',
-    priceKey: 'the-swiss-water-dynamizer',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
+    id: 'particle-filter',
+    name: 'WATER PARTICLE FILTER',
+    subtitle: 'Sediment Pre-filter',
+    slug: 'particles-filter',
+    priceKey: 'water-particle-filter',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
     imageHeight: 320,
     features: [
-      "Restores natural water properties.",
-      "Revitalizes water at a molecular level.",
-      "Prevents scaling in pipes.",
-      "Exceptional taste, easy to digest.",
-      "No maintenance or electricity."
+      "Eliminates sand, rust, and sediments.",
+      "Automatic backwash valve.",
+      "No consumables or maintenance.",
+      "Protects entire plumbing system."
     ]
   },
+  // 8. WATER LIME
   {
     id: 'mam-nature-water-lime',
     name: 'WATER LIME',
@@ -182,6 +164,41 @@ const PRODUCTS_EN: ProductType[] = [
       "Unlimited capacity lifespan."
     ]
   },
+  // 9. THE SWISS WATER DYNAMIZER
+  {
+    id: 'the-swiss-water-dynamizer',
+    name: 'THE SWISS WATER DYNAMIZER',
+    subtitle: 'Water Revitalizer',
+    slug: 'the-swiss-water-dynamizer',
+    priceKey: 'the-swiss-water-dynamizer',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
+    imageHeight: 320,
+    features: [
+      "Restores natural water properties.",
+      "Revitalizes water at a molecular level.",
+      "Prevents scaling in pipes.",
+      "Exceptional taste, easy to digest.",
+      "No maintenance or electricity."
+    ]
+  },
+  // 10. PARTICLE & LIME SET
+  {
+    id: 'mam-nature-particle-lime-set',
+    name: 'PARTICLE & LIME SET',
+    subtitle: 'Sediment + Scale Protection',
+    slug: 'particle-lime-set',
+    priceKey: 'mam-nature-particle-lime-set',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particle%20+%20water%20lime.webp',
+    imageHeight: 300,
+    features: [
+      "Dual protection for plumbing and appliances.",
+      "Stops sand and rust with automatic backwash.",
+      "Converts hard limescale into soft aragonite.",
+      "Zero salt, zero chemicals, zero waste.",
+      "No maintenance needed for scale protection."
+    ]
+  },
+  // 11. SWISS HYDROGEN BOOSTER
   {
     id: 'swiss-hydrogen-booster',
     name: 'SWISS HYDROGEN BOOSTER',
@@ -198,43 +215,14 @@ const PRODUCTS_EN: ProductType[] = [
       "Rechargeable battery (150-min life)."
     ]
   },
-  {
-    id: 'mam-nature-water-fine-filter',
-    name: 'WATER FINE FILTER',
-    subtitle: 'Filtration Housing',
-    slug: 'fine-filter',
-    priceKey: 'mam-nature-water-fine-filter',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
-    imageHeight: 320,
-    features: [
-      "Medical-grade stainless steel casing.",
-      "Eliminates chlorine, heavy metals, and PFAS.",
-      "High-pressure resistant design.",
-      "Quick and easy installation."
-    ]
-  },
-  {
-    id: 'water-particle-filter',
-    name: 'WATER PARTICLE FILTER',
-    subtitle: 'Sediment Pre-filter',
-    slug: 'particles-filter',
-    priceKey: 'water-particle-filter',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
-    imageHeight: 320,
-    features: [
-      "Eliminates sand, rust, and sediments.",
-      "Automatic backwash valve.",
-      "No consumables or maintenance.",
-      "Protects entire plumbing system."
-    ]
-  },
+  // 12. SWISS WATER CARTRIDGE
   {
     id: 'water-fine-filter-cartridge',
     name: 'SWISS WATER CARTRIDGE',
     subtitle: 'Replacement Cartridge',
     slug: 'cartridge',
     priceKey: 'water-fine-filter-cartridge',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/CARTRIDGE.webp',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp',
     imageHeight: 320,
     features: [
       "Annual replacement for Fine Filter.",
@@ -254,7 +242,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Filtre à Eau Fin',
     slug: 'essentiel',
     priceKey: 'mam-nature-essential-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ESSENTIAL%20(1).webp',
     imageHeight: 300,
     features: [
       "Construction robuste en acier inoxydable médical.",
@@ -272,7 +260,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Filtre Fin + Filtre à Particules',
     slug: 'essentiel-plus',
     priceKey: 'mam-nature-essential-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ESSENTIAL%20PLUS%20(1).webp',
     imageHeight: 300,
     features: [
       "Double protection : filtration physique et sélective.",
@@ -355,41 +343,23 @@ const PRODUCTS_FR: ProductType[] = [
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
-  // 7. SET PARTICULES & CALCAIRE
+  // 7. WATER PARTICLE FILTER
   {
-    id: 'mam-nature-particle-lime-set',
-    name: 'SET PARTICULES & CALCAIRE',
-    subtitle: 'Sédiments + Protection Tartre',
-    slug: 'set-particules-calcaire',
-    priceKey: 'mam-nature-particle-lime-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particle%20+%20water%20lime.webp',
-    imageHeight: 300,
-    features: [
-      "Double protection plomberie et appareils.",
-      "Arrête sable et rouille (rétrolavage automatique).",
-      "Convertit le calcaire en aragonite douce.",
-      "Écologique : zéro sel, zéro chimie, zéro déchet.",
-      "Protection anticalcaire sans aucun entretien."
-    ]
-  },
-
-  // --- COMPOSANTS INDIVIDUELS ---
-  {
-    id: 'the-swiss-water-dynamizer',
-    name: 'THE SWISS WATER DYNAMIZER',
-    subtitle: 'Revitaliseur d\'Eau',
-    slug: 'the-swiss-water-dynamizer',
-    priceKey: 'the-swiss-water-dynamizer',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
+    id: 'particle-filter',
+    name: 'WATER PARTICLE FILTER',
+    subtitle: 'Pré-filtre à Sédiments',
+    slug: 'particles-filter',
+    priceKey: 'water-particle-filter',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
     imageHeight: 320,
     features: [
-      "Restitue à l'eau toutes ses propriétés naturelles.",
-      "Revitalise l'eau au niveau moléculaire.",
-      "Prévient l'entartrage des canalisations.",
-      "Goût exceptionnel et digeste.",
-      "Sans entretien ni électricité."
+      "Élimine sable, rouille et sédiments.",
+      "Vanne de rétrolavage automatique.",
+      "Sans consommables ni entretien.",
+      "Protège toute l'installation de plomberie."
     ]
   },
+  // 8. WATER LIME
   {
     id: 'mam-nature-water-lime',
     name: 'WATER LIME',
@@ -406,6 +376,41 @@ const PRODUCTS_FR: ProductType[] = [
       "Capacité de durée de vie illimitée."
     ]
   },
+  // 9. THE SWISS WATER DYNAMIZER
+  {
+    id: 'the-swiss-water-dynamizer',
+    name: 'THE SWISS WATER DYNAMIZER',
+    subtitle: 'Revitaliseur d\'Eau',
+    slug: 'dynamizer',
+    priceKey: 'the-swiss-water-dynamizer',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
+    imageHeight: 320,
+    features: [
+      "Restitue à l'eau toutes ses propriétés naturelles.",
+      "Revitalise l'eau au niveau moléculaire.",
+      "Prévient l'entartrage des canalisations.",
+      "Goût exceptionnel et digeste.",
+      "Sans entretien ni électricité."
+    ]
+  },
+  // 10. SET PARTICULES & CALCAIRE
+  {
+    id: 'mam-nature-particle-lime-set',
+    name: 'SET PARTICULES & CALCAIRE',
+    subtitle: 'Sédiments + Protection Tartre',
+    slug: 'set-particules-calcaire',
+    priceKey: 'mam-nature-particle-lime-set',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
+    imageHeight: 300,
+    features: [
+      "Double protection plomberie et appareils.",
+      "Arrête sable et rouille (rétrolavage automatique).",
+      "Convertit le calcaire en aragonite douce.",
+      "Écologique : zéro sel, zéro chimie, zéro déchet.",
+      "Protection anticalcaire sans aucun entretien."
+    ]
+  },
+  // 11. SWISS HYDROGEN BOOSTER
   {
     id: 'swiss-hydrogen-booster',
     name: 'SWISS HYDROGEN BOOSTER',
@@ -422,43 +427,14 @@ const PRODUCTS_FR: ProductType[] = [
       "Batterie rechargeable (150 min d'autonomie)."
     ]
   },
-  {
-    id: 'mam-nature-water-fine-filter',
-    name: 'WATER FINE FILTER',
-    subtitle: 'Boîtier de Filtration',
-    slug: 'fine-filter',
-    priceKey: 'mam-nature-water-fine-filter',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
-    imageHeight: 320,
-    features: [
-      "Boîtier en acier inoxydable médical.",
-      "Élimine chlore, métaux lourds et PFAS.",
-      "Conçu pour résister à la haute pression.",
-      "Installation simple et rapide."
-    ]
-  },
-  {
-    id: 'water-particle-filter',
-    name: 'WATER PARTICLE FILTER',
-    subtitle: 'Pré-filtre à Sédiments',
-    slug: 'particles-filter',
-    priceKey: 'water-particle-filter',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
-    imageHeight: 320,
-    features: [
-      "Élimine sable, rouille et sédiments.",
-      "Vanne de rétrolavage automatique.",
-      "Sans consommables ni entretien.",
-      "Protège toute l'installation de plomberie."
-    ]
-  },
+  // 12. SWISS WATER CARTRIDGE
   {
     id: 'water-fine-filter-cartridge',
     name: 'SWISS WATER CARTRIDGE',
     subtitle: 'Cartouche de Remplacement',
     slug: 'cartridge',
     priceKey: 'water-fine-filter-cartridge',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/CARTRIDGE.webp',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp',
     imageHeight: 320,
     features: [
       "Remplacement annuel pour Fine Filter.",

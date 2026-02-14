@@ -136,7 +136,7 @@ export default function ParticleLimeSetPage() {
 
   // Placeholder images. Replace with actual images (Particle filter + Water Lime)
   const IMAGES = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLE%20%26%20LIME%20SET.webp",
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particle%20+%20water%20lime.webp",
     "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp"
   ];
 
