@@ -38,14 +38,14 @@ export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, cartTotal, addToCart } = useCart();
   const [loading, setLoading] = useState(false);
   const { language } = useLanguage();
-  
+
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
 
   // Route to your custom Checkout page instead of direct Stripe redirect
   const handleCheckout = () => {
     setLoading(true);
-    window.location.href = '/checkout'; 
+    window.location.href = '/checkout';
   };
 
   const rawCurrency = cart[0]?.currency || 'EUR';
@@ -53,12 +53,12 @@ export default function CartPage() {
   const isChf = rawCurrency === 'CHF';
   const currencySymbol = isMad ? 'Dhs' : isChf ? 'CHF' : '€';
 
-// ==========================================
+  // ==========================================
   // CROSS-SELL LOGIC
   // ==========================================
   const hasEssential = cart.some(item => item.id === 'mam-nature-essential-set');
   const hasEssentialPlus = cart.some(item => item.id === 'mam-nature-essential-plus');
-  
+
   // Check if promos are ALREADY in the cart
   const hasPromo1 = cart.some(item => item.id === 'promo-particle-lime-set');
   const hasPromo2 = cart.some(item => item.id === 'promo-water-lime');
@@ -70,17 +70,17 @@ export default function CartPage() {
     // Exact Math: Eco Set (12299 MAD / 1070 CHF / 1150 EUR) - Essential (8580 MAD / 760 CHF / 820 EUR)
     const promoPrice = isMad ? 3719 : isChf ? 310 : 330;
     const originalPrice = isMad ? 4750 : isChf ? 428 : 452; // (Standard combined price)
-    
+
     offer = {
       id: 'promo-particle-lime-set',
       name: isFrench ? 'Filtre à Particules + Water LIME' : 'Particle Filter + Water LIME',
-      desc: isFrench 
-        ? `Complétez votre installation pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !` 
+      desc: isFrench
+        ? `Complétez votre installation pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
         : `Complete your setup for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLE%20FILTER.png'
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particle%20+%20water%20lime.webp'
     };
-  } 
+  }
   // 2. Offer for Essential Plus Set (Upgrades them to Eco Set total)
   else if (hasEssentialPlus && !hasPromo2) {
     // Exact Math: Eco Set (12299 MAD / 1070 CHF / 1150 EUR) - Essential Plus (10250 MAD / 910 CHF / 980 EUR)
@@ -90,11 +90,11 @@ export default function CartPage() {
     offer = {
       id: 'promo-water-lime',
       name: isFrench ? 'Filtre Water LIME' : 'Water LIME Filter',
-      desc: isFrench 
-        ? `Ajoutez la protection anti-calcaire pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !` 
+      desc: isFrench
+        ? `Ajoutez la protection anti-calcaire pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
         : `Add anti-limescale protection for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp'
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp'
     };
   }
 
@@ -113,7 +113,7 @@ export default function CartPage() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{content.title}</h1>
-      
+
       <div className={styles.cartGrid}>
         {/* Left: Items */}
         <div className={styles.itemsList}>
@@ -126,7 +126,7 @@ export default function CartPage() {
               </div>
               <div className={styles.controls}>
                 <button className={styles.qtyBtn} onClick={() => updateQuantity(item.id, -1)}><Minus size={16} /></button>
-                <span style={{width: '30px', textAlign: 'center', fontWeight: '600'}}>{item.quantity}</span>
+                <span style={{ width: '30px', textAlign: 'center', fontWeight: '600' }}>{item.quantity}</span>
                 <button className={styles.qtyBtn} onClick={() => updateQuantity(item.id, 1)}><Plus size={16} /></button>
                 <button className={styles.removeBtn} onClick={() => removeFromCart(item.id)}><Trash2 size={20} /></button>
               </div>
@@ -136,14 +136,14 @@ export default function CartPage() {
           {/* CROSS-SELL OFFER BANNER */}
           {offer && (
             <div style={{
-              marginTop: '20px', padding: '20px', background: '#fffbeb', 
-              border: '1px dashed #f59e0b', borderRadius: '12px', 
+              marginTop: '20px', padding: '20px', background: '#fffbeb',
+              border: '1px dashed #f59e0b', borderRadius: '12px',
               display: 'flex', flexDirection: 'column', gap: '15px'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#b45309', fontWeight: 'bold', fontSize: '1rem' }}>
                 <Tag size={18} /> <span>{content.promoTitle}</span>
               </div>
-              
+
               <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                 <img src={offer.image} alt={offer.name} style={{ width: '70px', height: '70px', objectFit: 'contain', background: 'white', borderRadius: '8px', border: '1px solid #fcd34d' }} />
                 <div style={{ flex: 1 }}>
@@ -152,7 +152,7 @@ export default function CartPage() {
                 </div>
               </div>
 
-              <button 
+              <button
                 onClick={handleAcceptOffer}
                 style={{
                   width: 'fit-content', padding: '12px 24px', background: '#f59e0b', color: 'white',
@@ -183,7 +183,7 @@ export default function CartPage() {
             <span>{currencySymbol} {cartTotal.toLocaleString()}</span>
           </div>
           <button className={styles.checkoutBtn} onClick={handleCheckout} disabled={loading}>
-            {loading ? 'Processing...' : content.checkout} <ArrowRight size={18} style={{marginLeft:'10px', display:'inline-block', verticalAlign:'middle'}}/>
+            {loading ? 'Processing...' : content.checkout} <ArrowRight size={18} style={{ marginLeft: '10px', display: 'inline-block', verticalAlign: 'middle' }} />
           </button>
         </div>
       </div>

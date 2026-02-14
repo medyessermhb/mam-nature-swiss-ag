@@ -12,7 +12,7 @@ export default function CrossSellOffer() {
   // 1. Check what is in the cart
   const hasEssential = cart.some(item => item.id === 'mam-nature-essential-set');
   const hasEssentialPlus = cart.some(item => item.id === 'mam-nature-essential-plus');
-  
+
   // 2. Check if promos are ALREADY in the cart
   const hasPromo1 = cart.some(item => item.id === 'promo-particle-lime-set');
   const hasPromo2 = cart.some(item => item.id === 'promo-water-lime');
@@ -31,7 +31,7 @@ export default function CrossSellOffer() {
       name: 'Special Offer: Particle Filter + Water Lime',
       desc: 'Complete your setup for only 330€ (instead of 452€)!',
       price: isMad ? 3450 : isChf ? 310 : 330,
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLE%20FILTER.png' // Replace with actual combo image
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particle%20+%20water%20lime.webp' // Replace with actual combo image
     };
   } else if (hasEssentialPlus && !hasPromo2) {
     offer = {
@@ -39,7 +39,7 @@ export default function CrossSellOffer() {
       name: 'Special Offer: Water LIME Filter',
       desc: 'Add anti-limescale protection for only 170€ (instead of 217€)!',
       price: isMad ? 1800 : isChf ? 160 : 170,
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp' // Replace with actual Water Lime image
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp' // Replace with actual Water Lime image
     };
   }
 
@@ -71,11 +71,11 @@ export default function CrossSellOffer() {
         <Tag size={18} />
         <span>Exclusive Cart Offer</span>
       </div>
-      
+
       <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
-        <img 
-          src={offer.image} 
-          alt={offer.name} 
+        <img
+          src={offer.image}
+          alt={offer.name}
           style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '6px', border: '1px solid #fcd34d' }}
         />
         <div style={{ flex: 1 }}>
@@ -87,7 +87,7 @@ export default function CrossSellOffer() {
         </div>
       </div>
 
-      <button 
+      <button
         onClick={handleAcceptOffer}
         style={{
           width: '100%',

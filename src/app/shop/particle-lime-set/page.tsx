@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  ChevronLeft, ChevronRight, FileText, Award, 
+import {
+  ChevronLeft, ChevronRight, FileText, Award,
   Check, Gem, ArrowLeftRight, Gauge, Wrench, CalendarCheck, ShieldCheck, X, AlertCircle, Magnet
 } from 'lucide-react';
 import styles from '@/styles/Product.module.css';
 import { usePricing } from '@/context/PricingContext';
 import { useCart } from '@/context/CartContext';
-import { useLanguage } from '@/context/LanguageContext'; 
+import { useLanguage } from '@/context/LanguageContext';
 
 // --- PRODUCT CONSTANTS ---
 const PRODUCT_ID = 'mam-nature-particle-lime-set';
@@ -32,11 +32,11 @@ const CONTENT_EN = {
   },
   product: {
     title: PRODUCT_NAME,
-    subtitle: 'Particle Filter + Anti-Limescale Water Filter',
+    subtitle: 'Complete Protection Bundle: Particle Filter + Anti-Limescale',
     btnAdd: 'Add to Cart',
     priceTBD: 'Price Coming Soon',
-    descBold: 'The perfect combination to protect your home\'s plumbing and appliances.',
-    desc: "This dual system provides comprehensive protection. The Particle Filter pre-filters sand, rust, and large debris. Immediately after, the Water LIME system physically transforms stubborn limescale into non-adhesive aragonite without using salt or chemicals, preserving healthy minerals while saving energy."
+    descBold: 'The ultimate protection package: Filter sediments and treat limescale in one complete set.',
+    desc: "This bundle combines our two essential systems for total home protection. You get the 50µm Particle Filter to remove sand and rust, plus the Water LIME physics-based anti-scale system to prevent limescale buildup. Sold together as a complete package for maximum efficiency and value."
   },
   details: {
     title: 'Dual Protection Technology',
@@ -83,11 +83,11 @@ const CONTENT_FR = {
   },
   product: {
     title: PRODUCT_NAME,
-    subtitle: 'Filtre à Particules + Filtre Anti-Calcaire',
+    subtitle: 'Pack Protection Complète : Filtre à Particules + Anti-Calcaire',
     btnAdd: 'Ajouter au panier',
     priceTBD: 'Prix à venir',
-    descBold: 'La combinaison parfaite pour protéger la plomberie et les appareils électroménagers de votre maison.',
-    desc: "Ce double système offre une protection complète. Le filtre à particules préfiltre le sable, la rouille et les gros débris. Immédiatement après, le système Water LIME transforme physiquement le calcaire tenace en aragonite non adhésive sans utiliser de sel ni de produits chimiques, préservant les minéraux sains tout en économisant de l'énergie."
+    descBold: 'Le pack de protection ultime : Filtrez les sédiments et traitez le calcaire en un seul ensemble complet.',
+    desc: "Ce pack combine nos deux systèmes essentiels pour une protection totale de l'habitat. Vous obtenez le Filtre à Particules 50µm pour éliminer sable et rouille, plus le système physique Water LIME pour empêcher l'incrustation du calcaire. Vendus ensemble comme un pack complet pour une efficacité et une valeur maximales."
   },
   details: {
     title: 'Technologie de Double Protection',
@@ -128,10 +128,10 @@ export default function ParticleLimeSetPage() {
   const { getPrice, isLoading, currency } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
-  
+
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
-  
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');
   const [modalUrl, setModalUrl] = useState<string | null>(null);
@@ -141,8 +141,8 @@ export default function ParticleLimeSetPage() {
 
   // Placeholder images. Replace with actual images (Particle filter + Water Lime)
   const IMAGES = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLE%20FILTER.png",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp" // Replace with Lime filter image
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLE%20%26%20LIME%20SET.webp",
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp"
   ];
 
   const currentRegion = currency === 'MAD' ? 'Morocco' : currency === 'CHF' ? 'Switzerland' : 'Europe';
@@ -185,7 +185,7 @@ export default function ParticleLimeSetPage() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
 
   const handleAddToCart = () => {
-    if (rawPrice === 0) return; 
+    if (rawPrice === 0) return;
     const currencyCode = currency === 'MAD' ? 'Dhs' : currency || 'EUR';
 
     addToCart({
@@ -199,7 +199,7 @@ export default function ParticleLimeSetPage() {
 
   return (
     <div className={styles.pageWrapper}>
-      
+
       {/* SIDEBAR NAV */}
       <aside className={styles.stickyNav}>
         <nav>
@@ -212,7 +212,7 @@ export default function ParticleLimeSetPage() {
               { id: 'rapports', label: content.nav.reports }
             ].map(item => (
               <li key={item.id}>
-                <button 
+                <button
                   data-section={item.id}
                   className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
                   onClick={() => scrollTo(item.id)}
@@ -226,18 +226,18 @@ export default function ParticleLimeSetPage() {
       </aside>
 
       <main className={styles.contentArea}>
-        
+
         {/* 1. PRODUCT SECTION */}
-        <section id="produit" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['produit'] = el }}>
+        <section id="produit" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['produit'] = el }}>
           <div className={styles.productGrid}>
             <div className={styles.productGallery}>
               <div className={styles.thumbnailList}>
                 {IMAGES.map((img, idx) => (
-                  <img 
-                    key={idx} 
-                    src={img} 
-                    className={`${styles.thumbnail} ${idx === currentSlide ? styles.active : ''}`} 
-                    onClick={() => setCurrentSlide(idx)} 
+                  <img
+                    key={idx}
+                    src={img}
+                    className={`${styles.thumbnail} ${idx === currentSlide ? styles.active : ''}`}
+                    onClick={() => setCurrentSlide(idx)}
                     alt="thumbnail"
                   />
                 ))}
@@ -250,8 +250,8 @@ export default function ParticleLimeSetPage() {
                 </div>
                 {IMAGES.length > 1 && (
                   <>
-                    <button className={`${styles.sliderBtn} ${styles.prevBtn}`} onClick={prevSlide}><ChevronLeft size={32}/></button>
-                    <button className={`${styles.sliderBtn} ${styles.nextBtn}`} onClick={nextSlide}><ChevronRight size={32}/></button>
+                    <button className={`${styles.sliderBtn} ${styles.prevBtn}`} onClick={prevSlide}><ChevronLeft size={32} /></button>
+                    <button className={`${styles.sliderBtn} ${styles.nextBtn}`} onClick={nextSlide}><ChevronRight size={32} /></button>
                   </>
                 )}
               </div>
@@ -262,19 +262,19 @@ export default function ParticleLimeSetPage() {
                 <h1 className={styles.productTitle}>{content.product.title}</h1>
                 <h2 className={styles.productSubtitle}>{content.product.subtitle}</h2>
                 <div className={styles.productPrice}>
-                  {isLoading 
-                    ? 'Loading...' 
-                    : rawPrice > 0 
-                      ? getPrice(PRODUCT_ID) 
-                      : <span style={{color: '#D52D25', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '8px'}}><AlertCircle size={20} /> {content.product.priceTBD}</span>
+                  {isLoading
+                    ? 'Loading...'
+                    : rawPrice > 0
+                      ? getPrice(PRODUCT_ID)
+                      : <span style={{ color: '#D52D25', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '8px' }}><AlertCircle size={20} /> {content.product.priceTBD}</span>
                   }
                 </div>
               </div>
               <div className={styles.cartForm}>
-                <button 
-                  className={styles.addToCartButton} 
+                <button
+                  className={styles.addToCartButton}
                   onClick={handleAddToCart}
-                  disabled={rawPrice === 0} 
+                  disabled={rawPrice === 0}
                   style={{ opacity: rawPrice === 0 ? 0.5 : 1, cursor: rawPrice === 0 ? 'not-allowed' : 'pointer' }}
                 >
                   {rawPrice === 0 ? content.product.priceTBD : content.product.btnAdd}
@@ -289,9 +289,9 @@ export default function ParticleLimeSetPage() {
         </section>
 
         {/* 2. DETAILS SECTION */}
-        <section id="details" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['details'] = el }}>
+        <section id="details" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['details'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.details.title}</h2></div>
-          
+
           <ul className={styles.detailsList}>
             {content.details.list.map((item, idx) => (
               <li key={idx}>
@@ -300,9 +300,9 @@ export default function ParticleLimeSetPage() {
               </li>
             ))}
           </ul>
-          
-          <div style={{marginTop: '1.5rem', padding: '1rem', background: '#fff1f2', borderLeft: '4px solid #D52D25', borderRadius: '4px'}}>
-             <p style={{color: '#9f1239', margin: 0}}><strong>{content.details.reduces}</strong></p>
+
+          <div style={{ marginTop: '1.5rem', padding: '1rem', background: '#fff1f2', borderLeft: '4px solid #D52D25', borderRadius: '4px' }}>
+            <p style={{ color: '#9f1239', margin: 0 }}><strong>{content.details.reduces}</strong></p>
           </div>
 
           <div className={styles.specGrid}>
@@ -325,16 +325,16 @@ export default function ParticleLimeSetPage() {
         </section>
 
         {/* 3. INSTALLATION SECTION */}
-        <section id="installation" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['installation'] = el }}>
+        <section id="installation" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['installation'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.install.title}</h2></div>
           <div className={styles.installationCard}>
-             <h3><Wrench className={styles.redIcon} /> {content.install.cardTitle}</h3>
-             <p>{content.install.cardText}</p>
+            <h3><Wrench className={styles.redIcon} /> {content.install.cardTitle}</h3>
+            <p>{content.install.cardText}</p>
           </div>
         </section>
 
         {/* 4. MAINTENANCE SECTION */}
-        <section id="maintenance" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['maintenance'] = el }}>
+        <section id="maintenance" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['maintenance'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.maint.title}</h2></div>
           <div className={styles.maintenanceGrid}>
             <div className={styles.maintenanceCard}>
@@ -350,11 +350,11 @@ export default function ParticleLimeSetPage() {
         </section>
 
         {/* 5. REPORTS SECTION */}
-        <section id="rapports" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['rapports'] = el }}>
+        <section id="rapports" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['rapports'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.reports.title}</h2></div>
           <div className={styles.reportGrid}>
-            <button 
-              className={styles.reportLink} 
+            <button
+              className={styles.reportLink}
               onClick={() => {
                 setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/The%20Swiss%20Water%20Cartridge_Retention%20Rates_Certificated%20ETH%20Zurich.pdf");
                 setIsLoadingPdf(true);
@@ -362,8 +362,8 @@ export default function ParticleLimeSetPage() {
             >
               <FileText className={styles.reportIcon} /> {content.reports.btnPerf}
             </button>
-            <button 
-              className={styles.reportLink} 
+            <button
+              className={styles.reportLink}
               onClick={() => {
                 setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf");
                 setIsLoadingPdf(true);
@@ -386,16 +386,16 @@ export default function ParticleLimeSetPage() {
             </div>
             <div className={styles.modalBody}>
               {isLoadingPdf && (
-                <div style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10}}>
-                  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem'}}>
-                    <div style={{width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite'}} />
-                    <p style={{color: '#64748b', fontSize: '0.9rem'}}>Loading PDF...</p>
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Loading PDF...</p>
                   </div>
                 </div>
               )}
-              <iframe 
+              <iframe
                 src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
-                style={{width:'100%', height:'100%', border:'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease'}} 
+                style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
                 title="Document Preview"
                 onLoad={() => setIsLoadingPdf(false)}
               />

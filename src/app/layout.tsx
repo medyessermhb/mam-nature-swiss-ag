@@ -15,10 +15,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://mam-nature.com'),
   title: {
     template: '%s | Mam Nature',
-    default: 'Mam Nature | Advanced Swiss Water Filtration Systems', 
+    default: 'Mam Nature | Advanced Swiss Water Filtration Systems',
   },
   description: "Discover cutting-edge Swiss-engineered water filtration, revitalization, and anti-limescale solutions for pure and healthy water at home.",
   keywords: ['water filter', 'anti-limescale', 'water revitalizer', 'Swiss water treatment', 'Mam Nature', 'hydrogen booster'],
+  icons: {
+    icon: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg',
+    shortcut: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg',
+    apple: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg',
+  },
   openGraph: {
     title: 'Mam Nature | Advanced Water Treatment',
     description: 'Swiss-engineered solutions for pure and healthy water at home.',
@@ -26,8 +31,8 @@ export const metadata: Metadata = {
     siteName: 'Mam Nature',
     images: [
       {
-        // Replace with a nice banner image URL from your Supabase storage
-        url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/og-image.jpg', 
+        // Using main logo or specific sharing image
+        url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg',
         width: 1200,
         height: 630,
         alt: 'Mam Nature Swiss Water Treatment',

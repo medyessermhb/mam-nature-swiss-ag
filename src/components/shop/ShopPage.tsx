@@ -7,17 +7,17 @@ import { useLanguage } from '@/context/LanguageContext';
 
 // Standard Slider Groups used for whole-house products
 const SHARED_SLIDER_GROUPS = [
-  { 
-    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/SHOWER.webp", 
-    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/WATER%20DRINKING.webp" 
+  {
+    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/SHOWER.webp",
+    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/WATER%20DRINKING.webp"
   },
-  { 
-    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/TEETH.webp", 
-    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/WASHING%20VEGIES.webp" 
+  {
+    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/TEETH.webp",
+    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/WASHING%20VEGIES.webp"
   },
-  { 
-    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/COFFEE.webp", 
-    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/WASHING%20MACHINE.webp" 
+  {
+    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/COFFEE.webp",
+    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/WASHING%20MACHINE.webp"
   }
 ];
 
@@ -138,7 +138,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Sediment + Scale Protection',
     slug: 'particle-lime-set',
     priceKey: 'mam-nature-particle-lime-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particle%20+%20water%20lime.webp',
     imageHeight: 300,
     features: [
       "Dual protection for plumbing and appliances.",
@@ -172,7 +172,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Anti-Limescale Solution',
     slug: 'water-lime',
     priceKey: 'mam-nature-water-lime',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp',
     imageHeight: 320,
     features: [
       "Physical conversion of limescale.",
@@ -362,7 +362,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Sédiments + Protection Tartre',
     slug: 'set-particules-calcaire',
     priceKey: 'mam-nature-particle-lime-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particle%20+%20water%20lime.webp',
     imageHeight: 300,
     features: [
       "Double protection plomberie et appareils.",
@@ -396,7 +396,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Solution Anti-Calcaire',
     slug: 'water-lime',
     priceKey: 'mam-nature-water-lime',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp',
     imageHeight: 320,
     features: [
       "Conversion physique du tartre.",
