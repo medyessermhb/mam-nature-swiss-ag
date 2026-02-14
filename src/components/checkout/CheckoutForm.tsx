@@ -197,10 +197,10 @@ export default function CheckoutForm() {
       return;
     }
 
-    // MOROCCO LOGIC: Contested shipping & Force Bank Transfer
+    // MOROCCO LOGIC: Contested shipping
     if (shipping.country === 'MA') {
       setShippingCost(0);
-      setPaymentMethod('bank');
+      // Removed forced bank transfer to allow Stripe testing/usage
     } else {
       // EUROPE / ROW LOGIC: Product-based calculation
       const baseRateEUR = calculateShipping(cart);
@@ -617,14 +617,13 @@ export default function CheckoutForm() {
               <div className={styles.sectionHeader}><CreditCard size={20} className={styles.headerIcon} /> <h3>{content.payment.title}</h3></div>
 
               {/* Dynamic Tabs Grid: 1 column if Morocco, 2 columns otherwise (Card + Bank) */}
-              <div className={styles.paymentTabs} style={{ gridTemplateColumns: shipping.country === 'MA' ? '1fr' : 'repeat(2, 1fr)' }}>
+              <div className={styles.paymentTabs} style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
 
-                {shipping.country !== 'MA' && (
-                  <div className={`${styles.paymentTab} ${paymentMethod === 'card' ? styles.active : ''}`} onClick={() => setPaymentMethod('card')}>
-                    <CreditCard size={24} className={styles.tabIcon} />
-                    <span className={styles.tabLabel}>{content.payment.card}</span>
-                  </div>
-                )}
+                {/* Allow Card for everyone now */}
+                <div className={`${styles.paymentTab} ${paymentMethod === 'card' ? styles.active : ''}`} onClick={() => setPaymentMethod('card')}>
+                  <CreditCard size={24} className={styles.tabIcon} />
+                  <span className={styles.tabLabel}>{content.payment.card}</span>
+                </div>
 
                 <div className={`${styles.paymentTab} ${paymentMethod === 'bank' ? styles.active : ''}`} onClick={() => setPaymentMethod('bank')}>
                   <Building2 size={24} className={styles.tabIcon} />
