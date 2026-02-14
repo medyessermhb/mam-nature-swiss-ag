@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { 
-  Check, Atom, Brain, Shield, HeartPulse, Battery, Cpu, 
-  FlaskConical, Droplet, Zap, Smile, HandMetal, FileText, Award, X 
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  Check, Atom, Brain, Shield, HeartPulse, Battery, Cpu,
+  FlaskConical, Droplet, Zap, Smile, HandMetal, FileText, Award, X
 } from 'lucide-react';
 import styles from '@/styles/HydrogenBooster.module.css';
 import { usePricing } from '@/context/PricingContext';
@@ -162,13 +162,14 @@ export default function HydrogenBoosterPage() {
   const { getPrice, isLoading, currency } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
-  
+
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
-  
+
   const [activeSection, setActiveSection] = useState('benefits');
   const [modalUrl, setModalUrl] = useState<string | null>(null);
   const [isLoadingPdf, setIsLoadingPdf] = useState(false);
+  const sidebarRef = useRef<HTMLElement>(null);
 
   const MAIN_IMAGE = "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/HYDROGEEN%20BOOSTER.webp";
 
@@ -185,12 +186,16 @@ export default function HydrogenBoosterPage() {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-scroll active nav item into view on mobile
+  // Auto-scroll active nav item into view on mobile (horizontal only)
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth <= 991) {
-      const activeNavLink = document.querySelector(`button[data-section="${activeSection}"]`);
+    if (typeof window !== 'undefined' && window.innerWidth <= 1023 && sidebarRef.current) {
+      const sidebar = sidebarRef.current;
+      const activeNavLink = sidebar.querySelector(`button[data-section="${activeSection}"]`) as HTMLElement;
+
       if (activeNavLink) {
-        activeNavLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        // Calculate center position
+        const left = activeNavLink.offsetLeft - (sidebar.offsetWidth / 2) + (activeNavLink.offsetWidth / 2);
+        sidebar.scrollTo({ left, behavior: 'smooth' });
       }
     }
   }, [activeSection]);
@@ -223,7 +228,7 @@ export default function HydrogenBoosterPage() {
 
   return (
     <div className={styles.pageWrapper}>
-      
+
       {/* HERO SECTION */}
       <section className={styles.hero}>
         <div className={styles.heroContainer}>
@@ -232,7 +237,7 @@ export default function HydrogenBoosterPage() {
               <span className={styles.heroPillDot}></span> {content.hero.badge}
             </div>
             <h1 className={styles.titleMain}>
-              {content.hero.title} <br/><span className={styles.textHighlight}>{content.hero.titleSpan}</span>
+              {content.hero.title} <br /><span className={styles.textHighlight}>{content.hero.titleSpan}</span>
             </h1>
             <ul className={styles.featuresList}>
               {content.hero.features.map((item, i) => (
@@ -240,9 +245,9 @@ export default function HydrogenBoosterPage() {
               ))}
             </ul>
 
-            <div style={{display:'flex', alignItems:'center', gap:'15px', marginBottom:'20px'}}>
-              <img src="https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/692ace3a32f2b7514a12cf42_WhatsApp%20Image%202025-11-29%20at%2011.36.32%201.svg" alt="CE Mark" style={{height:'40px'}} />
-              <span style={{fontSize:'0.9rem', fontWeight:600, color:'#576778', lineHeight: 1.2, whiteSpace: 'pre-line'}}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '20px' }}>
+              <img src="https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/692ace3a32f2b7514a12cf42_WhatsApp%20Image%202025-11-29%20at%2011.36.32%201.svg" alt="CE Mark" style={{ height: '40px' }} />
+              <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#576778', lineHeight: 1.2, whiteSpace: 'pre-line' }}>
                 {content.hero.certText}
               </span>
             </div>
@@ -250,9 +255,9 @@ export default function HydrogenBoosterPage() {
             <div className={styles.priceTag}>
               {isLoading ? 'Loading...' : getPrice(PRODUCT_ID)}
             </div>
-            
-            <button 
-              className={styles.addToCartButton} 
+
+            <button
+              className={styles.addToCartButton}
               onClick={handleAddToCart}
             >
               {content.hero.btnAdd}
@@ -261,33 +266,33 @@ export default function HydrogenBoosterPage() {
 
           <div className={styles.heroImageWrapper}>
             <div className={styles.heroBgCircle}></div>
-            <img 
-              src={MAIN_IMAGE} 
-              alt="Swiss Hydrogen Booster" 
-              className={styles.heroProductImg} 
+            <img
+              src={MAIN_IMAGE}
+              alt="Swiss Hydrogen Booster"
+              className={styles.heroProductImg}
             />
-            
+
             <div className={styles.heroBadgesStack}>
               <div className={styles.heroFloatingBadge}>
                 <div className={`${styles.badgeIcon}`}><Droplet size={20} /></div>
                 <div>
-                  <p style={{fontSize:'0.65rem', color:'#D52D25', fontWeight:800, textTransform:'uppercase', margin:0}}>{content.hero.badges.concTitle}</p>
-                  <p style={{fontSize:'0.75rem', color:'#64748b', fontWeight:700, margin:0}}>{content.hero.badges.concLabel}</p>
-                  <p style={{fontSize:'1.1rem', fontWeight:800, color:'#2C3E50', margin:0}}>{content.hero.badges.concVal}</p>
+                  <p style={{ fontSize: '0.65rem', color: '#D52D25', fontWeight: 800, textTransform: 'uppercase', margin: 0 }}>{content.hero.badges.concTitle}</p>
+                  <p style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 700, margin: 0 }}>{content.hero.badges.concLabel}</p>
+                  <p style={{ fontSize: '1.1rem', fontWeight: 800, color: '#2C3E50', margin: 0 }}>{content.hero.badges.concVal}</p>
                 </div>
               </div>
               <div className={styles.heroFloatingBadge}>
                 <div className={`${styles.badgeIcon} ${styles.iconGreen}`}><Battery size={20} /></div>
                 <div>
-                  <p style={{fontSize:'0.75rem', color:'#64748b', fontWeight:700, margin:0}}>{content.hero.badges.battLabel}</p>
-                  <p style={{fontSize:'1.1rem', fontWeight:800, color:'#2C3E50', margin:0}}>{content.hero.badges.battVal}</p>
+                  <p style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 700, margin: 0 }}>{content.hero.badges.battLabel}</p>
+                  <p style={{ fontSize: '1.1rem', fontWeight: 800, color: '#2C3E50', margin: 0 }}>{content.hero.badges.battVal}</p>
                 </div>
               </div>
               <div className={styles.heroFloatingBadge}>
                 <div className={`${styles.badgeIcon} ${styles.iconRed}`}><Zap size={20} /></div>
                 <div>
-                  <p style={{fontSize:'0.75rem', color:'#64748b', fontWeight:700, margin:0}}>{content.hero.badges.chargeLabel}</p>
-                  <p style={{fontSize:'1.1rem', fontWeight:800, color:'#2C3E50', margin:0}}>{content.hero.badges.chargeVal}</p>
+                  <p style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 700, margin: 0 }}>{content.hero.badges.chargeLabel}</p>
+                  <p style={{ fontSize: '1.1rem', fontWeight: 800, color: '#2C3E50', margin: 0 }}>{content.hero.badges.chargeVal}</p>
                 </div>
               </div>
             </div>
@@ -297,9 +302,9 @@ export default function HydrogenBoosterPage() {
 
       {/* CONTENT GRID */}
       <div className={styles.contentGrid}>
-        
+
         {/* SIDEBAR */}
-        <aside className={styles.sidebar}>
+        <aside className={styles.sidebar} ref={sidebarRef}>
           <nav className={styles.sidebarNav}>
             {[
               { id: 'benefits', label: content.nav.benefits },
@@ -307,7 +312,7 @@ export default function HydrogenBoosterPage() {
               { id: 'details', label: content.nav.details },
               { id: 'science', label: content.nav.science }
             ].map((link) => (
-              <button 
+              <button
                 key={link.id}
                 data-section={link.id}
                 className={`${styles.sidebarLink} ${activeSection === link.id ? styles.active : ''}`}
@@ -321,7 +326,7 @@ export default function HydrogenBoosterPage() {
 
         {/* MAIN COLUMN */}
         <div className={styles.contentColumn}>
-          
+
           {/* FEATURES */}
           <section id="benefits" className={styles.section}>
             <h2 className={styles.sectionTitle}>{content.benefits.title}</h2>
@@ -354,18 +359,18 @@ export default function HydrogenBoosterPage() {
           </section>
 
           {/* USAGE STEPS */}
-          <section id="usage" className={styles.section} style={{background: '#F8FAFC'}}>
+          <section id="usage" className={styles.section} style={{ background: '#F8FAFC' }}>
             <h2 className={styles.sectionTitle}>{content.usage.title}</h2>
             <div className={styles.stepsGrid}>
-              <div className={styles.stepItem} style={{backgroundImage: `url('https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/6928595ae38a8c5f73692d00_hydrogen%20booser%203.jpeg')`}}>
+              <div className={styles.stepItem} style={{ backgroundImage: `url('https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/6928595ae38a8c5f73692d00_hydrogen%20booser%203.jpeg')` }}>
                 <div className={styles.stepNumber}>1</div>
                 <div className={styles.stepContent}><h3><Droplet /> {content.usage.steps[0].title}</h3><p>{content.usage.steps[0].text}</p></div>
               </div>
-              <div className={styles.stepItem} style={{backgroundImage: `url('https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/6928595aaa3cd07b410d9823_hydrogen%20booser%208.jpeg')`}}>
+              <div className={styles.stepItem} style={{ backgroundImage: `url('https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/6928595aaa3cd07b410d9823_hydrogen%20booser%208.jpeg')` }}>
                 <div className={styles.stepNumber}>2</div>
                 <div className={styles.stepContent}><h3><Zap /> {content.usage.steps[1].title}</h3><p>{content.usage.steps[1].text}</p></div>
               </div>
-              <div className={styles.stepItem} style={{backgroundImage: `url('https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/6928595ae4cee31ebe723026_hydrogen%20booser%205.jpeg')`}}>
+              <div className={styles.stepItem} style={{ backgroundImage: `url('https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/6928595ae4cee31ebe723026_hydrogen%20booser%205.jpeg')` }}>
                 <div className={styles.stepNumber}>3</div>
                 <div className={styles.stepContent}><h3><Smile /> {content.usage.steps[2].title}</h3><p>{content.usage.steps[2].text}</p></div>
               </div>
@@ -375,7 +380,7 @@ export default function HydrogenBoosterPage() {
           {/* MAINTENANCE */}
           <section id="details" className={styles.section}>
             <h2 className={styles.sectionTitle}>{content.details.title}</h2>
-            <div className={styles.bentoGrid} style={{gridTemplateColumns: '1fr 1fr'}}>
+            <div className={`${styles.bentoGrid} ${styles.bentoTwoCol}`}>
               <div className={styles.bentoCard}>
                 <div className={styles.iconCircle}><HandMetal className={styles.bentoIcon} /></div>
                 <h3>{content.details.maintTitle}</h3>
@@ -384,7 +389,7 @@ export default function HydrogenBoosterPage() {
               <div className={`${styles.bentoCard} ${styles.bentoDark}`}>
                 <div className={styles.iconCircle}><Award className={styles.bentoIcon} /></div>
                 <h3>{content.details.warrantyTitle}</h3>
-                <h2 style={{fontSize:'3rem', color:'#D52D25', margin:'10px 0'}}>{content.details.warrantyYears}</h2>
+                <h2 style={{ fontSize: '3rem', color: '#D52D25', margin: '10px 0' }}>{content.details.warrantyYears}</h2>
                 <p>{content.details.warrantyText}</p>
               </div>
             </div>
@@ -419,27 +424,27 @@ export default function HydrogenBoosterPage() {
         <div className={styles.modalOverlay} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <div className={styles.modalHeader}>
-              <span style={{fontWeight:700}}>Document Preview</span>
+              <span style={{ fontWeight: 700 }}>Document Preview</span>
               <button className={styles.modalCloseBtn} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}><X /></button>
             </div>
             <div className={styles.modalBody}>
               {isLoadingPdf && (
-                <div style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10}}>
-                  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem'}}>
-                    <div style={{width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite'}} />
-                    <p style={{color: '#64748b', fontSize: '0.9rem'}}>Loading document...</p>
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Loading document...</p>
                   </div>
                 </div>
               )}
               {modalUrl.endsWith('.pdf') ? (
-                <iframe 
+                <iframe
                   src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
-                  style={{width:'100%', height:'100%', border:'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease'}} 
+                  style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
                   title="Document Preview"
                   onLoad={() => setIsLoadingPdf(false)}
                 />
               ) : (
-                <img src={modalUrl} alt="Document" style={{maxWidth:'100%', height:'auto'}} />
+                <img src={modalUrl} alt="Document" style={{ maxWidth: '100%', height: 'auto' }} />
               )}
             </div>
             <style>{`
