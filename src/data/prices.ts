@@ -105,5 +105,11 @@ export const PRICES: Record<string, Record<Region, number>> = {
         RestOfWorld: 277.31
     },
 
+    // 14. TEST PRODUCT (Production Debug)
+    'test-product': {
+        Morocco: 10,
+        Switzerland: 1.00,
+        Europe: 1.00,
+        RestOfWorld: 1.00
     }
 };
