@@ -47,8 +47,6 @@ const calculateShipping = (items: any[]) => {
       rate = 35;
     } else if (id === 'mam-nature-essential-set' || id === 'essential') {
       rate = 35;
-    } else if (id === 'test-product') {
-      rate = 0;
     }
 
     return total + (rate * item.quantity);
@@ -428,10 +426,29 @@ export default function CheckoutForm() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            items: cart.map(item => ({
-              ...item,
-              price: isExport ? (item.price / (1 + (isoCurrency === 'CHF' ? 0.081 : isoCurrency === 'MAD' ? 0.20 : 0.19))) : item.price
-            })),
+            items: cart.map(item => {
+              // Logic to handle VAT deduction for Exports
+              let finalPrice = item.price;
+
+              // Only deduct VAT if it is explicitly an EXPORT scenario
+              if (isExport) {
+                // Determine the applicable VAT rate to remove based on the currency logic
+                // (If we are in 'MAD' mode, we assume 20% is included, etc.)
+                const divisor = isoCurrency === 'CHF' ? 1.081 : isoCurrency === 'MAD' ? 1.20 : 1.19;
+                finalPrice = item.price / divisor;
+              }
+
+              // DOUBLE CHECK: If shipping to Morocco and paying in MAD, FORCE raw price (10 Dhs)
+              // This acts as a safety against 'isExport' being incorrectly true
+              if (shipping.country === 'MA' && isoCurrency === 'MAD') {
+                finalPrice = item.price;
+              }
+
+              return {
+                ...item,
+                price: finalPrice
+              };
+            }),
             currency: isoCurrency,
             shippingCost: shippingCost,
             customerEmail: email,
