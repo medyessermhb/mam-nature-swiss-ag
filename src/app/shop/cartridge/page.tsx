@@ -121,8 +121,8 @@ export default function CartridgePage() {
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const IMAGES = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/CARTRIDGE.webp",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/CARTRIDGE.webp"
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp",
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp"
   ];
 
   useEffect(() => {

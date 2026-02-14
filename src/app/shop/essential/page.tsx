@@ -133,7 +133,7 @@ export default function EssentialSetPage() {
 
   const IMAGES = [
     "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/CARTRIDGE.webp"
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp"
   ];
 
 

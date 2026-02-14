@@ -139,7 +139,7 @@ export default function EssentialPlusSetPage() {
   // 1. Fine Filter, 2. Cartridge, 3. Particle Filter (Make sure to update the 3rd URL to the actual particle filter image)
   const IMAGES = [
     "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/CARTRIDGE.webp",
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp",
     "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp"
   ];
 

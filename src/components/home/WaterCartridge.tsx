@@ -65,7 +65,7 @@ export default function WaterCartridge() {
     <>
       <section className={styles.section}>
         <div className={styles.container}>
-          
+
           <div className={styles.header} data-aos="fade-up">
             <h2 className={styles.title}>{content.title}</h2>
             <h3 className={styles.subtitle}>{content.subtitle}</h3>
@@ -75,9 +75,9 @@ export default function WaterCartridge() {
           <div className={styles.grid}>
             {/* Left Image */}
             <div className={styles.imagePanel} data-aos="fade-up">
-              <img 
-                src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/CARTRIDGE.webp" 
-                alt="The Mam Nature Swiss water cartridge" 
+              <img
+                src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp"
+                alt="The Mam Nature Swiss water cartridge"
                 loading="lazy"
               />
             </div>
@@ -116,8 +116,8 @@ export default function WaterCartridge() {
               <div className={styles.reportsSection}>
                 <h3 className={styles.reportsTitle}>{content.reportsTitle}</h3>
                 <div className={styles.reportsGrid}>
-                  <div 
-                    className={styles.reportCard} 
+                  <div
+                    className={styles.reportCard}
                     onClick={() => setIsModalOpen(true)}
                   >
                     <FileText className={styles.reportIcon} size={24} />
@@ -134,8 +134,8 @@ export default function WaterCartridge() {
 
       {/* Modal */}
       {isModalOpen && (
-        <div 
-          className={styles.modalOverlay} 
+        <div
+          className={styles.modalOverlay}
           onClick={() => setIsModalOpen(false)}
           onContextMenu={(e) => e.preventDefault()}
         >
@@ -143,9 +143,9 @@ export default function WaterCartridge() {
             <button className={styles.closeButton} onClick={() => setIsModalOpen(false)}>
               <X size={20} />
             </button>
-            <iframe 
-              src={REPORT_URL} 
-              className={styles.modalFrame} 
+            <iframe
+              src={REPORT_URL}
+              className={styles.modalFrame}
               sandbox="allow-scripts allow-same-origin"
               title="Report Preview"
             />
