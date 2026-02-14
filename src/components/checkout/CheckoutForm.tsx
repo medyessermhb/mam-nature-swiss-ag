@@ -443,7 +443,7 @@ export default function CheckoutForm() {
         if (data.url) {
           window.location.href = data.url;
         } else {
-          throw new Error('Failed to create checkout session');
+          throw new Error(data.error || 'Failed to create checkout session');
         }
       }
       else if (paymentMethod === 'bank') {

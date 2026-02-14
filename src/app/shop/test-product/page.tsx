@@ -36,7 +36,7 @@ export default function TestProductPage() {
                 <h1 style={{ fontSize: '2.5rem', marginBottom: 20 }}>TEST PRODUCT</h1>
                 <p style={{ fontSize: '1.2rem', color: '#666', marginBottom: 40 }}>
                     This product is for <strong>payment testing purposes only</strong>.<br />
-                    Do not purchase if you are a real customer.
+                    Price: 1.00 EUR / 10 MAD. Do not purchase if you are a real customer.
                 </p>
 
                 <div style={{ display: 'flex', justifyContent: 'center', gap: 50, alignItems: 'center', flexWrap: 'wrap' }}>

@@ -454,7 +454,7 @@ const PRODUCTS_FR: ProductType[] = [
     imageHeight: 320,
     features: [
       "For testing production payments.",
-      "Price: 0.10 EUR / 1 MAD.",
+      "Price: 1.00 EUR / 10 MAD.",
       "Do not ship this product."
     ]
   }
