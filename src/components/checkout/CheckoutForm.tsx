@@ -47,6 +47,8 @@ const calculateShipping = (items: any[]) => {
       rate = 35;
     } else if (id === 'mam-nature-essential-set' || id === 'essential') {
       rate = 35;
+    } else if (id === 'test-product') {
+      rate = 0;
     }
 
     return total + (rate * item.quantity);
