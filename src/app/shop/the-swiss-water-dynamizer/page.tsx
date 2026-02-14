@@ -11,15 +11,10 @@ import { usePricing } from '@/context/PricingContext';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
 
+
 // --- PRODUCT CONSTANTS ---
 const PRODUCT_ID = 'the-swiss-water-dynamizer';
 const PRODUCT_NAME = "THE SWISS WATER DYNAMIZER";
-
-const PRICE_MAP: Record<string, number> = {
-  Morocco: 20816.16, // MAD
-  Switzerland: 1848, // CHF
-  Europe: 1998       // EUR (Default)
-};
 
 // --- DATA DEFINITION ---
 
@@ -152,7 +147,7 @@ const CONTENT_FR = {
 };
 
 export default function DynamizerPage() {
-  const { getPrice, isLoading, currency } = usePricing();
+  const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
@@ -213,8 +208,7 @@ export default function DynamizerPage() {
   };
 
   const handleAddToCart = () => {
-    const currentRegion = currency === 'MAD' ? 'Morocco' : currency === 'CHF' ? 'Switzerland' : 'Europe';
-    const rawPrice = PRICE_MAP[currentRegion] || PRICE_MAP['Europe'];
+    const rawPrice = getRawPrice(PRODUCT_ID);
     const currencyCode = currency === 'MAD' ? 'Dhs' : currency || 'EUR';
 
     addToCart({

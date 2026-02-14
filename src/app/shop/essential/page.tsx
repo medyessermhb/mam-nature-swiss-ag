@@ -1,23 +1,18 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  ChevronLeft, ChevronRight, FileText, Award, 
+import {
+  ChevronLeft, ChevronRight, FileText, Award,
   Check, Gem, ArrowLeftRight, Gauge, Wrench, CalendarCheck, ShieldCheck, X, AlertCircle
 } from 'lucide-react';
 import styles from '@/styles/Product.module.css';
 import { usePricing } from '@/context/PricingContext';
 import { useCart } from '@/context/CartContext';
-import { useLanguage } from '@/context/LanguageContext'; 
+import { useLanguage } from '@/context/LanguageContext';
+
 
 const PRODUCT_ID = 'mam-nature-essential-set';
 const PRODUCT_NAME = "THE ESSENTIAL";
-
-const PRICE_MAP: Record<string, number> = {
-  Morocco: 8580,     // MAD
-  Switzerland: 760,  // CHF
-  Europe: 820        // EUR
-};
 
 const CONTENT_EN = {
   nav: {
@@ -121,14 +116,14 @@ const CONTENT_FR = {
   }
 };
 
-export default function EssentialFilterPage() {
-  const { getPrice, isLoading, currency } = usePricing();
+export default function EssentialSetPage() {
+  const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
-  
+
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
-  
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');
   const [modalUrl, setModalUrl] = useState<string | null>(null);
@@ -141,8 +136,7 @@ export default function EssentialFilterPage() {
     "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/CARTRIDGE.webp"
   ];
 
-  const currentRegion = currency === 'MAD' ? 'Morocco' : currency === 'CHF' ? 'Switzerland' : 'Europe';
-  const rawPrice = PRICE_MAP[currentRegion] || PRICE_MAP['Europe'];
+
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -181,7 +175,8 @@ export default function EssentialFilterPage() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
 
   const handleAddToCart = () => {
-    if (rawPrice === 0) return; 
+    const rawPrice = getRawPrice(PRODUCT_ID);
+    if (rawPrice === 0) return;
     const currencyCode = currency === 'MAD' ? 'Dhs' : currency || 'EUR';
 
     addToCart({
@@ -195,7 +190,7 @@ export default function EssentialFilterPage() {
 
   return (
     <div className={styles.pageWrapper}>
-      
+
       {/* SIDEBAR NAV */}
       <aside className={styles.stickyNav}>
         <nav>
@@ -208,7 +203,7 @@ export default function EssentialFilterPage() {
               { id: 'rapports', label: content.nav.reports }
             ].map(item => (
               <li key={item.id}>
-                <button 
+                <button
                   data-section={item.id}
                   className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
                   onClick={() => scrollTo(item.id)}
@@ -222,19 +217,19 @@ export default function EssentialFilterPage() {
       </aside>
 
       <main className={styles.contentArea}>
-        
+
         {/* 1. PRODUCT SECTION */}
-        <section id="produit" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['produit'] = el }}>
+        <section id="produit" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['produit'] = el }}>
           <div className={styles.productGrid}>
             <div className={styles.productGallery}>
               {/* Note: In mobile, CSS grid auto-moves thumbnails to the left based on these DOM nodes */}
               <div className={styles.thumbnailList}>
                 {IMAGES.map((img, idx) => (
-                  <img 
-                    key={idx} 
-                    src={img} 
-                    className={`${styles.thumbnail} ${idx === currentSlide ? styles.active : ''}`} 
-                    onClick={() => setCurrentSlide(idx)} 
+                  <img
+                    key={idx}
+                    src={img}
+                    className={`${styles.thumbnail} ${idx === currentSlide ? styles.active : ''}`}
+                    onClick={() => setCurrentSlide(idx)}
                     alt="thumbnail"
                   />
                 ))}
@@ -245,8 +240,8 @@ export default function EssentialFilterPage() {
                     <img key={idx} src={img} alt={`${PRODUCT_NAME} View ${idx + 1}`} className={styles.sliderImage} />
                   ))}
                 </div>
-                <button className={`${styles.sliderBtn} ${styles.prevBtn}`} onClick={prevSlide}><ChevronLeft size={32}/></button>
-                <button className={`${styles.sliderBtn} ${styles.nextBtn}`} onClick={nextSlide}><ChevronRight size={32}/></button>
+                <button className={`${styles.sliderBtn} ${styles.prevBtn}`} onClick={prevSlide}><ChevronLeft size={32} /></button>
+                <button className={`${styles.sliderBtn} ${styles.nextBtn}`} onClick={nextSlide}><ChevronRight size={32} /></button>
               </div>
             </div>
 
@@ -255,22 +250,22 @@ export default function EssentialFilterPage() {
                 <h1 className={styles.productTitle}>{content.product.title}</h1>
                 <h2 className={styles.productSubtitle}>{content.product.subtitle}</h2>
                 <div className={styles.productPrice}>
-                  {isLoading 
-                    ? 'Loading...' 
-                    : rawPrice > 0 
-                      ? getPrice(PRODUCT_ID) 
-                      : <span style={{color: '#D52D25', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '8px'}}><AlertCircle size={20} /> {content.product.priceTBD}</span>
+                  {isLoading
+                    ? 'Loading...'
+                    : getRawPrice(PRODUCT_ID) > 0
+                      ? getPrice(PRODUCT_ID)
+                      : <span style={{ color: '#D52D25', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '8px' }}><AlertCircle size={20} /> {content.product.priceTBD}</span>
                   }
                 </div>
               </div>
               <div className={styles.cartForm}>
-                <button 
-                  className={styles.addToCartButton} 
+                <button
+                  className={styles.addToCartButton}
                   onClick={handleAddToCart}
-                  disabled={rawPrice === 0} 
-                  style={{ opacity: rawPrice === 0 ? 0.5 : 1, cursor: rawPrice === 0 ? 'not-allowed' : 'pointer' }}
+                  disabled={getRawPrice(PRODUCT_ID) === 0}
+                  style={{ opacity: getRawPrice(PRODUCT_ID) === 0 ? 0.5 : 1, cursor: getRawPrice(PRODUCT_ID) === 0 ? 'not-allowed' : 'pointer' }}
                 >
-                  {rawPrice === 0 ? content.product.priceTBD : content.product.btnAdd}
+                  {getRawPrice(PRODUCT_ID) === 0 ? content.product.priceTBD : content.product.btnAdd}
                 </button>
               </div>
               <div className={styles.productShortDescription}>
@@ -282,9 +277,9 @@ export default function EssentialFilterPage() {
         </section>
 
         {/* 2. DETAILS SECTION */}
-        <section id="details" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['details'] = el }}>
+        <section id="details" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['details'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.details.title}</h2></div>
-          
+
           <ul className={styles.detailsList}>
             {content.details.list.map((item, idx) => (
               <li key={idx}>
@@ -293,8 +288,8 @@ export default function EssentialFilterPage() {
               </li>
             ))}
           </ul>
-          
-          <p style={{marginTop: '1.5rem', color: '#64748B'}}><strong>{content.details.reduces}</strong></p>
+
+          <p style={{ marginTop: '1.5rem', color: '#64748B' }}><strong>{content.details.reduces}</strong></p>
 
           <div className={styles.specGrid}>
             <div className={styles.specCard}>
@@ -316,16 +311,16 @@ export default function EssentialFilterPage() {
         </section>
 
         {/* 3. INSTALLATION SECTION */}
-        <section id="installation" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['installation'] = el }}>
+        <section id="installation" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['installation'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.install.title}</h2></div>
           <div className={styles.installationCard}>
-             <h3><Wrench className={styles.redIcon} /> {content.install.cardTitle}</h3>
-             <p>{content.install.cardText}</p>
+            <h3><Wrench className={styles.redIcon} /> {content.install.cardTitle}</h3>
+            <p>{content.install.cardText}</p>
           </div>
         </section>
 
         {/* 4. MAINTENANCE SECTION */}
-        <section id="maintenance" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['maintenance'] = el }}>
+        <section id="maintenance" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['maintenance'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.maint.title}</h2></div>
           <div className={styles.maintenanceGrid}>
             <div className={styles.maintenanceCard}>
@@ -341,11 +336,11 @@ export default function EssentialFilterPage() {
         </section>
 
         {/* 5. REPORTS SECTION */}
-        <section id="rapports" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['rapports'] = el }}>
+        <section id="rapports" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['rapports'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.reports.title}</h2></div>
           <div className={styles.reportGrid}>
-            <button 
-              className={styles.reportLink} 
+            <button
+              className={styles.reportLink}
               onClick={() => {
                 setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/The%20Swiss%20Water%20Cartridge_Retention%20Rates_Certificated%20ETH%20Zurich.pdf");
                 setIsLoadingPdf(true);
@@ -353,8 +348,8 @@ export default function EssentialFilterPage() {
             >
               <FileText className={styles.reportIcon} size={24} /> {content.reports.btnPerf}
             </button>
-            <button 
-              className={styles.reportLink} 
+            <button
+              className={styles.reportLink}
               onClick={() => {
                 setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf");
                 setIsLoadingPdf(true);
@@ -377,16 +372,16 @@ export default function EssentialFilterPage() {
             </div>
             <div className={styles.modalBody}>
               {isLoadingPdf && (
-                <div style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10}}>
-                  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem'}}>
-                    <div style={{width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite'}} />
-                    <p style={{color: '#64748b', fontSize: '0.9rem'}}>Loading PDF...</p>
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Loading PDF...</p>
                   </div>
                 </div>
               )}
-              <iframe 
+              <iframe
                 src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
-                style={{width:'100%', height:'100%', border:'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease'}} 
+                style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
                 title="Document Preview"
                 onLoad={() => setIsLoadingPdf(false)}
               />

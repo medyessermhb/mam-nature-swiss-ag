@@ -3,11 +3,17 @@ import { sendEmail } from '@/lib/email';
 
 export async function POST(req: Request) {
   try {
-    const { orderDetails, cartItems, total, currency } = await req.json();
+    const { orderDetails, cartItems, total, currency, vatRate, vatAmount } = await req.json();
+
+    // BACKWARD COMPAT: If vat info is inside orderDetails (passed from CheckoutForm)
+    if (orderDetails.vatRate === undefined && vatRate !== undefined) {
+      orderDetails.vatRate = vatRate;
+      orderDetails.vatAmount = vatAmount;
+    }
 
     const currencySymbol = currency === 'EUR' ? '€' : currency === 'CHF' ? 'CHF' : 'Dhs';
     const date = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    
+
     // CHANGE THIS TO YOUR REAL DOMAIN
     const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mam-nature.com';
 
@@ -69,9 +75,23 @@ export async function POST(req: Request) {
                 </tbody>
               </table>
               
-              <div style="border-top: 2px solid ${colors.text}; margin-top: 15px; padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
-                 <span style="font-size: 16px; font-weight: bold; color: ${colors.text};">Total</span>
-                 <span style="font-size: 20px; font-weight: 800; color: ${colors.primary};">${currencySymbol} ${total.toLocaleString()}</span>
+     <div style="border-top: 2px solid ${colors.text}; margin-top: 15px; padding-top: 15px;">
+                 ${orderDetails.vatAmount > 0 ? `
+                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; color: #64748B;">
+                     <span style="font-size: 14px;">Includes VAT (${(orderDetails.vatRate * 100).toFixed(1)}%)</span>
+                     <span style="font-size: 14px;">${currencySymbol} ${orderDetails.vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                   </div>
+                 ` : `
+                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; color: #64748B;">
+                     <span style="font-size: 14px;">VAT (Export)</span>
+                     <span style="font-size: 14px;">${currencySymbol} 0.00</span>
+                   </div>
+                 `}
+                 
+                 <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 16px; font-weight: bold; color: ${colors.text};">Total</span>
+                    <span style="font-size: 20px; font-weight: 800; color: ${colors.primary};">${currencySymbol} ${total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                 </div>
               </div>
             </div>
 

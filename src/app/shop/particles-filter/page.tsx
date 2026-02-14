@@ -10,15 +10,10 @@ import { usePricing } from '@/context/PricingContext';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
 
+
 // --- PRODUCT CONSTANTS ---
 const PRODUCT_ID = 'water-particle-filter';
 const PRODUCT_NAME = "WATER PARTICLE FILTER";
-
-const PRICE_MAP: Record<string, number> = {
-  Morocco: 2479.96, // MAD
-  Switzerland: 218,    // CHF
-  Europe: 238       // EUR (Default)
-};
 
 // --- DATA DEFINITION ---
 
@@ -101,7 +96,7 @@ const CONTENT_FR = {
 };
 
 export default function ParticleFilterPage() {
-  const { getPrice, isLoading, currency } = usePricing();
+  const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
@@ -157,8 +152,7 @@ export default function ParticleFilterPage() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
 
   const handleAddToCart = () => {
-    const currentRegion = currency === 'MAD' ? 'Morocco' : currency === 'CHF' ? 'Switzerland' : 'Europe';
-    const rawPrice = PRICE_MAP[currentRegion] || PRICE_MAP['Europe'];
+    const rawPrice = getRawPrice(PRODUCT_ID);
     const currencyCode = currency === 'MAD' ? 'Dhs' : currency || 'EUR';
 
     addToCart({

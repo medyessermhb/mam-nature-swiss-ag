@@ -10,15 +10,10 @@ import { usePricing } from '@/context/PricingContext';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
 
+
 // --- PRODUCT CONSTANTS ---
 const PRODUCT_ID = 'swiss-hydrogen-booster';
 const PRODUCT_NAME = "SWISS HYDROGEN BOOSTER";
-
-const PRICE_MAP: Record<string, number> = {
-  Morocco: 2292.40, // MAD
-  Switzerland: 206.80, // CHF
-  Europe: 220.00    // EUR (Default)
-};
 
 // --- DATA DEFINITION ---
 
@@ -159,7 +154,7 @@ const CONTENT_FR = {
 };
 
 export default function HydrogenBoosterPage() {
-  const { getPrice, isLoading, currency } = usePricing();
+  const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
@@ -213,8 +208,7 @@ export default function HydrogenBoosterPage() {
   };
 
   const handleAddToCart = () => {
-    const currentRegion = currency === 'MAD' ? 'Morocco' : currency === 'CHF' ? 'Switzerland' : 'Europe';
-    const rawPrice = PRICE_MAP[currentRegion] || PRICE_MAP['Europe'];
+    const rawPrice = getRawPrice(PRODUCT_ID);
     const currencyCode = currency === 'MAD' ? 'Dhs' : currency || 'EUR';
 
     addToCart({

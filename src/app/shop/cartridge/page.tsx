@@ -10,15 +10,12 @@ import { usePricing } from '@/context/PricingContext';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
 
+
 // --- PRODUCT CONSTANTS ---
 const PRODUCT_ID = 'water-fine-filter-cartridge';
 const PRODUCT_NAME = "THE SWISS WATER CARTRIDGE";
 
-const PRICE_MAP: Record<string, number> = {
-  Morocco: 2709, // MAD
-  Switzerland: 250, // CHF (Approx)
-  Europe: 240       // EUR (Approx)
-};
+
 
 // --- DATA DEFINITION ---
 
@@ -109,7 +106,7 @@ const CONTENT_FR = {
 };
 
 export default function CartridgePage() {
-  const { getPrice, isLoading, currency } = usePricing();
+  const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
@@ -165,8 +162,7 @@ export default function CartridgePage() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
 
   const handleAddToCart = () => {
-    const currentRegion = currency === 'MAD' ? 'Morocco' : currency === 'CHF' ? 'Switzerland' : 'Europe';
-    const rawPrice = PRICE_MAP[currentRegion] || PRICE_MAP['Europe'];
+    const rawPrice = getRawPrice(PRODUCT_ID);
     const currencyCode = currency === 'MAD' ? 'Dhs' : currency || 'EUR';
 
     addToCart({

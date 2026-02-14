@@ -5,12 +5,14 @@ import { useCart } from '@/context/CartContext';
 import styles from '@/styles/CartSidebar.module.css';
 import { X, Minus, Plus, Trash2, ArrowRight, Tag, PlusCircle } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { usePricing } from '@/context/PricingContext'; // Import usePricing
 
 // --- CONTENT DEFINITION ---
 const CONTENT_EN = {
   title: "Your Cart",
   empty: "Your cart is empty.",
   total: "Total",
+  subtotal: "Subtotal", // Added
   checkout: "Proceed to Checkout",
   viewCart: "View Cart",
   promoTitle: "Exclusive Cart Offer"
@@ -20,6 +22,7 @@ const CONTENT_FR = {
   title: "Votre Panier",
   empty: "Votre panier est vide.",
   total: "Total",
+  subtotal: "Sous-total", // Added
   checkout: "Procéder au paiement",
   viewCart: "Voir le panier",
   promoTitle: "Offre Exclusive"
@@ -48,6 +51,43 @@ export default function CartSidebar() {
   const isMad = rawCurrency === 'Dhs' || rawCurrency === 'MAD';
   const isChf = rawCurrency === 'CHF';
   const currencySymbol = isMad ? 'Dhs' : isChf ? 'CHF' : '€';
+
+  // Helper to determine active region based on currency if not explicitly available
+  // But ideally we should use the 'region' from usePricing context to be sure, 
+  // however cart might have items from a previous session.
+  // Best to infer VAT rate from the currency/region context.
+
+  // Get region from PricingContext
+  const { region } = usePricing();
+
+  // VAT RATES
+  // CH: 8.1% (Included)
+  // MA: 20% (Included)
+  // EU: 19% (Included)
+  // ROW: 0% (Export) -> If currency is EUR but region is ROW.
+
+  let taxRate = 0;
+  let taxLabel = "0%";
+
+  if (isMad) {
+    taxRate = 0.20;
+    taxLabel = "20%"; // Morocco
+  } else if (isChf) {
+    taxRate = 0.081;
+    taxLabel = "8.1%"; // Switzerland
+  } else {
+    // EUR
+    if (region === 'RestOfWorld') {
+      taxRate = 0;
+      taxLabel = "0% (Export)";
+    } else {
+      taxRate = 0.19;
+      taxLabel = "19%";
+    }
+  }
+
+  // Calculate VAT amount (inclusive)
+  const vatAmount = cartTotal - (cartTotal / (1 + taxRate));
 
   // ==========================================
   // CROSS-SELL LOGIC
@@ -178,9 +218,13 @@ export default function CartSidebar() {
         {/* FOOTER */}
         {cart.length > 0 && (
           <div className={styles.footer}>
-            <div className={styles.totalRow}>
-              <span>{content.total}</span>
+            <div className={styles.summaryRow}>
+              <span>{content.subtotal}</span>
               <span>{currencySymbol} {cartTotal.toLocaleString()}</span>
+            </div>
+            <div className={styles.summaryRow} style={{ color: '#64748b', fontSize: '0.85rem' }}>
+              <span>{isFrench ? `Dont TVA (${taxLabel})` : `Includes VAT (${taxLabel})`}</span>
+              <span>{currencySymbol} {vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
             </div>
             <button className={styles.checkoutBtn} onClick={handleProceedToCheckout}>
               {content.checkout} <ArrowRight size={18} style={{ marginLeft: '8px', display: 'inline-block', verticalAlign: 'text-bottom' }} />

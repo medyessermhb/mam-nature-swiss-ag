@@ -10,16 +10,11 @@ import { usePricing } from '@/context/PricingContext';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 
+
 // --- PRODUCT CONSTANTS ---
 const PRODUCT_ID = 'mam-nature-particle-lime-set';
 const PRODUCT_NAME = "PARTICLE & LIME SET";
 
-// Prices based on 330 EUR
-const PRICE_MAP: Record<string, number> = {
-  Morocco: 3450,     // MAD
-  Switzerland: 305,  // CHF
-  Europe: 330        // EUR
-};
 
 // --- DATA DEFINITION ---
 const CONTENT_EN = {
@@ -125,7 +120,7 @@ const CONTENT_FR = {
 };
 
 export default function ParticleLimeSetPage() {
-  const { getPrice, isLoading, currency } = usePricing();
+  const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
@@ -145,8 +140,7 @@ export default function ParticleLimeSetPage() {
     "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp"
   ];
 
-  const currentRegion = currency === 'MAD' ? 'Morocco' : currency === 'CHF' ? 'Switzerland' : 'Europe';
-  const rawPrice = PRICE_MAP[currentRegion] || PRICE_MAP['Europe'];
+
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -185,6 +179,7 @@ export default function ParticleLimeSetPage() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
 
   const handleAddToCart = () => {
+    const rawPrice = getRawPrice(PRODUCT_ID);
     if (rawPrice === 0) return;
     const currencyCode = currency === 'MAD' ? 'Dhs' : currency || 'EUR';
 
@@ -264,7 +259,7 @@ export default function ParticleLimeSetPage() {
                 <div className={styles.productPrice}>
                   {isLoading
                     ? 'Loading...'
-                    : rawPrice > 0
+                    : getRawPrice(PRODUCT_ID) > 0
                       ? getPrice(PRODUCT_ID)
                       : <span style={{ color: '#D52D25', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '8px' }}><AlertCircle size={20} /> {content.product.priceTBD}</span>
                   }
@@ -274,10 +269,10 @@ export default function ParticleLimeSetPage() {
                 <button
                   className={styles.addToCartButton}
                   onClick={handleAddToCart}
-                  disabled={rawPrice === 0}
-                  style={{ opacity: rawPrice === 0 ? 0.5 : 1, cursor: rawPrice === 0 ? 'not-allowed' : 'pointer' }}
+                  disabled={getRawPrice(PRODUCT_ID) === 0}
+                  style={{ opacity: getRawPrice(PRODUCT_ID) === 0 ? 0.5 : 1, cursor: getRawPrice(PRODUCT_ID) === 0 ? 'not-allowed' : 'pointer' }}
                 >
-                  {rawPrice === 0 ? content.product.priceTBD : content.product.btnAdd}
+                  {getRawPrice(PRODUCT_ID) === 0 ? content.product.priceTBD : content.product.btnAdd}
                 </button>
               </div>
               <div className={styles.productShortDescription}>
