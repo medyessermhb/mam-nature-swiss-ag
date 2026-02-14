@@ -230,6 +230,22 @@ const PRODUCTS_EN: ProductType[] = [
       "Unique Swiss-engineered filtration fibers.",
       "Tool-free replacement in 10 minutes."
     ]
+  },
+  // 13. TEST PRODUCT
+  {
+    id: 'test-product',
+    name: 'TEST PRODUCT',
+    subtitle: 'Production Payment Test',
+    slug: 'test-product',
+    priceKey: 'test-product',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp',
+    imageHeight: 320,
+    features: [
+      "For testing production payments.",
+      "Price: 1.00 EUR / 10 MAD.",
+      "Do not ship this product."
+    ]
+  }
 ];
 
 // --- DATA DEFINITION (FRENCH) ---
@@ -441,6 +457,22 @@ const PRODUCTS_FR: ProductType[] = [
       "Fibres de filtration suisses uniques.",
       "Remplacement sans outil en 10 minutes."
     ]
+  },
+  // 13. TEST PRODUCT
+  {
+    id: 'test-product',
+    name: 'TEST PRODUCT',
+    subtitle: 'Test de Paiement Production',
+    slug: 'test-product',
+    priceKey: 'test-product',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp',
+    imageHeight: 320,
+    features: [
+      "Pour tester les paiements en production.",
+      "Prix: 1.00 EUR / 10 MAD.",
+      "Ne pas expédier ce produit."
+    ]
+  }
 ];
 
 const CONTENT_UI = {
