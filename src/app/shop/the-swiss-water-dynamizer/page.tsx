@@ -163,12 +163,13 @@ export default function DynamizerPage() {
   const [activeSection, setActiveSection] = useState('produit');
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
   const [modalUrl, setModalUrl] = useState<string | null>(null);
+  const [isLoadingPdf, setIsLoadingPdf] = useState(false);
 
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const IMAGES = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/DYNAMIZER.png",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/DYNAMIZER.png"
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp",
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp"
   ];
 
   useEffect(() => {
@@ -181,6 +182,16 @@ export default function DynamizerPage() {
     Object.values(sectionRefs.current).forEach((el) => { if (el) observer.observe(el); });
     return () => observer.disconnect();
   }, []);
+
+  // Auto-scroll active nav item into view on mobile
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth <= 991) {
+      const activeNavLink = document.querySelector(`button[data-section="${activeSection}"]`);
+      if (activeNavLink) {
+        activeNavLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }, [activeSection]);
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -232,6 +243,7 @@ export default function DynamizerPage() {
             ].map(item => (
               <li key={item.id}>
                 <button 
+                  data-section={item.id}
                   className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
                   onClick={() => scrollTo(item.id)}
                 >
@@ -299,28 +311,28 @@ export default function DynamizerPage() {
         <section id="usages" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['usages'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.benefits.title}</h2></div>
           <div className={styles.usagesGrid}>
-            <div className={styles.usageCard} style={{ backgroundImage: `url('https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/coffee%20big.png')` }}>
+            <div className={styles.usageCard} style={{ backgroundImage: `url('https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/coffee%20big.webp')` }}>
               <div className={styles.usageContent}>
                 <Star className={styles.usageIcon} />
                 <h3>{content.benefits.cards[0].title}</h3>
                 <p>{content.benefits.cards[0].text}</p>
               </div>
             </div>
-            <div className={styles.usageCard} style={{ backgroundImage: `url('https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/drinking%20big.png')` }}>
+            <div className={styles.usageCard} style={{ backgroundImage: `url('https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/drinking%20big.webp')` }}>
               <div className={styles.usageContent}>
                 <Droplet className={styles.usageIcon} />
                 <h3>{content.benefits.cards[1].title}</h3>
                 <p>{content.benefits.cards[1].text}</p>
               </div>
             </div>
-            <div className={styles.usageCard} style={{ backgroundImage: `url('https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/shower%20big.png')` }}>
+            <div className={styles.usageCard} style={{ backgroundImage: `url('https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/shower%20big.webp')` }}>
               <div className={styles.usageContent}>
                 <Shield className={styles.usageIcon} />
                 <h3>{content.benefits.cards[2].title}</h3>
                 <p>{content.benefits.cards[2].text}</p>
               </div>
             </div>
-            <div className={styles.usageCard} style={{ backgroundImage: `url('https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/washing%20big.png')` }}>
+            <div className={styles.usageCard} style={{ backgroundImage: `url('https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/washing%20big.webp')` }}>
               <div className={styles.usageContent}>
                 <Gauge className={styles.usageIcon} />
                 <h3>{content.benefits.cards[3].title}</h3>
@@ -479,7 +491,10 @@ export default function DynamizerPage() {
           <div className={styles.reportGrid}>
             <button 
               className={styles.reportLink} 
-              onClick={() => setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/ISO.pdf")}
+              onClick={() => {
+                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/ISO.pdf");
+                setIsLoadingPdf(true);
+              }}
             >
               <FileText className={styles.reportIcon} /> {content.science.btnCert}
             </button>
@@ -487,19 +502,33 @@ export default function DynamizerPage() {
         </section>
 
       </main>
-
-      {/* PDF/IMAGE MODAL */}
-      {modalUrl && (
-        <div className={styles.modalOverlay} onClick={() => setModalUrl(null)}>
+{ setModalUrl(null); setIsLoadingPdf(false); }}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <div className={styles.modalHeader}>
               <span className={styles.modalTitle}>Document Preview</span>
-              <button className={styles.modalCloseBtn} onClick={() => setModalUrl(null)}><X /></button>
+              <button className={styles.modalCloseBtn} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}><X /></button>
             </div>
             <div className={styles.modalBody}>
+              {isLoadingPdf && (
+                <div style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10}}>
+                  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem'}}>
+                    <div style={{width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite'}} />
+                    <p style={{color: '#64748b', fontSize: '0.9rem'}}>Loading PDF...</p>
+                  </div>
+                </div>
+              )}
               <iframe 
-                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`} 
-                style={{width:'100%', height:'100%', border:'none'}} 
+                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
+                style={{width:'100%', height:'100%', border:'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease'}} 
+                title="Document Preview"
+                onLoad={() => setIsLoadingPdf(false)}
+              />
+            </div>
+            <style>{`
+              @keyframes spin {
+                to { transform: rotate(360deg); }
+              }
+            `}</styletyle={{width:'100%', height:'100%', border:'none'}} 
                 title="Document Preview"
               />
             </div>

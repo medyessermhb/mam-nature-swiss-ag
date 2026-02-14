@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     title: 'Water Fine Filter Housing | Mam Nature Swiss',
     description: 'Durable, high-performance filtration housing for pure drinking water.',
     url: '/shop/fine-filter',
-    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/FINE%20FILTER.png' }]
+    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp' }]
   }
 };
 

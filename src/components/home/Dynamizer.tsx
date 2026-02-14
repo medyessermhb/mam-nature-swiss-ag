@@ -189,7 +189,7 @@ export default function Dynamizer() {
           {/* COLUMN 2: CENTER IMAGE */}
           <div className={styles.productImageContainer} data-aos="fade-up" data-aos-delay="200">
             <ArrowRight className={styles.flowArrow} />
-            <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/DYNAMIZER.png" alt="The Swiss Water Dynamizer" loading="lazy" />
+            <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp" alt="The Swiss Water Dynamizer" loading="lazy" />
             <ArrowRight className={styles.flowArrow} />
           </div>
 

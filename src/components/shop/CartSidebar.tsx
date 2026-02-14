@@ -12,6 +12,7 @@ const CONTENT_EN = {
   empty: "Your cart is empty.",
   total: "Total",
   checkout: "Proceed to Checkout",
+  viewCart: "View Cart",
   promoTitle: "Exclusive Cart Offer"
 };
 
@@ -20,6 +21,7 @@ const CONTENT_FR = {
   empty: "Votre panier est vide.",
   total: "Total",
   checkout: "Procéder au paiement",
+  viewCart: "Voir le panier",
   promoTitle: "Offre Exclusive"
 };
 
@@ -27,13 +29,18 @@ export default function CartSidebar() {
   // Added addToCart here so we can add the promo items
   const { cart, isCartOpen, toggleCart, removeFromCart, updateQuantity, cartTotal, cartCount, addToCart } = useCart();
   const { language } = useLanguage();
-  
+
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
 
+  const handleViewCart = () => {
+    toggleCart();
+    window.location.href = '/cart';
+  };
+
   const handleProceedToCheckout = () => {
-    toggleCart(); 
-    window.location.href = '/checkout'; 
+    toggleCart();
+    window.location.href = '/checkout';
   };
 
   // Safe currency check
@@ -42,12 +49,12 @@ export default function CartSidebar() {
   const isChf = rawCurrency === 'CHF';
   const currencySymbol = isMad ? 'Dhs' : isChf ? 'CHF' : '€';
 
-// ==========================================
+  // ==========================================
   // CROSS-SELL LOGIC
   // ==========================================
   const hasEssential = cart.some(item => item.id === 'mam-nature-essential-set');
   const hasEssentialPlus = cart.some(item => item.id === 'mam-nature-essential-plus');
-  
+
   // Check if promos are ALREADY in the cart
   const hasPromo1 = cart.some(item => item.id === 'promo-particle-lime-set');
   const hasPromo2 = cart.some(item => item.id === 'promo-water-lime');
@@ -59,17 +66,17 @@ export default function CartSidebar() {
     // Exact Math: Eco Set (12299 MAD / 1070 CHF / 1150 EUR) - Essential (8580 MAD / 760 CHF / 820 EUR)
     const promoPrice = isMad ? 3719 : isChf ? 310 : 330;
     const originalPrice = isMad ? 4750 : isChf ? 428 : 452; // (Standard combined price)
-    
+
     offer = {
       id: 'promo-particle-lime-set',
       name: isFrench ? 'Filtre à Particules + Water LIME' : 'Particle Filter + Water LIME',
-      desc: isFrench 
-        ? `Complétez votre installation pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !` 
+      desc: isFrench
+        ? `Complétez votre installation pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
         : `Complete your setup for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
       image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLE%20FILTER.png'
     };
-  } 
+  }
   // 2. Offer for Essential Plus Set (Upgrades them to Eco Set total)
   else if (hasEssentialPlus && !hasPromo2) {
     // Exact Math: Eco Set (12299 MAD / 1070 CHF / 1150 EUR) - Essential Plus (10250 MAD / 910 CHF / 980 EUR)
@@ -79,11 +86,11 @@ export default function CartSidebar() {
     offer = {
       id: 'promo-water-lime',
       name: isFrench ? 'Filtre Water LIME' : 'Water LIME Filter',
-      desc: isFrench 
-        ? `Ajoutez la protection anti-calcaire pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !` 
+      desc: isFrench
+        ? `Ajoutez la protection anti-calcaire pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
         : `Add anti-limescale protection for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/FINE%20FILTER.png'
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp'
     };
   }
 
@@ -103,7 +110,7 @@ export default function CartSidebar() {
     <>
       <div className={`${styles.overlay} ${isCartOpen ? styles.open : ''}`} onClick={toggleCart} />
       <div className={`${styles.sidebar} ${isCartOpen ? styles.open : ''}`}>
-        
+
         {/* HEADER */}
         <div className={styles.header}>
           <h2 className={styles.title}>{content.title} ({cartCount})</h2>
@@ -136,14 +143,14 @@ export default function CartSidebar() {
               {/* CROSS-SELL OFFER BANNER */}
               {offer && (
                 <div style={{
-                  marginTop: '20px', padding: '15px', background: '#fffbeb', 
-                  border: '1px dashed #f59e0b', borderRadius: '8px', 
+                  marginTop: '20px', padding: '15px', background: '#fffbeb',
+                  border: '1px dashed #f59e0b', borderRadius: '8px',
                   display: 'flex', flexDirection: 'column', gap: '12px'
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#b45309', fontWeight: 'bold', fontSize: '0.9rem' }}>
                     <Tag size={16} /> <span>{content.promoTitle}</span>
                   </div>
-                  
+
                   <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                     <img src={offer.image} alt={offer.name} style={{ width: '50px', height: '50px', objectFit: 'contain', background: 'white', borderRadius: '6px', border: '1px solid #fcd34d' }} />
                     <div style={{ flex: 1 }}>
@@ -152,7 +159,7 @@ export default function CartSidebar() {
                     </div>
                   </div>
 
-                  <button 
+                  <button
                     onClick={handleAcceptOffer}
                     style={{
                       width: '100%', padding: '10px', background: '#f59e0b', color: 'white',
@@ -176,7 +183,10 @@ export default function CartSidebar() {
               <span>{currencySymbol} {cartTotal.toLocaleString()}</span>
             </div>
             <button className={styles.checkoutBtn} onClick={handleProceedToCheckout}>
-              {content.checkout} <ArrowRight size={18} style={{marginLeft:'8px', display:'inline-block', verticalAlign:'text-bottom'}}/>
+              {content.checkout} <ArrowRight size={18} style={{ marginLeft: '8px', display: 'inline-block', verticalAlign: 'text-bottom' }} />
+            </button>
+            <button className={styles.viewCartBtn} onClick={handleViewCart}>
+              {content.viewCart}
             </button>
           </div>
         )}

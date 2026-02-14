@@ -76,7 +76,7 @@ export default function WaterCartridge() {
             {/* Left Image */}
             <div className={styles.imagePanel} data-aos="fade-up">
               <img 
-                src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/CARTRIDGE.png" 
+                src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/CARTRIDGE.webp" 
                 alt="The Mam Nature Swiss water cartridge" 
                 loading="lazy"
               />

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     title: 'Swiss Water Replacement Cartridge | Mam Nature Swiss',
     description: 'Keep your water pure with the official annual replacement filter cartridge.',
     url: '/shop/cartridge',
-    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/CARTRIDGE.png' }]
+    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/CARTRIDGE.webp' }]
   }
 };
 

@@ -38,7 +38,7 @@ export default function ParticleFilter() {
           {/* Left Column: Image */}
           <div className={styles.imageBlock} data-aos="fade-up">
             <img 
-              src="https://cdn.prod.website-files.com/681dc50d091bbb9d3bec573c/68dd2c10745a3a0a157d0ca7_Untitled%20design.jpg" 
+              src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particles%20home%20page.webp" 
               alt="Mam Nature Swiss Water Particles Filter" 
               loading="lazy"
             />

@@ -168,8 +168,9 @@ export default function HydrogenBoosterPage() {
   
   const [activeSection, setActiveSection] = useState('benefits');
   const [modalUrl, setModalUrl] = useState<string | null>(null);
+  const [isLoadingPdf, setIsLoadingPdf] = useState(false);
 
-  const MAIN_IMAGE = "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/HYDROGEEN%20BOOSTER.png";
+  const MAIN_IMAGE = "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/HYDROGEEN%20BOOSTER.webp";
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -183,6 +184,16 @@ export default function HydrogenBoosterPage() {
     });
     return () => observer.disconnect();
   }, []);
+
+  // Auto-scroll active nav item into view on mobile
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth <= 991) {
+      const activeNavLink = document.querySelector(`button[data-section="${activeSection}"]`);
+      if (activeNavLink) {
+        activeNavLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }, [activeSection]);
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -298,6 +309,7 @@ export default function HydrogenBoosterPage() {
             ].map((link) => (
               <button 
                 key={link.id}
+                data-section={link.id}
                 className={`${styles.sidebarLink} ${activeSection === link.id ? styles.active : ''}`}
                 onClick={() => scrollTo(link.id)}
               >
@@ -382,11 +394,17 @@ export default function HydrogenBoosterPage() {
           <section id="science" className={styles.section}>
             <h2 className={styles.sectionTitle}>{content.science.title}</h2>
             <div className={styles.scienceGrid}>
-              <button className={styles.scienceCard} onClick={() => setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Mam%20Nature%20Swiss%20Hydrogen%20Booster_CE-Certificate_2025-005-DOC_sign_2025.04.29.pdf")}>
+              <button className={styles.scienceCard} onClick={() => {
+                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Mam%20Nature%20Swiss%20Hydrogen%20Booster_CE-Certificate_2025-005-DOC_sign_2025.04.29.pdf");
+                setIsLoadingPdf(true);
+              }}>
                 <div className={styles.scienceIconBox}><FlaskConical /></div>
                 <div><h4>{content.science.ceTitle}</h4><span>{content.science.ceBtn}</span></div>
               </button>
-              <button className={styles.scienceCard} onClick={() => setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Mam%20Nature%20Swiss%20Hydrogen%20Booster_CE-Conformity%20Assessment_2025-005-CR-01_signed.pdf")}>
+              <button className={styles.scienceCard} onClick={() => {
+                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Mam%20Nature%20Swiss%20Hydrogen%20Booster_CE-Conformity%20Assessment_2025-005-CR-01_signed.pdf");
+                setIsLoadingPdf(true);
+              }}>
                 <div className={styles.scienceIconBox}><FileText /></div>
                 <div><h4>{content.science.confTitle}</h4><span>{content.science.confBtn}</span></div>
               </button>
@@ -398,23 +416,37 @@ export default function HydrogenBoosterPage() {
 
       {/* PDF/IMAGE MODAL */}
       {modalUrl && (
-        <div className={styles.modalOverlay} onClick={() => setModalUrl(null)}>
+        <div className={styles.modalOverlay} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <div className={styles.modalHeader}>
               <span style={{fontWeight:700}}>Document Preview</span>
-              <button className={styles.modalCloseBtn} onClick={() => setModalUrl(null)}><X /></button>
+              <button className={styles.modalCloseBtn} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}><X /></button>
             </div>
             <div className={styles.modalBody}>
+              {isLoadingPdf && (
+                <div style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10}}>
+                  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem'}}>
+                    <div style={{width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite'}} />
+                    <p style={{color: '#64748b', fontSize: '0.9rem'}}>Loading document...</p>
+                  </div>
+                </div>
+              )}
               {modalUrl.endsWith('.pdf') ? (
                 <iframe 
-                  src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`} 
-                  style={{width:'100%', height:'100%', border:'none'}} 
+                  src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
+                  style={{width:'100%', height:'100%', border:'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease'}} 
                   title="Document Preview"
+                  onLoad={() => setIsLoadingPdf(false)}
                 />
               ) : (
                 <img src={modalUrl} alt="Document" style={{maxWidth:'100%', height:'auto'}} />
               )}
             </div>
+            <style>{`
+              @keyframes spin {
+                to { transform: rotate(360deg); }
+              }
+            `}</style>
           </div>
         </div>
       )}

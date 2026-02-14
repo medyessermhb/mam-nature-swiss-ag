@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     title: 'Eco Set Plus | Mam Nature Swiss',
     description: 'High-performance whole-house water purification without chemicals or salt.',
     url: '/shop/eco-set-plus',
-        images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/ECO%20SET%20PLUS.png' }]
+    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp' }]
   }
 };
 

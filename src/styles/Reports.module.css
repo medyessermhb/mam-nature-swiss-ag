@@ -3,7 +3,6 @@
 .pageWrapper {
   background-color: #F8FAFC;
   min-height: 100vh;
-  padding-top: 100px; /* Space for fixed navbar */
 }
 
 .container {

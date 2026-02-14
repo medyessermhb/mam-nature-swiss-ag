@@ -97,13 +97,34 @@ export default function Navbar() {
 
       {/* MOBILE MENU OVERLAY */}
       <div className={`mobile-menu-dropdown ${isMobileMenuOpen ? 'active' : ''}`}>
+        <div className="mobile-menu-header">
+          {/* Mobile Account Button */}
+          <Link href={user ? "/dashboard" : "/login"} className="mobile-link" style={{color: '#0f172a', fontWeight:700, margin: 0, padding: 0, border: 'none'}} onClick={() => setIsMobileMenuOpen(false)}>
+            <User size={18} style={{marginRight: '8px'}} />
+            {user ? (language === 'fr' ? 'Tableau de bord' : 'Dashboard') : (language === 'fr' ? 'Se Connecter' : 'Login')}
+          </Link>
+          
+          {/* Mobile Language Switcher - Short Labels */}
+          <div className="mobile-lang-buttons">
+            <button 
+              className={language === 'en' ? 'active' : ''}
+              onClick={() => handleLangChange('en')}
+              title="English"
+            >
+              🇺🇸 EN
+            </button>
+            <button 
+              className={language === 'fr' ? 'active' : ''}
+              onClick={() => handleLangChange('fr')}
+              title="Français"
+            >
+              🇫🇷 FR
+            </button>
+          </div>
+        </div>
+
         <Link href="/" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>{t.nav.home}</Link>
         <Link href="/rapports-certifications" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>{t.nav.reports}</Link>
-        
-        {/* Mobile Dashboard Link */}
-        <Link href={user ? "/dashboard" : "/login"} className="mobile-link" style={{color: '#0f172a', fontWeight:700}} onClick={() => setIsMobileMenuOpen(false)}>
-          {user ? (language === 'fr' ? 'Mon Tableau de Bord' : 'My Dashboard') : (language === 'fr' ? 'Se Connecter' : 'Login / Register')}
-        </Link>
 
         <Link href="/solutions" className="mobile-link" style={{color: '#1a1a1a', background: '#f8fafc', fontWeight: 700}} onClick={() => setIsMobileMenuOpen(false)}>{t.nav.solutions}</Link>
         
@@ -121,8 +142,8 @@ export default function Navbar() {
       {/* RIGHT: Actions */}
       <div className="nav-right-group">
         
-        {/* Language Switcher */}
-        <div id="nav-lang-switcher-wrapper">
+        {/* Language Switcher - Desktop Only */}
+        <div id="nav-lang-switcher-wrapper" className="desktop-only">
           <div id="nav-lang-switcher-btn" onClick={() => setIsLangSwitcherOpen(!isLangSwitcherOpen)}>
             <span>{langLabels[language] || "🇺🇸 English"}</span>
           </div>
@@ -136,8 +157,8 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* 🆕 Account Button */}
-        <Link href={user ? "/dashboard" : "/login"} className="cart-button-2" style={{marginRight: '10px'}} aria-label="Account">
+        {/* Account Button - Desktop Only */}
+        <Link href={user ? "/dashboard" : "/login"} className="cart-button-2 desktop-only" style={{marginRight: '10px'}} aria-label="Account">
           <User size={18} />
         </Link>
 

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     title: 'The Swiss Water Dynamizer | Mam Nature',
     description: '100% physical action to restore your water\'s natural properties.',
     url: '/shop/the-swiss-water-dynamizer',
-    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png' }]
+    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp' }]
   }
 };
 

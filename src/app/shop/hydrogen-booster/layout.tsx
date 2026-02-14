@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     title: 'Swiss Hydrogen Booster | Mam Nature Swiss',
     description: 'Antioxidant molecular hydrogen water on the go. Class 1 Medical Device.',
     url: '/shop/hydrogen-booster',
-    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/HYDROGEEN%20BOOSTER.png' }]
+    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/HYDROGEEN%20BOOSTER.webp' }]
   }
 };
 

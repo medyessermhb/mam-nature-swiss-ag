@@ -137,14 +137,15 @@ export default function EssentialPlusFilterPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');
   const [modalUrl, setModalUrl] = useState<string | null>(null);
+  const [isLoadingPdf, setIsLoadingPdf] = useState(false);
 
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   // 1. Fine Filter, 2. Cartridge, 3. Particle Filter (Make sure to update the 3rd URL to the actual particle filter image)
   const IMAGES = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/FINE%20FILTER.png",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/CARTRIDGE.png",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png" 
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp",
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/CARTRIDGE.webp",
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp" 
   ];
 
   const currentRegion = currency === 'MAD' ? 'Morocco' : currency === 'CHF' ? 'Switzerland' : 'Europe';
@@ -160,6 +161,16 @@ export default function EssentialPlusFilterPage() {
     Object.values(sectionRefs.current).forEach((el) => { if (el) observer.observe(el); });
     return () => observer.disconnect();
   }, []);
+
+  // Auto-scroll active nav item into view on mobile
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth <= 991) {
+      const activeNavLink = document.querySelector(`button[data-section="${activeSection}"]`);
+      if (activeNavLink) {
+        activeNavLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }, [activeSection]);
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -205,6 +216,7 @@ export default function EssentialPlusFilterPage() {
             ].map(item => (
               <li key={item.id}>
                 <button 
+                  data-section={item.id}
                   className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
                   onClick={() => scrollTo(item.id)}
                 >
@@ -340,13 +352,19 @@ export default function EssentialPlusFilterPage() {
           <div className={styles.reportGrid}>
             <button 
               className={styles.reportLink} 
-              onClick={() => setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/The%20Swiss%20Water%20Cartridge_Retention%20Rates_Certificated%20ETH%20Zurich.pdf")}
+              onClick={() => {
+                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/The%20Swiss%20Water%20Cartridge_Retention%20Rates_Certificated%20ETH%20Zurich.pdf");
+                setIsLoadingPdf(true);
+              }}
             >
-              <FileText className={styles.reportIcon} size={24} /> {content.reports.btnPerf}
+              <FileText className={styles.reportIcon} /> {content.reports.btnPerf}
             </button>
             <button 
               className={styles.reportLink} 
-              onClick={() => setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf")}
+              onClick={() => {
+                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf");
+                setIsLoadingPdf(true);
+              }}
             >
               <Award className={styles.reportIcon} size={24} /> {content.reports.btnCert}
             </button>
@@ -357,19 +375,33 @@ export default function EssentialPlusFilterPage() {
 
       {/* PDF/IMAGE MODAL */}
       {modalUrl && (
-        <div className={styles.modalOverlay} onClick={() => setModalUrl(null)}>
+        <div className={styles.modalOverlay} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <div className={styles.modalHeader}>
               <span className={styles.modalTitle}>Document Preview</span>
-              <button className={styles.modalCloseBtn} onClick={() => setModalUrl(null)}><X size={32} /></button>
+              <button className={styles.modalCloseBtn} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}><X size={32} /></button>
             </div>
             <div className={styles.modalBody}>
+              {isLoadingPdf && (
+                <div style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10}}>
+                  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem'}}>
+                    <div style={{width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite'}} />
+                    <p style={{color: '#64748b', fontSize: '0.9rem'}}>Loading PDF...</p>
+                  </div>
+                </div>
+              )}
               <iframe 
-                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`} 
-                style={{width:'100%', height:'100%', border:'none'}} 
+                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
+                style={{width:'100%', height:'100%', border:'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease'}} 
                 title="Document Preview"
+                onLoad={() => setIsLoadingPdf(false)}
               />
             </div>
+            <style>{`
+              @keyframes spin {
+                to { transform: rotate(360deg); }
+              }
+            `}</style>
           </div>
         </div>
       )}

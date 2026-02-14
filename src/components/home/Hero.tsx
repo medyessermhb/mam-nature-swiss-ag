@@ -11,9 +11,9 @@ const SLIDES_EN = [
   {
     id: 0,
     images: {
-      desktop: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/SLIDER/complete%20set%20en.png",
-      bigMobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/SLIDER/complete%20set%20big%20en.png",
-      mobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/SLIDER/complete%20set%20small%20en.png"
+      desktop: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/BANNERS/complete%20set%20en.webp",
+      bigMobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/BANNERS/complete%20set%20big%20en.webp",
+      mobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/BANNERS/complete%20set%20small%20en.webp"
     },
     messageSpots: [
       { pos: 'pos1', size: 'messageLg', maxW: 'maxw1', texts: ["Your skin absorbs. Give it healing water.", "Your skin deserves better than chlorine."] },
@@ -26,9 +26,9 @@ const SLIDES_EN = [
   {
     id: 1,
     images: {
-      desktop: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/SLIDER/eco%20set%20en.png",
-      bigMobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/SLIDER/eco%20set%20big%20en.png",
-      mobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/SLIDER/eco%20set%20small%20en.png"
+      desktop: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/BANNERS/eco%20set%20en.webp",
+      bigMobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/BANNERS/eco%20set%20big%20en.webp",
+      mobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/BANNERS/eco%20set%20small%20en.webp"
     },
     messageSpots: [
       { pos: 'pos1', size: 'messageLg', maxW: 'maxw1', texts: ["Your skin absorbs. Give it healing water.", "Your skin deserves better than chlorine."] },
@@ -44,9 +44,9 @@ const SLIDES_FR = [
   {
     id: 0,
     images: {
-      desktop: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/SLIDER/complete%20set%20fr.png",
-      bigMobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/SLIDER/complete%20set%20big%20fr.png",
-      mobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/SLIDER/complete%20set%20small%20fr.png"
+      desktop: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/FR/complete%20set%20fr.webp",
+      bigMobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/FR/complete%20set%20big%20fr.webp",
+      mobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/FR/complete%20set%20small%20fr.webp"
     },
     messageSpots: [
       { pos: 'pos1', size: 'messageLg', maxW: 'maxw1', texts: ["Votre peau absorbe. Offrez-lui une eau qui soigne.", "Votre peau mérite mieux que du chlore. PFAS"] },
@@ -59,9 +59,9 @@ const SLIDES_FR = [
   {
     id: 1,
     images: {
-      desktop: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/SLIDER/eco%20set%20%20fr.png",
-      bigMobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/SLIDER/eco%20set%20big%20fr.png",
-      mobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/SLIDER/eco%20set%20small%20fr.png"
+      desktop: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/FR/eco%20set%20%20fr.webp",
+      bigMobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/FR/eco%20set%20big%20fr.webp",
+      mobile: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/FR/eco%20set%20small%20fr.webp"
     },
     messageSpots: [
       { pos: 'pos1', size: 'messageLg', maxW: 'maxw1', texts: ["Votre peau absorbe. Offrez-lui une eau qui soigne.", "Votre peau mérite mieux que du chlore. PFAS"] },

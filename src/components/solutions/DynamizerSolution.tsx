@@ -38,13 +38,13 @@ const CONTENT_EN = {
         title: 'WATER LIME',
         desc: 'A proven alternative for water softening systems on purely physical basis. Prevents hard limescale deposits.',
         link: '/solutions/water-lime',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/water%20lime%20vertical.png'
+        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp'
       },
       {
         title: 'PARTICLE FILTER',
         desc: 'Swiss Made LEAD-free Particle Filter (316L stainless steel) with self-cleaning Backwash Technology.',
         link: '/solutions/particle-filter',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png'
+        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp'
       },
       {
         title: 'WATER FINE FILTER',
@@ -56,7 +56,7 @@ const CONTENT_EN = {
         title: 'COMPLETE SYSTEM',
         desc: 'Our complete solution for pure, healthy, and revitalized water throughout your entire home.',
         link: '/solutions/mam-nature-complete-system',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/COMPLETE%20SET%20PLUS.png'
+        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp'
       }
     ]
   }
@@ -90,13 +90,13 @@ const CONTENT_FR = {
         title: 'WATER LIME',
         desc: 'Alternative physique aux adoucisseurs, convertit la calcite en aragonite non-adhérente.',
         link: '/solutions/water-lime',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/water%20lime%20vertical.png'
+        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp'
       },
       {
         title: 'PARTICLE FILTER',
         desc: 'Filtre à particules sans PLOMB (Inox 316L) avec technologie de lavage à contre-courant.',
         link: '/solutions/particle-filter',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png'
+        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp'
       },
       {
         title: 'FINE FILTER',
@@ -108,7 +108,7 @@ const CONTENT_FR = {
         title: 'SYSTÈME COMPLET',
         desc: 'Notre solution intégrale pour une eau pure, saine et revitalisée dans toute votre maison.',
         link: '/solutions/mam-nature-complete-system',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/COMPLETE%20SET%20PLUS.png'
+        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp'
       }
     ]
   }
@@ -179,7 +179,7 @@ export default function DynamizerSolution() {
         <section id="presentation" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['presentation'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.presentation.title}</h2></div>
           <div className={styles.componentLayout}>
-            <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/DYNAMIZER.png" alt="The Swiss Water DYNAMIZER" loading="lazy" />
+            <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp" alt="The Swiss Water DYNAMIZER" loading="lazy" />
             <div className={styles.componentTextContent}>
               <p>{content.presentation.desc}</p>
             </div>

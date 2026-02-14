@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  ChevronLeft, ChevronRight, FileText, Award, 
+import {
+  ChevronLeft, ChevronRight, FileText, Award,
   Infinity as InfinityIcon, Wrench, CalendarCheck, ShieldCheck, X
 } from 'lucide-react';
 import styles from '@/styles/Product.module.css';
@@ -39,8 +39,9 @@ const CONTENT_EN = {
   details: {
     title: 'Technical Details',
     specs: {
-      cap: { title: 'Capacity', val: 'Unlimited' },
-      maint: { title: 'Maintenance', val: 'Requires no maintenance (fully automated solution).' }
+      material: { title: 'Material', val: '316L stainless steel housing & high-grade brass (Particle Filter)' },
+      connection: { title: 'Connections', val: '1 inch (2 3/4 inch adapters included for both units)' },
+      flow: { title: 'Flow Rate', val: '1.5 m³/h (at 4 bar)' }
     }
   },
   install: {
@@ -77,8 +78,9 @@ const CONTENT_FR = {
   details: {
     title: 'Détails Techniques',
     specs: {
-      cap: { title: 'Capacité', val: 'Illimitée' },
-      maint: { title: 'Entretien', val: 'Ne nécessite aucun entretien (solution totalement automatisée).' }
+      material: { title: 'Matériaux', val: 'Boîtier en acier inoxydable 316L et laiton de haute qualité (Filtre à particules)' },
+      connection: { title: 'Connexions', val: '1 pouce (adaptateurs 2 3/4 pouces inclus pour les deux unités)' },
+      flow: { title: 'Débit', val: '1.5 m³/h (à 4 bars)' }
     }
   },
   install: {
@@ -102,19 +104,20 @@ export default function ParticleFilterPage() {
   const { getPrice, isLoading, currency } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
-  
+
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
-  
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');
   const [modalUrl, setModalUrl] = useState<string | null>(null);
+  const [isLoadingPdf, setIsLoadingPdf] = useState(false);
 
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const IMAGES = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png"
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp",
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp"
   ];
 
   useEffect(() => {
@@ -127,6 +130,16 @@ export default function ParticleFilterPage() {
     Object.values(sectionRefs.current).forEach((el) => { if (el) observer.observe(el); });
     return () => observer.disconnect();
   }, []);
+
+  // Auto-scroll active nav item into view on mobile
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth <= 991) {
+      const activeNavLink = document.querySelector(`button[data-section="${activeSection}"]`);
+      if (activeNavLink) {
+        activeNavLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }, [activeSection]);
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -159,7 +172,7 @@ export default function ParticleFilterPage() {
 
   return (
     <div className={styles.pageWrapper}>
-      
+
       {/* SIDEBAR NAV */}
       <aside className={styles.stickyNav}>
         <nav>
@@ -172,7 +185,8 @@ export default function ParticleFilterPage() {
               { id: 'rapports', label: content.nav.reports }
             ].map(item => (
               <li key={item.id}>
-                <button 
+                <button
+                  data-section={item.id}
                   className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
                   onClick={() => scrollTo(item.id)}
                 >
@@ -185,9 +199,9 @@ export default function ParticleFilterPage() {
       </aside>
 
       <main className={styles.contentArea}>
-        
+
         {/* 1. PRODUCT SECTION */}
-        <section id="produit" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['produit'] = el }}>
+        <section id="produit" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['produit'] = el }}>
           <div className={styles.productGrid}>
             <div className={styles.productGallery}>
               <div className={styles.mainImageContainer}>
@@ -201,11 +215,11 @@ export default function ParticleFilterPage() {
               </div>
               <div className={styles.thumbnailList}>
                 {IMAGES.map((img, idx) => (
-                  <img 
-                    key={idx} 
-                    src={img} 
-                    className={`${styles.thumbnail} ${idx === currentSlide ? styles.active : ''}`} 
-                    onClick={() => setCurrentSlide(idx)} 
+                  <img
+                    key={idx}
+                    src={img}
+                    className={`${styles.thumbnail} ${idx === currentSlide ? styles.active : ''}`}
+                    onClick={() => setCurrentSlide(idx)}
                     alt="thumbnail"
                   />
                 ))}
@@ -220,8 +234,8 @@ export default function ParticleFilterPage() {
                 </div>
               </div>
               <div className={styles.cartForm}>
-                <button 
-                  className={styles.addToCartButton} 
+                <button
+                  className={styles.addToCartButton}
                   onClick={handleAddToCart}
                 >
                   {content.product.btnAdd}
@@ -236,59 +250,70 @@ export default function ParticleFilterPage() {
         </section>
 
         {/* 2. DETAILS SECTION */}
-        <section id="details" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['details'] = el }}>
+        <section id="details" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['details'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.details.title}</h2></div>
-          
+
           <div className={styles.dynamizerSpecGrid}>
             <div className={styles.specCard}>
-              <InfinityIcon className={styles.specIcon} />
-              <h4>{content.details.specs.cap.title}</h4>
-              <p>{content.details.specs.cap.val}</p>
+              <ShieldCheck className={styles.specIcon} />
+              <h4>{content.details.specs.material.title}</h4>
+              <p>{content.details.specs.material.val}</p>
             </div>
             <div className={styles.specCard}>
               <Wrench className={styles.specIcon} />
-              <h4>{content.details.specs.maint.title}</h4>
-              <p>{content.details.specs.maint.val}</p>
+              <h4>{content.details.specs.connection.title}</h4>
+              <p>{content.details.specs.connection.val}</p>
+            </div>
+            <div className={styles.specCard}>
+              <InfinityIcon className={styles.specIcon} />
+              <h4>{content.details.specs.flow.title}</h4>
+              <p>{content.details.specs.flow.val}</p>
             </div>
           </div>
         </section>
 
         {/* 3. INSTALLATION SECTION */}
-        <section id="installation" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['installation'] = el }}>
+        <section id="installation" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['installation'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.install.title}</h2></div>
           <div className={styles.installationCard}>
-             <div className={styles.videoContainer}>
-               <div style={{width:'100%', height:'100%', background:'#000', display:'flex', alignItems:'center', justifyContent:'center', color:'white'}}>
-                 [Installation Video Placeholder]
-               </div>
-             </div>
-             <h3><Wrench className={styles.specIcon} /> {content.install.cardTitle}</h3>
-             <p>{content.install.cardText}</p>
+            <div className={styles.videoContainer}>
+              <div style={{ width: '100%', height: '100%', background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
+                [Installation Video Placeholder]
+              </div>
+            </div>
+            <h3><Wrench className={styles.specIcon} /> {content.install.cardTitle}</h3>
+            <p>{content.install.cardText}</p>
           </div>
         </section>
 
         {/* 4. MAINTENANCE SECTION */}
-        <section id="maintenance" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['maintenance'] = el }}>
+        <section id="maintenance" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['maintenance'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.maint.title}</h2></div>
-          <div className={styles.maintenanceCard} style={{gridColumn: '1 / -1'}}>
+          <div className={styles.maintenanceCard} style={{ gridColumn: '1 / -1' }}>
             <h3><CalendarCheck className={styles.specIcon} /> {content.maint.cardTitle}</h3>
             <p>{content.maint.cardText}</p>
           </div>
         </section>
 
         {/* 5. REPORTS SECTION */}
-        <section id="rapports" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['rapports'] = el }}>
+        <section id="rapports" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['rapports'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.reports.title}</h2></div>
           <div className={styles.reportGrid}>
-            <button 
-              className={styles.reportLink} 
-              onClick={() => setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/ISO.pdf")}
+            <button
+              className={styles.reportLink}
+              onClick={() => {
+                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/ISO.pdf");
+                setIsLoadingPdf(true);
+              }}
             >
               <FileText className={styles.reportIcon} /> {content.reports.btnIso}
             </button>
-            <button 
-              className={styles.reportLink} 
-              onClick={() => setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf")}
+            <button
+              className={styles.reportLink}
+              onClick={() => {
+                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf");
+                setIsLoadingPdf(true);
+              }}
             >
               <Award className={styles.reportIcon} /> {content.reports.btnCert}
             </button>
@@ -299,19 +324,33 @@ export default function ParticleFilterPage() {
 
       {/* PDF/IMAGE MODAL */}
       {modalUrl && (
-        <div className={styles.modalOverlay} onClick={() => setModalUrl(null)}>
+        <div className={styles.modalOverlay} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <div className={styles.modalHeader}>
               <span className={styles.modalTitle}>Document Preview</span>
-              <button className={styles.modalCloseBtn} onClick={() => setModalUrl(null)}><X /></button>
+              <button className={styles.modalCloseBtn} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}><X /></button>
             </div>
             <div className={styles.modalBody}>
-              <iframe 
-                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`} 
-                style={{width:'100%', height:'100%', border:'none'}} 
+              {isLoadingPdf && (
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Loading PDF...</p>
+                  </div>
+                </div>
+              )}
+              <iframe
+                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
+                style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
                 title="Document Preview"
+                onLoad={() => setIsLoadingPdf(false)}
               />
             </div>
+            <style>{`
+              @keyframes spin {
+                to { transform: rotate(360deg); }
+              }
+            `}</style>
           </div>
         </div>
       )}

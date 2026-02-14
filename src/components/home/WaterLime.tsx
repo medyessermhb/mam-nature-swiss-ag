@@ -128,19 +128,19 @@ export default function WaterLime() {
             <div className={styles.imageGallery}>
               <div className={styles.galleryGrid}>
                 <div className={styles.galleryItem}>
-                  <img src="https://cdn.prod.website-files.com/681dc50d091bbb9d3bec573c/68dbae748da3ed0a5310c2ce_calcite%201.png" alt="Calcite 1" loading="lazy" />
+                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/water%20lime/calcite%201.webp" alt="Calcite 1" loading="lazy" />
                   <p className={styles.galleryLabel}>{content.galleryCalcite}</p>
                 </div>
                 <div className={styles.galleryItem}>
-                  <img src="https://cdn.prod.website-files.com/681dc50d091bbb9d3bec573c/68dbae747ac7a1a3fc3cd09e_calcite%202.png" alt="Calcite 2" loading="lazy" />
+                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/water%20lime/calcite%202.webp" alt="Calcite 2" loading="lazy" />
                   <p className={styles.galleryLabel}>{content.galleryCalcite}</p>
                 </div>
                 <div className={styles.galleryItem}>
-                  <img src="https://cdn.prod.website-files.com/681dc50d091bbb9d3bec573c/68dbae7463b61f8563dc0488_Aragonite%201.png" alt="Aragonite 1" loading="lazy" />
+                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/water%20lime/Aragonite%201.webp" alt="Aragonite 1" loading="lazy" />
                   <p className={styles.galleryLabel}>{content.galleryAragonite}</p>
                 </div>
                 <div className={styles.galleryItem}>
-                  <img src="https://cdn.prod.website-files.com/681dc50d091bbb9d3bec573c/68dbae7431433fe844408d14_Aragonite%202.png" alt="Aragonite 2" loading="lazy" />
+                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/water%20lime/Aragonite%202.webp" alt="Aragonite 2" loading="lazy" />
                   <p className={styles.galleryLabel}>{content.galleryAragonite}</p>
                 </div>
               </div>
@@ -150,13 +150,13 @@ export default function WaterLime() {
           {/* BLOCK 2: IMAGE */}
           <div className={styles.productImageBlock} data-aos="fade-up" data-aos-delay="50">
             <img 
-              src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/water%20lime%20vertical.png" 
+              src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp" 
               alt="Mam Nature Swiss Water Lime" 
               className={styles.desktopLimeImg} 
               loading="lazy"
             />
             <img 
-              src="https://cdn.prod.website-files.com/681dc50d091bbb9d3bec573c/68dd1be17bacce53693d2621_MNS%20Water%20LIME.png" 
+              src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20horizontal.webp" 
               alt="Mam Nature Swiss Water Lime Mobile" 
               className={styles.mobileLimeImg} 
               loading="lazy"

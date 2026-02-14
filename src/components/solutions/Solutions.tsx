@@ -24,7 +24,7 @@ const CONTENT_EN = {
     {
       id: 'complete-system',
       title: 'COMPLETE SYSTEM',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/COMPLETE%20SET%20PLUS.png',
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp',
       desc: 'Our complete solution for pure, healthy, and revitalized water throughout your entire home. The Complete System combines our four advanced technologies.',
       link: '/solutions/mam-nature-complete-system',
       specs: [
@@ -37,7 +37,7 @@ const CONTENT_EN = {
     {
       id: 'water-lime',
       title: 'WATER LIME',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/water%20lime%20vertical.png',
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp',
       desc: 'A proven alternative for water softening systems on purely physical basis. « Water LIME » converts the hard form of lime (Calcite) into a soft form (Aragonite).',
       link: '/solutions/water-lime',
       specs: [
@@ -52,7 +52,7 @@ const CONTENT_EN = {
     {
       id: 'particle-filter',
       title: 'PARTICLE FILTER',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png',
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
       desc: 'Mam Nature Swiss proudly presents the world’s first Swiss Made LEAD-free Particle Filter, made from premium 316L stainless steel.',
       link: '/solutions/particle-filter',
       specs: [
@@ -83,7 +83,7 @@ const CONTENT_EN = {
     {
       id: 'dynamizer',
       title: 'The Swiss Water DYNAMIZER',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/DYNAMIZER.png',
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
       desc: 'Water is moved as worldwide standard in straight water tubes which doesn\'t correspond to the natural movement of water. As a result, water quality suffers.',
       link: '/solutions/the-swiss-water-dynamizer',
       specs: [
@@ -110,7 +110,7 @@ const CONTENT_FR = {
     {
       id: 'complete-system',
       title: 'SYSTÈME COMPLET',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/COMPLETE%20SET%20PLUS.png',
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp',
       desc: 'Notre solution intégrale pour une eau pure, saine et revitalisée dans toute votre maison. Le Système Complet combine nos quatre technologies de pointe.',
       link: '/solutions/mam-nature-complete-system',
       specs: [
@@ -123,7 +123,7 @@ const CONTENT_FR = {
     {
       id: 'water-lime',
       title: 'WATER LIME',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/water%20lime%20vertical.png',
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp',
       desc: 'Une alternative éprouvée aux systèmes d\'adoucissement de l\'eau sur une base purement physique. Water LIME convertit la forme dure de la chaux (Calcite) en une forme molle (Aragonite).',
       link: '/solutions/water-lime',
       specs: [
@@ -138,7 +138,7 @@ const CONTENT_FR = {
     {
       id: 'particle-filter',
       title: 'PARTICLE FILTER',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png',
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
       desc: 'Mam Nature Swiss présente fièrement le premier filtre à particules sans PLOMB Swiss made, fabriqué en INOX 316L de qualité premium.',
       link: '/solutions/particle-filter',
       specs: [
@@ -169,7 +169,7 @@ const CONTENT_FR = {
     {
       id: 'dynamizer',
       title: 'The Swiss Water DYNAMIZER',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/DYNAMIZER.png',
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
       desc: 'L\'eau est transportée dans des tubes rectilignes, ce qui ne correspond pas à son mouvement naturel. Le dynamiseur restructure et revitalise l\'eau.',
       link: '/solutions/the-swiss-water-dynamizer',
       specs: [
@@ -186,6 +186,7 @@ const CONTENT_FR = {
 export default function Solutions() {
   const [activeSection, setActiveSection] = useState('complete-system');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+  const navListRef = useRef<HTMLUListElement>(null);
   
   const { language } = useLanguage();
   const isFrench = language === 'fr';
@@ -214,6 +215,28 @@ export default function Solutions() {
     return () => observer.disconnect();
   }, []);
 
+  // Auto-scroll horizontal nav on mobile when active section changes
+  useEffect(() => {
+    if (!navListRef.current || !activeSection) return;
+    
+    const isMobile = window.innerWidth <= 991;
+    if (!isMobile) return;
+
+    // Find the active link element
+    const activeLink = navListRef.current.querySelector(
+      `a[href="#${activeSection}"]`
+    ) as HTMLElement;
+
+    if (activeLink && navListRef.current) {
+      // Scroll the active link into view horizontally with smooth behavior
+      activeLink.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+  }, [activeSection]);
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);
@@ -234,7 +257,7 @@ export default function Solutions() {
       {/* Sticky Navigation */}
       <aside className={styles.stickyNav}>
         <nav>
-          <ul className={styles.navList}>
+          <ul className={styles.navList} ref={navListRef}>
             {[
               { id: 'complete-system', label: content.nav.complete },
               { id: 'water-lime', label: content.nav.lime },

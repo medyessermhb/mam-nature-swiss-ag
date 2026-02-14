@@ -8,16 +8,16 @@ import { useLanguage } from '@/context/LanguageContext';
 // Standard Lifestyle Slider Groups for whole-house systems
 const SHARED_SLIDER_GROUPS = [
   { 
-    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/SHOWER.png", 
-    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/WATER%20DRINKING.png" 
+    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/SHOWER.webp", 
+    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/WATER%20DRINKING.webp" 
   },
   { 
-    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/TEETH.png", 
-    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/WASHING%20VEGIES.png" 
+    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/TEETH.webp", 
+    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/WASHING%20VEGIES.webp" 
   },
   { 
-    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/COFFEE.png", 
-    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/WASHING%20MACHINE.png" 
+    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/COFFEE.webp", 
+    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/WASHING%20MACHINE.webp" 
   }
 ];
 
@@ -29,7 +29,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Water Fine Filter',
     slug: 'essential',
     priceKey: 'mam-nature-essential-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/FINE%20FILTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
     imageHeight: 300,
     features: [
       "Medical-grade stainless steel construction.",
@@ -46,7 +46,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Fine Filter + Particle Filter',
     slug: 'essential-plus',
     priceKey: 'mam-nature-essential-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/FINE%20FILTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
     imageHeight: 300,
     features: [
       "Dual protection: physical and selective filtration.",
@@ -63,7 +63,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'For the whole house',
     slug: 'eco-set',
     priceKey: 'mam-nature-eco-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/ECO%20SET.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET.webp',
     imageHeight: 320,
     features: [
       "Complete whole-house solution.",
@@ -80,7 +80,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'For the whole house',
     slug: 'eco-set-plus',
     priceKey: 'mam-nature-eco-set-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/ECO%20SET%20PLUS.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET%20PLUS.webp',
     imageHeight: 300,
     features: [
       "Advanced whole-house treatment system.",
@@ -97,7 +97,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'For the whole house',
     slug: 'complete-set',
     priceKey: 'mam-nature-water-treatment-complete-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/COMPLETE%20SET.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET.webp',
     imageHeight: 320,
     features: [
       "Includes the Dynamizer for revitalized water.",
@@ -114,7 +114,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'For the whole house',
     slug: 'complete-set-plus',
     priceKey: 'mam-nature-water-treatment-complete-set-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/COMPLETE%20SET%20PLUS.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp',
     imageHeight: 300,
     features: [
       "The most advanced water treatment solution.",
@@ -131,7 +131,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Sediment + Scale Protection',
     slug: 'particle-lime-set',
     priceKey: 'mam-nature-particle-lime-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
     imageHeight: 300,
     features: [
       "Dual protection for plumbing and appliances.",
@@ -147,7 +147,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Water Revitalizer',
     slug: 'dynamizer',
     priceKey: 'the-swiss-water-dynamizer',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/DYNAMIZER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
     imageHeight: 320,
     features: [
       "Restores natural water properties.",
@@ -163,7 +163,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Anti-Limescale Solution',
     slug: 'water-lime',
     priceKey: 'mam-nature-water-lime',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/FINE%20FILTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
     imageHeight: 320,
     features: [
       "Physical conversion of limescale.",
@@ -179,7 +179,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Class 1 Medical Device',
     slug: 'hydrogen-booster',
     priceKey: 'swiss-hydrogen-booster',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/HYDROGEEN%20BOOSTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/HYDROGEEN%20BOOSTER.webp',
     imageHeight: 320,
     features: [
       "Enrich your water with molecular hydrogen.",
@@ -195,7 +195,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Filtration Housing',
     slug: 'fine-filter',
     priceKey: 'mam-nature-water-fine-filter',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/FINE%20FILTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
     imageHeight: 320,
     features: [
       "Medical-grade stainless steel casing.",
@@ -210,7 +210,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Sediment Pre-filter',
     slug: 'particles-filter',
     priceKey: 'mam-nature-water-particle-filter',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
     imageHeight: 320,
     features: [
       "Eliminates sand, rust, and sediments.",
@@ -225,7 +225,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Replacement Cartridge',
     slug: 'cartridge',
     priceKey: 'mam-nature-water-fine-filter---cartridge',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/CARTRIDGE.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/CARTRIDGE.webp',
     imageHeight: 320,
     features: [
       "Annual replacement for Fine Filter.",
@@ -244,7 +244,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Filtre à Eau Fin',
     slug: 'essentiel',
     priceKey: 'mam-nature-essential-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/FINE%20FILTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
     imageHeight: 300,
     features: [
       "Construction robuste en acier inoxydable médical.",
@@ -261,7 +261,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Filtre Fin + Filtre à Particules',
     slug: 'essentiel-plus',
     priceKey: 'mam-nature-essential-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/FINE%20FILTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
     imageHeight: 300,
     features: [
       "Double protection : filtration physique et sélective.",
@@ -278,7 +278,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'eco-set',
     priceKey: 'mam-nature-eco-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/ECO%20SET.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET.webp',
     imageHeight: 320,
     features: [
       "Solution complète pour toute la maison.",
@@ -295,7 +295,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'eco-set-plus',
     priceKey: 'mam-nature-eco-set-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/ECO%20SET%20PLUS.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET%20PLUS.webp',
     imageHeight: 300,
     features: [
       "Système de traitement avancé pour toute la maison.",
@@ -312,7 +312,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'complete-set',
     priceKey: 'mam-nature-water-treatment-complete-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/COMPLETE%20SET.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET.webp',
     imageHeight: 320,
     features: [
       "Inclut le Dynamizer pour une eau revitalisée.",
@@ -329,7 +329,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'complete-set-plus',
     priceKey: 'mam-nature-water-treatment-complete-set-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/COMPLETE%20SET%20PLUS.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp',
     imageHeight: 300,
     features: [
       "La solution de traitement d'eau la plus avancée.",
@@ -346,7 +346,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Sédiments + Protection Tartre',
     slug: 'set-particules-calcaire',
     priceKey: 'mam-nature-particle-lime-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
     imageHeight: 300,
     features: [
       "Double protection plomberie et appareils.",
@@ -362,7 +362,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Revitaliseur d\'Eau',
     slug: 'dynamizer',
     priceKey: 'the-swiss-water-dynamizer',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/DYNAMIZER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
     imageHeight: 320,
     features: [
       "Restitue à l'eau toutes ses propriétés naturelles.",
@@ -378,7 +378,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Solution Anti-Calcaire',
     slug: 'water-lime',
     priceKey: 'mam-nature-water-lime',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/FINE%20FILTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
     imageHeight: 320,
     features: [
       "Conversion physique du tartre.",
@@ -394,7 +394,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Dispositif Médical Classe 1',
     slug: 'hydrogen-booster',
     priceKey: 'swiss-hydrogen-booster',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/HYDROGEEN%20BOOSTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/HYDROGEEN%20BOOSTER.webp',
     imageHeight: 320,
     features: [
       "Enrichissez votre eau en hydrogène moléculaire.",
@@ -410,7 +410,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Boîtier de Filtration',
     slug: 'fine-filter',
     priceKey: 'mam-nature-water-fine-filter',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/FINE%20FILTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
     imageHeight: 320,
     features: [
       "Boîtier en acier inoxydable médical.",
@@ -425,7 +425,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pré-filtre à Sédiments',
     slug: 'particles-filter',
     priceKey: 'mam-nature-water-particle-filter',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
     imageHeight: 320,
     features: [
       "Élimine sable, rouille et sédiments.",
@@ -440,7 +440,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Cartouche de Remplacement',
     slug: 'cartridge',
     priceKey: 'mam-nature-water-fine-filter---cartridge',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/CARTRIDGE.png',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/CARTRIDGE.webp',
     imageHeight: 320,
     features: [
       "Remplacement annuel pour Fine Filter.",

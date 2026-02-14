@@ -39,7 +39,7 @@ const CONTENT_EN = {
         title: 'PARTICLE FILTER',
         desc: 'Swiss Made LEAD-free Particle Filter (316L stainless steel) with self-cleaning Backwash Technology.',
         link: '/solutions/particle-filter',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png'
+        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp'
       },
       {
         title: 'WATER FINE FILTER',
@@ -51,13 +51,13 @@ const CONTENT_EN = {
         title: 'The Swiss Water DYNAMIZER',
         desc: 'Restructures and revitalizes water, which can improve taste, digestion, and skin softness.',
         link: '/solutions/the-swiss-water-dynamizer',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/DYNAMIZER.png'
+        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp'
       },
       {
         title: 'COMPLETE SYSTEM',
         desc: 'Our complete solution for pure, healthy, and revitalized water throughout your entire home.',
         link: '/solutions/mam-nature-complete-system',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/COMPLETE%20SET%20PLUS.png'
+        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp'
       }
     ]
   }
@@ -92,7 +92,7 @@ const CONTENT_FR = {
         title: 'PARTICLE FILTER',
         desc: 'Filtre à particules sans PLOMB (Inox 316L) avec technologie de lavage à contre-courant.',
         link: '/solutions/particle-filter',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png'
+        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp'
       },
       {
         title: 'FINE FILTER',
@@ -104,13 +104,13 @@ const CONTENT_FR = {
         title: 'The Swiss Water DYNAMIZER',
         desc: 'Tourbillonne, restructure et revitalise l\'eau pour un goût unique et une peau douce.',
         link: '/solutions/the-swiss-water-dynamizer',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/DYNAMIZER.png'
+        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp'
       },
       {
         title: 'SYSTÈME COMPLET',
         desc: 'Notre solution intégrale pour une eau pure, saine et revitalisée dans toute votre maison.',
         link: '/solutions/mam-nature-complete-system',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/COMPLETE%20SET%20PLUS.png'
+        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp'
       }
     ]
   }
@@ -181,7 +181,7 @@ export default function WaterLimeSolution() {
         <section id="presentation" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['presentation'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.overview.title}</h2></div>
           <div className={styles.componentLayout}>
-            <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/water%20lime%20vertical.png" alt="WATER LIME" loading="lazy" />
+            <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp" alt="WATER LIME" loading="lazy" />
             <div className={styles.componentTextContent}>
               <p>{content.overview.desc}</p>
             </div>

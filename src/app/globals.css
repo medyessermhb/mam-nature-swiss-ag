@@ -58,28 +58,53 @@
 
 /* Mobile Menu */
 .mobile-menu-toggle { display: none; background: none; border: none; font-size: 24px; color: #2d3748; cursor: pointer; padding: 0 8px 0 0; margin: 0; }
-.mobile-menu-dropdown { display: none; position: absolute; top: 90px; left: 0; width: 100%; background: white; border-bottom: 1px solid #e2e8f0; box-shadow: 0 15px 30px rgba(0,0,0,0.05); flex-direction: column; padding: 0; z-index: 990; max-height: 80vh; overflow-y: auto; }
+.mobile-menu-dropdown { display: none; position: fixed; top: 90px; left: 0; width: 100%; height: calc(100vh - 90px); background: white; border-bottom: 1px solid #e2e8f0; box-shadow: 0 15px 30px rgba(0,0,0,0.05); flex-direction: column; padding: 0; z-index: 990; overflow-y: auto; }
 .mobile-menu-dropdown.active { display: flex; }
-.mobile-link { text-decoration: none; color: #2d3748; font-weight: 600; font-size: 1rem; padding: 15px 25px; border-bottom: 1px solid #f1f5f9; width: 100%; text-align: left; transition: color 0.2s; }
+.mobile-link { text-decoration: none; color: #2d3748; font-weight: 600; font-size: 1rem; padding: 15px 25px; border-bottom: 1px solid #f1f5f9; width: 100%; text-align: left; transition: color 0.2s; display: flex; align-items: center; }
 .mobile-link.sub-link { padding-left: 45px; font-size: 0.9rem; color: #64748b; font-weight: 500; background: #fcfcfc; }
 .mobile-link:hover { color: #D52D25; background: #f8fafc; }
+.mobile-menu-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid #e2e8f0; margin-bottom: 8px; }
+.mobile-lang-buttons { display: flex; gap: 8px; }
+.mobile-lang-buttons button { padding: 4px 8px; font-size: 0.85rem; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; cursor: pointer; transition: all 0.2s; }
+.mobile-lang-buttons button.active { background: #D52D25; color: white; border-color: #D52D25; }
+.mobile-lang-buttons button:hover { background: #fef2f2; color: #D52D25; }
 
 @media (max-width: 1100px) {
-  .navbar2_container-2 { grid-template-columns: auto 1fr auto; height: 70px; padding: 10px 15px; gap: 5px; }
-  .mobile-menu-dropdown { top: 70px; }
+  .navbar2_container-2 { grid-template-columns: auto 1fr auto; height: 90px; padding: 10px 15px; gap: 5px; }
+  .mobile-menu-dropdown { top: 90px; }
   .nav-left-group { gap: 8px; flex-wrap: nowrap; max-width: 80%; }
-  .navbar2_logo-2 { height: 32px; }
+  .navbar2_logo-2 { height: 52px; }
   .iso-container { padding-left: 8px; gap: 4px; border-left: 1px solid #e2e8f0; display: flex; align-items: center; }
-  .image-8 { height: 28px; }
+  .image-8 { height: 38px; }
   .iso-text { display: block !important; font-size: 7px; line-height: 1.1; max-width: 70px; }
   .navbar2_menu-2 { display: none; }
   .mobile-menu-toggle { display: block; }
   .text-block-41 { display: none; }
-  .cart-button-2 { padding: 0 !important; border-radius: 50%; width: 36px; height: 36px; justify-content: center; position: relative; }
+  .cart-button-2 {
+    border-radius: 10%;
+    justify-content: center;
+    width: 56px;
+    height: 36px;
+    position: relative;
+    padding: 0 !important;
+  }
+  #nav-lang-switcher-wrapper { display: none !important; }
+  .desktop-only { display: none !important; }
 }
 
 /* --- FOOTER STYLES --- */
-:root { --brand-red: #D52D25; --text-dark: #2C3E50; --text-light: #576778; --bg-white: #FFFFFF; --bg-light: #F8FAFC; --border-color: #E2E8F0; }
+:root {
+  --brand-red: #D52D25;
+  --text-dark: #2C3E50;
+  --text-light: #576778;
+  --bg-white: #FFFFFF;
+  --bg-light: #F8FAFC;
+  --border-color: #E2E8F0;
+  --success-green: #10B981;
+  --nav-height: 65px;
+  --icon-blue: #52c3ff;
+  --text-medium: #475569;
+}
 .footer-container { font-family: 'Inter', sans-serif; background-color: var(--bg-white); color: var(--text-dark); padding: 4rem 2rem 2rem 2rem; line-height: 1.6; border-top: 1px solid var(--border-color); width: 100%; }
 .footer-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1200px; margin: 0 auto; }
 @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }

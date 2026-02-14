@@ -16,16 +16,31 @@ export default function HomeSidebar() {
   const [activeId, setActiveId] = useState('');
   const [status, setStatus] = useState<'hidden' | 'fixed' | 'absolute'>('hidden');
   const [absoluteTop, setAbsoluteTop] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLDivElement>(null);
+
+  // Check if we're on client and get mobile status
+  useEffect(() => {
+    setIsClient(true);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       // 1. SELECTORS
       const hero = document.getElementById('hero-section');
       // Try to find footer by ID first, then tag
-      const footer = document.getElementById('footer') || document.querySelector('footer'); 
-      const navbarHeight = 80; // Your top navbar height
-      
+      const footer = document.getElementById('footer') || document.querySelector('footer');
+      const navbarHeight = 90; // Your top navbar height
+      const isMobile = window.innerWidth <= 1024;
+
       if (!hero || !footer || !sidebarRef.current) return;
 
       // 2. DIMENSIONS
@@ -36,6 +51,20 @@ export default function HomeSidebar() {
 
       // 3. LOGIC
 
+      // On mobile: show sidebar only AFTER hero section scrolls past
+      if (isMobile) {
+        // Mobile: Show sidebar when hero is scrolled past
+        if (heroBottom <= navbarHeight) {
+          // Hero scrolled past - show the sidebar
+          setStatus('fixed');
+        } else {
+          // Hero still visible - hide the sidebar
+          setStatus('hidden');
+        }
+        return;
+      }
+
+      // Desktop logic (original)
       // A. HIDE: If Hero is still visible (hero bottom is below navbar)
       if (heroBottom > navbarHeight) {
         setStatus('hidden');
@@ -43,17 +72,17 @@ export default function HomeSidebar() {
       }
 
       // B. STOP (ABSOLUTE): If Footer hits the Sidebar
-      // We check if the Footer's top edge is moving up past where the sidebar ends
-      // Sidebar Bottom Edge = Navbar Height + Sidebar Height + Some Buffer (50px)
-      const sidebarBottomEdge = navbarHeight + sidebarHeight + 50;
+      // Sidebar is now FULL HEIGHT (windowHeight)
+      // const sidebarHeight = windowHeight; // Removed duplicate
+      const buffer = 0; // Stop just before footer
 
-      if (footerTop < sidebarBottomEdge) {
+      if (footerTop < windowHeight + buffer) {
         setStatus('absolute');
-        // Calculate where to freeze it relative to the document
-        // Footer Offset Top - Sidebar Height - Buffer
-        const stopPosition = footer.offsetTop - sidebarHeight - 50; 
+        // Stop Position: The top of the sidebar should be positioned such that its bottom aligns with footer top
+        // Top = FooterOffsetTop - WindowHeight - Buffer
+        const stopPosition = footer.offsetTop - windowHeight - buffer;
         setAbsoluteTop(stopPosition);
-      } 
+      }
       // C. SHOW (FIXED): Default state between Hero and Footer
       else {
         setStatus('fixed');
@@ -88,6 +117,28 @@ export default function HomeSidebar() {
     };
   }, []);
 
+  // Auto-scroll horizontal nav on mobile when active changes
+  useEffect(() => {
+    if (!navRef.current || !activeId) return;
+
+    const isMobile = window.innerWidth <= 1024;
+    if (!isMobile) return;
+
+    // Find the active link element
+    const activeLink = navRef.current.querySelector(
+      `a[href="#${activeId}"]`
+    ) as HTMLElement;
+
+    if (activeLink && navRef.current) {
+      // Scroll the active link into view horizontally with smooth behavior
+      activeLink.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+  }, [activeId]);
+
   const scrollToSection = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     const el = document.getElementById(id);
@@ -98,20 +149,23 @@ export default function HomeSidebar() {
     }
   };
 
-  const containerStyle: React.CSSProperties = {
-    top: status === 'absolute' ? `${absoluteTop}px` : '100px', // 100px = Navbar + padding
-    position: status === 'absolute' ? 'absolute' : 'fixed',
-    // If hidden, we don't display none, just hide opacity via CSS class, 
-    // but ensure pointer events are off
-  };
+  // Only apply positioning styles after client-side hydration
+  const containerStyle: React.CSSProperties = !isClient
+    ? {} // Server-side and initial render: no positioning
+    : isMobile
+      ? {} // Mobile: let CSS handle sticky positioning
+      : {
+        top: status === 'absolute' ? `${absoluteTop}px` : '50%',
+        position: status === 'absolute' ? 'absolute' : 'fixed',
+      };
 
   return (
-    <div 
+    <div
       ref={sidebarRef}
       className={`${styles.sidebarContainer} ${status !== 'hidden' ? styles.visible : ''}`}
       style={containerStyle}
     >
-      <nav className={styles.nav}>
+      <nav className={styles.nav} ref={navRef}>
         {LINKS.map((link) => (
           <a
             key={link.id}

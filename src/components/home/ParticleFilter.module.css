@@ -11,7 +11,7 @@
   --success-green: #10b981;
 
   padding: 2rem 1.5rem;
-  background-color: var(--bg-light-gray);
+  background-color: var(--bg-white);
   overflow: hidden;
 }
 
@@ -115,6 +115,7 @@
   .grid {
     grid-template-columns: 1fr;
   }
+
   .imageBlock {
     margin-bottom: 2rem;
   }

@@ -3,113 +3,149 @@
 .sidebarContainer {
   position: fixed;
   left: 0;
-  width: 180px;
+  width: 220px;
+  /* Slightly wider to match product feel */
   background: white;
-  padding: 0; /* Remove padding to let Flexbox handle spacing */
+  /* Add white bg */
+  padding: 1rem 0;
+  /* Add vertical padding */
+  border-radius: 12px;
+  /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  /* Soft shadow */
   z-index: 40;
-  
-  /* FLEXBOX CENTERING MAGIC */
+
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centers Vertical */
-  align-items: center;     /* Centers Horizontal */
-  
-  border-right: 1px solid #f1f5f9;
-  
+  justify-content: center;
+  align-items: flex-start;
+  /* Align structure to left */
+
   /* Animation states */
   opacity: 0;
-  transform: translateX(-20px); /* Slide in from left */
+  transform: translate(-20px, -50%);
   pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease, top 0.1s linear;
 }
 
 .visible {
   opacity: 1;
-  transform: translateX(0);
+  transform: translate(0, -50%);
   pointer-events: auto;
 }
 
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 12px; /* Space between links */
   width: 100%;
-  padding: 0 10px; /* Safety padding sides */
+  padding-left: 40px;
+  /* Indent the whole list */
+  border-left: 2px solid #E2E8F0;
+  /* The vertical rail */
+  margin-left: 20px;
+  /* Spacing from screen edge */
 }
 
 .link {
-  display: flex;
-  justify-content: center; /* Center text inside link box */
-  align-items: center;
-  text-align: center;
-  
-  padding: 12px 10px;
-  color: #64748b;
+  display: block;
+  text-align: left;
+  padding: 0.75rem 1.5rem;
+
+  color: #576778;
+  /* var(--text-light) */
   text-decoration: none;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  
   font-weight: 600;
-  font-size: 0.8rem;
-  line-height: 1.2;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: 1rem;
+  /* Match product font size */
+  line-height: 1.5;
+  text-transform: none;
+  /* Remove uppercase if product is mixed case, or match product */
+  letter-spacing: normal;
+
+  border-left: 2px solid transparent;
+  /* The indicator */
+  margin-left: -2px;
+  /* Overlap the rail */
+
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .link:hover {
-  background: #f8fafc;
-  color: #0f172a;
+  color: #2C3E50;
+  /* var(--text-dark) */
+  border-left-color: #576778;
+  background: transparent;
 }
 
 .active {
-  background: #D52D25 !important;
-  color: white !important;
-  box-shadow: 0 4px 12px rgba(213, 45, 37, 0.2);
+  color: #D52D25 !important;
+  /* var(--brand-red) */
+  border-left-color: #D52D25 !important;
+  transform: scale(1.05);
+  /* Match product active animation */
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .active:hover {
-  background: #b91c1c !important;
+  background: transparent !important;
 }
 
-/* === MOBILE STYLES (Horizontal Scroll) === */
+/* === MOBILE STYLES (Horizontal Scroll - Keep as is or adapt?) === */
+/* Retaining the original mobile behavior for now as it works well for small screens, 
+   but adapting colors to match the new theme if needed. */
 @media (max-width: 1024px) {
   .sidebarContainer {
-    position: fixed;
-    top: 0 !important; /* Force top on mobile if needed, or rely on JS top */
+    position: sticky !important;
+    top: 90px !important;
     left: 0;
     width: 100%;
-    height: auto !important; /* Override JS height calculation */
-    
+    height: auto !important;
+
     flex-direction: row;
-    justify-content: flex-start; /* Start from left for scrolling */
+    justify-content: flex-start;
     align-items: center;
-    
+
     border-right: none;
     border-bottom: 1px solid #e2e8f0;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
-    
-    transform: translateY(-100%); /* Slide down from top */
+
     padding: 0;
+    z-index: 39;
+
+    display: none;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+
+    transition: none;
+    /* Disable complex transitions on mobile */
   }
 
   .visible {
-    transform: translateY(0);
+    display: flex;
+    transform: none;
   }
 
   .nav {
+    border-left: none;
+    /* Remove vertical rail */
+    margin-left: 0;
+    padding-left: 0;
+
     flex-direction: row;
     overflow-x: auto;
     white-space: nowrap;
     padding: 12px 15px;
     gap: 10px;
     width: 100%;
-    
-    /* Hide Scrollbar */
-    scrollbar-width: none; 
+
+    scrollbar-width: none;
     -ms-overflow-style: none;
   }
-  
+
   .nav::-webkit-scrollbar {
     display: none;
   }
@@ -120,10 +156,22 @@
     font-size: 0.75rem;
     flex-shrink: 0;
     border: 1px solid #e2e8f0;
-    border-radius: 20px; /* Pill shape on mobile */
+    border-radius: 20px;
+    /* Pill shape on mobile */
+    margin-left: 0;
+    text-transform: uppercase;
+    /* Keep uppercase for mobile pills if desired */
   }
-  
+
+  .link:hover {
+    border-color: #cbd5e1;
+  }
+
   .active {
-    border-color: #D52D25;
+    background: #D52D25 !important;
+    color: white !important;
+    border-color: #D52D25 !important;
+    transform: none;
+    /* No scale on mobile */
   }
 }

@@ -9,7 +9,7 @@ import HomeSidebar from '@/components/home/HomeSidebar'; // Import the Sidebar
 
 export default function Home() {
   return (
-    <main className="w-full relative">
+    <main className="w-full relative bg-white">
       {/* The Sidebar Component */}
       <HomeSidebar />
 
@@ -21,9 +21,9 @@ export default function Home() {
       {/* 2. MAIN CONTENT WRAPPER */}
       {/* 'lg:pl-[180px]' pushes content to the right on Desktop only */}
       <div className="w-full lg:pl-[180px] transition-all duration-300">
-        
+
         {/* IDs must match the 'LINKS' array in HomeSidebar.tsx */}
-        
+
         <section id="comparison">
           <PerfectSystem />
         </section>

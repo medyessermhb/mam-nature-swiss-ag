@@ -7,6 +7,7 @@ export const metadata: Metadata = {
     title: 'Particle & Lime Set | Mam Nature Swiss',
     description: 'The eco-friendly solution to sediment and limescale problems. Zero maintenance, zero waste.',
     url: '/shop/particle-lime-set',
+    
   }
 };
 

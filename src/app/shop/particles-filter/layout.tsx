@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     title: 'Water Particle Filter | Mam Nature Swiss',
     description: 'Protect your entire plumbing system from sediments and particles.',
     url: '/shop/particles-filter',
-    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png' }]
+    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp' }]
   }
 };
 

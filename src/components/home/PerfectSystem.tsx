@@ -93,7 +93,7 @@ export default function PerfectSystem() {
             {/* Left Column: Image */}
             <div className={styles.imagePanel} data-aos="fade-up" data-aos-delay="100">
               <img 
-                src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/COMPLETE%20SET.png" 
+                src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET.webp" 
                 alt="Complete Mam Nature water treatment system" 
                 loading="lazy"
               />

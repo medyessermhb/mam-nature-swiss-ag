@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     title: 'Complete Set Plus | Mam Nature Swiss',
     description: 'The ultimate Swiss-engineered water treatment and revitalization system.',
     url: '/shop/complete-set-plus',
-    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/COMPLETE%20SET%20PLUS.png' }]
+    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp' }]
   }
 };
 

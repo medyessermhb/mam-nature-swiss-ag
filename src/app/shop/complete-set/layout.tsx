@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: 'Complete Set | Mam Nature Swiss',
     description: 'Advanced whole-house water treatment including the Swiss Water Dynamizer for revitalized and molecularly restructured water.',
     url: '/shop/complete-set',
-    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/COMPLETE%20SET.png' }]
+    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET.webp' }]
   }
 };
 

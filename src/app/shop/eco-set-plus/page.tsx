@@ -1,12 +1,13 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  ChevronLeft, ChevronRight, Plus, Minus, FileText, Award, 
-  GlassWater, Utensils, Coffee, ShowerHead, CalendarCheck, ShieldCheck, 
+import {
+  ChevronLeft, ChevronRight, Plus, Minus, FileText, Award,
+  GlassWater, Utensils, Coffee, ShowerHead, CalendarCheck, ShieldCheck,
   Wrench, User, Ruler, Clock, X, TriangleAlert, CheckCircle, Infinity as InfinityIcon
 } from 'lucide-react';
 import styles from '@/styles/Product.module.css';
+import Link from 'next/link';
 import { usePricing } from '@/context/PricingContext';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
@@ -47,10 +48,10 @@ const CONTENT_EN = {
     title: 'Perfect water for every use',
     desc: 'Enjoy pure, healthy, and revitalized water from every tap. Our system transforms your daily life by improving water quality for all your uses.',
     cards: [
-      { title: 'Drinking', text: 'Pure and revitalized spring water, free of impurities.', icon: GlassWater, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/drinking%20big.png' },
-      { title: 'Cooking', text: 'Reveal the flavors of your food and preserve its nutrients.', icon: Utensils, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/washing%20big.png' },
-      { title: 'Tea & Coffee', text: 'Unleash the full aromatic potential of your hot beverages.', icon: Coffee, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/coffee%20big.png' },
-      { title: 'Shower & Bath', text: 'Protect your skin and hair from limescale for a feeling of softness.', icon: ShowerHead, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/shower%20big.png' }
+      { title: 'Drinking', text: 'Pure and revitalized spring water, free of impurities.', icon: GlassWater, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/drinking%20big.webp' },
+      { title: 'Cooking', text: 'Reveal the flavors of your food and preserve its nutrients.', icon: Utensils, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/washing%20big.webp' },
+      { title: 'Tea & Coffee', text: 'Unleash the full aromatic potential of your hot beverages.', icon: Coffee, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/coffee%20big.webp' },
+      { title: 'Shower & Bath', text: 'Protect your skin and hair from limescale for a feeling of softness.', icon: ShowerHead, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/shower%20big.webp' }
     ]
   },
   details: {
@@ -152,10 +153,10 @@ const CONTENT_FR = {
     title: 'Une eau parfaite pour chaque usage',
     desc: 'Profitez d\'une eau pure, saine et revitalisée à chaque robinet. Notre système transforme votre quotidien en améliorant la qualité de l\'eau pour toutes vos utilisations.',
     cards: [
-      { title: 'Boisson', text: 'Une eau de source pure et revitalisée, débarrassée des impuretés.', icon: GlassWater, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/drinking%20big.png' },
-      { title: 'Cuisine', text: 'Révélez les saveurs de vos aliments et préservez leurs nutriments.', icon: Utensils, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/washing%20big.png' },
-      { title: 'Thé & Café', text: 'Libérez tout le potentiel aromatique de vos boissons chaudes.', icon: Coffee, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/coffee%20big.png' },
-      { title: 'Douche & Bain', text: 'Protégez votre peau et vos cheveux du calcaire pour une sensation de douceur.', icon: ShowerHead, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/drinking%20big.png' }
+      { title: 'Boisson', text: 'Une eau de source pure et revitalisée, débarrassée des impuretés.', icon: GlassWater, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/drinking%20big.webp' },
+      { title: 'Cuisine', text: 'Révélez les saveurs de vos aliments et préservez leurs nutriments.', icon: Utensils, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/washing%20big.webp' },
+      { title: 'Thé & Café', text: 'Libérez tout le potentiel aromatique de vos boissons chaudes.', icon: Coffee, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/coffee%20big.webp' },
+      { title: 'Douche & Bain', text: 'Protégez votre peau et vos cheveux du calcaire pour une sensation de douceur.', icon: ShowerHead, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/shower%20big.webp' }
     ]
   },
   details: {
@@ -237,22 +238,23 @@ export default function EcoSetPlusPage() {
   const { getPrice, isLoading, currency } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
-  
+
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
-  
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const [modalUrl, setModalUrl] = useState<string | null>(null);
+  const [isLoadingPdf, setIsLoadingPdf] = useState(false);
 
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const IMAGES = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/ECO%20SET%20PLUS.png",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/drinking%20big.png",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/shower%20big.png",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/COMPENENTS%20/coffee%20big.png"
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET%20PLUS.webp",
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/drinking%20big.webp",
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/shower%20big.webp",
+    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/coffee%20big.webp"
   ];
 
   useEffect(() => {
@@ -265,6 +267,16 @@ export default function EcoSetPlusPage() {
     Object.values(sectionRefs.current).forEach((el) => { if (el) observer.observe(el); });
     return () => observer.disconnect();
   }, []);
+
+  // Auto-scroll active nav item into view on mobile
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth <= 991) {
+      const activeNavLink = document.querySelector(`button[data-section="${activeSection}"]`);
+      if (activeNavLink) {
+        activeNavLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }, [activeSection]);
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -307,21 +319,22 @@ export default function EcoSetPlusPage() {
 
   return (
     <div className={styles.pageWrapper}>
-      
+
       {/* SIDEBAR NAV */}
       <aside className={styles.stickyNav}>
         <nav>
           <ul className={styles.navList}>
             {[
-              {id: 'produit', label: content.nav.product}, 
-              {id: 'usages', label: content.nav.usages}, 
-              {id: 'details', label: content.nav.details}, 
-              {id: 'installation', label: content.nav.install}, 
-              {id: 'maintenance', label: content.nav.maint}, 
-              {id: 'rapports', label: content.nav.reports}
+              { id: 'produit', label: content.nav.product },
+              { id: 'usages', label: content.nav.usages },
+              { id: 'details', label: content.nav.details },
+              { id: 'installation', label: content.nav.install },
+              { id: 'maintenance', label: content.nav.maint },
+              { id: 'rapports', label: content.nav.reports }
             ].map(item => (
               <li key={item.id}>
-                <button 
+                <button
+                  data-section={item.id}
                   className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
                   onClick={() => scrollTo(item.id)}
                 >
@@ -334,9 +347,9 @@ export default function EcoSetPlusPage() {
       </aside>
 
       <main className={styles.contentArea}>
-        
+
         {/* 1. PRODUCT SECTION */}
-        <section id="produit" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['produit'] = el }}>
+        <section id="produit" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['produit'] = el }}>
           <div className={styles.productGrid}>
             <div className={styles.productGallery}>
               <div className={styles.mainImageContainer}>
@@ -350,11 +363,11 @@ export default function EcoSetPlusPage() {
               </div>
               <div className={styles.thumbnailList}>
                 {IMAGES.map((img, idx) => (
-                  <img 
-                    key={idx} 
-                    src={img} 
-                    className={`${styles.thumbnail} ${idx === currentSlide ? styles.active : ''}`} 
-                    onClick={() => setCurrentSlide(idx)} 
+                  <img
+                    key={idx}
+                    src={img}
+                    className={`${styles.thumbnail} ${idx === currentSlide ? styles.active : ''}`}
+                    onClick={() => setCurrentSlide(idx)}
                     alt="thumbnail"
                   />
                 ))}
@@ -369,8 +382,8 @@ export default function EcoSetPlusPage() {
                 </div>
               </div>
               <div className={styles.cartForm}>
-                <button 
-                  className={styles.addToCartButton} 
+                <button
+                  className={styles.addToCartButton}
                   onClick={handleAddToCart}
                 >
                   {content.product.btnAdd}
@@ -388,9 +401,9 @@ export default function EcoSetPlusPage() {
         </section>
 
         {/* 2. USAGES SECTION */}
-        <section id="usages" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['usages'] = el }}>
+        <section id="usages" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['usages'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.usages.title}</h2></div>
-          <p style={{marginBottom: '2rem'}}>{content.usages.desc}</p>
+          <p style={{ marginBottom: '2rem' }}>{content.usages.desc}</p>
           <div className={styles.usagesGrid}>
             {content.usages.cards.map((card, idx) => (
               <div key={idx} className={styles.usageCard} style={{ backgroundImage: `url('${card.img}')` }}>
@@ -405,15 +418,15 @@ export default function EcoSetPlusPage() {
         </section>
 
         {/* 3. DETAILS SECTION */}
-        <section id="details" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['details'] = el }}>
+        <section id="details" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['details'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.details.title}</h2></div>
           <div className={styles.detailsList}>
-            
+
             {/* ITEM 1: WATER LIME */}
             <div className={styles.accordionItem}>
               <button className={styles.accordionHeader} onClick={() => toggleAccordion('lime')}>
                 <div className={styles.headerGrid}>
-                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/water%20lime%20vertical.png" alt="Water Lime" className={styles.headerImage} />
+                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp" alt="Water Lime" className={styles.headerImage} />
                   <div className={styles.accordionTitle}>
                     <strong>{content.details.lime.title}</strong>
                     <p className={styles.summaryText}>{content.details.lime.summary}</p>
@@ -427,7 +440,7 @@ export default function EcoSetPlusPage() {
                   <blockquote>{content.details.lime.content.quote}</blockquote>
                   <p><strong>{content.details.lime.content.challenge}</strong></p>
                   <p><strong>{content.details.lime.content.solution}</strong></p>
-                  <p dangerouslySetInnerHTML={{__html: content.details.lime.content.specs.replace('\n', '<br/>')}}></p>
+                  <p dangerouslySetInnerHTML={{ __html: content.details.lime.content.specs.replace('\n', '<br/>') }}></p>
                 </div>
               </div>
             </div>
@@ -436,7 +449,7 @@ export default function EcoSetPlusPage() {
             <div className={styles.accordionItem}>
               <button className={styles.accordionHeader} onClick={() => toggleAccordion('particle')}>
                 <div className={styles.headerGrid}>
-                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/PARTICLES%20FILTER.png" alt="Particle Filter" className={styles.headerImage} />
+                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp" alt="Particle Filter" className={styles.headerImage} />
                   <div className={styles.accordionTitle}>
                     <strong>{content.details.particle.title}</strong>
                     <p className={styles.summaryText}>{content.details.particle.summary}</p>
@@ -447,7 +460,7 @@ export default function EcoSetPlusPage() {
               <div className={styles.accordionContent} style={{ maxHeight: activeAccordion === 'particle' ? '500px' : '0' }}>
                 <div className={`${styles.accordionContentInner} ${styles.fullWidthContent}`}>
                   <p>{content.details.particle.content.text}</p>
-                  <p dangerouslySetInnerHTML={{__html: content.details.particle.content.specs.replace('\n', '<br/>')}}></p>
+                  <p dangerouslySetInnerHTML={{ __html: content.details.particle.content.specs.replace('\n', '<br/>') }}></p>
                 </div>
               </div>
             </div>
@@ -486,7 +499,7 @@ export default function EcoSetPlusPage() {
 
               {/* Fine Filter Content */}
               <div className={`${styles.accordionContent} ${styles.fullWidth}`} style={{ maxHeight: activeAccordion === 'fine' ? '800px' : '0' }}>
-                <div className={styles.accordionContentInner} style={{marginLeft: 0, paddingTop: '1.5rem'}}>
+                <div className={styles.accordionContentInner} style={{ marginLeft: 0, paddingTop: '1.5rem' }}>
                   <p><strong>{content.details.fine.content.text}</strong></p>
                   <ul>
                     {content.details.fine.content.list.map((it, idx) => <li key={idx}>{it}</li>)}
@@ -496,10 +509,10 @@ export default function EcoSetPlusPage() {
 
               {/* Cartridge Content */}
               <div className={`${styles.accordionContent} ${styles.fullWidth}`} style={{ maxHeight: activeAccordion === 'cartridge' ? '1200px' : '0' }}>
-                <div className={styles.accordionContentInner} style={{marginLeft: 0, paddingTop: '1.5rem'}}>
+                <div className={styles.accordionContentInner} style={{ marginLeft: 0, paddingTop: '1.5rem' }}>
                   <h4>{content.details.cartridge.content.h4}</h4>
                   <p>{content.details.cartridge.content.text}</p>
-                  <p dangerouslySetInnerHTML={{__html: content.details.cartridge.content.specs.replace('\n', '<br/>')}}></p>
+                  <p dangerouslySetInnerHTML={{ __html: content.details.cartridge.content.specs.replace('\n', '<br/>') }}></p>
                 </div>
               </div>
             </div>
@@ -508,7 +521,7 @@ export default function EcoSetPlusPage() {
         </section>
 
         {/* 4. INSTALLATION SECTION */}
-        <section id="installation" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['installation'] = el }}>
+        <section id="installation" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['installation'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.install.title}</h2></div>
           <div className={styles.installationGrid}>
             <div className={styles.installationIntro}>
@@ -528,13 +541,15 @@ export default function EcoSetPlusPage() {
         </section>
 
         {/* 5. MAINTENANCE SECTION */}
-        <section id="maintenance" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['maintenance'] = el }}>
+        <section id="maintenance" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['maintenance'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.maint.title}</h2></div>
           <div className={styles.maintenanceGrid}>
             <div className={styles.maintenanceCard}>
               <h3><CalendarCheck className={styles.specIcon} /> {content.maint.maintTitle}</h3>
               <p>{content.maint.maintText}</p>
-              <button className={styles.btnPrimary}>{content.maint.btnOrder}</button>
+              <Link href="/shop/cartridge" className={`${styles.btn} ${styles.btnPrimary}`}>
+                {content.maint.btnOrder}
+              </Link>
             </div>
             <div className={styles.warrantyCard}>
               <h3><ShieldCheck className={styles.specIcon} /> {content.maint.warrantyTitle}</h3>
@@ -545,14 +560,17 @@ export default function EcoSetPlusPage() {
         </section>
 
         {/* 6. REPORTS SECTION */}
-        <section id="rapports" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['rapports'] = el }}>
+        <section id="rapports" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['rapports'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.reports.title}</h2></div>
           <div className={styles.reportGrid}>
             {content.reports.list.map((rep, i) => (
-              <button 
-                key={i} 
-                className={styles.reportLink} 
-                onClick={() => setModalUrl(reportUrls[i])}
+              <button
+                key={i}
+                className={styles.reportLink}
+                onClick={() => {
+                  setModalUrl(reportUrls[i]);
+                  setIsLoadingPdf(true);
+                }}
               >
                 <FileText className={styles.reportIcon} /> {rep.title}
               </button>
@@ -564,19 +582,33 @@ export default function EcoSetPlusPage() {
 
       {/* PDF/IMAGE MODAL */}
       {modalUrl && (
-        <div className={styles.modalOverlay} onClick={() => setModalUrl(null)}>
+        <div className={styles.modalOverlay} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <div className={styles.modalHeader}>
               <span className={styles.modalTitle}>Document Preview</span>
-              <button className={styles.modalCloseBtn} onClick={() => setModalUrl(null)}><X /></button>
+              <button className={styles.modalCloseBtn} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}><X /></button>
             </div>
             <div className={styles.modalBody}>
-              <iframe 
-                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`} 
-                style={{width:'100%', height:'100%', border:'none'}} 
+              {isLoadingPdf && (
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Loading PDF...</p>
+                  </div>
+                </div>
+              )}
+              <iframe
+                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
+                style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
                 title="Document Preview"
+                onLoad={() => setIsLoadingPdf(false)}
               />
             </div>
+            <style>{`
+              @keyframes spin {
+                to { transform: rotate(360deg); }
+              }
+            `}</style>
           </div>
         </div>
       )}

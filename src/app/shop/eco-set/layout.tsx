@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     title: 'Eco Set | Mam Nature Swiss',
     description: 'Exceptional water throughout your entire home. 100% natural, no electricity.',
     url: '/shop/eco-set',
-    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/ECO%20SET.png' }]
+    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET.webp' }]
   }
 };
 

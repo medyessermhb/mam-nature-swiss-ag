@@ -39,7 +39,7 @@ export default function CrossSellOffer() {
       name: 'Special Offer: Water LIME Filter',
       desc: 'Add anti-limescale protection for only 170€ (instead of 217€)!',
       price: isMad ? 1800 : isChf ? 160 : 170,
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/FINE%20FILTER.png' // Replace with actual Water Lime image
+      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp' // Replace with actual Water Lime image
     };
   }
 
