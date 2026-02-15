@@ -1,16 +1,34 @@
 import { Metadata } from 'next';
+import { getProductJsonLd } from '@/lib/json-ld';
 
 export const metadata: Metadata = {
-  title: 'Eco Set | Whole House Water Treatment',
-  description: 'The Mam Nature Eco Set treats particles, limescale, and contaminants for your entire home. Medical-grade stainless steel with a 10-year warranty.',
+  title: 'Eco Set | Whole House Water Filtration',
+  description: 'Complete water treatment solution for your entire home. Filters particles and contaminants while protecting against limescale. Medical-grade stainless steel.',
   openGraph: {
     title: 'Eco Set | Mam Nature Swiss',
-    description: 'Exceptional water throughout your entire home. 100% natural, no electricity.',
+    description: 'Protect your home and health with our complete whole-house filtration system.',
     url: '/shop/eco-set',
-    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET.webp' }]
+    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET.webp']
   }
 };
 
 export default function EcoSetLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  const jsonLd = getProductJsonLd({
+    name: 'Eco Set',
+    description: 'Complete whole-house solution. Treats particles, limescale, and contaminants. Medical-grade stainless steel with 10-year warranty.',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET.webp',
+    slug: 'eco-set',
+    priceKey: 'mam-nature-eco-set',
+    brand: 'Mam Nature Swiss'
+  });
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {children}
+    </>
+  );
 }

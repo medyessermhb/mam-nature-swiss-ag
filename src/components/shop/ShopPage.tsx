@@ -169,7 +169,7 @@ const PRODUCTS_EN: ProductType[] = [
     id: 'the-swiss-water-dynamizer',
     name: 'THE SWISS WATER DYNAMIZER',
     subtitle: 'Water Revitalizer',
-    slug: 'the-swiss-water-dynamizer',
+    slug: 'dynamizer',
     priceKey: 'the-swiss-water-dynamizer',
     image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
     imageHeight: 320,

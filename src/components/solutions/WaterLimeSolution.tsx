@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { 
-  Magnet, Shield, Wrench, Plug, Gauge, Infinity as InfinityIcon, 
+import {
+  Magnet, Shield, Wrench, Plug, Gauge, Infinity as InfinityIcon,
 } from 'lucide-react';
 import styles from './WaterLimeSolution.module.css';
 import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
@@ -50,7 +50,7 @@ const CONTENT_EN = {
       {
         title: 'The Swiss Water DYNAMIZER',
         desc: 'Restructures and revitalizes water, which can improve taste, digestion, and skin softness.',
-        link: '/solutions/the-swiss-water-dynamizer',
+        link: '/solutions/dynamizer',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp'
       },
       {
@@ -103,7 +103,7 @@ const CONTENT_FR = {
       {
         title: 'The Swiss Water DYNAMIZER',
         desc: 'Tourbillonne, restructure et revitalise l\'eau pour un goût unique et une peau douce.',
-        link: '/solutions/the-swiss-water-dynamizer',
+        link: '/solutions/dynamizer',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp'
       },
       {
@@ -119,7 +119,7 @@ const CONTENT_FR = {
 export default function WaterLimeSolution() {
   const [activeSection, setActiveSection] = useState('presentation');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
-  
+
   const { language } = useLanguage();
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
@@ -140,7 +140,7 @@ export default function WaterLimeSolution() {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 150; 
+      const offset = 150;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -151,7 +151,7 @@ export default function WaterLimeSolution() {
 
   return (
     <div className={styles.pageWrapper}>
-      
+
       {/* Sticky Navigation */}
       <aside className={styles.stickyNav}>
         <nav>
@@ -162,7 +162,7 @@ export default function WaterLimeSolution() {
               { id: 'other-solutions', label: content.nav.other }
             ].map((item) => (
               <li key={item.id}>
-                <button 
+                <button
                   className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
                   onClick={() => scrollTo(item.id)}
                   style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', font: 'inherit', cursor: 'pointer' }}
@@ -176,9 +176,9 @@ export default function WaterLimeSolution() {
       </aside>
 
       <main className={styles.contentArea}>
-        
+
         {/* OVERVIEW */}
-        <section id="presentation" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['presentation'] = el }}>
+        <section id="presentation" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['presentation'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.overview.title}</h2></div>
           <div className={styles.componentLayout}>
             <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp" alt="WATER LIME" loading="lazy" />
@@ -189,48 +189,48 @@ export default function WaterLimeSolution() {
         </section>
 
         {/* TECHNICAL DATA */}
-        <section id="technical-data" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['technical-data'] = el }}>
+        <section id="technical-data" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['technical-data'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.technical.title}</h2></div>
           <ul className={styles.componentSpecs} style={{ maxWidth: '800px', margin: '0 auto' }}>
             <li>
-              <Magnet className={styles.specIcon} /> 
+              <Magnet className={styles.specIcon} />
               <div className={styles.specContent}>
-                <strong>{content.technical.specs.technology.label}</strong> 
+                <strong>{content.technical.specs.technology.label}</strong>
                 <p>{content.technical.specs.technology.text}</p>
               </div>
             </li>
             <li>
-              <Shield className={styles.specIcon} /> 
+              <Shield className={styles.specIcon} />
               <div className={styles.specContent}>
-                <strong>{content.technical.specs.materials.label}</strong> 
+                <strong>{content.technical.specs.materials.label}</strong>
                 <p>{content.technical.specs.materials.text}</p>
               </div>
             </li>
             <li>
-              <Wrench className={styles.specIcon} /> 
+              <Wrench className={styles.specIcon} />
               <div className={styles.specContent}>
-                <strong>{content.technical.specs.maintenance.label}</strong> 
+                <strong>{content.technical.specs.maintenance.label}</strong>
                 <p>{content.technical.specs.maintenance.text}</p>
               </div>
             </li>
             <li>
-              <Plug className={styles.specIcon} /> 
+              <Plug className={styles.specIcon} />
               <div className={styles.specContent}>
-                <strong>{content.technical.specs.connections.label}</strong> 
+                <strong>{content.technical.specs.connections.label}</strong>
                 <p>{content.technical.specs.connections.text}</p>
               </div>
             </li>
             <li>
-              <Gauge className={styles.specIcon} /> 
+              <Gauge className={styles.specIcon} />
               <div className={styles.specContent}>
-                <strong>{content.technical.specs.flow.label}</strong> 
+                <strong>{content.technical.specs.flow.label}</strong>
                 <p>{content.technical.specs.flow.text}</p>
               </div>
             </li>
             <li>
-              <InfinityIcon className={styles.specIcon} /> 
+              <InfinityIcon className={styles.specIcon} />
               <div className={styles.specContent}>
-                <strong>{content.technical.specs.lifetime.label}</strong> 
+                <strong>{content.technical.specs.lifetime.label}</strong>
                 <p>{content.technical.specs.lifetime.text}</p>
               </div>
             </li>
@@ -238,10 +238,10 @@ export default function WaterLimeSolution() {
         </section>
 
         {/* OTHER SOLUTIONS */}
-        <section id="other-solutions" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['other-solutions'] = el }}>
+        <section id="other-solutions" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['other-solutions'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.otherSolutions.title}</h2></div>
           <div className={styles.solutionsGrid}>
-            
+
             {content.otherSolutions.items.map((item, idx) => (
               <div key={idx} className={styles.solutionCard}>
                 <img src={item.img} alt={item.title} />

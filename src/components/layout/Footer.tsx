@@ -77,7 +77,7 @@ export default function Footer() {
   return (
     <footer className="footer-container">
       <div className="footer-grid">
-        
+
         {/* LOGO COLUMN */}
         <div className="footer-col-logo">
           <Link href="/" className="footer-logo-link">
@@ -91,7 +91,7 @@ export default function Footer() {
             <a href="https://www.instagram.com/mam_nature_hydrogen/" className="footer-social-link" aria-label="Instagram Mam Nature Hydrogen"><Instagram size={18} /></a>
           </div>
         </div>
-        
+
         {/* COMPANY LINKS */}
         <div className="footer-col">
           <h3>{content.headers.company}</h3>
@@ -111,7 +111,7 @@ export default function Footer() {
             <Link href="/shop/water-lime" className="footer-link">{content.links.lime}</Link>
             <Link href="/shop/particles-filter" className="footer-link">{content.links.particle}</Link>
             <Link href="/shop/fine-filter" className="footer-link">{content.links.fine}</Link>
-            <Link href="/shop/the-swiss-water-dynamizer" className="footer-link">{content.links.dynamizer}</Link>
+            <Link href="/shop/dynamizer" className="footer-link">{content.links.dynamizer}</Link>
             <Link href="/shop/hydrogen-booster" className="footer-link">{content.links.hydrogen}</Link>
           </div>
         </div>
@@ -129,8 +129,8 @@ export default function Footer() {
       </div>
 
       {/* FOOTER BOTTOM */}
-      <div className="footer-bottom-bar" style={{borderTop: '1px solid #e2e8f0', marginTop: '40px', paddingTop: '20px'}}>
-        <div className="footer-copyright" style={{fontSize: '0.85rem', color: '#64748b'}}>
+      <div className="footer-bottom-bar" style={{ borderTop: '1px solid #e2e8f0', marginTop: '40px', paddingTop: '20px' }}>
+        <div className="footer-copyright" style={{ fontSize: '0.85rem', color: '#64748b' }}>
           © 2026 Mam Nature Swiss AG. {content.legal.rights}
         </div>
       </div>

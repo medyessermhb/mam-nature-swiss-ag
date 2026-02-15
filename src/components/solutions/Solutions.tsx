@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { 
-  CheckCircle, Magnet, ShieldCheck, Wrench, Plug, Gauge, Infinity as InfinityIcon, 
-  Euro, Filter, FlaskConical 
+import {
+  CheckCircle, Magnet, ShieldCheck, Wrench, Plug, Gauge, Infinity as InfinityIcon,
+  Euro, Filter, FlaskConical
 } from 'lucide-react';
 import styles from './Solutions.module.css';
 import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
@@ -85,7 +85,7 @@ const CONTENT_EN = {
       title: 'The Swiss Water DYNAMIZER',
       image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
       desc: 'Water is moved as worldwide standard in straight water tubes which doesn\'t correspond to the natural movement of water. As a result, water quality suffers.',
-      link: '/solutions/the-swiss-water-dynamizer',
+      link: '/solutions/dynamizer',
       specs: [
         { text: 'Water carrying part in 316L Stainless Steel', icon: ShieldCheck },
         { text: 'Maintenance: completely free of maintenance', icon: Wrench },
@@ -171,7 +171,7 @@ const CONTENT_FR = {
       title: 'The Swiss Water DYNAMIZER',
       image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
       desc: 'L\'eau est transportée dans des tubes rectilignes, ce qui ne correspond pas à son mouvement naturel. Le dynamiseur restructure et revitalise l\'eau.',
-      link: '/solutions/the-swiss-water-dynamizer',
+      link: '/solutions/dynamizer',
       specs: [
         { text: 'Part aquifère en Inox 316L', icon: ShieldCheck },
         { text: 'Maintenance : entièrement sans maintenance', icon: Wrench },
@@ -187,7 +187,7 @@ export default function Solutions() {
   const [activeSection, setActiveSection] = useState('complete-system');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
   const navListRef = useRef<HTMLUListElement>(null);
-  
+
   const { language } = useLanguage();
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
@@ -218,7 +218,7 @@ export default function Solutions() {
   // Auto-scroll horizontal nav on mobile when active section changes
   useEffect(() => {
     if (!navListRef.current || !activeSection) return;
-    
+
     const isMobile = window.innerWidth <= 991;
     if (!isMobile) return;
 
@@ -241,7 +241,7 @@ export default function Solutions() {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      const offset = 150; 
+      const offset = 150;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -253,7 +253,7 @@ export default function Solutions() {
 
   return (
     <div className={styles.pageWrapper}>
-      
+
       {/* Sticky Navigation */}
       <aside className={styles.stickyNav}>
         <nav>
@@ -266,8 +266,8 @@ export default function Solutions() {
               { id: 'dynamizer', label: content.nav.dynamizer }
             ].map((link) => (
               <li key={link.id}>
-                <a 
-                  href={`#${link.id}`} 
+                <a
+                  href={`#${link.id}`}
                   className={`${styles.navLink} ${activeSection === link.id ? styles.active : ''}`}
                   onClick={(e) => handleNavClick(e, link.id)}
                 >
@@ -280,11 +280,11 @@ export default function Solutions() {
       </aside>
 
       <main className={styles.contentArea}>
-        
+
         {content.sections.map((section) => (
-          <section 
+          <section
             key={section.id}
-            id={section.id} 
+            id={section.id}
             className={styles.contentSection}
             ref={(el) => { if (el) sectionRefs.current[section.id] = el; }}
           >
@@ -295,11 +295,11 @@ export default function Solutions() {
                 <p>{section.desc}</p>
                 <ul className={`${styles.componentSpecs} ${section.id === 'complete-system' ? styles.transparentSpecs : ''}`}>
                   {section.specs.map((spec: any, idx) => (
-                      <li key={idx}>
+                    <li key={idx}>
                       <spec.icon className={styles.specIcon} />
                       <div className={styles.specContent}>
                         {spec.label && <strong>{spec.label} </strong>}
-                        {spec.label ? <p style={{display:'inline', margin:0}}>{spec.text}</p> : spec.text}
+                        {spec.label ? <p style={{ display: 'inline', margin: 0 }}>{spec.text}</p> : spec.text}
                       </div>
                     </li>
                   ))}

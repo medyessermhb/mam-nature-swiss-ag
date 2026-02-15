@@ -52,7 +52,7 @@ const CONTENT_EN = {
       {
         title: 'The Swiss Water DYNAMIZER',
         desc: 'Restructures and revitalizes water, which can improve taste, digestion, and skin softness.',
-        link: '/solutions/the-swiss-water-dynamizer',
+        link: '/solutions/dynamizer',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp'
       },
       {
@@ -107,7 +107,7 @@ const CONTENT_FR = {
       {
         title: 'The Swiss Water DYNAMIZER',
         desc: 'Tourbillonne, restructure et revitalise l\'eau pour un goût unique et une peau douce.',
-        link: '/solutions/the-swiss-water-dynamizer',
+        link: '/solutions/dynamizer',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp'
       },
       {

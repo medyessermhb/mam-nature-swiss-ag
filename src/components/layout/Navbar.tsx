@@ -38,11 +38,11 @@ export default function Navbar() {
 
   const handleLangChange = (lang: string) => {
     if (lang === 'ma') {
-      setLanguage('fr'); 
+      setLanguage('fr');
     } else if (lang === 'en' || lang === 'fr') {
       setLanguage(lang as 'en' | 'fr');
     } else {
-      setLanguage('en'); 
+      setLanguage('en');
     }
     setIsLangSwitcherOpen(false);
   };
@@ -51,18 +51,18 @@ export default function Navbar() {
     <div className="navbar2_container-2">
       {/* LEFT: Toggle + Logo + ISO */}
       <div className="nav-left-group">
-        <button 
-          className="mobile-menu-toggle" 
+        <button
+          className="mobile-menu-toggle"
           aria-label="Menu"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-        
+
         <Link href="/" className="navbar2_logo-link" aria-label="home">
           <img loading="lazy" src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg" alt="Mam Nature" className="navbar2_logo-2" />
         </Link>
-        
+
         <Link href="/rapports-certifications" className="iso-container">
           <img loading="lazy" src="https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/69047fc369c29116f3447f3c_ISO-13485-2016.svg" alt="ISO Certification" className="image-8" />
           <span className="iso-text">ISO 13485<br />Medical Devices<br />Quality Management</span>
@@ -73,7 +73,7 @@ export default function Navbar() {
       <nav role="navigation" className="navbar2_menu-2">
         <Link href="/" className="navbar2_link-2">{t.nav.home}</Link>
         <Link href="/rapports-certifications" className="navbar2_link-2">{t.nav.reports}</Link>
-        
+
         <div className="navbar2_menu-dropdown">
           <div className="navbar2_dropdwn-toggle-2">
             <Link href="/solutions" className="link-10">{t.nav.solutions}</Link>
@@ -86,11 +86,11 @@ export default function Navbar() {
             <Link href="/solutions/water-lime" className="navbar2_dropdown-link-2">Water Lime</Link>
             <Link href="/solutions/particle-filter" className="navbar2_dropdown-link-2">Water Particle Filter</Link>
             <Link href="/solutions/fine-filter" className="navbar2_dropdown-link-2">Water Fine Filter</Link>
-            <Link href="/solutions/the-swiss-water-dynamizer" className="navbar2_dropdown-link-2">The Swiss Water Dynamizer</Link>
+            <Link href="/solutions/dynamizer" className="navbar2_dropdown-link-2">The Swiss Water Dynamizer</Link>
           </nav>
         </div>
-        
-        <Link href="/shop/hydrogen-booster" className="navbar2_link-2" dangerouslySetInnerHTML={{__html: t.nav.hydrogen_booster.replace(' ', '<br/>')}}></Link>
+
+        <Link href="/shop/hydrogen-booster" className="navbar2_link-2" dangerouslySetInnerHTML={{ __html: t.nav.hydrogen_booster.replace(' ', '<br/>') }}></Link>
         <Link href="/shop" className="navbar2_link-2">{t.nav.shop}</Link>
         <Link href="/contact-us" className="navbar2_link-2">{t.nav.contact}</Link>
       </nav>
@@ -99,21 +99,21 @@ export default function Navbar() {
       <div className={`mobile-menu-dropdown ${isMobileMenuOpen ? 'active' : ''}`}>
         <div className="mobile-menu-header">
           {/* Mobile Account Button */}
-          <Link href={user ? "/dashboard" : "/login"} className="mobile-link" style={{color: '#0f172a', fontWeight:700, margin: 0, padding: 0, border: 'none'}} onClick={() => setIsMobileMenuOpen(false)}>
-            <User size={18} style={{marginRight: '8px'}} />
+          <Link href={user ? "/dashboard" : "/login"} className="mobile-link" style={{ color: '#0f172a', fontWeight: 700, margin: 0, padding: 0, border: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
+            <User size={18} style={{ marginRight: '8px' }} />
             {user ? (language === 'fr' ? 'Tableau de bord' : 'Dashboard') : (language === 'fr' ? 'Se Connecter' : 'Login')}
           </Link>
-          
+
           {/* Mobile Language Switcher - Short Labels */}
           <div className="mobile-lang-buttons">
-            <button 
+            <button
               className={language === 'en' ? 'active' : ''}
               onClick={() => handleLangChange('en')}
               title="English"
             >
               🇺🇸 EN
             </button>
-            <button 
+            <button
               className={language === 'fr' ? 'active' : ''}
               onClick={() => handleLangChange('fr')}
               title="Français"
@@ -126,14 +126,14 @@ export default function Navbar() {
         <Link href="/" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>{t.nav.home}</Link>
         <Link href="/rapports-certifications" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>{t.nav.reports}</Link>
 
-        <Link href="/solutions" className="mobile-link" style={{color: '#1a1a1a', background: '#f8fafc', fontWeight: 700}} onClick={() => setIsMobileMenuOpen(false)}>{t.nav.solutions}</Link>
-        
+        <Link href="/solutions" className="mobile-link" style={{ color: '#1a1a1a', background: '#f8fafc', fontWeight: 700 }} onClick={() => setIsMobileMenuOpen(false)}>{t.nav.solutions}</Link>
+
         <Link href="/solutions/mam-nature-complete-system" className="mobile-link sub-link" onClick={() => setIsMobileMenuOpen(false)}>Complete System</Link>
         <Link href="/solutions/water-lime" className="mobile-link sub-link" onClick={() => setIsMobileMenuOpen(false)}>Water Lime</Link>
         <Link href="/solutions/particle-filter" className="mobile-link sub-link" onClick={() => setIsMobileMenuOpen(false)}>Particle Filter</Link>
         <Link href="/solutions/fine-filter" className="mobile-link sub-link" onClick={() => setIsMobileMenuOpen(false)}>Fine Filter</Link>
-        <Link href="/solutions/the-swiss-water-dynamizer" className="mobile-link sub-link" onClick={() => setIsMobileMenuOpen(false)}>Water Dynamizer</Link>
-        
+        <Link href="/solutions/dynamizer" className="mobile-link sub-link" onClick={() => setIsMobileMenuOpen(false)}>Water Dynamizer</Link>
+
         <Link href="/shop/hydrogen-booster" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>{t.nav.hydrogen_booster}</Link>
         <Link href="/shop" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>{t.nav.shop}</Link>
         <Link href="/contact-us" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>{t.nav.contact}</Link>
@@ -141,24 +141,24 @@ export default function Navbar() {
 
       {/* RIGHT: Actions */}
       <div className="nav-right-group">
-        
+
         {/* Language Switcher - Desktop Only */}
         <div id="nav-lang-switcher-wrapper" className="desktop-only">
           <div id="nav-lang-switcher-btn" onClick={() => setIsLangSwitcherOpen(!isLangSwitcherOpen)}>
             <span>{langLabels[language] || "🇺🇸 English"}</span>
           </div>
           <div id="nav-lang-switcher-popup" style={{ display: isLangSwitcherOpen ? 'block' : 'none' }}>
-            <div style={{padding:'8px 12px', fontSize:'0.8rem', color:'#64748B', fontWeight:600}}>Choose Language</div>
+            <div style={{ padding: '8px 12px', fontSize: '0.8rem', color: '#64748B', fontWeight: 600 }}>Choose Language</div>
             {Object.entries(langLabels).map(([code, label]) => (
-               <button key={code} className="nav-lang-option-btn" onClick={() => handleLangChange(code)}>
-                 {label}
-               </button>
+              <button key={code} className="nav-lang-option-btn" onClick={() => handleLangChange(code)}>
+                {label}
+              </button>
             ))}
           </div>
         </div>
 
         {/* Account Button - Desktop Only */}
-        <Link href={user ? "/dashboard" : "/login"} className="cart-button-2 desktop-only" style={{marginRight: '10px'}} aria-label="Account">
+        <Link href={user ? "/dashboard" : "/login"} className="cart-button-2 desktop-only" style={{ marginRight: '10px' }} aria-label="Account">
           <User size={18} />
         </Link>
 

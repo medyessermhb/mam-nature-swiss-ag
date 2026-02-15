@@ -235,57 +235,7 @@ const PRODUCTS_EN: ProductType[] = [
 
 // --- DATA DEFINITION (FRENCH) ---
 const PRODUCTS_FR: ProductType[] = [
-  // 1. WATER PARTICLE FILTER (L'ESSENTIEL PLUS/ECO SET component but sold separately)
-  {
-    id: 'particle-filter',
-    name: 'WATER PARTICLE FILTER',
-    subtitle: 'Pré-filtre à Sédiments',
-    slug: 'particles-filter',
-    priceKey: 'water-particle-filter',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
-    imageHeight: 320,
-    features: [
-      "Élimine sable, rouille et sédiments.",
-      "Vanne de rétrolavage automatique.",
-      "Sans consommables ni entretien.",
-      "Protège toute l'installation de plomberie."
-    ]
-  },
-  // 2. WATER LIME
-  {
-    id: 'mam-nature-water-lime',
-    name: 'WATER LIME',
-    subtitle: 'Solution Anti-Calcaire',
-    slug: 'water-lime',
-    priceKey: 'mam-nature-water-lime',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp',
-    imageHeight: 320,
-    features: [
-      "Conversion physique du tartre.",
-      "Protège les appareils électroménagers.",
-      "Préserve le calcium et le magnésium.",
-      "Zéro sel, zéro électricité, zéro chimie.",
-      "Capacité de durée de vie illimitée."
-    ]
-  },
-  // 3. THE SWISS WATER DYNAMIZER
-  {
-    id: 'the-swiss-water-dynamizer',
-    name: 'THE SWISS WATER DYNAMIZER',
-    subtitle: 'Revitaliseur d\'Eau',
-    slug: 'dynamizer',
-    priceKey: 'the-swiss-water-dynamizer',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
-    imageHeight: 320,
-    features: [
-      "Restitue à l'eau toutes ses propriétés naturelles.",
-      "Revitalise l'eau au niveau moléculaire.",
-      "Prévient l'entartrage des canalisations.",
-      "Goût exceptionnel et digeste.",
-      "Sans entretien ni électricité."
-    ]
-  },
-  // 4. L'ESSENTIEL
+  // 1. L'ESSENTIEL
   {
     id: 'mam-nature-essential-set',
     name: 'L’ESSENTIEL',
@@ -303,7 +253,7 @@ const PRODUCTS_FR: ProductType[] = [
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
-  // 5. L'ESSENTIEL PLUS
+  // 2. L'ESSENTIEL PLUS
   {
     id: 'mam-nature-essential-plus',
     name: 'L’ESSENTIEL PLUS',
@@ -321,7 +271,7 @@ const PRODUCTS_FR: ProductType[] = [
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
-  // 6. ECO SET
+  // 3. ECO SET
   {
     id: 'mam-nature-eco-set',
     name: 'ECO SET',
@@ -339,7 +289,7 @@ const PRODUCTS_FR: ProductType[] = [
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
-  // 7. ECO SET PLUS
+  // 4. ECO SET PLUS
   {
     id: 'mam-nature-eco-set-plus',
     name: 'ECO SET PLUS',
@@ -357,7 +307,7 @@ const PRODUCTS_FR: ProductType[] = [
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
-  // 8. COMPLETE SET
+  // 5. COMPLETE SET
   {
     id: 'mam-nature-water-treatment-complete-set',
     name: 'COMPLETE SET',
@@ -375,7 +325,7 @@ const PRODUCTS_FR: ProductType[] = [
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
-  // 9. COMPLETE SET PLUS
+  // 6. COMPLETE SET PLUS
   {
     id: 'mam-nature-water-treatment-complete-set-plus',
     name: 'COMPLETE SET PLUS',
@@ -392,6 +342,56 @@ const PRODUCTS_FR: ProductType[] = [
       "Protection anticalcaire sans entretien incluse."
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
+  },
+  // 7. WATER PARTICLE FILTER (L'ESSENTIEL PLUS/ECO SET component but sold separately)
+  {
+    id: 'particle-filter',
+    name: 'WATER PARTICLE FILTER',
+    subtitle: 'Pré-filtre à Sédiments',
+    slug: 'particles-filter',
+    priceKey: 'water-particle-filter',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
+    imageHeight: 320,
+    features: [
+      "Élimine sable, rouille et sédiments.",
+      "Vanne de rétrolavage automatique.",
+      "Sans consommables ni entretien.",
+      "Protège toute l'installation de plomberie."
+    ]
+  },
+  // 8. WATER LIME
+  {
+    id: 'mam-nature-water-lime',
+    name: 'WATER LIME',
+    subtitle: 'Solution Anti-Calcaire',
+    slug: 'water-lime',
+    priceKey: 'mam-nature-water-lime',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp',
+    imageHeight: 320,
+    features: [
+      "Conversion physique du tartre.",
+      "Protège les appareils électroménagers.",
+      "Préserve le calcium et le magnésium.",
+      "Zéro sel, zéro électricité, zéro chimie.",
+      "Capacité de durée de vie illimitée."
+    ]
+  },
+  // 9. THE SWISS WATER DYNAMIZER
+  {
+    id: 'the-swiss-water-dynamizer',
+    name: 'THE SWISS WATER DYNAMIZER',
+    subtitle: 'Revitaliseur d\'Eau',
+    slug: 'dynamizer',
+    priceKey: 'the-swiss-water-dynamizer',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
+    imageHeight: 320,
+    features: [
+      "Restitue à l'eau toutes ses propriétés naturelles.",
+      "Revitalise l'eau au niveau moléculaire.",
+      "Prévient l'entartrage des canalisations.",
+      "Goût exceptionnel et digeste.",
+      "Sans entretien ni électricité."
+    ]
   },
   // 10. SET PARTICULES & CALCAIRE
   {

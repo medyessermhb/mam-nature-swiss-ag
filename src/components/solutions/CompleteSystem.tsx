@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { 
-  CheckCircle, Plug, Shield, Infinity as InfinityIcon, Gauge, Euro, 
-  Ruler, Weight, Filter, FlaskConical, Award 
+import {
+  CheckCircle, Plug, Shield, Infinity as InfinityIcon, Gauge, Euro,
+  Ruler, Weight, Filter, FlaskConical, Award
 } from 'lucide-react';
 import styles from './CompleteSystem.module.css';
 import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
@@ -53,28 +53,28 @@ const CONTENT_EN = {
   components: {
     title: 'Components Included',
     items: [
-      { 
-        title: 'WATER LIME', 
-        desc: 'A proven alternative for water softening systems on purely physical basis. Prevents hard limescale deposits.', 
+      {
+        title: 'WATER LIME',
+        desc: 'A proven alternative for water softening systems on purely physical basis. Prevents hard limescale deposits.',
         link: '/solutions/water-lime',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp'
       },
-      { 
-        title: 'PARTICLE FILTER', 
-        desc: 'Swiss Made LEAD-free Particle Filter (316L stainless steel) with self-cleaning Backwash Technology.', 
+      {
+        title: 'PARTICLE FILTER',
+        desc: 'Swiss Made LEAD-free Particle Filter (316L stainless steel) with self-cleaning Backwash Technology.',
         link: '/solutions/particle-filter',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp'
       },
-      { 
-        title: 'WATER FINE FILTER', 
-        desc: 'A unique quadruple filtration system: Physical (20 µm & 5 µm), Activated carbon, AqualenTM, and Ionized silver.', 
+      {
+        title: 'WATER FINE FILTER',
+        desc: 'A unique quadruple filtration system: Physical (20 µm & 5 µm), Activated carbon, AqualenTM, and Ionized silver.',
         link: '/solutions/fine-filter',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/fine%20filter%20with%20cartridge.png'
       },
-      { 
-        title: 'The Swiss Water DYNAMIZER', 
-        desc: 'Restructures and revitalizes water, which can improve taste, digestion, and skin softness.', 
-        link: '/solutions/the-swiss-water-dynamizer',
+      {
+        title: 'The Swiss Water DYNAMIZER',
+        desc: 'Restructures and revitalizes water, which can improve taste, digestion, and skin softness.',
+        link: '/solutions/dynamizer',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp'
       }
     ],
@@ -124,28 +124,28 @@ const CONTENT_FR = {
   components: {
     title: 'Composants Inclus',
     items: [
-      { 
-        title: 'WATER LIME', 
-        desc: 'Alternative physique aux adoucisseurs, convertit la calcite en aragonite non-adhérente.', 
+      {
+        title: 'WATER LIME',
+        desc: 'Alternative physique aux adoucisseurs, convertit la calcite en aragonite non-adhérente.',
         link: '/solutions/water-lime',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp'
       },
-      { 
-        title: 'PARTICLE FILTER', 
-        desc: 'Filtre à particules sans PLOMB (Inox 316L) avec technologie de lavage à contre-courant.', 
+      {
+        title: 'PARTICLE FILTER',
+        desc: 'Filtre à particules sans PLOMB (Inox 316L) avec technologie de lavage à contre-courant.',
         link: '/solutions/particle-filter',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp'
       },
-      { 
-        title: 'FINE FILTER', 
-        desc: 'Réduit chlore, pesticides, métaux lourds (97-99%) tout en préservant les minéraux.', 
+      {
+        title: 'FINE FILTER',
+        desc: 'Réduit chlore, pesticides, métaux lourds (97-99%) tout en préservant les minéraux.',
         link: '/solutions/fine-filter',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/fine%20filter%20with%20cartridge.png'
       },
-      { 
-        title: 'The Swiss Water DYNAMIZER', 
-        desc: 'Tourbillonne, restructure et revitalise l\'eau pour un goût unique et une peau douce.', 
-        link: '/solutions/the-swiss-water-dynamizer',
+      {
+        title: 'The Swiss Water DYNAMIZER',
+        desc: 'Tourbillonne, restructure et revitalise l\'eau pour un goût unique et une peau douce.',
+        link: '/solutions/dynamizer',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp'
       }
     ],
@@ -156,7 +156,7 @@ const CONTENT_FR = {
 export default function CompleteSystem() {
   const [activeSection, setActiveSection] = useState('presentation');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
-  
+
   const { language } = useLanguage();
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
@@ -177,7 +177,7 @@ export default function CompleteSystem() {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 150; 
+      const offset = 150;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -188,7 +188,7 @@ export default function CompleteSystem() {
 
   return (
     <div className={styles.pageWrapper}>
-      
+
       {/* Sticky Navigation */}
       <aside className={styles.stickyNav}>
         <nav>
@@ -199,7 +199,7 @@ export default function CompleteSystem() {
               { id: 'components', label: content.nav.components }
             ].map((item) => (
               <li key={item.id}>
-                <button 
+                <button
                   className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
                   onClick={() => scrollTo(item.id)}
                   style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', font: 'inherit', cursor: 'pointer' }}
@@ -213,15 +213,15 @@ export default function CompleteSystem() {
       </aside>
 
       <main className={styles.contentArea}>
-        
+
         {/* OVERVIEW */}
-        <section id="presentation" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['presentation'] = el }}>
+        <section id="presentation" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['presentation'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.overview.title}</h2></div>
           <div className={styles.componentLayout}>
             <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp" alt="Mam Nature Complete System" loading="lazy" />
             <div className={styles.componentTextContent}>
               <p>{content.overview.desc}</p>
-              
+
               <ul className={`${styles.componentSpecs} ${styles.transparentSpecs}`}>
                 {content.overview.benefits.map((benefit, idx) => (
                   <li key={idx}>
@@ -232,13 +232,13 @@ export default function CompleteSystem() {
               </ul>
 
               <p style={{ marginTop: '1.5rem' }}><strong>{content.overview.subtitle}</strong></p>
-              
+
               <ul className={`${styles.componentSpecs} ${styles.transparentSpecs}`}>
                 {content.overview.components.map((comp, idx) => (
                   <li key={idx}>
                     <CheckCircle className={styles.specIcon} size={20} />
                     <div className={styles.specContent}>
-                      <strong>{comp.bold}</strong> <p style={{display:'inline', margin:0}}>{comp.text}</p>
+                      <strong>{comp.bold}</strong> <p style={{ display: 'inline', margin: 0 }}>{comp.text}</p>
                     </div>
                   </li>
                 ))}
@@ -248,7 +248,7 @@ export default function CompleteSystem() {
         </section>
 
         {/* TECHNICAL DATA */}
-        <section id="technical-data" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['technical-data'] = el }}>
+        <section id="technical-data" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['technical-data'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.technical.title}</h2></div>
           <div className={styles.componentSpecsGrid}>
             <ul className={styles.componentSpecs}>
@@ -280,10 +280,10 @@ export default function CompleteSystem() {
         </section>
 
         {/* COMPONENTS */}
-        <section id="components" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['components'] = el }}>
+        <section id="components" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['components'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.components.title}</h2></div>
           <div className={styles.solutionsGrid}>
-            
+
             {content.components.items.map((item, idx) => (
               <div key={idx} className={styles.solutionCard}>
                 <img src={item.img} alt={item.title} />

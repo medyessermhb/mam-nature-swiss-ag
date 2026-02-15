@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'hydrogen-booster',
     'particle-lime-set',
     'particles-filter',
-    'the-swiss-water-dynamizer',
+    'dynamizer',
     'water-lime'
   ];
 

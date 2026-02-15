@@ -1,21 +1,33 @@
 import { Metadata } from 'next';
+import { getProductJsonLd } from '@/lib/json-ld';
 
-// 1. Export Metadata for SEO
 export const metadata: Metadata = {
-  title: 'Complete Set | Whole House Water Treatment & Revitalization',
-  description: 'Experience pure, structured water with the Mam Nature Complete Set. Featuring the Swiss Water Dynamizer and advanced filtration to protect your home from scale, rust, and contaminants.',
+  title: 'Complete Set | Revitalized & Filtered Water for Whole House',
+  description: 'The complete solution combining filtration and revitalization (Dynamizer). Restores water structure, improves taste, and protects against limescale.',
   openGraph: {
     title: 'Complete Set | Mam Nature Swiss',
-    description: 'Advanced whole-house water treatment including the Swiss Water Dynamizer for revitalized and molecularly restructured water.',
+    description: 'Experience water as nature intended: filtered and revitalized for your entire home.',
     url: '/shop/complete-set',
-    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET.webp' }]
+    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET.webp']
   }
 };
 
-// 2. Export the Default Layout Component (The part that makes it a "module")
 export default function CompleteSetLayout({ children }: { children: React.ReactNode }) {
+  const jsonLd = getProductJsonLd({
+    name: 'Complete Set',
+    description: 'Includes the Dynamizer for revitalized water. Restructures water at a molecular level. Exceptional taste and easy to digest. Protects the entire home from scale and rust.',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET.webp',
+    slug: 'complete-set',
+    priceKey: 'mam-nature-water-treatment-complete-set',
+    brand: 'Mam Nature Swiss'
+  });
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {children}
     </>
   );

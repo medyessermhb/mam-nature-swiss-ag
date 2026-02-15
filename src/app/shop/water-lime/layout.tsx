@@ -1,16 +1,34 @@
 import { Metadata } from 'next';
+import { getProductJsonLd } from '@/lib/json-ld';
 
 export const metadata: Metadata = {
-  title: 'Water Lime | Physical Limescale Conversion',
-  description: 'Eco-friendly anti-limescale solution. Converts hard scale into soft aragonite without salt or chemicals, protecting your appliances while retaining healthy minerals.',
+  title: 'Water Lime | Anti-Limescale Solution',
+  description: 'Physical limescale protection for your home. Converts hard calcite to soft aragonite without salt, chemicals, or electricity.',
   openGraph: {
-    title: 'Water Lime Anti-Limescale | Mam Nature Swiss',
-    description: 'Protect your home from limescale naturally. Salt-free and maintenance-free.',
+    title: 'Water Lime | Mam Nature Swiss',
+    description: 'Eco-friendly anti-limescale solution. Zero salt, zero maintenance.',
     url: '/shop/water-lime',
-    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/water%20lime%20horizontal.png' }]
+    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp']
   }
 };
 
 export default function WaterLimeLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  const jsonLd = getProductJsonLd({
+    name: 'Water Lime',
+    description: 'Physical conversion of limescale. Protects household appliances. Retains healthy calcium and magnesium. Zero salt, zero electricity, zero chemicals.',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp',
+    slug: 'water-lime',
+    priceKey: 'mam-nature-water-lime',
+    brand: 'Mam Nature Swiss'
+  });
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {children}
+    </>
+  );
 }

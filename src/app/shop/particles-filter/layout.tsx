@@ -1,16 +1,34 @@
 import { Metadata } from 'next';
+import { getProductJsonLd } from '@/lib/json-ld';
 
 export const metadata: Metadata = {
-  title: 'Water Particle Filter | Automatic Backwash Pre-filter',
-  description: 'The first line of defense for your home. Eliminates sand, rust, and sediments with an automatic backwash valve. No consumables or maintenance required.',
+  title: 'Water Particle Filter | Sediment Pre-Filter',
+  description: 'Effective pre-filtration for sand, rust, and sediments. Automatic backwash valve means no consumables and zero maintenance.',
   openGraph: {
     title: 'Water Particle Filter | Mam Nature Swiss',
-    description: 'Protect your entire plumbing system from sediments and particles.',
+    description: 'Protect your plumbing from sediments. Zero maintenance required.',
     url: '/shop/particles-filter',
-    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp' }]
+    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp']
   }
 };
 
 export default function ParticlesFilterLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  const jsonLd = getProductJsonLd({
+    name: 'Water Particle Filter',
+    description: 'Eliminates sand, rust, and sediments. Automatic backwash valve. No consumables or maintenance. Protects entire plumbing system.',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
+    slug: 'particles-filter',
+    priceKey: 'water-particle-filter',
+    brand: 'Mam Nature Swiss'
+  });
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {children}
+    </>
+  );
 }

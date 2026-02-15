@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { 
+import {
   CheckCircle, Shield, Wrench, Plug, Gauge, Infinity as InfinityIcon, Filter, FlaskConical
 } from 'lucide-react';
 import styles from './FineFilterSolution.module.css';
@@ -57,7 +57,7 @@ const CONTENT_EN = {
       {
         title: 'The Swiss Water DYNAMIZER',
         desc: 'Restructures and revitalizes water, which can improve taste, digestion, and skin softness.',
-        link: '/solutions/the-swiss-water-dynamizer',
+        link: '/solutions/dynamizer',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp'
       },
       {
@@ -117,7 +117,7 @@ const CONTENT_FR = {
       {
         title: 'The Swiss Water DYNAMIZER',
         desc: 'Tourbillonne, restructure et revitalise l\'eau pour un goût unique et une peau douce.',
-        link: '/solutions/the-swiss-water-dynamizer',
+        link: '/solutions/dynamizer',
         img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp'
       },
       {
@@ -133,7 +133,7 @@ const CONTENT_FR = {
 export default function FineFilterSolution() {
   const [activeSection, setActiveSection] = useState('presentation');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
-  
+
   const { language } = useLanguage();
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
@@ -154,7 +154,7 @@ export default function FineFilterSolution() {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 150; 
+      const offset = 150;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -165,7 +165,7 @@ export default function FineFilterSolution() {
 
   return (
     <div className={styles.pageWrapper}>
-      
+
       {/* Sticky Navigation */}
       <aside className={styles.stickyNav}>
         <nav>
@@ -176,7 +176,7 @@ export default function FineFilterSolution() {
               { id: 'other-solutions', label: content.nav.other }
             ].map((item) => (
               <li key={item.id}>
-                <button 
+                <button
                   className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
                   onClick={() => scrollTo(item.id)}
                   style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', font: 'inherit', cursor: 'pointer' }}
@@ -190,19 +190,19 @@ export default function FineFilterSolution() {
       </aside>
 
       <main className={styles.contentArea}>
-        
+
         {/* OVERVIEW */}
-        <section id="presentation" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['presentation'] = el }}>
+        <section id="presentation" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['presentation'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.overview.title}</h2></div>
           <div className={styles.componentLayout}>
             <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/fine%20filter%20with%20cartridge.png" alt="WATER FINE FILTER" loading="lazy" />
             <div className={styles.componentTextContent}>
               <p>{content.overview.desc}</p>
-              
+
               <ul className={`${styles.componentSpecs} ${styles.transparentSpecs}`}>
                 {content.overview.features.map((feature, idx) => (
                   <li key={idx}>
-                    <feature.icon className={styles.specIcon} /> 
+                    <feature.icon className={styles.specIcon} />
                     <div className={styles.specContent}>
                       <p><strong>{feature.label}</strong> {feature.text}</p>
                     </div>
@@ -220,48 +220,48 @@ export default function FineFilterSolution() {
         </section>
 
         {/* TECHNICAL DATA */}
-        <section id="technical-data" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['technical-data'] = el }}>
+        <section id="technical-data" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['technical-data'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.technical.title}</h2></div>
           <ul className={styles.componentSpecs} style={{ maxWidth: '800px', margin: '0 auto' }}>
             <li>
-              <Shield className={styles.specIcon} /> 
+              <Shield className={styles.specIcon} />
               <div className={styles.specContent}>
-                <strong>{content.technical.specs.materials.label}</strong> 
+                <strong>{content.technical.specs.materials.label}</strong>
                 <p>{content.technical.specs.materials.text}</p>
               </div>
             </li>
             <li>
-              <CheckCircle className={styles.specIcon} /> 
+              <CheckCircle className={styles.specIcon} />
               <div className={styles.specContent}>
-                <strong>{content.technical.specs.quality.label}</strong> 
+                <strong>{content.technical.specs.quality.label}</strong>
                 <p>{content.technical.specs.quality.text}</p>
               </div>
             </li>
             <li>
-              <Wrench className={styles.specIcon} /> 
+              <Wrench className={styles.specIcon} />
               <div className={styles.specContent}>
-                <strong>{content.technical.specs.maintenance.label}</strong> 
+                <strong>{content.technical.specs.maintenance.label}</strong>
                 <p>{content.technical.specs.maintenance.text}</p>
               </div>
             </li>
             <li>
-              <Plug className={styles.specIcon} /> 
+              <Plug className={styles.specIcon} />
               <div className={styles.specContent}>
-                <strong>{content.technical.specs.connections.label}</strong> 
+                <strong>{content.technical.specs.connections.label}</strong>
                 <p>{content.technical.specs.connections.text}</p>
               </div>
             </li>
             <li>
-              <Gauge className={styles.specIcon} /> 
+              <Gauge className={styles.specIcon} />
               <div className={styles.specContent}>
-                <strong>{content.technical.specs.flow.label}</strong> 
+                <strong>{content.technical.specs.flow.label}</strong>
                 <p>{content.technical.specs.flow.text}</p>
               </div>
             </li>
             <li>
-              <InfinityIcon className={styles.specIcon} /> 
+              <InfinityIcon className={styles.specIcon} />
               <div className={styles.specContent}>
-                <strong>{content.technical.specs.capacity.label}</strong> 
+                <strong>{content.technical.specs.capacity.label}</strong>
                 <p>{content.technical.specs.capacity.text}</p>
               </div>
             </li>
@@ -269,10 +269,10 @@ export default function FineFilterSolution() {
         </section>
 
         {/* OTHER SOLUTIONS */}
-        <section id="other-solutions" className={styles.contentSection} ref={el => { if(el) sectionRefs.current['other-solutions'] = el }}>
+        <section id="other-solutions" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['other-solutions'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.otherSolutions.title}</h2></div>
           <div className={styles.solutionsGrid}>
-            
+
             {content.otherSolutions.items.map((item, idx) => (
               <div key={idx} className={styles.solutionCard}>
                 <img src={item.img} alt={item.title} />

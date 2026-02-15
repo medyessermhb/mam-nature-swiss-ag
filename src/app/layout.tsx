@@ -11,6 +11,8 @@ import CartSidebar from '@/components/shop/CartSidebar';
 const inter = Inter({ subsets: ["latin"] });
 
 // --- UPDATED GLOBAL METADATA ---
+import { getOrganizationJsonLd } from "@/lib/json-ld";
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://mam-nature.com'),
   title: {
@@ -31,7 +33,6 @@ export const metadata: Metadata = {
     siteName: 'Mam Nature',
     images: [
       {
-        // Using main logo or specific sharing image
         url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg',
         width: 1200,
         height: 630,
@@ -41,6 +42,12 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mam Nature | Advanced Water Treatment',
+    description: 'Swiss-engineered solutions for pure and healthy water at home.',
+    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg'],
+  },
 };
 
 export default function RootLayout({
@@ -48,9 +55,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = getOrganizationJsonLd();
+
   return (
     <html lang="en">
       <body className={inter.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <LanguageProvider>
           <PricingProvider>
             <CartProvider>

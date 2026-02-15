@@ -1,16 +1,34 @@
 import { Metadata } from 'next';
+import { getProductJsonLd } from '@/lib/json-ld';
 
 export const metadata: Metadata = {
-  title: 'Water Fine Filter | Medical-Grade Stainless Steel',
-  description: 'High-pressure resistant filtration housing made of medical-grade stainless steel. Eliminates chlorine, heavy metals, and PFAS with Swiss-engineered precision.',
+  title: 'Water Fine Filter | Selective Water Filtration',
+  description: 'Advanced membrane and activated carbon filtration. Removes heavy metals, pesticides, and microplastics while keeping essential minerals.',
   openGraph: {
-    title: 'Water Fine Filter Housing | Mam Nature Swiss',
-    description: 'Durable, high-performance filtration housing for pure drinking water.',
+    title: 'Water Fine Filter | Mam Nature Swiss',
+    description: 'Pure water rich in minerals, free from contaminants.',
     url: '/shop/fine-filter',
-    images: [{ url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp' }]
+    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp']
   }
 };
 
 export default function FineFilterLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  const jsonLd = getProductJsonLd({
+    name: 'Water Fine Filter',
+    description: 'Selective filtration: eliminates microplastics and heavy metals while preserving minerals. Quadruple filtration system.',
+    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
+    slug: 'fine-filter',
+    priceKey: 'mam-nature-water-fine-filter',
+    brand: 'Mam Nature Swiss'
+  });
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {children}
+    </>
+  );
 }
