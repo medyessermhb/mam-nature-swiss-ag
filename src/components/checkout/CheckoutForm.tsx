@@ -277,17 +277,68 @@ export default function CheckoutForm() {
 
   const ACTIVE_BANK_DETAILS = shipping.country === 'MA' ? BANK_DETAILS_MOROCCO : BANK_DETAILS_GLOBAL;
 
-  // 2. Check User Session
+  const [savedProfile, setSavedProfile] = useState<any>(null);
+  const [useSavedAddress, setUseSavedAddress] = useState(false);
+
+  // 2. Check User Session & Fetch Profile
   useEffect(() => {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session?.user) {
         setUser(session.user);
         setEmail(session.user.email || '');
+
+        // Fetch Profile Data
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('first_name, last_name, phone, address, city, zip, country')
+          .eq('id', session.user.id)
+          .single();
+
+        if (profile) {
+          setSavedProfile(profile);
+          // If profile has address data, default to using it
+          if (profile.address && profile.city) {
+            setUseSavedAddress(true);
+            setShipping({
+              firstName: profile.first_name || '',
+              lastName: profile.last_name || '',
+              address: profile.address || '',
+              city: profile.city || '',
+              zip: profile.zip || '',
+              country: profile.country || ''
+            });
+            setPhone(profile.phone || '');
+          }
+        }
       }
     };
     checkUser();
   }, []);
+
+  // Toggle Handler
+  const handleUseSavedAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = e.target.checked;
+    setUseSavedAddress(checked);
+
+    if (checked && savedProfile) {
+      setShipping({
+        firstName: savedProfile.first_name || '',
+        lastName: savedProfile.last_name || '',
+        address: savedProfile.address || '',
+        city: savedProfile.city || '',
+        zip: savedProfile.zip || '',
+        country: savedProfile.country || ''
+      });
+      setPhone(savedProfile.phone || '');
+    } else {
+      // Clear fields if unchecked? Or keep them? Usually better UX to keep them editable.
+      // But user wanted "option to write a new one", implying clearing or just editing.
+      // Let's just leave them as is, so they can edit. 
+      // Actually, if they uncheck "Use Saved", maybe they want to clear?
+      // Let's just let them edit the current values.
+    }
+  };
 
   // 3. Auth Handlers
   const handleLogin = async () => {
@@ -565,7 +616,23 @@ export default function CheckoutForm() {
 
             {/* SHIPPING */}
             <div className={styles.section}>
-              <div className={styles.sectionHeader}><Truck size={20} className={styles.headerIcon} /> <h3>{content.shipping.title}</h3></div>
+              <div className={styles.sectionHeader}>
+                <Truck size={20} className={styles.headerIcon} />
+                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+                  <h3>{content.shipping.title}</h3>
+                  {savedProfile && (
+                    <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.9rem', cursor: 'pointer', color: '#0f172a' }}>
+                      <input
+                        type="checkbox"
+                        checked={useSavedAddress}
+                        onChange={handleUseSavedAddress}
+                        style={{ accentColor: '#D52D25', width: 16, height: 16 }}
+                      />
+                      {language === 'fr' ? 'Utiliser mon adresse enregistrée' : 'Use my saved address'}
+                    </label>
+                  )}
+                </div>
+              </div>
               <div className={styles.row}>
                 <div className={styles.formGroup}><label className={styles.label}>{content.shipping.first}</label><input type="text" name="firstName" required className={styles.input} value={shipping.firstName} onChange={handleShippingChange} /></div>
                 <div className={styles.formGroup}><label className={styles.label}>{content.shipping.last}</label><input type="text" name="lastName" required className={styles.input} value={shipping.lastName} onChange={handleShippingChange} /></div>

@@ -34,7 +34,7 @@ const CONTENT_FR = {
 export default function LoginPage() {
   const { language } = useLanguage();
   const content = language === 'fr' ? CONTENT_FR : CONTENT_EN;
-  
+
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -71,9 +71,9 @@ export default function LoginPage() {
         <form onSubmit={handleLogin} className={styles.form}>
           <div className={styles.formGroup}>
             <label className={styles.label}>{content.email}</label>
-            <input 
-              type="email" 
-              className={styles.input} 
+            <input
+              type="email"
+              className={styles.input}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -82,14 +82,19 @@ export default function LoginPage() {
           </div>
           <div className={styles.formGroup}>
             <label className={styles.label}>{content.password}</label>
-            <input 
-              type="password" 
-              className={styles.input} 
+            <input
+              type="password"
+              className={styles.input}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="••••••••"
             />
+            <div style={{ textAlign: 'right', marginTop: '5px' }}>
+              <Link href="/forgot-password" className={styles.link} style={{ fontSize: '13px' }}>
+                {language === 'fr' ? 'Mot de passe oublié ?' : 'Forgot Password?'}
+              </Link>
+            </div>
           </div>
           <button type="submit" className={styles.submitBtn} disabled={loading}>
             {loading ? content.loading : content.btn}

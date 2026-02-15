@@ -3,11 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import styles from '@/styles/Dashboard.module.css';
-import { Package, MessageSquare, RefreshCw, LogOut, Eye, Download, DollarSign } from 'lucide-react';
+import { Package, MessageSquare, RefreshCw, LogOut, Eye, Download, DollarSign, Users } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { generateInvoicePDF } from '@/utils/generateInvoice';
+import ClientDate from '@/components/ui/ClientDate';
+import StatusBadge from './StatusBadge';
 import PriceManagement from './PriceManagement';
 
 const CONTENT_EN = {
@@ -19,7 +21,16 @@ const CONTENT_EN = {
   tabs: {
     orders: "Manage Orders",
     tickets: "Support Tickets",
-    prices: "Manage Prices"
+    prices: "Manage Prices",
+    users: "Registered Users"
+  },
+  users: {
+    name: "Name",
+    contact: "Contact",
+    role: "Role",
+    address: "Address",
+    joined: "Joined",
+    empty: "No users found."
   },
   orders: {
     customer: "Customer",
@@ -56,7 +67,16 @@ const CONTENT_FR = {
   tabs: {
     orders: "Gérer les Commandes",
     tickets: "Tickets de Support",
-    prices: "Gérer les Prix"
+    prices: "Gérer les Prix",
+    users: "Utilisateurs Inscrits"
+  },
+  users: {
+    name: "Nom",
+    contact: "Contact",
+    role: "Rôle",
+    address: "Adresse",
+    joined: "Inscrit le",
+    empty: "Aucun utilisateur trouvé."
   },
   orders: {
     customer: "Client",
@@ -89,14 +109,16 @@ export default function AdminDashboard() {
   const router = useRouter();
   const content = language === 'fr' ? CONTENT_FR : CONTENT_EN;
 
-  const [activeTab, setActiveTab] = useState<'orders' | 'tickets' | 'prices'>('orders');
+  const [activeTab, setActiveTab] = useState<'orders' | 'tickets' | 'prices' | 'users'>('orders');
   const [orders, setOrders] = useState<any[]>([]);
   const [tickets, setTickets] = useState<any[]>([]);
+  const [users, setUsers] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchOrders();
     fetchTickets();
+    fetchUsers();
   }, []);
 
   const fetchOrders = async () => {
@@ -109,6 +131,39 @@ export default function AdminDashboard() {
   const fetchTickets = async () => {
     const { data } = await supabase.from('tickets').select('*').order('created_at', { ascending: false });
     if (data) setTickets(data);
+  };
+
+  const fetchUsers = async () => {
+    const { data } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
+    if (data) setUsers(data);
+  };
+
+  // --- UPDATE USER ROLE ---
+  const updateUserRole = async (id: string, newRole: string) => {
+    // 1. Optimistic Update
+    const previousRole = users.find(u => u.id === id)?.role;
+    setUsers(users.map(u => u.id === id ? { ...u, role: newRole } : u));
+
+    try {
+      // 2. Update Database via API
+      const response = await fetch('/api/admin/update-role', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: id, newRole }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to update role');
+      }
+    } catch (error: any) {
+      console.error("Failed to update role:", error);
+      alert(`Failed to update user role: ${error.message}`);
+      // Revert optimism
+      setUsers(users.map(u => u.id === id ? { ...u, role: previousRole } : u));
+    }
   };
 
   // --- UPDATED: UPDATE STATUS AND SEND EMAIL ---
@@ -155,45 +210,72 @@ export default function AdminDashboard() {
     router.refresh();
   };
 
-  const getStatusColor = (status: string) => {
-    if (status === 'paid' || status === 'delivered') return styles.statusGreen;
-    if (status === 'shipped' || status === 'processing') return styles.statusBlue;
-    if (status === 'cancelled') return styles.statusRed;
-    return styles.statusGray; // For awaiting_payment, pending_transfer, etc.
-  };
+
+
+  // CALCULATE KPIS
+  const totalRevenue = orders && orders.length > 0 ? orders.reduce((acc, o) => acc + (o.status === 'paid' || o.status === 'delivered' || o.status === 'shipped' ? (Number(o.total_amount) || 0) : 0), 0) : 0;
+  const pendingOrders = orders ? orders.filter(o => o.status === 'processing' || o.status === 'payment_pending').length : 0;
+  const openTickets = tickets ? tickets.filter(t => t.status === 'open').length : 0;
 
   return (
     <div className={styles.container}>
+      {/* HEADER */}
       <div className={styles.header}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <h1 className={styles.title}>{content.header.title}</h1>
-            <p>{content.header.subtitle}</p>
-          </div>
-          <div style={{ display: 'flex', gap: '10px' }}>
-            <button onClick={activeTab === 'orders' ? fetchOrders : fetchTickets} className={styles.actionBtn}>
-              <RefreshCw size={18} className={loading ? 'spin' : ''} />
-            </button>
-            <button
-              onClick={handleLogout}
-              className={styles.btn}
-              style={{ background: '#ef4444', color: 'white', border: 'none', padding: '8px 16px', fontSize: '0.9rem' }}
-            >
-              <LogOut size={16} /> {content.header.logout}
-            </button>
-          </div>
+        <div>
+          <h1 className={styles.title}>{content.header.title}</h1>
+          <p className={styles.subtitle}>{content.header.subtitle}</p>
+        </div>
+        <div style={{ display: 'flex', gap: '12px' }}>
+          <button onClick={() => { fetchOrders(); fetchTickets(); fetchUsers(); }} className={styles.actionBtn}>
+            <RefreshCw size={18} className={loading ? 'spin' : ''} /> {language === 'fr' ? 'Actualiser' : 'Refresh'}
+          </button>
+          <button
+            onClick={handleLogout}
+            className={styles.btn}
+            style={{ background: '#ef4444', color: 'white', padding: '10px 20px' }}
+          >
+            <LogOut size={16} /> {content.header.logout}
+          </button>
         </div>
       </div>
 
+      {/* KPI CARDS */}
+      <div className={styles.statsGrid}>
+        <div className={styles.statCard}>
+          <div className={styles.statLabel}><DollarSign size={16} /> Total Revenue (Est.)</div>
+          <div className={styles.statValue}>€ {totalRevenue.toLocaleString()}</div>
+          <div className={styles.statTrend} style={{ color: '#166534' }}>+ Paid Orders</div>
+        </div>
+        <div className={styles.statCard}>
+          <div className={styles.statLabel}><Package size={16} /> Pending Actions</div>
+          <div className={styles.statValue}>{pendingOrders}</div>
+          <div className={styles.statTrend} style={{ color: pendingOrders > 0 ? '#eab308' : '#64748b' }}>Orders to Process</div>
+        </div>
+        <div className={styles.statCard}>
+          <div className={styles.statLabel}><MessageSquare size={16} /> Needs Reply</div>
+          <div className={styles.statValue}>{openTickets}</div>
+          <div className={styles.statTrend} style={{ color: openTickets > 0 ? '#D52D25' : '#64748b' }}>Open Tickets</div>
+        </div>
+        <div className={styles.statCard}>
+          <div className={styles.statLabel}><Users size={16} /> Total Users</div>
+          <div className={styles.statValue}>{users?.length || 0}</div>
+          <div className={styles.statTrend} style={{ color: '#3b82f6' }}>Registered Accounts</div>
+        </div>
+      </div>
+
+      {/* TABS */}
       <div className={styles.tabs}>
         <button className={`${styles.tabBtn} ${activeTab === 'orders' ? styles.active : ''}`} onClick={() => setActiveTab('orders')}>
-          <Package size={18} style={{ marginRight: 8 }} /> {content.tabs.orders}
+          <Package size={18} /> {content.tabs.orders}
         </button>
         <button className={`${styles.tabBtn} ${activeTab === 'tickets' ? styles.active : ''}`} onClick={() => setActiveTab('tickets')}>
-          <MessageSquare size={18} style={{ marginRight: 8 }} /> {content.tabs.tickets}
+          <MessageSquare size={18} /> {content.tabs.tickets}
+        </button>
+        <button className={`${styles.tabBtn} ${activeTab === 'users' ? styles.active : ''}`} onClick={() => setActiveTab('users')}>
+          <Users size={18} /> {content.tabs.users}
         </button>
         <button className={`${styles.tabBtn} ${activeTab === 'prices' ? styles.active : ''}`} onClick={() => setActiveTab('prices')}>
-          <DollarSign size={18} style={{ marginRight: 8 }} /> {content.tabs.prices}
+          <DollarSign size={18} /> {content.tabs.prices}
         </button>
       </div>
 
@@ -224,9 +306,7 @@ export default function AdminDashboard() {
                     <td>{order.total_amount.toLocaleString()} {order.currency}</td>
                     <td style={{ textTransform: 'capitalize' }}>{order.payment_method}</td>
                     <td>
-                      <span className={`${styles.statusBadge} ${getStatusColor(order.status)}`}>
-                        {content.orders.statuses[order.status as keyof typeof content.orders.statuses] || order.status.replace('_', ' ')}
-                      </span>
+                      <StatusBadge status={order.status} labels={content.orders.statuses} />
                     </td>
                     <td>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -284,7 +364,7 @@ export default function AdminDashboard() {
                 <div>
                   <h4 style={{ margin: 0 }}>{ticket.subject}</h4>
                   <small style={{ color: '#64748b' }}>
-                    {ticket.user_email} • {new Date(ticket.created_at).toLocaleDateString()}
+                    {ticket.user_email} • <ClientDate date={ticket.created_at} />
                   </small>
                   <div style={{ marginTop: 4 }}>
                     <span style={{ fontSize: '0.8rem', color: '#64748b', background: '#f1f5f9', padding: '2px 8px', borderRadius: 4 }}>
@@ -292,9 +372,7 @@ export default function AdminDashboard() {
                     </span>
                   </div>
                 </div>
-                <span className={`${styles.statusBadge} ${ticket.status === 'open' ? styles.statusYellow : styles.statusGreen}`}>
-                  {ticket.status === 'open' ? content.tickets.statusOpen : content.tickets.statusClosed}
-                </span>
+                <StatusBadge status={ticket.status} labels={{ open: content.tickets.statusOpen, closed: content.tickets.statusClosed }} />
               </div>
 
               <div style={{ marginTop: 15, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
@@ -308,6 +386,61 @@ export default function AdminDashboard() {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* USERS MANAGEMENT */}
+      {activeTab === 'users' && (
+        <div className={styles.tableWrapper}>
+          {users.length === 0 ? (
+            <p>{content.users.empty}</p>
+          ) : (
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>{content.users.name}</th>
+                  <th>{content.users.contact}</th>
+                  <th>{content.users.role}</th>
+                  <th>{content.users.address}</th>
+                  <th>{content.users.joined}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map(user => (
+                  <tr key={user.id}>
+                    <td>
+                      <strong>{user.first_name} {user.last_name}</strong>
+                    </td>
+                    <td>
+                      <div>{user.phone || '-'}</div>
+                      <small style={{ color: '#64748b' }}>{user.email || ''}</small>
+                    </td>
+                    <td>
+                      <select
+                        className={styles.input}
+                        value={user.role || 'user'}
+                        onChange={(e) => updateUserRole(user.id, e.target.value)}
+                        style={{ padding: '6px', fontSize: '0.85rem', width: '100px' }}
+                      >
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                      </select>
+                    </td>
+                    <td>
+                      <div style={{ fontSize: '0.9rem' }}>{user.address}</div>
+                      <small style={{ color: '#64748b' }}>
+                        {user.city && user.zip ? `${user.city}, ${user.zip}` : user.city}
+                      </small>
+                      {user.country && <div style={{ fontSize: '0.8rem', color: '#64748b' }}>{user.country}</div>}
+                    </td>
+                    <td>
+                      <ClientDate date={user.created_at} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       )}
 
