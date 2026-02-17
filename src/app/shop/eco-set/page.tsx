@@ -456,7 +456,11 @@ export default function EcoSetPage() {
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: '1.1' }}>
                         <span>{isFrench ? 'Avec Rétrolavage Automatique' : 'With Automatic Backwash'}</span>
                         <span style={{ fontSize: '0.85em', color: selectedOption === 'auto' ? '#D52D25' : '#888', fontWeight: 500 }}>
-                          +90 EUR
+                          {getRawPrice('addon-automatic-backwash') > 0
+                            ? (currency === 'MAD'
+                              ? `+${getRawPrice('addon-automatic-backwash')} Dhs`
+                              : `+${getRawPrice('addon-automatic-backwash')} ${currency || 'EUR'}`)
+                            : '+90 EUR'}
                         </span>
                       </div>
                     </button>

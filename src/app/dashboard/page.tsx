@@ -16,7 +16,7 @@ export default function DashboardPage() {
     const checkUserRole = async () => {
       // 1. Get Session
       const { data: { session } } = await supabase.auth.getSession();
-      
+
       if (!session) {
         router.push('/login');
         return;
@@ -43,7 +43,7 @@ export default function DashboardPage() {
     checkUserRole();
   }, [router]);
 
-  if (loading) return <div style={{padding:50, textAlign:'center'}}>Loading...</div>;
+  if (loading) return <div style={{ padding: 50, textAlign: 'center' }}>Loading...</div>;
   if (!session) return null;
 
   return (
