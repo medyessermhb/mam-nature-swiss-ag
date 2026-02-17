@@ -1,7 +1,7 @@
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
-const LOGO_URL = "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo%20website.png";
+const LOGO_URL = "/images/website_details/mam-nature_full_logo_website.png";
 
 export const generateInvoicePDF = (order: any) => {
     if (!order) return;

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: 'Eco Set Plus | Mam Nature Swiss',
     description: 'Superior whole-house water purification and scale protection.',
     url: '/shop/eco-set-plus',
-    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET%20PLUS.webp']
+    images: ['/images/WEBSITE-P/products/ECO_SET_PLUS.webp']
   }
 };
 
@@ -16,7 +16,7 @@ export default function EcoSetPlusLayout({ children }: { children: React.ReactNo
   const jsonLd = getProductJsonLd({
     name: 'Eco Set Plus',
     description: 'Systeme de traitement avance pour toute la maison. Performance de filtration accrue. Protege les tuyaux et appareils du calcaire.',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET%20PLUS.webp',
+    image: '/images/WEBSITE-P/products/ECO_SET_PLUS.webp',
     slug: 'eco-set-plus',
     priceKey: 'mam-nature-eco-set-plus',
     brand: 'Mam Nature Swiss'

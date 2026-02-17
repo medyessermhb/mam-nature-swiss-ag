@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  ChevronLeft, ChevronRight, FileText, Award,
+  ChevronLeft, ChevronRight, Plus, Minus, FileText, Award,
   Check, Gem, ArrowLeftRight, Gauge, Wrench, CalendarCheck, ShieldCheck, X, AlertCircle
 } from 'lucide-react';
 import styles from '@/styles/Product.module.css';
@@ -31,18 +31,29 @@ const CONTENT_EN = {
     desc: "Selective filtration: preserves the water's structure and composition. This means all essential minerals and trace elements remain in your drinking water while protecting your entire home's plumbing."
   },
   details: {
-    title: 'Unique Quadruple Filtration System',
-    list: [
-      { label: 'Physical:', text: '20 µm and 5 µm membrane filter' },
-      { label: 'Activated Carbon:', text: 'adsorption filtration' },
-      { label: 'Aqualen™:', text: 'Adsorbent fibers for efficient heavy metal filtration' },
-      { label: 'Ionized Silver:', text: 'sterility in the filter cartridge without silver entering the drinking water.' }
-    ],
-    reduces: 'Reduces: chlorine, chloroform, pesticides, petrochemicals, phenol, microplastics, heavy metals up to 97 – 99 %',
-    specs: {
-      material: { title: 'Material', val: '316L stainless steel housing & food-grade parts' },
-      conn: { title: 'Connections', val: '1 inch (2 3/4 inch adapters included)' },
-      flow: { title: 'Flow Rate', val: '1.5 m³/h (at 4 bar)' }
+    title: 'Technical Details in 2 Steps',
+    fine: {
+      title: '1. WATER FINE FILTER',
+      summary: 'Unique filtration technology eliminating PFAS, heavy metals, aluminium, chlorine, fluoride, pesticides, pharmaceutical residues, industrial chemicals, arsenic, cadmium, chromium & radioactive substances.',
+      content: {
+        text: 'Unique selective Whole-House Adsorption Filtration System:',
+        list: [
+          '1. Filter Media: Exclusive Mam Nature technology based on proteins fibers (combined with activated carbon) for the most complete & world unique adsorption filtration',
+          '2. Sterile cartridge: Sterility (by copper & iron hydroxide) in the cartridge without sterilizing agents entering the drinking water.'
+        ],
+        reduces: 'Reduces Chlorine, Pesticides, PFAS, Drug Residues, Phenol, Heavy Metals, Aluminium, Microplastics & including radioactive substances at a reduction rate of 95 - 99.9 % at large volumes of 2000 litres/hour.'
+      }
+    },
+    cartridge: {
+      title: '2. CARTRIDGE',
+      summary: 'Patented technology that eliminates contaminants while preserving essential minerals.',
+      content: {
+        h4: 'The Swiss Water Cartridge',
+        text1: 'Mam Nature Swiss® – Solving the impossible: Perfectly filtered, soft, and naturally mineralized water.',
+        text2: 'The « SWISS WATER CARTRIDGE » : BEYOND FILTRATION – A TRUE PROTECTION UNMATCHED CONTAMINANT RENTENTION ',
+        text3: 'Our 100% natural filtration technology, exclusive to Mam Nature Swiss®, combines natural protein fibers with activated carbon to achieve total adsorption, a world first. It eliminates contaminants while preserving minerals and trace elements being naturally present in water. Owing to its selective filtration system by full adsorption, this patented Swiss invention is the world unique universal solution, 100% natural, capable of eliminating PFAS, heavy metals, aluminum, chlorine, fluoride, pesticides, pharmaceutical residues, industrial chemicals, arsenic, cadmium, chromium, etc. - and even radioactive substances found in nuclear water.',
+        specs: 'Flow rate: up to 1800 liters/hour.<br>Filter cartridge capacity (lifespan): 150m³<br>Maintenance: 10 minutes once per year (simple and no tools required).'
+      }
     }
   },
   install: {
@@ -82,18 +93,29 @@ const CONTENT_FR = {
     desc: "Filtration sélective : préserve la structure de l'eau et sa composition. Cela signifie que tous les minéraux essentiels restent dans votre eau potable tout en protégeant la plomberie de toute votre maison."
   },
   details: {
-    title: 'Système Unique de Quadruple Filtration',
-    list: [
-      { label: 'Physique :', text: 'Filtre à membrane 20 µm et 5 µm' },
-      { label: 'Charbon Actif :', text: 'filtration par adsorption' },
-      { label: 'Aqualen™ :', text: 'Fibres adsorbantes pour une filtration efficace des métaux lourds' },
-      { label: 'Argent Ionisé :', text: "stérilité dans la cartouche filtrante sans que l'argent ne pénètre dans l'eau potable." }
-    ],
-    reduces: 'Réduit : chlore, chloroforme, pesticides, produits pétrochimiques, phénol, microplastiques, métaux lourds jusqu\'à 97 – 99 %',
-    specs: {
-      material: { title: 'Matériau', val: 'Boîtier en acier inoxydable 316L & pièces alimentaires' },
-      conn: { title: 'Connexions', val: '1 pouce (2 adaptateurs 3/4 pouces inclus)' },
-      flow: { title: 'Débit', val: '1,5 m³/h (à 4 bars)' }
+    title: 'Détails Techniques en 2 Étapes',
+    fine: {
+      title: '1. WATER FINE FILTER',
+      summary: 'Unique filtration technology eliminating PFAS, heavy metals, aluminium, chlorine, fluoride, pesticides, pharmaceutical residues, industrial chemicals, arsenic, cadmium, chromium & radioactive substances.',
+      content: {
+        text: 'Unique selective Whole-House Adsorption Filtration System:',
+        list: [
+          '1. Filter Media: Exclusive Mam Nature technology based on proteins fibers (combined with activated carbon) for the most complete & world unique adsorption filtration',
+          '2. Sterile cartridge: Sterility (by copper & iron hydroxide) in the cartridge without sterilizing agents entering the drinking water.'
+        ],
+        reduces: 'Reduces Chlorine, Pesticides, PFAS, Drug Residues, Phenol, Heavy Metals, Aluminium, Microplastics & including radioactive substances at a reduction rate of 95 - 99.9 % at large volumes of 2000 litres/hour.'
+      }
+    },
+    cartridge: {
+      title: '2. CARTOUCHE',
+      summary: 'Technologie brevetée qui élimine les contaminants en préservant les minéraux essentiels.',
+      content: {
+        h4: 'The Swiss Water Cartridge',
+        text1: 'Mam Nature Swiss® – Résoudre l\'impossible : Une eau parfaitement filtrée, douce et naturellement minéralisée.',
+        text2: 'La « SWISS WATER CARTRIDGE » : Au-delà de la filtration, un véritable bouclier. SÉCURITÉ & PURETÉ INÉGALÉES',
+        text3: 'Notre technologie de filtration 100% naturelle, exclusive à Mam Nature Swiss®, combine des fibres de protéines naturelles avec du charbon actif pour obtenir une adsorption totale, une première mondiale. Elle élimine les contaminants tout en préservant les minéraux et les oligo-éléments naturellement présents dans l\'eau. Grâce à son système de filtration sélective par adsorption complète, cette invention suisse brevetée est la solution universelle unique au monde, 100% naturelle, capable d\'éliminer PFAS, métaux lourds, aluminium, chlore, fluor, pesticides, résidus pharmaceutiques, produits chimiques industriels, arsenic, cadmium, chrome, etc. - et même les substances radioactives présentes dans l\'eau nucléaire.',
+        specs: 'Débit : jusqu\'à 1800 litres/heure.<br>Capacité de la cartouche filtrante (durée de vie) : 150m³<br>Entretien : 10 minutes une fois par an (simple et sans outil).'
+      }
     }
   },
   install: {
@@ -126,14 +148,15 @@ export default function EssentialSetPage() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');
+  const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const [modalUrl, setModalUrl] = useState<string | null>(null);
   const [isLoadingPdf, setIsLoadingPdf] = useState(false);
 
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const IMAGES = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp"
+    "/images/WEBSITE-P/products/FINE_FILTER.webp",
+    "/images/WEBSITE-P/products/cartridge.webp"
   ];
 
 
@@ -169,6 +192,10 @@ export default function EssentialSetPage() {
       const offsetPosition = elementPosition - offset;
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
+  };
+
+  const toggleAccordion = (id: string) => {
+    setActiveAccordion(activeAccordion === id ? null : id);
   };
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % IMAGES.length);
@@ -279,34 +306,63 @@ export default function EssentialSetPage() {
         {/* 2. DETAILS SECTION */}
         <section id="details" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['details'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.details.title}</h2></div>
+          <div className={styles.accordionContainer}>
 
-          <ul className={styles.detailsList}>
-            {content.details.list.map((item, idx) => (
-              <li key={idx}>
-                <Check className={styles.listIcon} size={20} />
-                <div><strong>{item.label}</strong> {item.text}</div>
-              </li>
-            ))}
-          </ul>
+            {/* ITEM 1: FINE FILTER + CARTRIDGE (GROUPED) */}
+            <div className={styles.detailsGroupContainer}>
+              <div className={styles.groupedHeader}>
+                <img src="/images/website-assets/PRODUCT/fine_filter_with_cartridge.png" alt="Fine Filter Group" className={styles.groupedImage} />
+                <div className={styles.accordionItemsWrapper}>
+                  {/* Fine Filter Header */}
+                  <div className={styles.accordionItem}>
+                    <button className={styles.accordionHeader} onClick={() => toggleAccordion('fine')}>
+                      <div className={styles.headerGrid}>
+                        <div className={styles.accordionTitle}>
+                          <strong>{content.details.fine.title}</strong>
+                          <p className={styles.summaryText}>{content.details.fine.summary}</p>
+                        </div>
+                      </div>
+                      {activeAccordion === 'fine' ? <Minus className={styles.toggleIcon} /> : <Plus className={styles.toggleIcon} />}
+                    </button>
+                  </div>
+                  {/* Cartridge Header */}
+                  <div className={styles.accordionItem}>
+                    <button className={styles.accordionHeader} onClick={() => toggleAccordion('cartridge')}>
+                      <div className={styles.headerGrid}>
+                        <div className={styles.accordionTitle}>
+                          <strong>{content.details.cartridge.title}</strong>
+                          <p className={styles.summaryText}>{content.details.cartridge.summary}</p>
+                        </div>
+                      </div>
+                      {activeAccordion === 'cartridge' ? <Minus className={styles.toggleIcon} /> : <Plus className={styles.toggleIcon} />}
+                    </button>
+                  </div>
+                </div>
+              </div>
 
-          <p style={{ marginTop: '1.5rem', color: '#64748B' }}><strong>{content.details.reduces}</strong></p>
+              {/* Fine Filter Content */}
+              <div className={`${styles.accordionContent} ${styles.fullWidth}`} style={{ maxHeight: activeAccordion === 'fine' ? '800px' : '0' }}>
+                <div className={styles.accordionContentInner} style={{ marginLeft: 0, paddingTop: '1.5rem' }}>
+                  <p><strong>{content.details.fine.content.text}</strong></p>
+                  <ul>
+                    {content.details.fine.content.list.map((it: string, idx: number) => <li key={idx} style={{ marginBottom: '0.5rem' }}>{it}</li>)}
+                  </ul>
+                  <p><strong>{content.details.fine.content.reduces}</strong></p>
+                </div>
+              </div>
 
-          <div className={styles.specGrid}>
-            <div className={styles.specCard}>
-              <Gem className={styles.specIcon} />
-              <h4>{content.details.specs.material.title}</h4>
-              <p>{content.details.specs.material.val}</p>
+              {/* Cartridge Content */}
+              <div className={`${styles.accordionContent} ${styles.fullWidth}`} style={{ maxHeight: activeAccordion === 'cartridge' ? '1200px' : '0' }}>
+                <div className={styles.accordionContentInner} style={{ marginLeft: 0, paddingTop: '1.5rem' }}>
+                  <h4>{content.details.cartridge.content.h4}</h4>
+                  <p><strong>{content.details.cartridge.content.text1}</strong></p>
+                  <p><strong>{content.details.cartridge.content.text2}</strong></p>
+                  <p>{content.details.cartridge.content.text3}</p>
+                  <p dangerouslySetInnerHTML={{ __html: content.details.cartridge.content.specs.replace('\n', '<br/>') }}></p>
+                </div>
+              </div>
             </div>
-            <div className={styles.specCard}>
-              <ArrowLeftRight className={styles.specIcon} />
-              <h4>{content.details.specs.conn.title}</h4>
-              <p>{content.details.specs.conn.val}</p>
-            </div>
-            <div className={styles.specCard}>
-              <Gauge className={styles.specIcon} />
-              <h4>{content.details.specs.flow.title}</h4>
-              <p>{content.details.specs.flow.val}</p>
-            </div>
+
           </div>
         </section>
 
@@ -342,7 +398,7 @@ export default function EssentialSetPage() {
             <button
               className={styles.reportLink}
               onClick={() => {
-                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/The%20Swiss%20Water%20Cartridge_Retention%20Rates_Certificated%20ETH%20Zurich.pdf");
+                setModalUrl("/images/website-assets/certificates/The_Swiss_Water_Cartridge_Retention_Rates_Certificated_ETH_Zurich.pdf");
                 setIsLoadingPdf(true);
               }}
             >
@@ -351,7 +407,7 @@ export default function EssentialSetPage() {
             <button
               className={styles.reportLink}
               onClick={() => {
-                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf");
+                setModalUrl("/images/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure_Test_MNS-CS.pdf");
                 setIsLoadingPdf(true);
               }}
             >
@@ -379,12 +435,20 @@ export default function EssentialSetPage() {
                   </div>
                 </div>
               )}
-              <iframe
-                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
+              <object
+                data={modalUrl}
+                type="application/pdf"
                 style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
                 title="Document Preview"
                 onLoad={() => setIsLoadingPdf(false)}
-              />
+              >
+                <div style={{ padding: '20px', textAlign: 'center', color: 'gray' }}>
+                  <p>Preview not available.</p>
+                  <a href={modalUrl} download style={{ color: '#4ade80', textDecoration: 'underline' }}>
+                    Download PDF
+                  </a>
+                </div>
+              </object>
             </div>
             <style>{`
               @keyframes spin {

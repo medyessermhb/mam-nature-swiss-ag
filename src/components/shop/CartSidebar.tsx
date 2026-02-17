@@ -114,7 +114,7 @@ export default function CartSidebar() {
         ? `Complétez votre installation pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
         : `Complete your setup for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particle%20+%20water%20lime.webp'
+      image: '/images/WEBSITE-P/products/particle_+_water_lime.webp'
     };
   }
   // 2. Offer for Essential Plus Set (Upgrades them to Eco Set total)
@@ -130,7 +130,7 @@ export default function CartSidebar() {
         ? `Ajoutez la protection anti-calcaire pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
         : `Add anti-limescale protection for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp'
+      image: '/images/WEBSITE-P/products/water_lime_vertical.webp'
     };
   }
 
@@ -217,21 +217,42 @@ export default function CartSidebar() {
 
         {/* FOOTER */}
         {cart.length > 0 && (
-          <div className={styles.footer}>
-            <div className={styles.summaryRow}>
-              <span>{content.subtotal}</span>
+          <div className={styles.footer} style={{ borderTop: '1px solid #f1f5f9', paddingTop: '20px' }}>
+
+            {/* Summary Details */}
+            <div style={{ marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+
+              {/* Subtotal */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.95rem', color: '#444' }}>
+                <span>{content.subtotal}</span>
+                <span style={{ fontWeight: 500 }}>{currencySymbol} {cartTotal.toLocaleString()}</span>
+              </div>
+
+              {/* VAT Details */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#94a3b8' }}>
+                <span>{isFrench ? `Dont TVA (${taxLabel})` : `Includes VAT (${taxLabel})`}</span>
+                <span>{currencySymbol} {vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <hr style={{ border: 'none', borderTop: '1px solid #e2e8f0', margin: '12px 0' }} />
+
+            {/* Total */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '24px', fontSize: '1.25rem', fontWeight: 700, color: '#0f172a' }}>
+              <span>{content.total}</span>
               <span>{currencySymbol} {cartTotal.toLocaleString()}</span>
             </div>
-            <div className={styles.summaryRow} style={{ color: '#64748b', fontSize: '0.85rem' }}>
-              <span>{isFrench ? `Dont TVA (${taxLabel})` : `Includes VAT (${taxLabel})`}</span>
-              <span>{currencySymbol} {vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+
+            {/* Actions */}
+            <div style={{ display: 'grid', gap: '12px' }}>
+              <button className={styles.checkoutBtn} onClick={handleProceedToCheckout}>
+                {content.checkout} <ArrowRight size={18} />
+              </button>
+              <button className={styles.viewCartBtn} onClick={handleViewCart}>
+                {content.viewCart}
+              </button>
             </div>
-            <button className={styles.checkoutBtn} onClick={handleProceedToCheckout}>
-              {content.checkout} <ArrowRight size={18} style={{ marginLeft: '8px', display: 'inline-block', verticalAlign: 'text-bottom' }} />
-            </button>
-            <button className={styles.viewCartBtn} onClick={handleViewCart}>
-              {content.viewCart}
-            </button>
           </div>
         )}
       </div>

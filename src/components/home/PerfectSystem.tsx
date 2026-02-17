@@ -15,7 +15,7 @@ const CONTENT_EN = {
   features: [
     "Contaminants-free water",
     "Dynamized water",
-    "Conversion of limestone (calcite) into aragonite (softer)",
+    "Conversion of limestone (Calcite) into Aragonite (softer)",
     "Soft water with natural mineralization",
     "Whole-house solution (drinking water, shower, kitchen, etc.)",
     "No water waste, unlike reverse osmosis",
@@ -35,7 +35,7 @@ const CONTENT_FR = {
   features: [
     "Eau exempte de tout contaminant",
     "Eau dynamisée",
-    "Conversion du calcaire (calcite) en aragonite (plus douce)",
+    "Conversion du calcaire (Calcite) en Aragonite (plus douce)",
     "Eau adoucie tout en gardant sa minéralisation naturelle",
     "Global, chaque goute dans toute la maison est soigneusement traitée (eau potable, douche, cuisine, etc.)",
     "Aucun gaspillage d’eaux contrairement à l’osmose inverse",
@@ -50,7 +50,7 @@ const CONTENT_FR = {
   btnCert: "Certificat de Swiss Safety System"
 };
 
-const PDF_URL = "https://docs.google.com/gview?url=https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf&embedded=true";
+const PDF_URL = "/images/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure_Test_MNS-CS.pdf";
 
 export default function PerfectSystem() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -83,18 +83,18 @@ export default function PerfectSystem() {
     <>
       <section className={styles.section}>
         <div className={styles.container}>
-          
+
           <h1 className={styles.headline} data-aos="fade-up">
             {content.headline}
           </h1>
 
           <div className={styles.columnsWrapper}>
-            
+
             {/* Left Column: Image */}
             <div className={styles.imagePanel} data-aos="fade-up" data-aos-delay="100">
-              <img 
-                src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET.webp" 
-                alt="Complete Mam Nature water treatment system" 
+              <img
+                src="/images/WEBSITE-P/products/COMPLETE_SET.webp"
+                alt="Complete Mam Nature water treatment system"
                 loading="lazy"
               />
             </div>
@@ -123,7 +123,7 @@ export default function PerfectSystem() {
                 {content.btnShop}
               </Link>
 
-              <button 
+              <button
                 className={styles.secondaryButton}
                 onClick={() => setIsModalOpen(true)}
               >
@@ -137,8 +137,8 @@ export default function PerfectSystem() {
 
       {/* Certificate Modal */}
       {isModalOpen && (
-        <div 
-          className={styles.modalOverlay} 
+        <div
+          className={styles.modalOverlay}
           onClick={() => setIsModalOpen(false)}
           onContextMenu={(e) => e.preventDefault()} // Anti-save context menu
         >
@@ -146,9 +146,9 @@ export default function PerfectSystem() {
             <button className={styles.closeButton} onClick={() => setIsModalOpen(false)}>
               <X size={20} />
             </button>
-            <iframe 
-              src={PDF_URL} 
-              className={styles.modalFrame} 
+            <iframe
+              src={PDF_URL}
+              className={styles.modalFrame}
               sandbox="allow-scripts allow-same-origin"
               title="Certificate Preview"
             />

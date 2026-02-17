@@ -8,15 +8,15 @@ export const metadata: Metadata = {
     title: 'Swiss Water Cartridge | Mam Nature Swiss',
     description: 'Keep your water pure. Easy tool-free replacement.',
     url: '/shop/cartridge',
-    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp']
+    images: ['/images/WEBSITE-P/products/cartridge.webp']
   }
 };
 
 export default function CartridgeLayout({ children }: { children: React.ReactNode }) {
   const jsonLd = getProductJsonLd({
     name: 'Swiss Water Cartridge',
-    description: 'Annual replacement cartridge for Fine Filter. Maintains optimal filtration performance. Unique Swiss-engineered filtration fibers.',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp',
+    description: 'Replacement Cartridge for your Water Fine Filter after max. 150 m3 resp. 1 year. Eliminates chlorine, PFAS, PFOS, heavy metals, aluminium, pesticides & radioactive substances.',
+    image: '/images/WEBSITE-P/products/cartridge.webp',
     slug: 'cartridge',
     priceKey: 'water-fine-filter-cartridge',
     brand: 'Mam Nature Swiss'

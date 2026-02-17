@@ -8,15 +8,15 @@ export const metadata: Metadata = {
     title: 'Swiss Hydrogen Booster | Mam Nature Swiss',
     description: 'Boost your antioxidant intake with hydrogen-rich water. Portable and efficient.',
     url: '/shop/hydrogen-booster',
-    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/HYDROGEEN%20BOOSTER.webp']
+    images: ['/images/WEBSITE-P/products/HYDROGEEN_BOOSTER.webp']
   }
 };
 
 export default function HydrogenBoosterLayout({ children }: { children: React.ReactNode }) {
   const jsonLd = getProductJsonLd({
     name: 'Swiss Hydrogen Booster',
-    description: 'Enrich your water with molecular hydrogen. Fast recharge and ultra-fine bubbles. Portable and easy to use. Rechargeable battery.',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/HYDROGEEN%20BOOSTER.webp',
+    description: 'Highest concentration in the market: 7500 ppb of molecular Hydrogen Fast recharge and ultra-fine bubbles. Portable and easy to use. Rechargeable battery.',
+    image: '/images/WEBSITE-P/products/HYDROGEEN_BOOSTER.webp',
     slug: 'hydrogen-booster',
     priceKey: 'swiss-hydrogen-booster',
     brand: 'Mam Nature Swiss'

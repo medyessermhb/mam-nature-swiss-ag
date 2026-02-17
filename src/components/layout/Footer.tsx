@@ -81,7 +81,7 @@ export default function Footer() {
         {/* LOGO COLUMN */}
         <div className="footer-col-logo">
           <Link href="/" className="footer-logo-link">
-            <img loading="lazy" src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo%20website.png" alt="Mam Nature Swiss AG" className="footer-logo" />
+            <img loading="lazy" src="/images/website_details/mam-nature_full_logo_website.png" alt="Mam Nature Swiss AG" className="footer-logo" />
           </Link>
           <p className="footer-tagline">
             {content.tagline}

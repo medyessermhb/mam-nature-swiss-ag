@@ -11,14 +11,14 @@ const CONTENT_EN = {
   title: "The Swiss Water Cartridge",
   subtitle: "Beyond filtration, a true shield.",
   tagline: "UNMATCHED SAFETY & PURITY",
-  desc1: "Our 100% natural filtration technology, exclusive to Mam Nature Swiss®, combines natural protein fibers with activated carbon to achieve total adsorption, a world first.",
-  desc2: "It eliminates contaminants while preserving minerals and trace elements being naturally present in water.",
+  desc1: "Our 100% natural, Mam Nature Swiss® exclusive & world first filtration technology combines natural protein fibers with activated carbon to achieve perfect filtration.",
+  desc2: "Whole house solution (POE):It eliminates contaminants while preserving minerals and trace elements being naturally present in water.",
   desc3Part1: "Owing to its selective filtration system by full adsorption, this patented Swiss invention is the world unique universal solution, 100% natural, capable of eliminating ",
   desc3Bold: "PFAS, heavy metals, aluminum, chlorine, fluoride, pesticides, pharmaceutical residues, industrial chemicals, arsenic, cadmium, chromium, etc. - and even radioactive substances found in nuclear water.",
   specFlowTitle: "Flow Rate",
   specFlowValue: "2,000+ liters/hour",
   specCapTitle: "Filter Cartridge Capacity",
-  specCapValue: "150m³ per cartridge",
+  specCapValue: "Min. 100 m3 per cartridge",
   specMaintTitle: "Maintenance",
   specMaintValue: "10 min / year (no tools)",
   reportsTitle: "Reports & Certifications",
@@ -45,7 +45,7 @@ const CONTENT_FR = {
   viewPreview: "Voir l'aperçu"
 };
 
-const REPORT_URL = "https://docs.google.com/gview?url=https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/68fe15932c0ff59fbb05dd09_The%20Swiss%20Water%20Cartridge_Retention%20Rates_Certificated%20ETH%20Zurich.pdf&embedded=true";
+const REPORT_URL = "/images/website-assets/certificates/The_Swiss_Water_Cartridge_Retention_Rates_Certificated_ETH_Zurich.pdf";
 
 export default function WaterCartridge() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,7 +76,7 @@ export default function WaterCartridge() {
             {/* Left Image */}
             <div className={styles.imagePanel} data-aos="fade-up">
               <img
-                src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp"
+                src="/images/WEBSITE-P/products/cartridge.webp"
                 alt="The Mam Nature Swiss water cartridge"
                 loading="lazy"
               />

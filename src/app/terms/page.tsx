@@ -16,7 +16,7 @@ export default function TermsAndConditions() {
     "name": "Mam Nature Swiss AG",
     "alternateName": "Mam Nature",
     "url": "https://www.mam-nature.com/",
-    "logo": "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo%20website.png",
+    "logo": "/images/website_details/mam-nature_full_logo_website.png",
     "email": "info@mam-nature.com",
     "address": {
       "@type": "PostalAddress",
@@ -47,7 +47,7 @@ export default function TermsAndConditions() {
 
         <header className={styles.header}>
           <h1>General Sales Terms and Conditions</h1>
-          
+
           <div className={styles.companyMeta}>
             <div>
               <p><strong>Mam Nature Swiss AG</strong></p>
@@ -146,8 +146,8 @@ export default function TermsAndConditions() {
               <li>Photo of the carrier&apos;s barcode.</li>
             </ul>
             <p>8.11. <strong>Legal Guarantee:</strong>
-                <br />• Metal parts (Water LIME, DYNAMIZER): <strong>10 Years Guarantee.</strong>
-                <br />• Non-metal parts (Filters): <strong>2 Years Legal Guarantee.</strong>
+              <br />• Metal parts (Water LIME, DYNAMIZER): <strong>10 Years Guarantee.</strong>
+              <br />• Non-metal parts (Filters): <strong>2 Years Legal Guarantee.</strong>
             </p>
           </article>
 
@@ -174,7 +174,7 @@ export default function TermsAndConditions() {
             <p>12.3. Any action falls under the exclusive jurisdiction of the courts of <strong>Jona, Switzerland</strong>.</p>
           </article>
         </main>
-        
+
         <footer className={styles.footer}>
           <p>© 2026 Mam Nature Swiss AG. All rights reserved.</p>
         </footer>

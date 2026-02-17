@@ -33,7 +33,7 @@ const CONTENT_EN = {
     btnAdd: 'Add to Cart',
     priceTBD: 'Price Coming Soon',
     descBold: 'The Limescale Challenge: Calcite (hard limescale) builds up in your pipes and appliances, causing breakdowns and dulling surfaces.',
-    desc: "Our Solution: Physical Conversion. Mam Nature Swiss® Water LIME doesn't remove limescale; it transforms its structure. Using permanent magnets, scaling calcite is converted into aragonite, a non-adhesive form."
+    desc: "Our Solution: Physical Conversion. Mam Nature Swiss® Water LIME doesn't remove limescale; it transforms its structure. Using permanent magnets, scaling Calcite is converted into Aragonite, a non-adhesive form."
   },
   details: {
     title: 'Why Physical Conversion is Superior',
@@ -83,8 +83,8 @@ const CONTENT_FR = {
     subtitle: 'Solution Anti-Calcaire : Efficace, durable et sans effort.',
     btnAdd: 'Ajouter au panier',
     priceTBD: 'Prix à venir',
-    descBold: 'Le défi du calcaire : La calcite, forme dure du calcaire, s\'accumule dans vos tuyaux et appareils, provoquant des pannes et ternissant les surfaces.',
-    desc: "Notre Solution : Conversion Physique. Mam Nature Swiss® Water LIME n'élimine pas le calcaire, il transforme sa structure. Grâce à des aimants permanents, la calcite incrustante est convertie en aragonite, une forme non adhésive."
+    descBold: 'Le défi du calcaire : La Calcite, forme dure du calcaire, s\'accumule dans vos tuyaux et appareils, provoquant des pannes et ternissant les surfaces.',
+    desc: "Notre Solution : Conversion Physique. Mam Nature Swiss® Water LIME n'élimine pas le calcaire, il transforme sa structure. Grâce à des aimants permanents, la Calcite incrustante est convertie en Aragonite, une forme non adhésive."
   },
   details: {
     title: 'Pourquoi la Conversion Physique est Supérieure',
@@ -138,7 +138,7 @@ export default function WaterLimeFilterPage() {
 
   // Placeholder image. Replace with the actual Water Lime image when you upload it to Supabase.
   const IMAGES = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/water%20lime%20horizontal.png"
+    "/images/WEBSITE-P/products/water_lime_horizontal.webp"
   ];
 
 
@@ -352,7 +352,7 @@ export default function WaterLimeFilterPage() {
             <button
               className={styles.reportLink}
               onClick={() => {
-                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/The%20Swiss%20Water%20Cartridge_Retention%20Rates_Certificated%20ETH%20Zurich.pdf");
+                setModalUrl("/images/website-assets/certificates/The_Swiss_Water_Cartridge_Retention_Rates_Certificated_ETH_Zurich.pdf");
                 setIsLoadingPdf(true);
               }}
             >
@@ -361,7 +361,7 @@ export default function WaterLimeFilterPage() {
             <button
               className={styles.reportLink}
               onClick={() => {
-                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf");
+                setModalUrl("/images/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure_Test_MNS-CS.pdf");
                 setIsLoadingPdf(true);
               }}
             >
@@ -389,12 +389,20 @@ export default function WaterLimeFilterPage() {
                   </div>
                 </div>
               )}
-              <iframe
-                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
+              <object
+                data={modalUrl}
+                type="application/pdf"
                 style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
                 title="Document Preview"
                 onLoad={() => setIsLoadingPdf(false)}
-              />
+              >
+                <div style={{ padding: '20px', textAlign: 'center', color: 'gray' }}>
+                  <p>Preview not available.</p>
+                  <a href={modalUrl} download style={{ color: '#4ade80', textDecoration: 'underline' }}>
+                    Download PDF
+                  </a>
+                </div>
+              </object>
             </div>
             <style>{`
               @keyframes spin {

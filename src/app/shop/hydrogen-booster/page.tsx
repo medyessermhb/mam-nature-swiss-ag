@@ -166,7 +166,7 @@ export default function HydrogenBoosterPage() {
   const [isLoadingPdf, setIsLoadingPdf] = useState(false);
   const sidebarRef = useRef<HTMLElement>(null);
 
-  const MAIN_IMAGE = "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/HYDROGEEN%20BOOSTER.webp";
+  const MAIN_IMAGE = "/images/WEBSITE-P/products/HYDROGEEN_BOOSTER.webp";
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -240,7 +240,7 @@ export default function HydrogenBoosterPage() {
             </ul>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '20px' }}>
-              <img src="https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/692ace3a32f2b7514a12cf42_WhatsApp%20Image%202025-11-29%20at%2011.36.32%201.svg" alt="CE Mark" style={{ height: '40px' }} />
+              <img src="/images/website-assets/certificates/ce_mark.svg" alt="CE Mark" style={{ height: '40px' }} />
               <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#576778', lineHeight: 1.2, whiteSpace: 'pre-line' }}>
                 {content.hero.certText}
               </span>
@@ -356,15 +356,15 @@ export default function HydrogenBoosterPage() {
           <section id="usage" className={styles.section} style={{ background: '#F8FAFC' }}>
             <h2 className={styles.sectionTitle}>{content.usage.title}</h2>
             <div className={styles.stepsGrid}>
-              <div className={styles.stepItem} style={{ backgroundImage: `url('https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/6928595ae38a8c5f73692d00_hydrogen%20booser%203.jpeg')` }}>
+              <div className={styles.stepItem} style={{ backgroundImage: `url('/images/WEBSITE-P/products/hydrogen_booser_3.jpeg')` }}>
                 <div className={styles.stepNumber}>1</div>
                 <div className={styles.stepContent}><h3><Droplet /> {content.usage.steps[0].title}</h3><p>{content.usage.steps[0].text}</p></div>
               </div>
-              <div className={styles.stepItem} style={{ backgroundImage: `url('https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/6928595aaa3cd07b410d9823_hydrogen%20booser%208.jpeg')` }}>
+              <div className={styles.stepItem} style={{ backgroundImage: `url('/images/WEBSITE-P/products/hydrogen_booser_8.jpeg')` }}>
                 <div className={styles.stepNumber}>2</div>
                 <div className={styles.stepContent}><h3><Zap /> {content.usage.steps[1].title}</h3><p>{content.usage.steps[1].text}</p></div>
               </div>
-              <div className={styles.stepItem} style={{ backgroundImage: `url('https://cdn.prod.website-files.com/6772955ff9646840f29d1d3d/6928595ae4cee31ebe723026_hydrogen%20booser%205.jpeg')` }}>
+              <div className={styles.stepItem} style={{ backgroundImage: `url('/images/WEBSITE-P/products/hydrogen_booser_5.jpeg')` }}>
                 <div className={styles.stepNumber}>3</div>
                 <div className={styles.stepContent}><h3><Smile /> {content.usage.steps[2].title}</h3><p>{content.usage.steps[2].text}</p></div>
               </div>
@@ -394,14 +394,14 @@ export default function HydrogenBoosterPage() {
             <h2 className={styles.sectionTitle}>{content.science.title}</h2>
             <div className={styles.scienceGrid}>
               <button className={styles.scienceCard} onClick={() => {
-                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Mam%20Nature%20Swiss%20Hydrogen%20Booster_CE-Certificate_2025-005-DOC_sign_2025.04.29.pdf");
+                setModalUrl("/images/website-assets/certificates/Mam_Nature_Swiss_Hydrogen_Booster_CE-Certificate_2025-005-DOC_sign_2025.04.29.pdf");
                 setIsLoadingPdf(true);
               }}>
                 <div className={styles.scienceIconBox}><FlaskConical /></div>
                 <div><h4>{content.science.ceTitle}</h4><span>{content.science.ceBtn}</span></div>
               </button>
               <button className={styles.scienceCard} onClick={() => {
-                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Mam%20Nature%20Swiss%20Hydrogen%20Booster_CE-Conformity%20Assessment_2025-005-CR-01_signed.pdf");
+                setModalUrl("/images/website-assets/certificates/Mam_Nature_Swiss_Hydrogen_Booster_CE-Conformity_Assessment_2025-005-CR-01_signed.pdf");
                 setIsLoadingPdf(true);
               }}>
                 <div className={styles.scienceIconBox}><FileText /></div>
@@ -431,12 +431,20 @@ export default function HydrogenBoosterPage() {
                 </div>
               )}
               {modalUrl.endsWith('.pdf') ? (
-                <iframe
-                  src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
+                <object
+                  data={modalUrl}
+                  type="application/pdf"
                   style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
                   title="Document Preview"
                   onLoad={() => setIsLoadingPdf(false)}
-                />
+                >
+                  <div style={{ padding: '20px', textAlign: 'center', color: 'gray' }}>
+                    <p>Preview not available.</p>
+                    <a href={modalUrl} download style={{ color: '#4ade80', textDecoration: 'underline' }}>
+                      Download PDF
+                    </a>
+                  </div>
+                </object>
               ) : (
                 <img src={modalUrl} alt="Document" style={{ maxWidth: '100%', height: 'auto' }} />
               )}

@@ -60,7 +60,7 @@ export default function Navbar() {
         </button>
 
         <Link href="/" className="navbar2_logo-link" aria-label="home">
-          <img loading="lazy" src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg" alt="Mam Nature" className="navbar2_logo-2" />
+          <img loading="lazy" src="/images/website_details/mam-nature_full_logo.svg" alt="Mam Nature" className="navbar2_logo-2" />
         </Link>
 
         <Link href="/rapports-certifications" className="iso-container">

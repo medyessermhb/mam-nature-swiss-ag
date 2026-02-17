@@ -54,7 +54,7 @@ const CONTENT_EN = {
     solution: {
       title: 'The Solution: Its Triple Action',
       s1: { title: '1. Restructuring and revitalization', text: 'Breaks large water molecule clusters into micro-clusters, making water highly bioavailable for your cells. Simultaneously, it transmits natural frequencies and harmonious vibrations to the water, restoring its natural hexagonal structure.' },
-      s2: { title: '2. Limescale Transformation', text: 'Through a combination of magnetic fields with precise intensity and orientation, limescale (hard calcite) is converted into soft aragonite.', quote: 'Note: Limescale is nothing more than calcium and magnesium... A responsible treatment doesn\'t eliminate them but softens them...' },
+      s2: { title: '2. Limescale Transformation', text: 'Through a combination of magnetic fields with precise intensity and orientation, limescale (hard Calcite) is converted into soft Aragonite.', quote: 'Note: Limescale is nothing more than calcium and magnesium... A responsible treatment doesn\'t eliminate them but softens them...' },
       s3: { title: '3. Long-Term Stabilization', text: 'Dynamized water gains a biologically stable structure that lasts over time.' }
     },
     specs: {
@@ -118,7 +118,7 @@ const CONTENT_FR = {
     solution: {
       title: 'La Solution : Son action triple',
       s1: { title: '1. Restructuration et revitalisation', text: "Fragmente les gros clusters en micro-clusters, rendant l'eau hautement biodisponible. Restitue sa structure hexagonale naturelle." },
-      s2: { title: '2. Transformation du calcaire', text: 'Grâce à des champs magnétiques, le calcaire (calcite dure) est converti en aragonite douce.', quote: "Note : Le calcaire n'est rien d'autre que du calcium et du magnésium... Un traitement responsable ne les élimine pas mais les adoucit..." },
+      s2: { title: '2. Transformation du calcaire', text: 'Grâce à des champs magnétiques, le calcaire (Calcite dure) est converti en Aragonite douce.', quote: "Note : Le calcaire n'est rien d'autre que du calcium et du magnésium... Un traitement responsable ne les élimine pas mais les adoucit..." },
       s3: { title: '3. Stabilisation durable', text: "L'eau dynamisée acquiert une structure biologiquement stable qui dure dans le temps." }
     },
     specs: {
@@ -163,8 +163,8 @@ export default function DynamizerPage() {
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const IMAGES = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp"
+    "/images/WEBSITE-P/products/DYNAMIZER.webp",
+    "/images/WEBSITE-P/products/DYNAMIZER.webp"
   ];
 
   useEffect(() => {
@@ -305,28 +305,28 @@ export default function DynamizerPage() {
         <section id="usages" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['usages'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.benefits.title}</h2></div>
           <div className={styles.usagesGrid}>
-            <div className={styles.usageCard} style={{ backgroundImage: `url('https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/coffee%20big.webp')` }}>
+            <div className={styles.usageCard} style={{ backgroundImage: `url('/images/WEBSITE-P/coffee_big.webp')` }}>
               <div className={styles.usageContent}>
                 <Star className={styles.usageIcon} />
                 <h3>{content.benefits.cards[0].title}</h3>
                 <p>{content.benefits.cards[0].text}</p>
               </div>
             </div>
-            <div className={styles.usageCard} style={{ backgroundImage: `url('https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/drinking%20big.webp')` }}>
+            <div className={styles.usageCard} style={{ backgroundImage: `url('/images/WEBSITE-P/drinking_big.webp')` }}>
               <div className={styles.usageContent}>
                 <Droplet className={styles.usageIcon} />
                 <h3>{content.benefits.cards[1].title}</h3>
                 <p>{content.benefits.cards[1].text}</p>
               </div>
             </div>
-            <div className={styles.usageCard} style={{ backgroundImage: `url('https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/shower%20big.webp')` }}>
+            <div className={styles.usageCard} style={{ backgroundImage: `url('/images/WEBSITE-P/shower_big.webp')` }}>
               <div className={styles.usageContent}>
                 <Shield className={styles.usageIcon} />
                 <h3>{content.benefits.cards[2].title}</h3>
                 <p>{content.benefits.cards[2].text}</p>
               </div>
             </div>
-            <div className={styles.usageCard} style={{ backgroundImage: `url('https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/washing%20big.webp')` }}>
+            <div className={styles.usageCard} style={{ backgroundImage: `url('/images/WEBSITE-P/washing_big.webp')` }}>
               <div className={styles.usageContent}>
                 <Gauge className={styles.usageIcon} />
                 <h3>{content.benefits.cards[3].title}</h3>
@@ -486,7 +486,7 @@ export default function DynamizerPage() {
             <button
               className={styles.reportLink}
               onClick={() => {
-                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/ISO.pdf");
+                setModalUrl("/images/website-assets/certificates/ISO.pdf");
                 setIsLoadingPdf(true);
               }}
             >
@@ -512,12 +512,20 @@ export default function DynamizerPage() {
                   </div>
                 </div>
               )}
-              <iframe
-                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
+              <object
+                data={modalUrl}
+                type="application/pdf"
                 style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
                 title="Document Preview"
                 onLoad={() => setIsLoadingPdf(false)}
-              />
+              >
+                <div style={{ padding: '20px', textAlign: 'center', color: 'gray' }}>
+                  <p>Preview not available.</p>
+                  <a href={modalUrl} download style={{ color: '#4ade80', textDecoration: 'underline' }}>
+                    Download PDF
+                  </a>
+                </div>
+              </object>
             </div>
             <style>{`
               @keyframes spin {

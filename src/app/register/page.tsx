@@ -86,9 +86,9 @@ export default function RegisterPage() {
         <form onSubmit={handleRegister} className={styles.form}>
           <div className={styles.formGroup}>
             <label className={styles.label}>{content.name}</label>
-            <input 
-              type="text" 
-              className={styles.input} 
+            <input
+              type="text"
+              className={styles.input}
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               required
@@ -97,9 +97,9 @@ export default function RegisterPage() {
           </div>
           <div className={styles.formGroup}>
             <label className={styles.label}>{content.email}</label>
-            <input 
-              type="email" 
-              className={styles.input} 
+            <input
+              type="email"
+              className={styles.input}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -108,9 +108,9 @@ export default function RegisterPage() {
           </div>
           <div className={styles.formGroup}>
             <label className={styles.label}>{content.password}</label>
-            <input 
-              type="password" 
-              className={styles.input} 
+            <input
+              type="password"
+              className={styles.input}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

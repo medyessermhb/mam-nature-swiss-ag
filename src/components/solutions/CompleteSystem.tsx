@@ -57,25 +57,25 @@ const CONTENT_EN = {
         title: 'WATER LIME',
         desc: 'A proven alternative for water softening systems on purely physical basis. Prevents hard limescale deposits.',
         link: '/solutions/water-lime',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp'
+        img: '/images/WEBSITE-P/products/water_lime_vertical.webp'
       },
       {
         title: 'PARTICLE FILTER',
         desc: 'Swiss Made LEAD-free Particle Filter (316L stainless steel) with self-cleaning Backwash Technology.',
         link: '/solutions/particle-filter',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp'
+        img: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp'
       },
       {
         title: 'WATER FINE FILTER',
         desc: 'A unique quadruple filtration system: Physical (20 µm & 5 µm), Activated carbon, AqualenTM, and Ionized silver.',
         link: '/solutions/fine-filter',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/fine%20filter%20with%20cartridge.png'
+        img: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png'
       },
       {
         title: 'The Swiss Water DYNAMIZER',
         desc: 'Restructures and revitalizes water, which can improve taste, digestion, and skin softness.',
         link: '/solutions/dynamizer',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp'
+        img: '/images/WEBSITE-P/products/DYNAMIZER.webp'
       }
     ],
     btnLearn: 'Learn More'
@@ -126,27 +126,27 @@ const CONTENT_FR = {
     items: [
       {
         title: 'WATER LIME',
-        desc: 'Alternative physique aux adoucisseurs, convertit la calcite en aragonite non-adhérente.',
+        desc: 'Alternative physique aux adoucisseurs, convertit la Calcite en Aragonite non-adhérente.',
         link: '/solutions/water-lime',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp'
+        img: '/images/WEBSITE-P/products/water_lime_vertical.webp'
       },
       {
         title: 'PARTICLE FILTER',
         desc: 'Filtre à particules sans PLOMB (Inox 316L) avec technologie de lavage à contre-courant.',
         link: '/solutions/particle-filter',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp'
+        img: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp'
       },
       {
         title: 'FINE FILTER',
         desc: 'Réduit chlore, pesticides, métaux lourds (97-99%) tout en préservant les minéraux.',
         link: '/solutions/fine-filter',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/fine%20filter%20with%20cartridge.png'
+        img: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png'
       },
       {
         title: 'The Swiss Water DYNAMIZER',
         desc: 'Tourbillonne, restructure et revitalise l\'eau pour un goût unique et une peau douce.',
         link: '/solutions/dynamizer',
-        img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp'
+        img: '/images/WEBSITE-P/products/DYNAMIZER.webp'
       }
     ],
     btnLearn: 'En savoir plus'
@@ -218,7 +218,7 @@ export default function CompleteSystem() {
         <section id="presentation" className={styles.contentSection} ref={el => { if (el) sectionRefs.current['presentation'] = el }}>
           <div className={styles.sectionHeader}><h2>{content.overview.title}</h2></div>
           <div className={styles.componentLayout}>
-            <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp" alt="Mam Nature Complete System" loading="lazy" />
+            <img src="/images/WEBSITE-P/products/COMPLETE_SET_PLUS.webp" alt="Mam Nature Complete System" loading="lazy" />
             <div className={styles.componentTextContent}>
               <p>{content.overview.desc}</p>
 

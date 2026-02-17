@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import styles from '@/styles/Product.module.css';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePricing } from '@/context/PricingContext';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
@@ -32,22 +33,22 @@ const CONTENT_EN = {
     title: PRODUCT_NAME,
     btnAdd: 'Add to Cart',
     features: [
-      'Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.',
-      'Includes the Dynamizer for revitalized and restructured water',
-      'Exceptional water throughout your entire home : shower, drinking, cooking, tea, coffee…',
-      'Treats: particles, limescale, and contaminants while preserving natural mineralization.',
-      'Purifies water naturally, no electricity, no waste, no chemicals.',
-      'Maintenance: one cartridge per year, 10 minutes (no tools required).'
+      "Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.",
+      "Includes the Dynamizer for revitalized and restructured water",
+      "Exceptional water throughout your entire home : shower, drinking, cooking, tea, coffee…",
+      "Converts limescale & treats particles and contaminants while preserving natural mineralization",
+      "Purifies water naturally, no electricity, no waste, no chemicals.",
+      "Maintenance: one cartridge per year, 10 minutes (no tools required)."
     ]
   },
   usages: {
     title: 'Perfect water for every use',
     desc: 'Enjoy pure, healthy, and revitalized water from every tap. Our system transforms your daily life by improving water quality for all your uses.',
     cards: [
-      { title: 'Drinking', text: 'Pure and revitalized spring water, free of impurities.', icon: GlassWater, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/drinking%20big.webp' },
-      { title: 'Cooking', text: 'Reveal the flavors of your food and preserve its nutrients.', icon: Utensils, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/washing%20big.webp' },
-      { title: 'Tea & Coffee', text: 'Unleash the full aromatic potential of your hot beverages.', icon: Coffee, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/coffee%20big.webp' },
-      { title: 'Shower & Bath', text: 'Protect your skin and hair from limescale for a feeling of softness.', icon: ShowerHead, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/shower%20big.webp' }
+      { title: 'Drinking', text: 'Pure spring water, free of contaminants', icon: GlassWater, img: '/images/WEBSITE-P/drinking_big.webp' },
+      { title: 'Cooking', text: 'Reveal the flavours of your food and preserve its nutrients with water free of contaminants', icon: Utensils, img: '/images/WEBSITE-P/washing_big.webp' },
+      { title: 'Tea & Coffee', text: 'Prepare your hot beverages with water free of contaminants', icon: Coffee, img: '/images/WEBSITE-P/coffee_big.webp' },
+      { title: 'Shower & Bath', text: 'Protect your skin and hair with soft and contaminant free water for a feeling of smoothness.', icon: ShowerHead, img: '/images/WEBSITE-P/shower_big.webp' }
     ]
   },
   details: {
@@ -57,10 +58,20 @@ const CONTENT_EN = {
       summary: 'Physical transformation of limestone to prevent scaling deposits. Unlimited capacity and maintenance-free.',
       content: {
         h4: 'Effective, durable, and effortless.',
-        quote: 'Note: Limescale is nothing more than calcium and magnesium...',
-        challenge: 'The challenge: Calcite, the hard form of limestone in water, builds up...',
-        solution: 'Mam Nature Swiss® Water Lime: Converts calcite into aragonite using permanent magnets.',
-        specs: 'Capacity: unlimited - Maintenance: None.'
+        quote: 'Note: Limescale is nothing more than calcium and magnesium, which are essential to the biological balance of water. It is the scaling form that is problematic; a responsible treatment does not eliminate limestone, but softens it,, which prevents hard deposits while preserving the minerals and trace elements naturally present in the water.',
+        challengeTitle: 'The challenge:',
+        challenge: 'Calcite, the hard form of limestone in water, builds up deposits, causing technical (malfunctions and reduced lifespan of appliances) and aesthetic (dull surfaces) damage.',
+        limitsTitle: 'The limits of traditional solutions:',
+        limits: 'Salt-based water softeners exchange calcium and magnesium ions for sodium, removing minerals (demineralized water is dangerous to health), thus the composition and taste of the water are seriously altered, requires regular & expensive maintenance and causes an inadmissible bacterial load.',
+        solutionTitle: 'Mam Nature Swiss® Water Lime: A physical conversion of limestone.',
+        solution: 'Our device works not by removing limestone, but by modifying its crystalline structure through the action of permanent magnets. It converts Calcite (scaling form) into Aragonite (non-adhesive form).',
+        benefitsTitle: 'The direct benefits:',
+        benefitsList: [
+          'Active protection: Reduction of solid deposits in pipes, water heaters, and appliances.',
+          'Preserved water: preserves the taste, minerals, and trace elements naturally present in the water.',
+          'Absolute simplicity, economical and ecological: No consumables (salt, cartridges), no energy, no water waste.'
+        ],
+        specs: 'Capacity: unlimited<br>Maintenance: None.'
       }
     },
     particle: {
@@ -68,20 +79,19 @@ const CONTENT_EN = {
       summary: 'Filters sediments and suspended particles with automatic backwash and integrated pressure regulator.',
       content: {
         text: 'Particle filter with automatic backwash, pressure regulator, and 360° connector. Compact, fully integrated solution made from medical-grade materials (316L stainless steel).',
-        specs: 'Capacity: unlimited - Maintenance: none (fully automated solution).'
+        specs: 'Capacity: unlimited<br>Maintenance: none (fully automated solution).'
       }
     },
     fine: {
       title: '3. WATER FINE FILTER',
-      summary: 'Advanced filtration that reduces chlorine, heavy metals, pesticides, and microplastics.',
+      summary: 'Unique filtration technology eliminating PFAS, heavy metals, aluminium, chlorine, fluoride, pesticides, pharmaceutical residues, industrial chemicals, arsenic, cadmium, chromium & radioactive substances.',
       content: {
-        text: 'Unique quadruple filtration system:',
+        text: 'Unique selective Whole-House Adsorption Filtration System:',
         list: [
-          'Physical: 20 µm and 5 µm membrane filter',
-          'Activated carbon: adsorption filtration',
-          'Aqualen™: Adsorbent fibers for efficient heavy metal filtration',
-          'Ionized silver: sterility.'
-        ]
+          '1. Filter Media: Exclusive Mam Nature technology based on proteins fibers (combined with activated carbon) for the most complete & world unique adsorption filtration',
+          '2. Sterile cartridge: Sterility (by copper & iron hydroxide) in the cartridge without sterilizing agents entering the drinking water.'
+        ],
+        reduces: 'Reduces Chlorine, Pesticides, PFAS, Drug Residues, Phenol, Heavy Metals, Aluminium, Microplastics & including radioactive substances at a reduction rate of 95 - 99.9 % at large volumes of 2000 litres/hour.'
       }
     },
     cartridge: {
@@ -89,32 +99,34 @@ const CONTENT_EN = {
       summary: 'Patented technology that eliminates contaminants while preserving essential minerals.',
       content: {
         h4: 'The Swiss Water Cartridge',
-        text: 'Eliminates PFAS, heavy metals, aluminum, chlorine, fluoride, pesticides...',
-        specs: 'Capacity: 150m³ - Maintenance: 10 minutes once per year.'
+        text1: 'Mam Nature Swiss® – Solving the impossible: Perfectly filtered, soft, and naturally mineralized water.',
+        text2: 'The « SWISS WATER CARTRIDGE » : BEYOND FILTRATION – A TRUE PROTECTION UNMATCHED CONTAMINANT RENTENTION ',
+        text3: 'Our 100% natural filtration technology, exclusive to Mam Nature Swiss®, combines natural protein fibers with activated carbon to achieve total adsorption, a world first. It eliminates contaminants while preserving minerals and trace elements being naturally present in water. Owing to its selective filtration system by full adsorption, this patented Swiss invention is the world unique universal solution, 100% natural, capable of eliminating PFAS, heavy metals, aluminum, chlorine, fluoride, pesticides, pharmaceutical residues, industrial chemicals, arsenic, cadmium, chromium, etc. - and even radioactive substances found in nuclear water.',
+        specs: 'Flow rate: up to 1800 liters/hour.<br>Filter cartridge capacity (lifespan): 150m³<br>Maintenance: 10 minutes once per year (simple and no tools required).'
       }
     },
     dynamizer: {
       title: '4. THE SWISS WATER DYNAMIZER',
       summary: 'Revitalizes water for better hydration and transforms limescale.',
       problemTitle: 'The Problem with Modern Water',
-      prob1: { title: 'Low cellular bioavailability', text: 'Industrial treatments alter the molecular structure of water...' },
-      prob2: { title: 'Destructured water', text: 'In its natural state, high-quality water has a perfect hexagonal structure...' },
+      prob1: { title: 'Low cellular bioavailability', text: 'Industrial treatments and demineralization alter the molecular structure of water, creating “large water molecule clusters” that cells hardly absorb.' },
+      prob2: { title: 'Destructured water', text: 'In its natural state, high-quality water has a perfect hexagonal structure, key to optimal hydration. This structure, vital for our body, is unfortunately destroyed on its journey to our tap.' },
       solutionTitle: 'The Solution',
-      sol1: { title: 'Restructuring & Revitalization', text: 'Breaks large water molecule clusters into micro-clusters...' },
-      sol2: { title: 'Limestone Transformation', text: 'Through permanent magnets and extreme turbulence...' },
-      sol3: { title: 'Long-Term stabilization', text: 'Dynamized water gains a biologically stable structure...' },
+      sol1: { title: 'Restructuring & Revitalization', text: 'Breaks large water molecule clusters into micro-clusters, making water highly bioavailable for cells. At the same time, it transmits natural frequencies and harmonious vibrations, restoring the natural hexagonal structure of water.' },
+      sol2: { title: 'Limestone Transformation', text: 'Through permanent magnets and extreme turbulence, it converts hard Calcite (responsible for deposits) into soft Aragonite. This form of limestone is non-scaling, thus protecting your appliances and pipes without altering the water\'s taste.' },
+      sol3: { title: 'Long-Term stabilization', text: 'Dynamized water gains a biologically stable structure that lasts over time.' },
       pipeStraight: { title: 'Straight water pipe:', text: 'Water clusters and loses its biophysical power.' },
-      pipeSpiral: { title: 'Spiral water pipe:', text: 'Molecular clusters are dissolved and the water regains its power.' },
+      pipeSpiral: { title: 'Spiral water pipe:', text: 'Molecular clusters are dissolved and the water regains its biophysical power.' },
       benefitsTitle: 'Daily benefits',
       benefit1: { title: 'Exceptional taste', text: 'Discover an incredibly soft, remarkably digestible and pleasant water.' },
-      benefit2: { title: 'Optimal cellular hydration', text: 'Supports proper body function and reduces acidity.' },
+      benefit2: { title: 'Optimal cellular hydration', text: 'Supports proper body function and reduces acidity, a source of many imbalances.' },
       benefit3: { title: 'Natural limescale protection', text: 'Naturally protects your appliances and surfaces without using salt or chemicals.' },
-      benefit4: { title: 'Unmatched performance', text: 'With a processing capacity of 5,000 liters/hour, it meets the needs of the entire house.' },
+      benefit4: { title: 'Unmatched performance', text: 'With a processing capacity of 5,000 liters/hour, the dynamizer meets the needs of the entire house.' },
       specs: { cap: 'Capacity: Unlimited', maint: 'Maintenance: None' }
     }
   },
   install: {
-    title: 'Simple & Guided Installation',
+    title: 'Simple & guided Installation',
     introTitle: 'Designed for efficient setup',
     introText: 'The Mam Nature system is designed for quick installation by a qualified plumber. It is placed just after your water meter to treat your entire home.',
     neededTitle: 'What you need',
@@ -132,7 +144,7 @@ const CONTENT_EN = {
     btnOrder: 'Order a cartridge',
     warrantyTitle: 'Excellence Warranty',
     warrantyYears: '10 YEARS',
-    warrantyText: 'Made of durable medical-grade stainless steel.'
+    warrantyText: 'Water carrying part made of durable medical-grade stainless steel.'
   },
   reports: {
     title: 'Test Reports & Certificates',
@@ -157,85 +169,96 @@ const CONTENT_FR = {
     title: PRODUCT_NAME,
     btnAdd: 'Ajouter au panier',
     features: [
-      'Fabriqué en inox médical, garantie 10ans, conçu pour durer toute la vie',
-      'Inclut le Dynamizeur pour une eau revitalisée et restructurée',
-      'Eau d’exception pour toute votre maison : Douche, boire, cuisine, Thé, Café…',
-      'Traite : particules, calcaire et contaminants (95 – 99,9% - unique en monde) tout en préservant la minéralisation naturelle',
-      'Sans électricité, sans gaspillage et sans chimie',
-      'Entretien: une seule cartouche par année, 10 minutes (sans outil)'
+      "Fabriqué en inox médical, garantie 10 ans, conçu pour durer toute la vie",
+      "Inclut le Dynamizer pour une eau revitalisée et restructurée",
+      "Eau d’exception pour toute votre maison : Douche, boire, cuisine, Thé, Café…",
+      "Traite : particules, calcaire et contaminants (95 – 99,9% - unique en monde) tout en préservant la minéralisation naturelle",
+      "Sans électricité, sans gaspillage et sans chimie",
+      "Une seule cartouche par année, 10 minutes (sans outil)"
     ]
   },
   usages: {
     title: 'Une eau parfaite pour chaque usage',
     desc: 'Profitez d\'une eau pure, saine et revitalisée à chaque robinet. Notre système transforme votre quotidien en améliorant la qualité de l\'eau pour toutes vos utilisations.',
     cards: [
-      { title: 'Boisson', text: 'Une eau de source pure et revitalisée, débarrassée des impuretés.', icon: GlassWater, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/drinking%20big.webp' },
-      { title: 'Cuisine', text: 'Révélez les saveurs de vos aliments et préservez leurs nutriments.', icon: Utensils, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/washing%20big.webp' },
-      { title: 'Thé & Café', text: 'Libérez tout le potentiel aromatique de vos boissons chaudes.', icon: Coffee, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/coffee%20big.webp' },
-      { title: 'Douche & Bain', text: 'Protégez votre peau et vos cheveux du calcaire pour une sensation de douceur.', icon: ShowerHead, img: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/shower%20big.webp' }
+      { title: 'Boisson', text: 'Une eau de source pure et revitalisée, débarrassée des impuretés.', icon: GlassWater, img: '/images/WEBSITE-P/drinking_big.webp' },
+      { title: 'Cuisine', text: 'Révélez les saveurs de vos aliments et préservez leurs nutriments.', icon: Utensils, img: '/images/WEBSITE-P/washing_big.webp' },
+      { title: 'Thé & Café', text: 'Libérez tout le potentiel aromatique de vos boissons chaudes.', icon: Coffee, img: '/images/WEBSITE-P/coffee_big.webp' },
+      { title: 'Douche & Bain', text: 'Protégez votre peau et vos cheveux du calcaire pour une sensation de douceur.', icon: ShowerHead, img: '/images/WEBSITE-P/shower_big.webp' }
     ]
   },
   details: {
-    title: 'Détails Techniques en 4 Étapes',
+    title: 'Technical Details in 4 Steps',
     lime: {
       title: '1. WATER LIME',
-      summary: 'Transformation physique du calcaire pour prévenir les dépôts incrustants. Capacité illimitée et sans entretien.',
+      summary: 'Physical transformation of limestone to prevent scaling deposits. Unlimited capacity and maintenance-free.',
       content: {
-        h4: 'Efficace, durable et sans effort.',
-        quote: 'Note : Le calcaire n\'est rien d\'autre que du calcium et du magnésium...',
-        challenge: 'Le défi : La calcite, forme dure du calcaire, s\'accumule...',
-        solution: 'Mam Nature Swiss® Water Lime : Convertit la calcite en aragonite grâce à des aimants permanents.',
-        specs: 'Capacité : illimitée - Entretien : Aucun.'
+        h4: 'Effective, durable, and effortless.',
+        quote: 'Note: Limescale is nothing more than calcium and magnesium, which are essential to the biological balance of water. It is the scaling form that is problematic; a responsible treatment does not eliminate limestone, but softens it,, which prevents hard deposits while preserving the minerals and trace elements naturally present in the water.',
+        challengeTitle: 'The challenge:',
+        challenge: 'Calcite, the hard form of limestone in water, builds up deposits, causing technical (malfunctions and reduced lifespan of appliances) and aesthetic (dull surfaces) damage.',
+        limitsTitle: 'The limits of traditional solutions:',
+        limits: 'Salt-based water softeners exchange calcium and magnesium ions for sodium, removing minerals (demineralized water is dangerous to health), thus the composition and taste of the water are seriously altered, requires regular & expensive maintenance and causes an inadmissible bacterial load.',
+        solutionTitle: 'Mam Nature Swiss® Water Lime: A physical conversion of limestone.',
+        solution: 'Our device works not by removing limestone, but by modifying its crystalline structure through the action of permanent magnets. It converts Calcite (scaling form) into Aragonite (non-adhesive form).',
+        benefitsTitle: 'The direct benefits:',
+        benefitsList: [
+          'Active protection: Reduction of solid deposits in pipes, water heaters, and appliances.',
+          'Preserved water: preserves the taste, minerals, and trace elements naturally present in the water.',
+          'Absolute simplicity, economical and ecological: No consumables (salt, cartridges), no energy, no water waste.'
+        ],
+        specs: 'Capacity: unlimited<br>Maintenance: None.'
       }
     },
     particle: {
       title: '2. WATER PARTICLE FILTER',
-      summary: 'Filtre les sédiments et particules en suspension avec retro-lavage automatique et régulateur de pression intégré.',
+      summary: 'Filters sediments and suspended particles with automatic backwash and integrated pressure regulator.',
       content: {
-        text: 'Filtre à particules avec retro-lavage automatique, régulateur de pression et connecteur 360°. Solution compacte en inox médical (316L).',
-        specs: 'Capacité : illimitée - Entretien : aucun (solution entièrement automatisée).'
+        text: 'Particle filter with automatic backwash, pressure regulator, and 360° connector. Compact, fully integrated solution made from medical-grade materials (316L stainless steel).',
+        specs: 'Capacity: unlimited<br>Maintenance: none (fully automated solution).'
       }
     },
     fine: {
       title: '3. WATER FINE FILTER',
-      summary: 'Filtration avancée qui réduit chlore, métaux lourds, pesticides et microplastiques.',
+      summary: 'Unique filtration technology eliminating PFAS, heavy metals, aluminium, chlorine, fluoride, pesticides, pharmaceutical residues, industrial chemicals, arsenic, cadmium, chromium & radioactive substances.',
       content: {
-        text: 'Système unique de quadruple filtration :',
+        text: 'Unique selective Whole-House Adsorption Filtration System:',
         list: [
-          'Physique : Filtre membrane 20 µm et 5 µm',
-          'Charbon actif : filtration par adsorption',
-          'Aqualen™ : Fibres adsorbantes pour la filtration des métaux lourds',
-          'Argent ionisé : stérilité.'
-        ]
+          '1. Filter Media: Exclusive Mam Nature technology based on proteins fibers (combined with activated carbon) for the most complete & world unique adsorption filtration',
+          '2. Sterile cartridge: Sterility (by copper & iron hydroxide) in the cartridge without sterilizing agents entering the drinking water.'
+        ],
+        reduces: 'Reduces Chlorine, Pesticides, PFAS, Drug Residues, Phenol, Heavy Metals, Aluminium, Microplastics & including radioactive substances at a reduction rate of 95 - 99.9 % at large volumes of 2000 litres/hour.'
       }
     },
     cartridge: {
-      title: 'CARTOUCHE',
-      summary: 'Technologie brevetée qui élimine les contaminants en préservant les minéraux essentiels.',
+      title: 'CARTRIDGE',
+      summary: 'Patented technology that eliminates contaminants while preserving essential minerals.',
       content: {
         h4: 'The Swiss Water Cartridge',
-        text: 'Élimine PFAS, métaux lourds, aluminium, chlore, fluor, pesticides...',
-        specs: 'Capacité : 150m³ - Entretien : 10 minutes une fois par an.'
+        text1: 'Mam Nature Swiss® – Solving the impossible: Perfectly filtered, soft, and naturally mineralized water.',
+        text2: 'The « SWISS WATER CARTRIDGE » : BEYOND FILTRATION – A TRUE PROTECTION UNMATCHED CONTAMINANT RENTENTION ',
+        text3: 'Our 100% natural filtration technology, exclusive to Mam Nature Swiss®, combines natural protein fibers with activated carbon to achieve total adsorption, a world first. It eliminates contaminants while preserving minerals and trace elements being naturally present in water. Owing to its selective filtration system by full adsorption, this patented Swiss invention is the world unique universal solution, 100% natural, capable of eliminating PFAS, heavy metals, aluminum, chlorine, fluoride, pesticides, pharmaceutical residues, industrial chemicals, arsenic, cadmium, chromium, etc. - and even radioactive substances found in nuclear water.',
+        specs: 'Flow rate: up to 1800 liters/hour.<br>Filter cartridge capacity (lifespan): 150m³<br>Maintenance: 10 minutes once per year (simple and no tools required).'
       }
     },
     dynamizer: {
       title: '4. THE SWISS WATER DYNAMIZER',
-      summary: 'Revitalise l\'eau pour une meilleure hydratation et transforme le calcaire.',
-      problemTitle: 'Problème de l\'eau moderne',
-      prob1: { title: 'Faible biodisponibilité cellulaire', text: 'Les traitements industriels altèrent la structure de l\'eau...' },
-      prob2: { title: 'Eau déstructurée', text: 'À l\'état naturel, l\'eau a une structure hexagonale parfaite...' },
-      solutionTitle: 'La Solution',
-      sol1: { title: 'Restructuration et revitalisation', text: 'Fragmente les gros clusters en micro-clusters...' },
-      sol2: { title: 'Transformation du calcaire', text: 'Grâce à des aimants permanents et une turbulence extrême...' },
-      sol3: { title: 'Stabilisation durable', text: 'L\'eau dynamisée acquiert une structure stable...' },
-      pipeStraight: { title: 'Tube droit :', text: 'L\'eau s\'agglutine et perd sa puissance biophysique.' },
-      pipeSpiral: { title: 'Tube en spirale :', text: 'Les clusters sont dissous et l\'eau retrouve sa puissance.' },
-      benefitsTitle: 'Bénéfices au quotidien',
-      benefit1: { title: 'Goût exceptionnel', text: 'Découvrez une eau douce, digeste et agréable.' },
-      benefit2: { title: 'Hydratation cellulaire optimale', text: 'Favorise le bon fonctionnement du corps et réduit l\'acidité.' },
-      benefit3: { title: 'Protection naturelle anti-calcaire', text: 'Protège vos appareils sans sel ni produits chimiques.' },
-      benefit4: { title: 'Performance inégalée', text: 'Avec une capacité de 5 000 litres/heure, pour toute la maison.' },
-      specs: { cap: 'Capacité : Illimitée', maint: 'Entretien : Aucun' }
+      summary: 'Revitalizes water for better hydration and transforms limescale.',
+      problemTitle: 'The Problem with Modern Water',
+      prob1: { title: 'Low cellular bioavailability', text: 'Industrial treatments and demineralization alter the molecular structure of water, creating “large water molecule clusters” that cells hardly absorb.' },
+      prob2: { title: 'Destructured water', text: 'In its natural state, high-quality water has a perfect hexagonal structure, key to optimal hydration. This structure, vital for our body, is unfortunately destroyed on its journey to our tap.' },
+      solutionTitle: 'The Solution',
+      sol1: { title: 'Restructuring & Revitalization', text: 'Breaks large water molecule clusters into micro-clusters, making water highly bioavailable for cells. At the same time, it transmits natural frequencies and harmonious vibrations, restoring the natural hexagonal structure of water.' },
+      sol2: { title: 'Limestone Transformation', text: 'Through permanent magnets and extreme turbulence, it converts hard Calcite (responsible for deposits) into soft Aragonite. This form of limestone is non-scaling, thus protecting your appliances and pipes without altering the water\'s taste.' },
+      sol3: { title: 'Long-Term stabilization', text: 'Dynamized water gains a biologically stable structure that lasts over time.' },
+      pipeStraight: { title: 'Straight water pipe:', text: 'Water clusters and loses its biophysical power.' },
+      pipeSpiral: { title: 'Spiral water pipe:', text: 'Molecular clusters are dissolved and the water regains its biophysical power.' },
+      benefitsTitle: 'Daily benefits',
+      benefit1: { title: 'Exceptional taste', text: 'Discover an incredibly soft, remarkably digestible and pleasant water.' },
+      benefit2: { title: 'Optimal cellular hydration', text: 'Supports proper body function and reduces acidity, a source of many imbalances.' },
+      benefit3: { title: 'Natural limescale protection', text: 'Naturally protects your appliances and surfaces without using salt or chemicals.' },
+      benefit4: { title: 'Unmatched performance', text: 'With a processing capacity of 5,000 liters/hour, the dynamizer meets the needs of the entire house.' },
+      specs: { cap: 'Capacity: Unlimited', maint: 'Maintenance: None' }
     }
   },
   install: {
@@ -278,6 +301,7 @@ export default function CompleteSetPlusPage() {
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedOption, setSelectedOption] = useState<'manual' | 'auto'>('manual');
   const [activeSection, setActiveSection] = useState('produit');
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const [activeSubAccordion, setActiveSubAccordion] = useState<Record<string, boolean>>({});
@@ -286,12 +310,21 @@ export default function CompleteSetPlusPage() {
 
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
-  const IMAGES = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/drinking%20big.webp",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/shower%20big.webp",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/coffee%20big.webp"
+  const IMAGES_MANUAL = [
+    "/images/products/WITHOUT AUTO BACKWASH/complete set plus+ WITHOUT AUTOMATIC BACKWASH.webp",
+    "/images/WEBSITE-P/drinking_big.webp",
+    "/images/WEBSITE-P/shower_big.webp",
+    "/images/WEBSITE-P/coffee_big.webp"
   ];
+
+  const IMAGES_AUTO = [
+    "/images/products/AUTOBACKWASH/complete set plus+ Aqmos incl automatic Backwash 1.webp",
+    "/images/WEBSITE-P/drinking_big.webp",
+    "/images/WEBSITE-P/shower_big.webp",
+    "/images/WEBSITE-P/coffee_big.webp"
+  ];
+
+  const IMAGES = selectedOption === 'auto' ? IMAGES_AUTO : IMAGES_MANUAL;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -338,11 +371,12 @@ export default function CompleteSetPlusPage() {
   };
 
   const handleAddToCart = () => {
-    const rawPrice = getRawPrice(PRODUCT_ID);
+    const currentProductId = selectedOption === 'auto' ? `${PRODUCT_ID}-auto` : PRODUCT_ID;
+    const rawPrice = getRawPrice(currentProductId);
     const currencyCode = currency === 'MAD' ? 'Dhs' : currency || 'EUR';
 
     addToCart({
-      id: PRODUCT_ID,
+      id: currentProductId,
       name: PRODUCT_NAME,
       price: rawPrice,
       currency: currencyCode,
@@ -351,9 +385,9 @@ export default function CompleteSetPlusPage() {
   };
 
   const reportUrls = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/The%20Swiss%20Water%20Cartridge_Retention%20Rates_Certificated%20ETH%20Zurich.pdf",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/ISO.pdf"
+    "/images/website-assets/certificates/The_Swiss_Water_Cartridge_Retention_Rates_Certificated_ETH_Zurich.pdf",
+    "/images/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure_Test_MNS-CS.pdf",
+    "/images/website-assets/certificates/ISO.pdf"
   ];
 
   return (
@@ -416,8 +450,69 @@ export default function CompleteSetPlusPage() {
             <div className={styles.productDetails}>
               <div className={styles.productInfoMobile}>
                 <h1 className={styles.productTitle}>{content.product.title}</h1>
+
+                {/* OPTION SELECTOR */}
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>
+                    {isFrench ? 'Choisissez votre version :' : 'Choose your version:'}
+                  </label>
+                  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                    <button
+                      onClick={() => setSelectedOption('manual')}
+                      style={{
+                        padding: '0.5rem 1rem',
+                        border: selectedOption === 'manual' ? '1px solid #D52D25' : '1px solid #e5e7eb',
+                        backgroundColor: selectedOption === 'manual' ? '#FFF5F5' : '#fff',
+                        color: selectedOption === 'manual' ? '#D52D25' : '#4b5563',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        fontSize: '0.9rem',
+                        fontWeight: selectedOption === 'manual' ? 600 : 400,
+                        transition: 'all 0.2s ease',
+                        boxShadow: selectedOption === 'manual' ? '0 1px 2px rgba(213, 45, 37, 0.1)' : 'none',
+                      }}
+                    >
+                      {isFrench ? 'Sans Rétrolavage Automatique' : 'Without Automatic Backwash'}
+                    </button>
+                    <button
+                      onClick={() => setSelectedOption('auto')}
+                      style={{
+                        padding: '0.5rem 0.75rem',
+                        border: selectedOption === 'auto' ? '1px solid #D52D25' : '1px solid #e5e7eb',
+                        backgroundColor: selectedOption === 'auto' ? '#FFF5F5' : '#fff',
+                        color: selectedOption === 'auto' ? '#D52D25' : '#4b5563',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        fontSize: '0.9rem',
+                        fontWeight: selectedOption === 'auto' ? 600 : 400,
+                        transition: 'all 0.2s ease',
+                        boxShadow: selectedOption === 'auto' ? '0 1px 2px rgba(213, 45, 37, 0.1)' : 'none',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px'
+                      }}
+                    >
+                      {/* Image icon for Auto Backwash */}
+                      <div style={{ position: 'relative', width: '30px', height: '30px', flexShrink: 0 }}>
+                        <Image
+                          src="/images/products/PARTICLE FILTER/Autom. Backwash Unit 1.webp"
+                          alt="Automatic Backwash"
+                          fill
+                          style={{ objectFit: 'contain' }}
+                        />
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: '1.1' }}>
+                        <span>{isFrench ? 'Avec Rétrolavage Automatique' : 'With Automatic Backwash'}</span>
+                        <span style={{ fontSize: '0.85em', color: selectedOption === 'auto' ? '#D52D25' : '#888', fontWeight: 500 }}>
+                          +90 EUR
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
                 <div className={styles.productPrice}>
-                  {isLoading ? 'Loading...' : getPrice(PRODUCT_ID)}
+                  {isLoading ? 'Loading...' : getPrice(selectedOption === 'auto' ? `${PRODUCT_ID}-auto` : PRODUCT_ID)}
                 </div>
               </div>
               <div className={styles.cartForm}>
@@ -465,7 +560,7 @@ export default function CompleteSetPlusPage() {
             <div className={styles.accordionItem}>
               <button className={styles.accordionHeader} onClick={() => toggleAccordion('lime')}>
                 <div className={styles.headerGrid}>
-                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp" alt="Water Lime" className={styles.headerImage} />
+                  <img src="/images/WEBSITE-P/products/water_lime_vertical.webp" alt="Water Lime" className={styles.headerImage} />
                   <div className={styles.accordionTitle}>
                     <strong>{content.details.lime.title}</strong>
                     <p className={styles.summaryText}>{content.details.lime.summary}</p>
@@ -477,8 +572,15 @@ export default function CompleteSetPlusPage() {
                 <div className={styles.accordionContentInner}>
                   <h4>{content.details.lime.content.h4}</h4>
                   <blockquote>{content.details.lime.content.quote}</blockquote>
-                  <p><strong>{content.details.lime.content.challenge}</strong></p>
-                  <p><strong>{content.details.lime.content.solution}</strong></p>
+                  <p><strong>{content.details.lime.content.challengeTitle}</strong> {content.details.lime.content.challenge}</p>
+                  <p><strong>{content.details.lime.content.limitsTitle}</strong> {content.details.lime.content.limits}</p>
+                  <p><strong>{content.details.lime.content.solutionTitle}</strong> {content.details.lime.content.solution}</p>
+                  <p><strong>{content.details.lime.content.benefitsTitle}</strong></p>
+                  <ul>
+                    {content.details.lime.content.benefitsList.map((benefit: string, idx: number) => (
+                      <li key={idx}><strong>{benefit.split(':')[0]}:</strong>{benefit.split(':')[1]}</li>
+                    ))}
+                  </ul>
                   <p dangerouslySetInnerHTML={{ __html: content.details.lime.content.specs.replace('\n', '<br/>') }}></p>
                 </div>
               </div>
@@ -488,7 +590,7 @@ export default function CompleteSetPlusPage() {
             <div className={styles.accordionItem}>
               <button className={styles.accordionHeader} onClick={() => toggleAccordion('particle')}>
                 <div className={styles.headerGrid}>
-                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp" alt="Particle Filter" className={styles.headerImage} />
+                  <img src="/images/WEBSITE-P/products/PARTICLES_FILTER.webp" alt="Particle Filter" className={styles.headerImage} />
                   <div className={styles.accordionTitle}>
                     <strong>{content.details.particle.title}</strong>
                     <p className={styles.summaryText}>{content.details.particle.summary}</p>
@@ -507,7 +609,7 @@ export default function CompleteSetPlusPage() {
             {/* ITEM 3: FINE FILTER + CARTRIDGE (GROUPED) */}
             <div className={styles.detailsGroupContainer}>
               <div className={styles.groupedHeader}>
-                <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/fine%20filter%20with%20cartridge.png" alt="Fine Filter" className={styles.groupedImage} />
+                <img src="/images/website-assets/PRODUCT/fine_filter_with_cartridge.png" alt="Fine Filter" className={styles.groupedImage} />
                 <div className={styles.accordionItemsWrapper}>
                   <div className={styles.accordionItem}>
                     <button className={styles.accordionHeader} onClick={() => toggleAccordion('fine')}>
@@ -537,14 +639,17 @@ export default function CompleteSetPlusPage() {
                 <div className={styles.accordionContentInner} style={{ marginLeft: 0 }}>
                   <p><strong>{content.details.fine.content.text}</strong></p>
                   <ul>
-                    {content.details.fine.content.list.map((it, idx) => <li key={idx}>{it}</li>)}
+                    {content.details.fine.content.list.map((it: string, idx: number) => <li key={idx} style={{ marginBottom: '0.5rem' }}>{it}</li>)}
                   </ul>
+                  <p><strong>{content.details.fine.content.reduces}</strong></p>
                 </div>
               </div>
-              <div className={`${styles.accordionContent} ${styles.fullWidth}`} style={{ maxHeight: activeAccordion === 'cartridge' ? '1000px' : '0' }}>
+              <div className={`${styles.accordionContent} ${styles.fullWidth}`} style={{ maxHeight: activeAccordion === 'cartridge' ? '1200px' : '0' }}>
                 <div className={styles.accordionContentInner} style={{ marginLeft: 0 }}>
                   <h4>{content.details.cartridge.content.h4}</h4>
-                  <p>{content.details.cartridge.content.text}</p>
+                  <p><strong>{content.details.cartridge.content.text1}</strong></p>
+                  <p><strong>{content.details.cartridge.content.text2}</strong></p>
+                  <p>{content.details.cartridge.content.text3}</p>
                   <p dangerouslySetInnerHTML={{ __html: content.details.cartridge.content.specs.replace('\n', '<br/>') }}></p>
                 </div>
               </div>
@@ -554,7 +659,7 @@ export default function CompleteSetPlusPage() {
             <div className={styles.accordionItem}>
               <button className={styles.accordionHeader} onClick={() => toggleAccordion('dynamizer')}>
                 <div className={styles.headerGrid}>
-                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp" alt="Dynamizer" className={styles.headerImage} />
+                  <img src="/images/WEBSITE-P/products/DYNAMIZER.webp" alt="Dynamizer" className={styles.headerImage} />
                   <div className={styles.accordionTitle}>
                     <strong>{content.details.dynamizer.title}</strong>
                     <p className={styles.summaryText}>{content.details.dynamizer.summary}</p>
@@ -759,12 +864,20 @@ export default function CompleteSetPlusPage() {
                   </div>
                 </div>
               )}
-              <iframe
-                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
+              <object
+                data={modalUrl}
+                type="application/pdf"
                 style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
                 title="Document Preview"
                 onLoad={() => setIsLoadingPdf(false)}
-              />
+              >
+                <div style={{ padding: '20px', textAlign: 'center', color: 'gray' }}>
+                  <p>Preview not available.</p>
+                  <a href={modalUrl} download style={{ color: '#4ade80', textDecoration: 'underline' }}>
+                    Download PDF
+                  </a>
+                </div>
+              </object>
             </div>
             <style>{`
               @keyframes spin {

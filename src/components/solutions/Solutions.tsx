@@ -24,7 +24,7 @@ const CONTENT_EN = {
     {
       id: 'complete-system',
       title: 'COMPLETE SYSTEM',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp',
+      image: '/images/WEBSITE-P/products/COMPLETE_SET_PLUS.webp',
       desc: 'Our complete solution for pure, healthy, and revitalized water throughout your entire home. The Complete System combines our four advanced technologies.',
       link: '/solutions/mam-nature-complete-system',
       specs: [
@@ -37,7 +37,7 @@ const CONTENT_EN = {
     {
       id: 'water-lime',
       title: 'WATER LIME',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp',
+      image: '/images/WEBSITE-P/products/water_lime_vertical.webp',
       desc: 'A proven alternative for water softening systems on purely physical basis. « Water LIME » converts the hard form of lime (Calcite) into a soft form (Aragonite).',
       link: '/solutions/water-lime',
       specs: [
@@ -52,7 +52,7 @@ const CONTENT_EN = {
     {
       id: 'particle-filter',
       title: 'PARTICLE FILTER',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
+      image: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp',
       desc: 'Mam Nature Swiss proudly presents the world’s first Swiss Made LEAD-free Particle Filter, made from premium 316L stainless steel.',
       link: '/solutions/particle-filter',
       specs: [
@@ -68,7 +68,7 @@ const CONTENT_EN = {
     {
       id: 'fine-filter',
       title: 'FINE FILTER',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/fine%20filter%20with%20cartridge.png',
+      image: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png',
       desc: 'A unique quadruple filtration system that reduces chlorine, heavy metals, pesticides, and microplastics, while preserving essential minerals.',
       link: '/solutions/fine-filter',
       specs: [
@@ -83,7 +83,7 @@ const CONTENT_EN = {
     {
       id: 'dynamizer',
       title: 'The Swiss Water DYNAMIZER',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
+      image: '/images/WEBSITE-P/products/DYNAMIZER.webp',
       desc: 'Water is moved as worldwide standard in straight water tubes which doesn\'t correspond to the natural movement of water. As a result, water quality suffers.',
       link: '/solutions/dynamizer',
       specs: [
@@ -110,7 +110,7 @@ const CONTENT_FR = {
     {
       id: 'complete-system',
       title: 'SYSTÈME COMPLET',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp',
+      image: '/images/WEBSITE-P/products/COMPLETE_SET_PLUS.webp',
       desc: 'Notre solution intégrale pour une eau pure, saine et revitalisée dans toute votre maison. Le Système Complet combine nos quatre technologies de pointe.',
       link: '/solutions/mam-nature-complete-system',
       specs: [
@@ -123,7 +123,7 @@ const CONTENT_FR = {
     {
       id: 'water-lime',
       title: 'WATER LIME',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp',
+      image: '/images/WEBSITE-P/products/water_lime_vertical.webp',
       desc: 'Une alternative éprouvée aux systèmes d\'adoucissement de l\'eau sur une base purement physique. Water LIME convertit la forme dure de la chaux (Calcite) en une forme molle (Aragonite).',
       link: '/solutions/water-lime',
       specs: [
@@ -138,7 +138,7 @@ const CONTENT_FR = {
     {
       id: 'particle-filter',
       title: 'PARTICLE FILTER',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
+      image: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp',
       desc: 'Mam Nature Swiss présente fièrement le premier filtre à particules sans PLOMB Swiss made, fabriqué en INOX 316L de qualité premium.',
       link: '/solutions/particle-filter',
       specs: [
@@ -154,7 +154,7 @@ const CONTENT_FR = {
     {
       id: 'fine-filter',
       title: 'FINE FILTER',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/PRODUCT/fine%20filter%20with%20cartridge.png',
+      image: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png',
       desc: 'Réduit : le chlore, les pesticides, les microplastiques, les métaux lourds jusqu\'à 97-99%. Filtration sélective : préserve la structure et les minéraux de l\'eau.',
       link: '/solutions/fine-filter',
       specs: [
@@ -169,7 +169,7 @@ const CONTENT_FR = {
     {
       id: 'dynamizer',
       title: 'The Swiss Water DYNAMIZER',
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
+      image: '/images/WEBSITE-P/products/DYNAMIZER.webp',
       desc: 'L\'eau est transportée dans des tubes rectilignes, ce qui ne correspond pas à son mouvement naturel. Le dynamiseur restructure et revitalise l\'eau.',
       link: '/solutions/dynamizer',
       specs: [

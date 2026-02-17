@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: 'The Swiss Water Dynamizer | Mam Nature Swiss',
     description: 'Structure and revitalize your water naturally. No electricity, no maintenance.',
     url: '/shop/dynamizer',
-    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp']
+    images: ['/images/WEBSITE-P/products/DYNAMIZER.webp']
   }
 };
 
@@ -16,7 +16,7 @@ export default function DynamizerLayout({ children }: { children: React.ReactNod
   const jsonLd = getProductJsonLd({
     name: 'The Swiss Water Dynamizer',
     description: 'The Swiss Water Dynamizer works entirely physically to restore water\'s beneficial properties. It structures and revitalizes water for better hydration capabilities.',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
+    image: '/images/WEBSITE-P/products/DYNAMIZER.webp',
     slug: 'dynamizer',
     priceKey: 'the-swiss-water-dynamizer',
     brand: 'Mam Nature Swiss'

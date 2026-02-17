@@ -8,16 +8,16 @@ import { useLanguage } from '@/context/LanguageContext';
 // Standard Lifestyle Slider Groups for whole-house systems
 const SHARED_SLIDER_GROUPS = [
   {
-    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/SHOWER.webp",
-    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/WATER%20DRINKING.webp"
+    img1: "/images/WEBSITE-P/composents/SHOWER.webp",
+    img2: "/images/WEBSITE-P/composents/WATER_DRINKING.webp"
   },
   {
-    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/TEETH.webp",
-    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/WASHING%20VEGIES.webp"
+    img1: "/images/WEBSITE-P/composents/TEETH.webp",
+    img2: "/images/WEBSITE-P/composents/WASHING_VEGIES.webp"
   },
   {
-    img1: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/COFFEE.webp",
-    img2: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/composents/WASHING%20MACHINE.webp"
+    img1: "/images/WEBSITE-P/composents/COFFEE.webp",
+    img2: "/images/WEBSITE-P/composents/WASHING_MACHINE.webp"
   }
 ];
 
@@ -27,17 +27,17 @@ const PRODUCTS_EN: ProductType[] = [
   {
     id: 'mam-nature-essential-set',
     name: 'THE ESSENTIAL',
-    subtitle: 'Water Fine Filter',
+    subtitle: 'whole house solution',
     slug: 'essential',
     priceKey: 'mam-nature-essential-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ESSENTIAL%20(1).webp',
+    image: '/images/WEBSITE-P/products/ESSENTIAL.webp',
     imageHeight: 300,
     features: [
-      "Medical-grade stainless steel construction.",
-      "Selective filtration: removes microplastics and heavy metals.",
-      "Preserves essential minerals and trace elements.",
-      "Purifies water naturally, no electricity or chemicals.",
-      "Compact design for easy installation."
+      "Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.",
+      "Exceptional water throughout your entire home : shower, drinking, cooking, tea, coffee…",
+      "Converts limescale & treats particles and contaminants while preserving natural mineralization",
+      "Purifies water naturally, no electricity, no waste, no chemicals.",
+      "Maintenance: one cartridge per year, 10 minutes (no tools required)."
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
@@ -45,17 +45,17 @@ const PRODUCTS_EN: ProductType[] = [
   {
     id: 'mam-nature-essential-plus',
     name: 'THE ESSENTIAL PLUS',
-    subtitle: 'Fine Filter + Particle Filter',
+    subtitle: 'whole house solution',
     slug: 'essential-plus',
     priceKey: 'mam-nature-essential-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ESSENTIAL%20PLUS%20(1).webp',
+    image: '/images/WEBSITE-P/products/ESSENTIAL_PLUS.webp',
     imageHeight: 300,
     features: [
-      "Dual protection: physical and selective filtration.",
-      "Pre-filters sand, rust, and large sediments.",
-      "Eliminates chlorine, pesticides, and heavy metals.",
-      "Protects both your health and your home's plumbing.",
-      "Casing covered by a 10-year warranty."
+      "Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.",
+      "Exceptional water throughout your entire home : shower, drinking, cooking, tea, coffee…",
+      "Converts limescale & treats particles and contaminants while preserving natural mineralization",
+      "Purifies water naturally, no electricity, no waste, no chemicals.",
+      "Maintenance: one cartridge per year, 10 minutes (no tools required)."
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
@@ -63,17 +63,17 @@ const PRODUCTS_EN: ProductType[] = [
   {
     id: 'eco-set',
     name: 'ECO SET',
-    subtitle: 'For the whole house',
+    subtitle: 'whole house solution',
     slug: 'eco-set',
     priceKey: 'mam-nature-eco-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET.webp',
+    image: '/images/products/WITHOUT AUTO BACKWASH/Eco Set+Aqmos 1 WITHOUT AUTOMATIC BACKWASH.webp',
     imageHeight: 320,
     features: [
-      "Complete whole-house solution.",
-      "Treats: particles, limescale, and contaminants.",
-      "Medical-grade stainless steel, 10-year warranty.",
-      "Exceptional water for showering, drinking, and cooking.",
-      "Maintenance: one cartridge per year."
+      "Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.",
+      "Exceptional water throughout your entire home : shower, drinking, cooking, tea, coffee…",
+      "Converts limescale & treats particles and contaminants while preserving natural mineralization",
+      "Purifies water naturally, no electricity, no waste, no chemicals.",
+      "Maintenance: one cartridge per year, 10 minutes (no tools required)."
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
@@ -81,17 +81,17 @@ const PRODUCTS_EN: ProductType[] = [
   {
     id: 'eco-set-plus',
     name: 'ECO SET PLUS',
-    subtitle: 'For the whole house',
+    subtitle: 'whole house solution',
     slug: 'eco-set-plus',
     priceKey: 'mam-nature-eco-set-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET%20PLUS.webp',
+    image: '/images/products/WITHOUT AUTO BACKWASH/Eco Set Plus + Aqmos 1 WITHOUT AUTOMATIC BACKWASH.webp',
     imageHeight: 300,
     features: [
-      "Advanced whole-house treatment system.",
-      "Enhanced filtration performance.",
-      "Protects pipes and appliances from scale.",
-      "Natural purification without electricity.",
-      "Includes premium medical-grade housing."
+      "Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.",
+      "Exceptional water throughout your entire home : shower, drinking, cooking, tea, coffee…",
+      "Converts limescale & treats particles and contaminants while preserving natural mineralization",
+      "Purifies water naturally, no electricity, no waste, no chemicals.",
+      "Maintenance: one cartridge per year, 10 minutes (no tools required)."
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
@@ -99,17 +99,18 @@ const PRODUCTS_EN: ProductType[] = [
   {
     id: 'complete-set',
     name: 'COMPLETE SET',
-    subtitle: 'For the whole house',
+    subtitle: 'whole house solution',
     slug: 'complete-set',
     priceKey: 'mam-nature-water-treatment-complete-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET.webp',
+    image: '/images/products/WITHOUT AUTO BACKWASH/mam nature complete set + WITHOUT AUTOMATIC BACKWASH.webp',
     imageHeight: 320,
     features: [
-      "Includes the Dynamizer for revitalized water.",
-      "Restructures water at a molecular level.",
-      "Exceptional taste and easy to digest.",
-      "Protects the entire home from scale and rust.",
-      "Durable stainless steel, lifetime design."
+      "Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.",
+      "Includes the Dynamizer for revitalized and restructured water",
+      "Exceptional water throughout your entire home : shower, drinking, cooking, tea, coffee…",
+      "Converts limescale & treats particles and contaminants while preserving natural mineralization",
+      "Purifies water naturally, no electricity, no waste, no chemicals.",
+      "Maintenance: one cartridge per year, 10 minutes (no tools required)."
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
@@ -117,17 +118,18 @@ const PRODUCTS_EN: ProductType[] = [
   {
     id: 'complete-set-plus',
     name: 'COMPLETE SET PLUS',
-    subtitle: 'For the whole house',
+    subtitle: 'whole house solution',
     slug: 'complete-set-plus',
     priceKey: 'mam-nature-water-treatment-complete-set-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp',
+    image: '/images/products/WITHOUT AUTO BACKWASH/complete set plus+ WITHOUT AUTOMATIC BACKWASH.webp',
     imageHeight: 300,
     features: [
-      "The most advanced water treatment solution.",
-      "Full revitalizing and restructure technology.",
-      "Maximum removal of all contaminants.",
-      "Perfect for high-demand households.",
-      "Zero maintenance scale prevention included."
+      "Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.",
+      "Includes the Dynamizer for revitalized and restructured water",
+      "Exceptional water throughout your entire home : shower, drinking, cooking, tea, coffee…",
+      "Converts limescale & treats particles and contaminants while preserving natural mineralization",
+      "Purifies water naturally, no electricity, no waste, no chemicals.",
+      "Maintenance: one cartridge per year, 10 minutes (no tools required)."
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
@@ -135,16 +137,14 @@ const PRODUCTS_EN: ProductType[] = [
   {
     id: 'particle-filter',
     name: 'WATER PARTICLE FILTER',
-    subtitle: 'Sediment Pre-filter',
+    subtitle: 'Individual Component',
     slug: 'particles-filter',
     priceKey: 'water-particle-filter',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
+    image: '/images/products/PARTICLE FILTER/PARTICLE FILTER NO BACKWASH Aqmos AQ1 Particle Filter 1.webp',
     imageHeight: 320,
     features: [
-      "Eliminates sand, rust, and sediments.",
-      "Automatic backwash valve.",
-      "No consumables or maintenance.",
-      "Protects entire plumbing system."
+      "The first line of protection for your system",
+      "Eliminates sand, sediments, and all solid matter in the water with automatic backwash. Requires neither maintenance nor consumables."
     ]
   },
   // 8. WATER LIME
@@ -154,7 +154,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Anti-Limescale Solution',
     slug: 'water-lime',
     priceKey: 'mam-nature-water-lime',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp',
+    image: '/images/WEBSITE-P/products/water_lime_vertical.webp',
     imageHeight: 320,
     features: [
       "Physical conversion of limescale.",
@@ -168,17 +168,18 @@ const PRODUCTS_EN: ProductType[] = [
   {
     id: 'dynamizer',
     name: 'THE SWISS WATER DYNAMIZER',
-    subtitle: 'Water Revitalizer',
+    subtitle: 'Individual Component',
     slug: 'dynamizer',
     priceKey: 'the-swiss-water-dynamizer',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
+    image: '/images/WEBSITE-P/products/DYNAMIZER.webp',
     imageHeight: 320,
     features: [
-      "Restores natural water properties.",
-      "Revitalizes water at a molecular level.",
-      "Prevents scaling in pipes.",
-      "Exceptional taste, easy to digest.",
-      "No maintenance or electricity."
+      "100% physical action to restore all the beneficial properties to tap water.",
+      "Revitalizes and restructures water at a molecular level.",
+      "Transformation of limescale into soft Aragonite.",
+      "Water with an exceptional taste and remarkably easy to digest.",
+      "Optimal cellular hydration.",
+      "Simple installation, requires no maintenance or electricity."
     ]
   },
   // 10. PARTICLE & LIME SET
@@ -188,12 +189,12 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Sediment + Scale Protection',
     slug: 'particle-lime-set',
     priceKey: 'mam-nature-particle-lime-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particle%20+%20water%20lime.webp',
+    image: '/images/products/PARTICLE FILTER/water lime + particle filter.webp',
     imageHeight: 300,
     features: [
       "Dual protection for plumbing and appliances.",
       "Stops sand and rust with automatic backwash.",
-      "Converts hard limescale into soft aragonite.",
+      "Converts hard limescale into soft Aragonite.",
       "Zero salt, zero chemicals, zero waste.",
       "No maintenance needed for scale protection."
     ]
@@ -205,14 +206,15 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Class 1 Medical Device',
     slug: 'hydrogen-booster',
     priceKey: 'swiss-hydrogen-booster',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/HYDROGEEN%20BOOSTER.webp',
+    image: '/images/WEBSITE-P/products/HYDROGEEN_BOOSTER.webp',
     imageHeight: 320,
     features: [
-      "Enrich your water with molecular hydrogen.",
-      "Fast recharge and ultra-fine bubbles.",
-      "Components compliant with food safety.",
-      "Portable and easy to use.",
-      "Rechargeable battery (150-min life)."
+      "Highest concentration in the market: 7500 ppb of molecular Hydrogen",
+      "Fast recharge: 0 to 100% in 1 hour.",
+      "150-minute battery life, or up to 15 uses.",
+      "Components compliant with food safety standards.",
+      "Ultra-fine hydrogen bubbles guarantee unparalleled efficiency, far surpassing standard devices.",
+      "Portable and easy to use for daily well-being."
     ]
   },
   // 12. SWISS WATER CARTRIDGE
@@ -222,13 +224,12 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Replacement Cartridge',
     slug: 'cartridge',
     priceKey: 'water-fine-filter-cartridge',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp',
+    image: '/images/WEBSITE-P/products/cartridge.webp',
     imageHeight: 320,
     features: [
-      "Annual replacement for Fine Filter.",
-      "Maintains optimal filtration performance.",
-      "Unique Swiss-engineered filtration fibers.",
-      "Tool-free replacement in 10 minutes."
+      "Replacement Cartridge for your Water Fine Filter after max. 150 m3 resp. 1 year.",
+      "Eliminates chlorine, PFAS, PFOS, heavy metals, aluminium, pesticides & radioactive substances …",
+      "Easy and quick installation, no tools required."
     ]
   }
 ];
@@ -239,17 +240,17 @@ const PRODUCTS_FR: ProductType[] = [
   {
     id: 'mam-nature-essential-set',
     name: 'L’ESSENTIEL',
-    subtitle: 'Filtre à Eau Fin',
+    subtitle: 'Pour toute la maison',
     slug: 'essentiel',
     priceKey: 'mam-nature-essential-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ESSENTIAL%20(1).webp',
+    image: '/images/WEBSITE-P/products/ESSENTIAL.webp',
     imageHeight: 300,
     features: [
-      "Construction robuste en acier inoxydable médical.",
-      "Filtration sélective : élimine microplastiques et métaux lourds.",
-      "Préserve les minéraux et oligo-éléments essentiels.",
-      "Purifie naturellement sans électricité ni chimie.",
-      "Design compact pour une installation facile."
+      "Fabriqué en inox médical, garantie 10 ans, conçu pour durer toute la vie",
+      "Eau d’exception pour toute votre maison : Douche, boire, cuisine, Thé, Café…",
+      "Traite : particules, calcaire et contaminants (95 – 99,9% - unique en monde) tout en préservant la minéralisation naturelle",
+      "Sans électricité, sans gaspillage et sans chimie",
+      "Une seule cartouche par année, 10 minutes (sans outil)"
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
@@ -257,17 +258,17 @@ const PRODUCTS_FR: ProductType[] = [
   {
     id: 'mam-nature-essential-plus',
     name: 'L’ESSENTIEL PLUS',
-    subtitle: 'Filtre Fin + Filtre à Particules',
+    subtitle: 'Pour toute la maison',
     slug: 'essentiel-plus',
     priceKey: 'mam-nature-essential-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ESSENTIAL%20PLUS%20(1).webp',
+    image: '/images/WEBSITE-P/products/ESSENTIAL_PLUS.webp',
     imageHeight: 300,
     features: [
-      "Double protection : filtration physique et sélective.",
-      "Pré-filtre le sable, la rouille et les gros sédiments.",
-      "Élimine le chlore, les pesticides et les métaux lourds.",
-      "Protège votre santé et la plomberie de votre maison.",
-      "Boîtier couvert par une garantie de 10 ans."
+      "Fabriqué en inox médical, garantie 10 ans, conçu pour durer toute la vie",
+      "Eau d’exception pour toute votre maison : Douche, boire, cuisine, Thé, Café…",
+      "Traite : particules, calcaire et contaminants (95 – 99,9% - unique en monde) tout en préservant la minéralisation naturelle",
+      "Sans électricité, sans gaspillage et sans chimie",
+      "Une seule cartouche par année, 10 minutes (sans outil)"
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
@@ -278,14 +279,14 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'eco-set',
     priceKey: 'mam-nature-eco-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET.webp',
+    image: '/images/products/WITHOUT AUTO BACKWASH/Eco Set+Aqmos 1 WITHOUT AUTOMATIC BACKWASH.webp',
     imageHeight: 320,
     features: [
-      "Solution complète pour toute la maison.",
-      "Traite : particules, calcaire et contaminants.",
-      "Inox médical, garantie 10 ans.",
-      "Eau d'exception : douche, boisson et cuisine.",
-      "Entretien : une cartouche par an."
+      "Fabriqué en inox médical, garantie 10 ans, conçu pour durer toute la vie",
+      "Eau d’exception pour toute votre maison : Douche, boire, cuisine, Thé, Café…",
+      "Traite : particules, calcaire et contaminants (95 – 99,9% - unique en monde) tout en préservant la minéralisation naturelle",
+      "Sans électricité, sans gaspillage et sans chimie",
+      "Une seule cartouche par année, 10 minutes (sans outil)"
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
@@ -296,14 +297,14 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'eco-set-plus',
     priceKey: 'mam-nature-eco-set-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET%20PLUS.webp',
+    image: '/images/products/WITHOUT AUTO BACKWASH/Eco Set Plus + Aqmos 1 WITHOUT AUTOMATIC BACKWASH.webp',
     imageHeight: 300,
     features: [
-      "Système de traitement avancé pour toute la maison.",
-      "Performance de filtration accrue.",
-      "Protège les tuyaux et appareils du calcaire.",
-      "Purification naturelle sans électricité.",
-      "Inclus un boîtier robuste en inox médical."
+      "Fabriqué en inox médical, garantie 10 ans, conçu pour durer toute la vie",
+      "Eau d’exception pour toute votre maison : Douche, boire, cuisine, Thé, Café…",
+      "Traite : particules, calcaire et contaminants (95 – 99,9% - unique en monde) tout en préservant la minéralisation naturelle",
+      "Sans électricité, sans gaspillage et sans chimie",
+      "Une seule cartouche par année, 10 minutes (sans outil)"
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
@@ -314,14 +315,15 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'complete-set',
     priceKey: 'mam-nature-water-treatment-complete-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET.webp',
+    image: '/images/products/WITHOUT AUTO BACKWASH/mam nature complete set + WITHOUT AUTOMATIC BACKWASH.webp',
     imageHeight: 320,
     features: [
-      "Inclut le Dynamizer pour une eau revitalisée.",
-      "Restructure l'eau au niveau moléculaire.",
-      "Goût exceptionnel et remarquablement digeste.",
-      "Protège toute la maison du tartre et de la rouille.",
-      "Inox médical durable, conçu pour la vie."
+      "Fabriqué en inox médical, garantie 10 ans, conçu pour durer toute la vie",
+      "Inclut le Dynamizer pour une eau revitalisée et restructurée",
+      "Eau d’exception pour toute votre maison : Douche, boire, cuisine, Thé, Café…",
+      "Traite : particules, calcaire et contaminants (95 – 99,9% - unique en monde) tout en préservant la minéralisation naturelle",
+      "Sans électricité, sans gaspillage et sans chimie",
+      "Une seule cartouche par année, 10 minutes (sans outil)"
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
@@ -332,14 +334,15 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'complete-set-plus',
     priceKey: 'mam-nature-water-treatment-complete-set-plus',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET%20PLUS.webp',
+    image: '/images/products/WITHOUT AUTO BACKWASH/complete set plus+ WITHOUT AUTOMATIC BACKWASH.webp',
     imageHeight: 300,
     features: [
-      "La solution de traitement d'eau la plus avancée.",
-      "Technologie complète de revitalisation.",
-      "Élimination maximale de tous les contaminants.",
-      "Idéal pour les foyers exigeants.",
-      "Protection anticalcaire sans entretien incluse."
+      "Fabriqué en inox médical, garantie 10 ans, conçu pour durer toute la vie",
+      "Inclut le Dynamizer pour une eau revitalisée et restructurée",
+      "Eau d’exception pour toute votre maison : Douche, boire, cuisine, Thé, Café…",
+      "Traite : particules, calcaire et contaminants (95 – 99,9% - unique en monde) tout en préservant la minéralisation naturelle",
+      "Sans électricité, sans gaspillage et sans chimie",
+      "Une seule cartouche par année, 10 minutes (sans outil)"
     ],
     sliderGroups: SHARED_SLIDER_GROUPS
   },
@@ -347,16 +350,14 @@ const PRODUCTS_FR: ProductType[] = [
   {
     id: 'particle-filter',
     name: 'WATER PARTICLE FILTER',
-    subtitle: 'Pré-filtre à Sédiments',
+    subtitle: 'Composant Individuel',
     slug: 'particles-filter',
     priceKey: 'water-particle-filter',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
+    image: '/images/products/PARTICLE FILTER/PARTICLE FILTER NO BACKWASH Aqmos AQ1 Particle Filter 1.webp',
     imageHeight: 320,
     features: [
-      "Élimine sable, rouille et sédiments.",
-      "Vanne de rétrolavage automatique.",
-      "Sans consommables ni entretien.",
-      "Protège toute l'installation de plomberie."
+      "La première ligne de défense de votre système.",
+      "Élimine le sable, les sédiments et toute matière solide dans l’eau avec rétrolavage automatique. Ne nécessite ni entretien ni consommable."
     ]
   },
   // 8. WATER LIME
@@ -366,7 +367,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Solution Anti-Calcaire',
     slug: 'water-lime',
     priceKey: 'mam-nature-water-lime',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp',
+    image: '/images/WEBSITE-P/products/water_lime_vertical.webp',
     imageHeight: 320,
     features: [
       "Conversion physique du tartre.",
@@ -380,17 +381,18 @@ const PRODUCTS_FR: ProductType[] = [
   {
     id: 'the-swiss-water-dynamizer',
     name: 'THE SWISS WATER DYNAMIZER',
-    subtitle: 'Revitaliseur d\'Eau',
+    subtitle: 'Composant Individuel',
     slug: 'dynamizer',
     priceKey: 'the-swiss-water-dynamizer',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp',
+    image: '/images/WEBSITE-P/products/DYNAMIZER.webp',
     imageHeight: 320,
     features: [
-      "Restitue à l'eau toutes ses propriétés naturelles.",
-      "Revitalise l'eau au niveau moléculaire.",
-      "Prévient l'entartrage des canalisations.",
-      "Goût exceptionnel et digeste.",
-      "Sans entretien ni électricité."
+      "Action 100% physique pour restituer à l'eau du robinet toutes ses propriétés bénéfiques.",
+      "Revitalise et restructure l'eau au niveau moléculaire.",
+      "Transformation du calcaire en Aragonite douce.",
+      "Une eau au goût exceptionnel et remarquablement digeste.",
+      "Une hydratation cellulaire optimale.",
+      "Installation simple, sans entretien ni électricité."
     ]
   },
   // 10. SET PARTICULES & CALCAIRE
@@ -400,12 +402,12 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Sédiments + Protection Tartre',
     slug: 'set-particules-calcaire',
     priceKey: 'mam-nature-particle-lime-set',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
+    image: '/images/products/PARTICLE FILTER/water lime + particle filter.webp',
     imageHeight: 300,
     features: [
       "Double protection plomberie et appareils.",
       "Arrête sable et rouille (rétrolavage automatique).",
-      "Convertit le calcaire en aragonite douce.",
+      "Convertit le calcaire en Aragonite douce.",
       "Écologique : zéro sel, zéro chimie, zéro déchet.",
       "Protection anticalcaire sans aucun entretien."
     ]
@@ -414,17 +416,18 @@ const PRODUCTS_FR: ProductType[] = [
   {
     id: 'swiss-hydrogen-booster',
     name: 'SWISS HYDROGEN BOOSTER',
-    subtitle: 'Dispositif Médical Classe 1',
+    subtitle: 'Dispositif médical de classe 1',
     slug: 'hydrogen-booster',
     priceKey: 'swiss-hydrogen-booster',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/HYDROGEEN%20BOOSTER.webp',
+    image: '/images/WEBSITE-P/products/HYDROGEEN_BOOSTER.webp',
     imageHeight: 320,
     features: [
       "Enrichissez votre eau en hydrogène moléculaire.",
-      "Recharge rapide et bulles ultra-fines.",
-      "Composants conformes aux normes alimentaires.",
-      "Portable et simple d'utilisation.",
-      "Batterie rechargeable (150 min d'autonomie)."
+      "Recharge rapide : de 0 à 100 % en 1 heure.",
+      "Autonomie de 150 minutes, soit jusqu’à 15 utilisations.",
+      "Composants conformes aux normes de sécurité alimentaire.",
+      "Des bulles d’hydrogène ultra-fines garantissent efficacité inégalée, surpassant largement les appareils standards.",
+      "Portable et facile à utiliser pour un bien-être quotidien."
     ]
   },
   // 12. SWISS WATER CARTRIDGE
@@ -434,13 +437,12 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Cartouche de Remplacement',
     slug: 'cartridge',
     priceKey: 'water-fine-filter-cartridge',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/cartridge%20(1).webp',
+    image: '/images/WEBSITE-P/products/cartridge.webp',
     imageHeight: 320,
     features: [
-      "Remplacement annuel pour Fine Filter.",
-      "Maintient une filtration optimale.",
-      "Fibres de filtration suisses uniques.",
-      "Remplacement sans outil en 10 minutes."
+      "Cartouche de remplacement pour votre Water Fine Filter après max. 150 m3 resp. 1 an.",
+      "Élimine le chlore, les PFAS, les PFOS, les métaux lourds, l'aluminium, les pesticides et les substances radioactives...",
+      "Installation facile et rapide, sans outils."
     ]
   }
 ];
@@ -448,7 +450,7 @@ const PRODUCTS_FR: ProductType[] = [
 const CONTENT_UI = {
   en: {
     headerTitle: "All Products",
-    headerDesc: "Discover our cutting-edge solutions designed in Switzerland for pure and healthy water at home.",
+    headerDesc: "Discover our cutting-edge solutions designed in Switzerland for pure and healthy water at your home.",
     sortName: "Sort by Name",
     sortNameAZ: "Name: A-Z",
     sortNameZA: "Name: Z-A",

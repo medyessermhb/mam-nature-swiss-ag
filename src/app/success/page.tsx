@@ -9,7 +9,7 @@ import autoTable from 'jspdf-autotable';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCart } from '@/context/CartContext';
 
-const LOGO_URL = "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo%20website.png";
+const LOGO_URL = "/images/website_details/mam-nature_full_logo_website.png";
 
 const CONTENT_EN = {
   title: "Order Confirmed!",
@@ -40,9 +40,9 @@ export default function SuccessPage() {
   const [loading, setLoading] = useState(true);
   const [isResending, setIsResending] = useState(false);
   const [emailSentMsg, setEmailSentMsg] = useState('');
-  
+
   const { language } = useLanguage();
-  const { clearCart } = useCart(); 
+  const { clearCart } = useCart();
   const content = language === 'fr' ? CONTENT_FR : CONTENT_EN;
 
   const hasInitialized = useRef(false);
@@ -55,7 +55,7 @@ export default function SuccessPage() {
     const initializeSuccessPage = async () => {
       // Fetch the order
       const { data: { session } } = await supabase.auth.getSession();
-      
+
       let query = supabase
         .from('orders')
         .select('*')
@@ -67,7 +67,7 @@ export default function SuccessPage() {
       }
 
       const { data } = await query.single();
-      
+
       if (data) {
         setOrder(data);
 
@@ -76,7 +76,7 @@ export default function SuccessPage() {
         const hasSentAutoEmail = sessionStorage.getItem(emailLockKey);
 
         if (data.payment_method === 'card' && data.status === 'awaiting_payment' && !hasSentAutoEmail) {
-          
+
           // Lock it BEFORE doing the fetch
           sessionStorage.setItem(emailLockKey, 'true');
 
@@ -86,18 +86,18 @@ export default function SuccessPage() {
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 orderDetails: {
-                  firstName: data.customer_name.split(' ')[0], 
-                  lastName: data.customer_name.split(' ').slice(1).join(' '), 
+                  firstName: data.customer_name.split(' ')[0],
+                  lastName: data.customer_name.split(' ').slice(1).join(' '),
                   email: data.customer_email,
-                  address: data.address.address, 
-                  city: data.address.city, 
-                  zip: data.address.zip, 
+                  address: data.address.address,
+                  city: data.address.city,
+                  zip: data.address.zip,
                   country: data.address.country,
-                  paymentMethod: 'card', 
+                  paymentMethod: 'card',
                   orderNumber: data.order_number
                 },
-                cartItems: data.cart_items, 
-                total: data.total_amount, 
+                cartItems: data.cart_items,
+                total: data.total_amount,
                 currency: data.currency
               })
             });
@@ -120,7 +120,7 @@ export default function SuccessPage() {
     };
 
     initializeSuccessPage();
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty array ensures it fires strictly once
 
@@ -136,22 +136,22 @@ export default function SuccessPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           orderDetails: {
-            firstName: order.customer_name.split(' ')[0], 
-            lastName: order.customer_name.split(' ').slice(1).join(' '), 
+            firstName: order.customer_name.split(' ')[0],
+            lastName: order.customer_name.split(' ').slice(1).join(' '),
             email: order.customer_email,
-            address: order.address.address, 
-            city: order.address.city, 
-            zip: order.address.zip, 
+            address: order.address.address,
+            city: order.address.city,
+            zip: order.address.zip,
             country: order.address.country,
-            paymentMethod: order.payment_method, 
+            paymentMethod: order.payment_method,
             orderNumber: order.order_number
           },
-          cartItems: order.cart_items, 
-          total: order.total_amount, 
+          cartItems: order.cart_items,
+          total: order.total_amount,
           currency: order.currency
         })
       });
-      
+
       setEmailSentMsg(content.resendSuccess);
       setTimeout(() => setEmailSentMsg(''), 5000); // Hide message after 5 seconds
     } catch (err) {
@@ -174,9 +174,9 @@ export default function SuccessPage() {
     img.src = LOGO_URL;
     img.crossOrigin = "Anonymous";
     try {
-        doc.addImage(img, 'PNG', 15, 15, 50, 15);
+      doc.addImage(img, 'PNG', 15, 15, 50, 15);
     } catch (e) {
-        console.warn("Logo load failed", e);
+      console.warn("Logo load failed", e);
     }
 
     doc.setFontSize(10);
@@ -205,7 +205,7 @@ export default function SuccessPage() {
 
     doc.setFontSize(10);
     doc.setTextColor(80);
-    
+
     // Billing Info
     const billing = order.billing_address || order.address;
     doc.text(billing.firstName + " " + billing.lastName, 15, 91);
@@ -222,24 +222,24 @@ export default function SuccessPage() {
 
     // --- 4. ITEMS TABLE ---
     const tableRows = order.cart_items.map((item: any) => [
-        item.name,
-        item.quantity,
-        `${currency} ${item.price.toLocaleString()}`,
-        `${currency} ${(item.price * item.quantity).toLocaleString()}`
+      item.name,
+      item.quantity,
+      `${currency} ${item.price.toLocaleString()}`,
+      `${currency} ${(item.price * item.quantity).toLocaleString()}`
     ]);
 
     autoTable(doc, {
-        startY: 120,
-        head: [['Item Description', 'Qty', 'Unit Price', 'Total']],
-        body: tableRows,
-        theme: 'grid',
-        headStyles: { fillColor: [15, 23, 42] },
-        styles: { fontSize: 10 },
+      startY: 120,
+      head: [['Item Description', 'Qty', 'Unit Price', 'Total']],
+      body: tableRows,
+      theme: 'grid',
+      headStyles: { fillColor: [15, 23, 42] },
+      styles: { fontSize: 10 },
     });
 
     // --- 5. TOTALS ---
     const finalY = (doc as any).lastAutoTable.finalY || 150;
-    
+
     const subtotal = order.cart_items.reduce((acc: number, item: any) => acc + (item.price * item.quantity), 0);
     const shippingCost = order.total_amount - subtotal;
 
@@ -266,43 +266,43 @@ export default function SuccessPage() {
 
   if (loading) {
     return (
-      <div style={{minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-        <div className="loader" style={{marginBottom: 20}}></div>
-        <p style={{color: '#64748b'}}>{content.loading}</p>
+      <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="loader" style={{ marginBottom: 20 }}></div>
+        <p style={{ color: '#64748b' }}>{content.loading}</p>
       </div>
     );
   }
 
   return (
-    <div style={{minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px'}}>
+    <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
       <div style={{
-        maxWidth: '500px', width: '100%', 
-        background: 'white', padding: '40px', 
+        maxWidth: '500px', width: '100%',
+        background: 'white', padding: '40px',
         borderRadius: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
         textAlign: 'center'
       }}>
         <div style={{
-          width: 80, height: 80, background: '#dcfce7', borderRadius: '50%', 
-          display: 'flex', alignItems: 'center', justifyContent: 'center', 
+          width: 80, height: 80, background: '#dcfce7', borderRadius: '50%',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
           margin: '0 auto 20px', color: '#166534'
         }}>
           <CheckCircle size={40} />
         </div>
 
-        <h1 style={{fontSize: '2rem', marginBottom: '10px', color: '#0f172a'}}>{content.title}</h1>
-        <p style={{color: '#64748b', fontSize: '1.1rem', marginBottom: '30px', lineHeight: '1.6'}}>
+        <h1 style={{ fontSize: '2rem', marginBottom: '10px', color: '#0f172a' }}>{content.title}</h1>
+        <p style={{ color: '#64748b', fontSize: '1.1rem', marginBottom: '30px', lineHeight: '1.6' }}>
           {content.subtitle}
           {order && (
-            <span style={{display:'block', marginTop: 10, fontSize:'0.9rem'}}>
+            <span style={{ display: 'block', marginTop: 10, fontSize: '0.9rem' }}>
               {content.emailNote} <strong>{order.customer_email}</strong>
             </span>
           )}
         </p>
 
-        <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
-          
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+
           {/* RESEND EMAIL BUTTON */}
-          <button 
+          <button
             onClick={handleResendEmail}
             disabled={isResending}
             style={{
@@ -316,8 +316,8 @@ export default function SuccessPage() {
             onMouseOut={(e) => { if (!isResending) e.currentTarget.style.background = '#f8fafc' }}
           >
             {isResending ? (
-              <span style={{display:'flex', alignItems:'center', gap:'8px'}}>
-                <div className="loader" style={{width: 16, height: 16, borderWidth: 2}}></div> {content.resending}
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div className="loader" style={{ width: 16, height: 16, borderWidth: 2 }}></div> {content.resending}
               </span>
             ) : (
               <>
@@ -334,7 +334,7 @@ export default function SuccessPage() {
           )}
 
           {/* DOWNLOAD BUTTON */}
-          <button 
+          <button
             onClick={generatePDF}
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
@@ -349,7 +349,7 @@ export default function SuccessPage() {
           </button>
 
           {/* HOME BUTTON */}
-          <Link 
+          <Link
             href="/"
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',

@@ -7,6 +7,8 @@ import {
 } from 'lucide-react';
 import styles from '@/styles/Product.module.css';
 import { usePricing } from '@/context/PricingContext';
+import Link from 'next/link';
+import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
 
@@ -110,10 +112,7 @@ export default function ParticleFilterPage() {
 
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
-  const IMAGES = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp"
-  ];
+
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -148,19 +147,54 @@ export default function ParticleFilterPage() {
     }
   };
 
+
+
+  const [selectedOption, setSelectedOption] = useState<'auto' | 'manual'>('manual'); // Default to manual
+
+  const IMAGES_MANUAL = [
+    "/images/products/PARTICLE FILTER/PARTICLE FILTER NO BACKWASH Aqmos AQ1 Particle Filter 1.webp",
+    "/images/products/PARTICLE FILTER/PARTICLE FILTER NO BACKWASH Aqmos side view 1.webp",
+    "/images/products/PARTICLE FILTER/PARTICLE FILTER NO BACKWASH aqmos back view 1.webp",
+    "/images/products/PARTICLE FILTER/PARTICLE FILTER NO BACKWASH aqmos top view 1.webp"
+  ];
+
+  const IMAGES_AUTO = [
+    "/images/products/PARTICLE FILTER/Particle Filter WITH Autom. Backwash FRONT view 1.webp",
+    "/images/products/PARTICLE FILTER/Particle Filter WITH Autom. Backwash_side view 1.webp",
+    "/images/products/PARTICLE FILTER/Autom. Backwash Unit 1.webp"
+  ];
+
+  const IMAGES = selectedOption === 'auto' ? IMAGES_AUTO : IMAGES_MANUAL;
+
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % IMAGES.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
+  // User request:
+  // 148 eur vat incl without autobackwash
+  // 238 eur vat incl with autobackwash
+
+  // Let's default to without (manual)
+
+  const currentProductId = selectedOption === 'auto' ? 'water-particle-filter' : 'water-particle-filter-manual';
+
+  // Reset slide when option changes
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [selectedOption]);
+
+  const handleOptionChange = (option: 'auto' | 'manual') => {
+    setSelectedOption(option);
+  };
 
   const handleAddToCart = () => {
-    const rawPrice = getRawPrice(PRODUCT_ID);
+    const rawPrice = getRawPrice(currentProductId);
     const currencyCode = currency === 'MAD' ? 'Dhs' : currency || 'EUR';
 
     addToCart({
-      id: PRODUCT_ID,
-      name: PRODUCT_NAME,
+      id: currentProductId,
+      name: `${PRODUCT_NAME} (${selectedOption === 'auto' ? (isFrench ? 'Avec Rétrolavage Automatique' : 'With Automatic Backwash') : (isFrench ? 'Sans Rétrolavage Automatique' : 'Without Automatic Backwash')})`,
       price: rawPrice,
       currency: currencyCode,
-      image: IMAGES[0]
+      image: IMAGES[0] // Use the first image of the current set
     });
   };
 
@@ -224,9 +258,69 @@ export default function ParticleFilterPage() {
               <div className={styles.productInfoMobile}>
                 <h1 className={styles.productTitle}>{content.product.title}</h1>
                 <div className={styles.productPrice}>
-                  {isLoading ? 'Loading...' : getPrice('water-particle-filter')}
+                  {isLoading ? 'Loading...' : getPrice(currentProductId)}
                 </div>
               </div>
+
+              {/* OPTIONS SELECTOR */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>
+                  {isFrench ? 'Choisissez votre version :' : 'Choose your version:'}
+                </label>
+                <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                  <button
+                    onClick={() => handleOptionChange('manual')}
+                    style={{
+                      padding: '0.5rem 1rem',
+                      border: selectedOption === 'manual' ? '1px solid #D52D25' : '1px solid #e5e7eb',
+                      backgroundColor: selectedOption === 'manual' ? '#FFF5F5' : '#fff',
+                      color: selectedOption === 'manual' ? '#D52D25' : '#4b5563',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '0.9rem',
+                      fontWeight: selectedOption === 'manual' ? 600 : 400,
+                      transition: 'all 0.2s ease',
+                      boxShadow: selectedOption === 'manual' ? '0 1px 2px rgba(213, 45, 37, 0.1)' : 'none',
+                    }}
+                  >
+                    {isFrench ? 'Sans Rétrolavage Automatique' : 'Without Automatic Backwash'}
+                  </button>
+                  <button
+                    onClick={() => handleOptionChange('auto')}
+                    style={{
+                      padding: '0.5rem 0.75rem',
+                      border: selectedOption === 'auto' ? '1px solid #D52D25' : '1px solid #e5e7eb',
+                      backgroundColor: selectedOption === 'auto' ? '#FFF5F5' : '#fff',
+                      color: selectedOption === 'auto' ? '#D52D25' : '#4b5563',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '0.9rem',
+                      fontWeight: selectedOption === 'auto' ? 600 : 400,
+                      transition: 'all 0.2s ease',
+                      boxShadow: selectedOption === 'auto' ? '0 1px 2px rgba(213, 45, 37, 0.1)' : 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}
+                  >
+                    <div style={{ position: 'relative', width: '30px', height: '30px', flexShrink: 0 }}>
+                      <Image
+                        src="/images/products/PARTICLE FILTER/Autom. Backwash Unit 1.webp"
+                        alt="Automatic Backwash"
+                        fill
+                        style={{ objectFit: 'contain' }}
+                      />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: '1.1' }}>
+                      <span>{isFrench ? 'Avec Rétrolavage Automatique' : 'With Automatic Backwash'}</span>
+                      <span style={{ fontSize: '0.85em', color: selectedOption === 'auto' ? '#D52D25' : '#888', fontWeight: 500 }}>
+                        +90 EUR
+                      </span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
               <div className={styles.cartForm}>
                 <button
                   className={styles.addToCartButton}
@@ -296,7 +390,7 @@ export default function ParticleFilterPage() {
             <button
               className={styles.reportLink}
               onClick={() => {
-                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/ISO.pdf");
+                setModalUrl("/images/website-assets/certificates/ISO.pdf");
                 setIsLoadingPdf(true);
               }}
             >
@@ -305,7 +399,7 @@ export default function ParticleFilterPage() {
             <button
               className={styles.reportLink}
               onClick={() => {
-                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf");
+                setModalUrl("/images/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure_Test_MNS-CS.pdf");
                 setIsLoadingPdf(true);
               }}
             >
@@ -333,12 +427,20 @@ export default function ParticleFilterPage() {
                   </div>
                 </div>
               )}
-              <iframe
-                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
+              <object
+                data={modalUrl}
+                type="application/pdf"
                 style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
                 title="Document Preview"
                 onLoad={() => setIsLoadingPdf(false)}
-              />
+              >
+                <div style={{ padding: '20px', textAlign: 'center', color: 'gray' }}>
+                  <p>Preview not available.</p>
+                  <a href={modalUrl} download style={{ color: '#4ade80', textDecoration: 'underline' }}>
+                    Download PDF
+                  </a>
+                </div>
+              </object>
             </div>
             <style>{`
               @keyframes spin {

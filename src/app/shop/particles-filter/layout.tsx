@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: 'Water Particle Filter | Mam Nature Swiss',
     description: 'Protect your plumbing from sediments. Zero maintenance required.',
     url: '/shop/particles-filter',
-    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp']
+    images: ['/images/WEBSITE-P/products/PARTICLES_FILTER.webp']
   }
 };
 
@@ -16,7 +16,7 @@ export default function ParticlesFilterLayout({ children }: { children: React.Re
   const jsonLd = getProductJsonLd({
     name: 'Water Particle Filter',
     description: 'Eliminates sand, rust, and sediments. Automatic backwash valve. No consumables or maintenance. Protects entire plumbing system.',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/PARTICLES%20FILTER.webp',
+    image: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp',
     slug: 'particles-filter',
     priceKey: 'water-particle-filter',
     brand: 'Mam Nature Swiss'

@@ -54,7 +54,7 @@ export async function POST(req: Request) {
         <div style="max-width: 600px; margin: 0 auto; background-color: ${colors.white}; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
           
           <div style="background-color: ${colors.white}; padding: 30px; text-align: center; border-bottom: 3px solid ${colors.primary};">
-            <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo%20website.png" alt="Mam Nature" style="width: 150px; height: auto;">
+            <img src="${process.env.NEXT_PUBLIC_SITE_URL}/images/website_details/mam-nature_full_logo_website.png" alt="Mam Nature" style="width: 150px; height: auto;">
           </div>
 
           <div style="padding: 30px;">

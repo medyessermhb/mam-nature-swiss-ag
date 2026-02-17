@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   description: "Discover cutting-edge Swiss-engineered water filtration, revitalization, and anti-limescale solutions for pure and healthy water at home.",
   keywords: ['water filter', 'anti-limescale', 'water revitalizer', 'Swiss water treatment', 'Mam Nature', 'hydrogen booster'],
   icons: {
-    icon: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg',
-    shortcut: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg',
-    apple: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg',
+    icon: '/images/website_details/mam-nature_full_logo.svg',
+    shortcut: '/images/website_details/mam-nature_full_logo.svg',
+    apple: '/images/website_details/mam-nature_full_logo.svg',
   },
   openGraph: {
     title: 'Mam Nature | Advanced Water Treatment',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     siteName: 'Mam Nature',
     images: [
       {
-        url: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg',
+        url: '/images/website_details/mam-nature_full_logo.svg',
         width: 1200,
         height: 630,
         alt: 'Mam Nature Swiss Water Treatment',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Mam Nature | Advanced Water Treatment',
     description: 'Swiss-engineered solutions for pure and healthy water at home.',
-    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg'],
+    images: ['/images/website_details/mam-nature_full_logo.svg'],
   },
 };
 

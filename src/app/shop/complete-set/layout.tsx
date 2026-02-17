@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: 'Complete Set | Mam Nature Swiss',
     description: 'Experience water as nature intended: filtered and revitalized for your entire home.',
     url: '/shop/complete-set',
-    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET.webp']
+    images: ['/images/WEBSITE-P/products/COMPLETE_SET.webp']
   }
 };
 
@@ -16,7 +16,7 @@ export default function CompleteSetLayout({ children }: { children: React.ReactN
   const jsonLd = getProductJsonLd({
     name: 'Complete Set',
     description: 'Includes the Dynamizer for revitalized water. Restructures water at a molecular level. Exceptional taste and easy to digest. Protects the entire home from scale and rust.',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/COMPLETE%20SET.webp',
+    image: '/images/WEBSITE-P/products/COMPLETE_SET.webp',
     slug: 'complete-set',
     priceKey: 'mam-nature-water-treatment-complete-set',
     brand: 'Mam Nature Swiss'

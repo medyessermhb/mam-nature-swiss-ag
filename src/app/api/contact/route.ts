@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     const userHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: ${colors.white}; border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden;">
         <div style="background: ${colors.white}; padding: 25px; text-align: center; border-bottom: 3px solid ${colors.primary};">
-           <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo%20website.png" alt="Mam Nature" style="width: 140px;">
+           <img src="${process.env.NEXT_PUBLIC_SITE_URL}/images/website_details/mam-nature_full_logo_website.png" alt="Mam Nature" style="width: 140px;">
         </div>
         <div style="padding: 30px;">
           <h2 style="color: ${colors.text}; margin-top: 0;">Hello ${firstName},</h2>

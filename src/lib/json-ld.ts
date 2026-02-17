@@ -8,7 +8,7 @@ export function getOrganizationJsonLd() {
         '@type': 'Organization',
         name: 'Mam Nature Swiss AG',
         url: baseUrl,
-        logo: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website%20details/mam-nature%20full%20logo.svg',
+        logo: '/images/website_details/mam-nature_full_logo.svg',
         description: 'Swiss-engineered water filtration, revitalization, and anti-limescale solutions.',
         address: {
             '@type': 'PostalAddress',

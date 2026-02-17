@@ -78,7 +78,7 @@ export default function CartPage() {
         ? `Complétez votre installation pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
         : `Complete your setup for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particle%20+%20water%20lime.webp'
+      image: '/images/WEBSITE-P/products/particle_+_water_lime.webp'
     };
   }
   // 2. Offer for Essential Plus Set (Upgrades them to Eco Set total)
@@ -94,7 +94,7 @@ export default function CartPage() {
         ? `Ajoutez la protection anti-calcaire pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
         : `Add anti-limescale protection for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
-      image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp'
+      image: '/images/WEBSITE-P/products/water_lime_vertical.webp'
     };
   }
 

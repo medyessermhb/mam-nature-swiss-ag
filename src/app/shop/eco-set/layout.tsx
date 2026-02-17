@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: 'Eco Set | Mam Nature Swiss',
     description: 'Protect your home and health with our complete whole-house filtration system.',
     url: '/shop/eco-set',
-    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET.webp']
+    images: ['/images/WEBSITE-P/products/ECO_SET.webp']
   }
 };
 
@@ -16,7 +16,7 @@ export default function EcoSetLayout({ children }: { children: React.ReactNode }
   const jsonLd = getProductJsonLd({
     name: 'Eco Set',
     description: 'Complete whole-house solution. Treats particles, limescale, and contaminants. Medical-grade stainless steel with 10-year warranty.',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/ECO%20SET.webp',
+    image: '/images/WEBSITE-P/products/ECO_SET.webp',
     slug: 'eco-set',
     priceKey: 'mam-nature-eco-set',
     brand: 'Mam Nature Swiss'

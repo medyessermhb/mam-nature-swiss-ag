@@ -37,7 +37,7 @@ const CONTENT_EN = {
     title: 'Dual Protection Technology',
     list: [
       { label: 'Pre-Filtration:', text: '50 µm stainless steel mesh (Particle Filter) removes sand, rust, and sediments.' },
-      { label: 'Active Scale Prevention:', text: 'Permanent magnets (Water LIME) convert calcite to non-adhesive aragonite.' },
+      { label: 'Active Scale Prevention:', text: 'Permanent magnets (Water LIME) convert Calcite to non-adhesive Aragonite.' },
       { label: 'Appliance Protection:', text: 'Significantly extends the lifespan of boilers, washing machines, and pipes.' },
       { label: 'Eco-Friendly & Healthy:', text: 'Zero salt, zero chemicals. Healthy calcium and magnesium remain in the water.' }
     ],
@@ -88,7 +88,7 @@ const CONTENT_FR = {
     title: 'Technologie de Double Protection',
     list: [
       { label: 'Pré-filtration :', text: 'Maille en acier inoxydable 50 µm (Filtre à Particules) élimine le sable, la rouille et les sédiments.' },
-      { label: 'Prévention Active du Tartre :', text: 'Des aimants permanents (Water LIME) convertissent la calcite en aragonite non adhésive.' },
+      { label: 'Prévention Active du Tartre :', text: 'Des aimants permanents (Water LIME) convertissent la Calcite en Aragonite non adhésive.' },
       { label: 'Protection des Appareils :', text: 'Prolonge considérablement la durée de vie des chaudières, lave-linge et canalisations.' },
       { label: 'Écologique et Sain :', text: 'Zéro sel, zéro produit chimique. Le calcium et le magnésium sains restent dans l\'eau.' }
     ],
@@ -136,8 +136,8 @@ export default function ParticleLimeSetPage() {
 
   // Placeholder images. Replace with actual images (Particle filter + Water Lime)
   const IMAGES = [
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particle%20+%20water%20lime.webp",
-    "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp"
+    "/images/WEBSITE-P/products/particle_+_water_lime.webp",
+    "/images/WEBSITE-P/products/water_lime_vertical.webp"
   ];
 
 
@@ -351,7 +351,7 @@ export default function ParticleLimeSetPage() {
             <button
               className={styles.reportLink}
               onClick={() => {
-                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/The%20Swiss%20Water%20Cartridge_Retention%20Rates_Certificated%20ETH%20Zurich.pdf");
+                setModalUrl("/images/website-assets/certificates/The_Swiss_Water_Cartridge_Retention_Rates_Certificated_ETH_Zurich.pdf");
                 setIsLoadingPdf(true);
               }}
             >
@@ -360,7 +360,7 @@ export default function ParticleLimeSetPage() {
             <button
               className={styles.reportLink}
               onClick={() => {
-                setModalUrl("https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf");
+                setModalUrl("/images/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure_Test_MNS-CS.pdf");
                 setIsLoadingPdf(true);
               }}
             >
@@ -388,12 +388,20 @@ export default function ParticleLimeSetPage() {
                   </div>
                 </div>
               )}
-              <iframe
-                src={`https://docs.google.com/gview?url=${modalUrl}&embedded=true`}
+              <object
+                data={modalUrl}
+                type="application/pdf"
                 style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
                 title="Document Preview"
                 onLoad={() => setIsLoadingPdf(false)}
-              />
+              >
+                <div style={{ padding: '20px', textAlign: 'center', color: 'gray' }}>
+                  <p>Preview not available.</p>
+                  <a href={modalUrl} download style={{ color: '#4ade80', textDecoration: 'underline' }}>
+                    Download PDF
+                  </a>
+                </div>
+              </object>
             </div>
             <style>{`
               @keyframes spin {

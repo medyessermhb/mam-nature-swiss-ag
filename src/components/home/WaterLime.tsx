@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { 
-  TriangleAlert, XCircle, MinusCircle, ShieldCheck, 
-  CheckCircle, Infinity as InfinityIcon, Wrench 
+import {
+  TriangleAlert, XCircle, MinusCircle, ShieldCheck,
+  CheckCircle, Infinity as InfinityIcon, Wrench
 } from 'lucide-react';
 import styles from './WaterLime.module.css';
 import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
@@ -12,17 +12,17 @@ import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
 
 const CONTENT_EN = {
   headline: "Water LIME",
-  highlight: "Anti-Scale Solution: Effective, durable, and effortless.",
-  
+  highlight: "Scale conversion solution: Effective, durable, and maintenance free.",
+
   // Problem Block
   problemTitle: "The Limescale Challenge",
   problemText: "Calcite, the hard form of limescale, builds up in your pipes and appliances, causing technical failures and dull surfaces.",
-  
-  limitsTitle: "The Limits of Softeners",
+
+  limitsTitle: "The Limits of WaterSofteners",
   limits: [
-    { bold: "Alters water:", text: " Sodium replaces essential minerals and changes the taste." },
+    { bold: "Alters water:", text: " Sodium replaces essential minerals and deteriorates the taste." },
     { bold: "Bacterial risk:", text: " Can promote the development of bacteria." },
-    { bold: "High maintenance:", text: " Requires salt, regeneration, and wastes water." }
+    { bold: "High maintenance:", text: " Requires salt for regeneration, wastes water and pollutes the environment" }
   ],
 
   galleryCalcite: "Calcite (incrusting)",
@@ -32,8 +32,8 @@ const CONTENT_EN = {
   solutionTitle: "Our Solution: Physical Conversion",
   solutionTextPrefix: " Water LIME doesn’t remove limescale, ",
   solutionTextBold1: "it transforms its structure",
-  solutionTextMiddle: ". Using permanent magnets, incrusting calcite is converted into ",
-  solutionTextBold2: "aragonite",
+  solutionTextMiddle: ". Using permanent magnets, incrusting Calcite is converted into ",
+  solutionTextBold2: "Aragonite",
   solutionTextSuffix: ", a non-adhesive form.",
 
   features: [
@@ -50,11 +50,11 @@ const CONTENT_EN = {
 const CONTENT_FR = {
   headline: "Water LIME",
   highlight: "Solution Anti-Calcaire : Efficace, durable et sans effort.",
-  
+
   // Problem Block
   problemTitle: "Le défi du calcaire",
-  problemText: "La calcite, forme dure du calcaire, s'accumule dans vos tuyaux et appareils, provoquant des pannes et ternissant les surfaces.",
-  
+  problemText: "La Calcite, forme dure du calcaire, s'accumule dans vos tuyaux et appareils, provoquant des pannes et ternissant les surfaces.",
+
   limitsTitle: "Les limites des adoucisseurs",
   limits: [
     { bold: "Altère l'eau :", text: " Le sodium remplace les minéraux essentiels et change le goût." },
@@ -69,8 +69,8 @@ const CONTENT_FR = {
   solutionTitle: "Notre Solution : Conversion Physique",
   solutionTextPrefix: " Water LIME n'élimine pas le calcaire, ",
   solutionTextBold1: "il transforme sa structure",
-  solutionTextMiddle: ". Grâce à des aimants permanents, la calcite incrustante est convertie en ",
-  solutionTextBold2: "aragonite",
+  solutionTextMiddle: ". Grâce à des aimants permanents, la Calcite incrustante est convertie en ",
+  solutionTextBold2: "Aragonite",
   solutionTextSuffix: ", une forme non adhésive.",
 
   features: [
@@ -99,7 +99,7 @@ export default function WaterLime() {
             <span className={styles.highlight}>{content.highlight}</span>
           </h2>
         </div>
-        
+
         <div className={styles.sectionGrid}>
 
           {/* BLOCK 1: PROBLEM */}
@@ -111,7 +111,7 @@ export default function WaterLime() {
             <p className={styles.blockText}>
               <strong>Calcite</strong>, {content.problemText.replace('Calcite, ', '')}
             </p>
-            
+
             <h4 className={styles.blockTitle} style={{ fontSize: '1.2rem', marginTop: '1rem' }}>
               <XCircle size={20} />
               {content.limitsTitle}
@@ -128,19 +128,19 @@ export default function WaterLime() {
             <div className={styles.imageGallery}>
               <div className={styles.galleryGrid}>
                 <div className={styles.galleryItem}>
-                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/water%20lime/calcite%201.webp" alt="Calcite 1" loading="lazy" />
+                  <img src="/images/WEBSITE-P/water_lime/Calcite_1.webp" alt="Calcite 1" loading="lazy" />
                   <p className={styles.galleryLabel}>{content.galleryCalcite}</p>
                 </div>
                 <div className={styles.galleryItem}>
-                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/water%20lime/calcite%202.webp" alt="Calcite 2" loading="lazy" />
+                  <img src="/images/WEBSITE-P/water_lime/Calcite_2.webp" alt="Calcite 2" loading="lazy" />
                   <p className={styles.galleryLabel}>{content.galleryCalcite}</p>
                 </div>
                 <div className={styles.galleryItem}>
-                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/water%20lime/Aragonite%201.webp" alt="Aragonite 1" loading="lazy" />
+                  <img src="/images/WEBSITE-P/water_lime/Aragonite_1.webp" alt="Aragonite 1" loading="lazy" />
                   <p className={styles.galleryLabel}>{content.galleryAragonite}</p>
                 </div>
                 <div className={styles.galleryItem}>
-                  <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/water%20lime/Aragonite%202.webp" alt="Aragonite 2" loading="lazy" />
+                  <img src="/images/WEBSITE-P/water_lime/Aragonite_2.webp" alt="Aragonite 2" loading="lazy" />
                   <p className={styles.galleryLabel}>{content.galleryAragonite}</p>
                 </div>
               </div>
@@ -149,16 +149,16 @@ export default function WaterLime() {
 
           {/* BLOCK 2: IMAGE */}
           <div className={styles.productImageBlock} data-aos="fade-up" data-aos-delay="50">
-            <img 
-              src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20vertical.webp" 
-              alt="Mam Nature Swiss Water Lime" 
-              className={styles.desktopLimeImg} 
+            <img
+              src="/images/WEBSITE-P/products/water_lime_vertical.webp"
+              alt="Mam Nature Swiss Water Lime"
+              className={styles.desktopLimeImg}
               loading="lazy"
             />
-            <img 
-              src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/water%20lime%20horizontal.webp" 
-              alt="Mam Nature Swiss Water Lime Mobile" 
-              className={styles.mobileLimeImg} 
+            <img
+              src="/images/WEBSITE-P/products/water_lime_horizontal.webp"
+              alt="Mam Nature Swiss Water Lime Mobile"
+              className={styles.mobileLimeImg}
               loading="lazy"
             />
           </div>
@@ -170,14 +170,14 @@ export default function WaterLime() {
               {content.solutionTitle}
             </h3>
             <p className={styles.blockText}>
-              <span className={styles.redText}>Mam Nature Swiss®</span> 
+              <span className={styles.redText}>Mam Nature Swiss®</span>
               {content.solutionTextPrefix}
               <strong>{content.solutionTextBold1}</strong>
               {content.solutionTextMiddle}
               <strong>{content.solutionTextBold2}</strong>
               {content.solutionTextSuffix}
             </p>
-            
+
             <ul className={styles.featureList}>
               {content.features.map((feature, idx) => (
                 <li key={idx}>

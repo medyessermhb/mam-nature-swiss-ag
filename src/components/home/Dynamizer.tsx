@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  TriangleAlert, XCircle, Plus, ArrowRight, ShieldCheck, 
-  CheckCircle, Star, Droplets, Shield, Gauge, Infinity as InfinityIcon, Wrench 
+import {
+  TriangleAlert, XCircle, Plus, ArrowRight, ShieldCheck,
+  CheckCircle, Star, Droplets, Shield, Gauge, Infinity as InfinityIcon, Wrench
 } from 'lucide-react';
 import styles from './Dynamizer.module.css';
 import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
@@ -12,12 +12,12 @@ import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
 
 const CONTENT_EN = {
   headerTitle: "THE SWISS WATER DYNAMIZER",
-  tagline1: "Restore water’s original vitality.",
+  tagline1: "Restores water’s original vitality.",
   tagline2: "Nature’s intelligence at the service of your well-being.",
-  
+
   // Problem Section
   problemTitle: "The Problem with Modern Water",
-  problemDesc: "Water is life. Modern drinking water, though treated, often loses its natural ability to deeply hydrate cells and facilitate waste elimination.",
+  problemDesc: "Water is life. Modern drinking water, though treated, often loses its natural ability to deeply hydrate cells and facilitate waste elimination. Two major problems explain this loss of it's biological efficiency:",
   problems: [
     {
       title: "Low cellular bioavailability",
@@ -25,7 +25,7 @@ const CONTENT_EN = {
     },
     {
       title: "Destructured water",
-      desc: "In its natural state, high-quality water has a perfect hexagonal structure. This is destroyed in straight water pipes."
+      desc: "In its natural state, high-quality water has a perfect hexagonal structure, key to optimal hydration. This structure is destroyed on its journey to final taps due to wrong movement of water in straight water tubes (instead of vortex/spiral movement)."
     }
   ],
 
@@ -39,17 +39,17 @@ const CONTENT_EN = {
     },
     {
       title: "Limestone Transformation",
-      desc: "Converts hard calcite into soft aragonite using magnets and turbulence. Protects appliances."
+      desc: "Through permanent magnets and extreme turbulence, it converts Calcite (hard) into Aragonite (soft), protecting appliances and pipes while creating an amazing natural soft taste."
     },
     {
       title: "Long-Term stabilization",
-      desc: "Dynamized water gains a biologically stable structure that lasts over time."
+      desc: "Dynamized water gains highest biological stability – e.g. keeps being stable without bacterial "
     }
   ],
 
   // Conclusion Section
   conclusionTitle: "THE SWISS WATER DYNAMIZER",
-  conclusionText: "That’s why it’s essential to drink water that is not only pure and mineralized, but also living and structured.",
+  conclusionText: "That’s why it’s essential to drink water that is not only pure and mineralized, but also living and structured. The Water Crystal Photographies according to Masaru Emoto illustrate the result of Water Dynamization in a impressing way.",
   pipeStraightTitle: "Straight water pipe:",
   pipeStraightDesc: "Water clusters and loses its biophysical power.",
   pipeSpiralTitle: "Spiral water pipe:",
@@ -57,15 +57,15 @@ const CONTENT_EN = {
 
   // Benefits Section
   benefitsTitle: "Daily benefits",
-  benefit1Title: "Exceptional taste",
-  benefit1Desc: "Discover an incredibly soft, remarkably digestible and pleasant water.",
+  benefit1Title: "Unprecedented taste",
+  benefit1Desc: "Discover an incredibly light, remarkably digestible and pleasant water.",
   benefit2Title: "Optimal cellular hydration",
   benefit2Desc: "Supports proper body function and helps reduce acidity.",
-  benefit3Title: "Natural Limescale Protection",
-  benefit3Desc: "Protects your appliances and surfaces without salt or chemicals.",
+  benefit3Title: "Natural Limescale Conversion",
+  benefit3Desc: "Converts limestone from hard to soft protecting your appliancies and surfaces without salt.",
   benefit4Title: "Unmatched performance",
-  benefit4Desc: "With a capacity of 5,000 liters/hour, it serves the whole house.",
-  
+  benefit4Desc: "With a capacity of 5,000 liters/hour, the The Swiss Water Dynamizer serves the needs of the whole house.",
+
   specCapacityTitle: "Capacity",
   specCapacityValue: "Unlimited",
   specMaintTitle: "Maintenance",
@@ -76,7 +76,7 @@ const CONTENT_FR = {
   headerTitle: "THE SWISS WATER DYNAMIZER",
   tagline1: "Redonne à l'eau sa vitalité originelle.",
   tagline2: "L'intelligence de la nature au service de votre bien-être.",
-  
+
   // Problem Section
   problemTitle: "Problème de l'eau moderne",
   problemDesc: "L'eau c'est la vie. L'eau potable moderne, bien que traitée, perd souvent sa capacité naturelle à hydrater profondément les cellules.",
@@ -101,7 +101,7 @@ const CONTENT_FR = {
     },
     {
       title: "Transformation du calcaire",
-      desc: "Grâce à une combinaison d'aimants permanents et de turbulence, il convertit le calcaire (calcite dure) en aragonite douce. Protège vos appareils."
+      desc: "Grâce à une combinaison d'aimants permanents et de turbulence, il convertit le calcaire (Calcite dure) en Aragonite douce. Protège vos appareils."
     },
     {
       title: "Stabilisation durable",
@@ -127,7 +127,7 @@ const CONTENT_FR = {
   benefit3Desc: "Protège naturellement vos électroménagers et vos surfaces sans utiliser de sel ou de produits chimiques.",
   benefit4Title: "Une performance inégalée",
   benefit4Desc: "Avec une capacité de traitement de 5 000 litres/heure, le dynamiseur répond aux besoins de toute la maison.",
-  
+
   specCapacityTitle: "Capacité",
   specCapacityValue: "Illimitée",
   specMaintTitle: "Entretien",
@@ -137,7 +137,7 @@ const CONTENT_FR = {
 export default function Dynamizer() {
   const [activeProblem, setActiveProblem] = useState<number | null>(null);
   const [activeSolution, setActiveSolution] = useState<number | null>(null);
-  
+
   const { language } = useLanguage();
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
@@ -148,7 +148,7 @@ export default function Dynamizer() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        
+
         <header className={styles.header} data-aos="fade-up">
           <h2 className={styles.mainTitle}>{content.headerTitle}</h2>
           <p className={styles.tagline}>{content.tagline1}</p>
@@ -156,7 +156,7 @@ export default function Dynamizer() {
         </header>
 
         <div className={styles.visualFlowGrid}>
-          
+
           {/* COLUMN 1: PROBLEM */}
           <div className={styles.flowColumn} data-aos="fade-up">
             <h3>
@@ -164,7 +164,7 @@ export default function Dynamizer() {
               {content.problemTitle}
             </h3>
             <p>{content.problemDesc}</p>
-            
+
             <ul className={styles.iconList}>
               {content.problems.map((item, idx) => (
                 <li key={idx} className={`${styles.iconListItem} ${activeProblem === idx ? styles.active : ''}`} onClick={() => toggleProblem(idx)}>
@@ -189,7 +189,7 @@ export default function Dynamizer() {
           {/* COLUMN 2: CENTER IMAGE */}
           <div className={styles.productImageContainer} data-aos="fade-up" data-aos-delay="200">
             <ArrowRight className={styles.flowArrow} />
-            <img src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/DYNAMIZER.webp" alt="The Swiss Water Dynamizer" loading="lazy" />
+            <img src="/images/WEBSITE-P/products/DYNAMIZER.webp" alt="The Swiss Water Dynamizer" loading="lazy" />
             <ArrowRight className={styles.flowArrow} />
           </div>
 
@@ -200,7 +200,7 @@ export default function Dynamizer() {
               {content.solutionTitle}
             </h3>
             <p>{content.solutionDesc}</p>
-            
+
             <ul className={styles.iconList}>
               {content.solutions.map((item, idx) => (
                 <li key={idx} className={`${styles.iconListItem} ${activeSolution === idx ? styles.active : ''}`} onClick={() => toggleSolution(idx)}>

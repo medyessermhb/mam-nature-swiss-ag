@@ -16,31 +16,31 @@ const CONTENT_EN = {
       title: "Filtration Performance Report",
       desc: "Certified by ETH Zurich, detailing the retention rates of our patented filtration technology.",
       icon: FileText,
-      url: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/The%20Swiss%20Water%20Cartridge_Retention%20Rates_Certificated%20ETH%20Zurich.pdf"
+      url: "/images/website-assets/certificates/The_Swiss_Water_Cartridge_Retention_Rates_Certificated_ETH_Zurich.pdf"
     },
     {
       title: "Swiss Safety System Certificate",
       desc: "Verifies the structural integrity and safety of our system housing under high pressure.",
       icon: ShieldCheck,
-      url: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf"
+      url: "/images/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure_Test_MNS-CS.pdf"
     },
     {
       title: "ISO Certificate",
       desc: "Confirms our adherence to international standards for quality management systems.",
       icon: Award,
-      url: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/ISO.pdf"
+      url: "/images/website-assets/certificates/ISO.pdf"
     },
     {
       title: "H2 Booster Certificate",
       desc: "Official CE-Certificate for our advanced Hydrogen Booster technology.",
       icon: Atom,
-      url: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Mam%20Nature%20Swiss%20Hydrogen%20Booster_CE-Certificate_2025-005-DOC_sign_2025.04.29.pdf"
+      url: "/images/website-assets/certificates/Mam_Nature_Swiss_Hydrogen_Booster_CE-Certificate_2025-005-DOC_sign_2025.04.29.pdf"
     },
     {
       title: "H2 Conformity Assessment",
       desc: "Official assessment confirming regulatory compliance for the Hydrogen Booster.",
       icon: ClipboardCheck,
-      url: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Mam%20Nature%20Swiss%20Hydrogen%20Booster_CE-Conformity%20Assessment_2025-005-CR-01_signed.pdf"
+      url: "/images/website-assets/certificates/Mam_Nature_Swiss_Hydrogen_Booster_CE-Conformity_Assessment_2025-005-CR-01_signed.pdf"
     }
   ]
 };
@@ -54,31 +54,31 @@ const CONTENT_FR = {
       title: "Rapport de Performance de Filtration",
       desc: "Certifié par l'ETH Zurich, détaillant les taux de rétention de notre technologie de filtration brevetée.",
       icon: FileText,
-      url: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/The%20Swiss%20Water%20Cartridge_Retention%20Rates_Certificated%20ETH%20Zurich.pdf"
+      url: "/images/website-assets/certificates/The_Swiss_Water_Cartridge_Retention_Rates_Certificated_ETH_Zurich.pdf"
     },
     {
       title: "Certificat Swiss Safety System",
       desc: "Vérifie l'intégrité structurelle et la sécurité de notre système sous haute pression.",
       icon: ShieldCheck,
-      url: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure%20Test_MNS-CS.pdf"
+      url: "/images/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure_Test_MNS-CS.pdf"
     },
     {
       title: "Certificat ISO",
       desc: "Confirme notre adhésion aux normes internationales pour les systèmes de management de la qualité.",
       icon: Award,
-      url: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/ISO.pdf"
+      url: "/images/website-assets/certificates/ISO.pdf"
     },
     {
       title: "Certificat H2 Booster",
       desc: "Certificat CE officiel pour notre technologie avancée de Hydrogen Booster.",
       icon: Atom,
-      url: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Mam%20Nature%20Swiss%20Hydrogen%20Booster_CE-Certificate_2025-005-DOC_sign_2025.04.29.pdf"
+      url: "/images/website-assets/certificates/Mam_Nature_Swiss_Hydrogen_Booster_CE-Certificate_2025-005-DOC_sign_2025.04.29.pdf"
     },
     {
       title: "Évaluation de Conformité H2",
       desc: "Évaluation officielle confirmant la conformité réglementaire du Hydrogen Booster.",
       icon: ClipboardCheck,
-      url: "https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/website-assets/certificates/Mam%20Nature%20Swiss%20Hydrogen%20Booster_CE-Conformity%20Assessment_2025-005-CR-01_signed.pdf"
+      url: "/images/website-assets/certificates/Mam_Nature_Swiss_Hydrogen_Booster_CE-Conformity_Assessment_2025-005-CR-01_signed.pdf"
     }
   ]
 };
@@ -87,7 +87,7 @@ export default function ReportsPage() {
   const [modalUrl, setModalUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
+
   const { language } = useLanguage();
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
@@ -115,15 +115,15 @@ export default function ReportsPage() {
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.container}>
-        
+
         <h1 className={styles.title}>{content.title}</h1>
         <p className={styles.subtitle}>{content.subtitle}</p>
 
         <div className={styles.grid}>
           {content.reports.map((report, idx) => (
-            <div 
-              key={idx} 
-              className={styles.card} 
+            <div
+              key={idx}
+              className={styles.card}
               onClick={() => openReport(report.url)}
             >
               <div className={styles.iconWrapper}>
@@ -142,8 +142,8 @@ export default function ReportsPage() {
 
       {/* PDF MODAL */}
       {modalUrl && (
-        <div 
-          className={styles.modalOverlay} 
+        <div
+          className={styles.modalOverlay}
           onClick={closeReport}
           onContextMenu={(e) => e.preventDefault()} // Disable Right Click
         >
@@ -151,24 +151,32 @@ export default function ReportsPage() {
             <button className={styles.closeBtn} onClick={closeReport}>
               <X size={24} />
             </button>
-            
+
             <div className={styles.pdfContainer}>
               {loading && <div className={styles.loader}></div>}
-              
+
               {isMobile ? (
-                 // Mobile: Google Viewer (Prevents download)
-                 <iframe 
-                   src={`https://docs.google.com/gview?url=${encodeURIComponent(modalUrl)}&embedded=true`} 
-                   className={styles.iframe}
-                   onLoad={() => setLoading(false)}
-                 />
+                // Mobile: Google Viewer (Prevents download)
+                <object
+                  data={modalUrl}
+                  type="application/pdf"
+                  className={styles.iframe}
+                  onLoad={() => setLoading(false)}
+                >
+                  <div style={{ padding: '20px', textAlign: 'center', color: 'white' }}>
+                    <p>Preview not available.</p>
+                    <a href={modalUrl} download style={{ color: '#4ade80', textDecoration: 'underline' }}>
+                      Download PDF
+                    </a>
+                  </div>
+                </object>
               ) : (
                 // Desktop: Embed with Toolbar Hiding
-                <embed 
-                   src={`${modalUrl}#toolbar=0&navpanes=0&scrollbar=0`}
-                   type="application/pdf"
-                   className={styles.pdfObject}
-                   onLoad={() => setLoading(false)}
+                <embed
+                  src={`${modalUrl}#toolbar=0&navpanes=0&scrollbar=0`}
+                  type="application/pdf"
+                  className={styles.pdfObject}
+                  onLoad={() => setLoading(false)}
                 />
               )}
             </div>

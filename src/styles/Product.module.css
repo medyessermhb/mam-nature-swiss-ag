@@ -1693,3 +1693,42 @@
     max-width: 320px;
   }
 }
+/* ========== PRODUCT OPTIONS ========== */
+.productOptions {
+  margin-bottom: 1.5rem;
+}
+
+.optionLabel {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.optionGroup {
+  display: flex;
+  gap: 1rem;
+}
+
+.optionBtn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-white);
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.optionBtn:hover {
+  border-color: var(--brand-red);
+  color: var(--brand-red);
+}
+
+.optionBtn.active {
+  border-color: var(--brand-red);
+  background-color: #fff1f2; /* Light red tint */
+  color: var(--brand-red);
+}

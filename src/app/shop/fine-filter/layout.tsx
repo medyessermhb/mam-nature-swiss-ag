@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: 'Water Fine Filter | Mam Nature Swiss',
     description: 'Pure water rich in minerals, free from contaminants.',
     url: '/shop/fine-filter',
-    images: ['https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp']
+    images: ['/images/WEBSITE-P/products/FINE_FILTER.webp']
   }
 };
 
@@ -16,7 +16,7 @@ export default function FineFilterLayout({ children }: { children: React.ReactNo
   const jsonLd = getProductJsonLd({
     name: 'Water Fine Filter',
     description: 'Selective filtration: eliminates microplastics and heavy metals while preserving minerals. Quadruple filtration system.',
-    image: 'https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/FINE%20FILTER.webp',
+    image: '/images/WEBSITE-P/products/FINE_FILTER.webp',
     slug: 'fine-filter',
     priceKey: 'mam-nature-water-fine-filter',
     brand: 'Mam Nature Swiss'

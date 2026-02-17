@@ -10,7 +10,7 @@ import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
 const CONTENT_EN = {
   headline: "Mam Nature Swiss « Water PARTICLE FILTER »",
   subheadline: "Particle filter with automatic backwash, pressure regulator, and 360° connector.",
-  description: "Compact, fully integrated solution made from medical-grade materials (316L stainless steel).",
+  description: "Compact & fully integrated solution made from medical-grade materials (316L stainless steel).",
   capacity: "Capacity: unlimited",
   maintenanceTitle: "Maintenance: none",
   maintenanceDesc: "Fully automated solution."
@@ -34,12 +34,12 @@ export default function ParticleFilter() {
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.grid}>
-          
+
           {/* Left Column: Image */}
           <div className={styles.imageBlock} data-aos="fade-up">
-            <img 
-              src="https://nqhluawiejltjghgnbwl.supabase.co/storage/v1/object/public/WEBSITE-P/products/particles%20home%20page.webp" 
-              alt="Mam Nature Swiss Water Particles Filter" 
+            <img
+              src="/images/products/PARTICLE FILTER/PARTICLE FILTER NO BACKWASH Aqmos AQ1 Particle Filter 1.webp"
+              alt="Mam Nature Swiss Water Particles Filter"
               loading="lazy"
             />
           </div>
@@ -52,14 +52,14 @@ export default function ParticleFilter() {
             <p className={styles.subheadline}>
               {content.subheadline}
             </p>
-            
+
             <div className={styles.description}>
               <CheckCircle className={styles.descriptionIcon} />
               <p style={{ margin: 0 }}>
                 {content.description}
               </p>
             </div>
-            
+
             <div className={styles.featuresGrid}>
               <div className={styles.featureCard}>
                 <InfinityIcon className={styles.featureIcon} />
