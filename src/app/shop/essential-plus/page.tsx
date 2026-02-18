@@ -177,9 +177,8 @@ export default function EssentialPlusSetPage() {
         setActiveAccordion(activeAccordion === id ? null : id);
     };
 
-    // 1. Fine Filter, 2. Cartridge, 3. Particle Filter (Make sure to update the 3rd URL to the actual particle filter image)
     const IMAGES = [
-        "/images/products/autobackwash/Essential plus +Aqmos 1 with AUTOMATIC BACKWASH.webp",
+        "/images/WEBSITE-P/products/essential_plus.webp",
         "/images/WEBSITE-P/products/cartridge.webp",
         "/images/products/particle_filter/particle_filter_auto_backwash_front.webp"
     ];

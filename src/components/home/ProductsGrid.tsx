@@ -30,7 +30,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'whole house solution',
     slug: 'essential',
     priceKey: 'mam-nature-essential-set',
-    image: '/images/WEBSITE-P/products/ESSENTIAL.webp',
+    image: '/images/WEBSITE-P/products/essential.webp',
     imageHeight: 300,
     features: [
       "Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.",
@@ -48,7 +48,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'whole house solution',
     slug: 'essential-plus',
     priceKey: 'mam-nature-essential-plus',
-    image: '/images/products/autobackwash/Essential plus +Aqmos 1 with AUTOMATIC BACKWASH.webp',
+    image: '/images/WEBSITE-P/products/essential_plus.webp',
     imageHeight: 300,
     features: [
       "Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.",
@@ -243,7 +243,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'essentiel',
     priceKey: 'mam-nature-essential-set',
-    image: '/images/WEBSITE-P/products/ESSENTIAL.webp',
+    image: '/images/WEBSITE-P/products/essential.webp',
     imageHeight: 300,
     features: [
       "Fabriqué en inox médical, garantie 10 ans, conçu pour durer toute la vie",
@@ -261,7 +261,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'essentiel-plus',
     priceKey: 'mam-nature-essential-plus',
-    image: '/images/products/autobackwash/Essential plus +Aqmos 1 with AUTOMATIC BACKWASH.webp',
+    image: '/images/WEBSITE-P/products/essential_plus.webp',
     imageHeight: 300,
     features: [
       "Fabriqué en inox médical, garantie 10 ans, conçu pour durer toute la vie",
