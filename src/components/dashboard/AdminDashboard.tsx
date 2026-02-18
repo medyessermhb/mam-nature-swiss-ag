@@ -344,7 +344,7 @@ export default function AdminDashboard() {
       <div className={styles.statsGrid}>
         <div className={styles.statCard}>
           <div className={styles.statLabel}><DollarSign size={16} /> Total Revenue (Est.)</div>
-          <div className={styles.statValue}>€ {totalRevenue.toLocaleString()}</div>
+          <div className={styles.statValue}>€ {Math.floor(totalRevenue).toLocaleString()}</div>
           <div className={styles.statTrend} style={{ color: '#166534' }}>+ Paid Orders</div>
         </div>
         <div className={styles.statCard}>
