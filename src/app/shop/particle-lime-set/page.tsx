@@ -9,7 +9,6 @@ import styles from '@/styles/Product.module.css';
 import { usePricing } from '@/context/PricingContext';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
-import Image from 'next/image';
 
 
 // --- PRODUCT CONSTANTS ---
@@ -121,27 +120,12 @@ const CONTENT_FR = {
 };
 
 export default function ParticleLimeSetPage() {
-  const { getPrice, getRawPrice, formatPrice, isLoading, currency, region } = usePricing();
+  const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
   const isFrench = language === 'fr';
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
-
-  const [selectedOption, setSelectedOption] = useState<'auto' | 'manual'>('manual'); // Default to manual
-
-  // Dynamic Image Logic
-  const IMAGES_MANUAL = [
-    "/images/products/PARTICLE FILTER/water lime + particle filter without automatic back wash.webp",
-    "/images/WEBSITE-P/products/water_lime_vertical.webp"
-  ];
-
-  const IMAGES_AUTO = [
-    "/images/products/PARTICLE FILTER/water lime + particle filter automatic back wash.webp",
-    "/images/WEBSITE-P/products/water_lime_vertical.webp"
-  ];
-
-  const IMAGES = selectedOption === 'auto' ? IMAGES_AUTO : IMAGES_MANUAL;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');
@@ -150,7 +134,13 @@ export default function ParticleLimeSetPage() {
 
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
-
+  // Placeholder images. Replace with actual images (Particle filter + Water Lime)
+  const IMAGES = [
+    "/images/products/particle_filter/water_lime_particle_filter_auto_backwash.webp",
+    "/images/products/particle_filter/particle_filter_auto_backwash_front.webp",
+    "/images/products/particle_filter/particle_filter_auto_backwash_side.webp",
+    "/images/products/particle_filter/auto_backwash_unit.webp"
+  ];
 
 
 
@@ -190,33 +180,14 @@ export default function ParticleLimeSetPage() {
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % IMAGES.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
 
-  // Reset slide on option change
-  useEffect(() => {
-    setCurrentSlide(0);
-  }, [selectedOption]);
-
   const handleAddToCart = () => {
-    const addonPrice = getRawPrice('addon-automatic-backwash');
-    const basePrice = getRawPrice(PRODUCT_ID);
-
-    // Construct final price based on selection
-    // If auto, add addon price. The base PRODUCT_ID in DB is manual price.
-    // Or we use the specific variant ID 'mam-nature-particle-lime-set-auto' which we added to DB.
-    // Using the specific variant ID is safer for cart consistency.
-    const currentProductId = selectedOption === 'auto' ? `${PRODUCT_ID}-auto` : PRODUCT_ID;
-
-    // However, if we want to ensure price is exactly Base + Addon from simple logic:
-    // const finalPrice = selectedOption === 'auto' ? basePrice + addonPrice : basePrice;
-    // But getRawPrice(currentProductId) should return the correct value from DB if migration ran.
-
-    const rawPrice = getRawPrice(currentProductId);
-
+    const rawPrice = getRawPrice(PRODUCT_ID);
     if (rawPrice === 0) return;
     const currencyCode = currency === 'MAD' ? 'Dhs' : currency || 'EUR';
 
     addToCart({
-      id: currentProductId,
-      name: `${PRODUCT_NAME} (${selectedOption === 'auto' ? (isFrench ? 'Avec Rétrolavage Automatique' : 'With Automatic Backwash') : (isFrench ? 'Sans Rétrolavage Automatique' : 'Without Automatic Backwash')})`,
+      id: PRODUCT_ID,
+      name: PRODUCT_NAME,
       price: rawPrice,
       currency: currencyCode,
       image: IMAGES[0]
@@ -290,79 +261,10 @@ export default function ParticleLimeSetPage() {
                 <div className={styles.productPrice}>
                   {isLoading
                     ? 'Loading...'
-                    : (getRawPrice(PRODUCT_ID) > 0)
-                      ? (
-                        selectedOption === 'auto'
-                          ? formatPrice(getRawPrice(PRODUCT_ID) + getRawPrice('addon-automatic-backwash'), region)
-                          : getPrice(PRODUCT_ID)
-                      )
+                    : getRawPrice(PRODUCT_ID) > 0
+                      ? getPrice(PRODUCT_ID)
                       : <span style={{ color: '#D52D25', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '8px' }}><AlertCircle size={20} /> {content.product.priceTBD}</span>
                   }
-                </div>
-              </div>
-
-              {/* OPTION SELECTOR */}
-              <div style={{ marginBottom: '1.5rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>
-                  {isFrench ? 'Choisissez votre version :' : 'Choose your version:'}
-                </label>
-                <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                  <button
-                    onClick={() => setSelectedOption('manual')}
-                    style={{
-                      padding: '0.5rem 1rem',
-                      border: selectedOption === 'manual' ? '1px solid #D52D25' : '1px solid #e5e7eb',
-                      backgroundColor: selectedOption === 'manual' ? '#FFF5F5' : '#fff',
-                      color: selectedOption === 'manual' ? '#D52D25' : '#4b5563',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      fontSize: '0.9rem',
-                      fontWeight: selectedOption === 'manual' ? 600 : 400,
-                      transition: 'all 0.2s ease',
-                      boxShadow: selectedOption === 'manual' ? '0 1px 2px rgba(213, 45, 37, 0.1)' : 'none',
-                    }}
-                  >
-                    {isFrench ? 'Sans Rétrolavage Automatique' : 'Without Automatic Backwash'}
-                  </button>
-                  <button
-                    onClick={() => setSelectedOption('auto')}
-                    style={{
-                      padding: '0.5rem 0.75rem',
-                      border: selectedOption === 'auto' ? '1px solid #D52D25' : '1px solid #e5e7eb',
-                      backgroundColor: selectedOption === 'auto' ? '#FFF5F5' : '#fff',
-                      color: selectedOption === 'auto' ? '#D52D25' : '#4b5563',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      fontSize: '0.9rem',
-                      fontWeight: selectedOption === 'auto' ? 600 : 400,
-                      transition: 'all 0.2s ease',
-                      boxShadow: selectedOption === 'auto' ? '0 1px 2px rgba(213, 45, 37, 0.1)' : 'none',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px'
-                    }}
-                  >
-                    {/* Image icon for Auto Backwash */}
-                    <div style={{ position: 'relative', width: '30px', height: '30px', flexShrink: 0 }}>
-                      <Image
-                        src="/images/products/PARTICLE FILTER/Autom. Backwash Unit 1.webp"
-                        alt="Automatic Backwash"
-                        fill
-                        style={{ objectFit: 'contain' }}
-                      />
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: '1.1' }}>
-                      <span>{isFrench ? 'Avec Rétrolavage Automatique' : 'With Automatic Backwash'}</span>
-                      <span style={{ fontSize: '0.85em', color: selectedOption === 'auto' ? '#D52D25' : '#888', fontWeight: 500 }}>
-                        {/* Dynamic Addon Price Display */}
-                        {getRawPrice('addon-automatic-backwash') > 0
-                          ? (currency === 'MAD'
-                            ? `+${getRawPrice('addon-automatic-backwash')} Dhs`
-                            : `+${getRawPrice('addon-automatic-backwash')} ${currency || 'EUR'}`)
-                          : '+90 EUR'}
-                      </span>
-                    </div>
-                  </button>
                 </div>
               </div>
               <div className={styles.cartForm}>

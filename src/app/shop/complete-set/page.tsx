@@ -8,7 +8,6 @@ import {
 } from 'lucide-react';
 import styles from '@/styles/Product.module.css';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePricing } from '@/context/PricingContext';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext'; // <--- Import Context
@@ -301,7 +300,6 @@ export default function CompleteSetPage() {
   const content = isFrench ? CONTENT_FR : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [selectedOption, setSelectedOption] = useState<'manual' | 'auto'>('manual');
   const [activeSection, setActiveSection] = useState('produit');
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const [activeSubAccordion, setActiveSubAccordion] = useState<Record<string, boolean>>({});
@@ -310,21 +308,12 @@ export default function CompleteSetPage() {
 
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
-  const IMAGES_MANUAL = [
-    "/images/products/WITHOUT AUTO BACKWASH/mam nature complete set + WITHOUT AUTOMATIC BACKWASH.webp",
+  const IMAGES = [
+    "/images/products/autobackwash/complete_set_aqmos_auto_backwash.webp",
     "/images/WEBSITE-P/drinking_big.webp",
     "/images/WEBSITE-P/shower_big.webp",
     "/images/WEBSITE-P/coffee_big.webp"
   ];
-
-  const IMAGES_AUTO = [
-    "/images/products/AUTOBACKWASH/complete set+Aqmos incl. autom. Backwash 1.webp",
-    "/images/WEBSITE-P/drinking_big.webp",
-    "/images/WEBSITE-P/shower_big.webp",
-    "/images/WEBSITE-P/coffee_big.webp"
-  ];
-
-  const IMAGES = selectedOption === 'auto' ? IMAGES_AUTO : IMAGES_MANUAL;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -371,12 +360,11 @@ export default function CompleteSetPage() {
   };
 
   const handleAddToCart = () => {
-    const currentProductId = selectedOption === 'auto' ? `${PRODUCT_ID}-auto` : PRODUCT_ID;
-    const rawPrice = getRawPrice(currentProductId);
+    const rawPrice = getRawPrice(PRODUCT_ID);
     const currencyCode = currency === 'MAD' ? 'Dhs' : currency || 'EUR';
 
     addToCart({
-      id: currentProductId,
+      id: PRODUCT_ID,
       name: PRODUCT_NAME,
       price: rawPrice,
       currency: currencyCode,
@@ -451,73 +439,8 @@ export default function CompleteSetPage() {
             <div className={styles.productDetails}>
               <div className={styles.productInfoMobile}>
                 <h1 className={styles.productTitle}>{content.product.title}</h1>
-
-                {/* OPTION SELECTOR */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>
-                    {isFrench ? 'Choisissez votre version :' : 'Choose your version:'}
-                  </label>
-                  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                    <button
-                      onClick={() => setSelectedOption('manual')}
-                      style={{
-                        padding: '0.5rem 1rem',
-                        border: selectedOption === 'manual' ? '1px solid #D52D25' : '1px solid #e5e7eb',
-                        backgroundColor: selectedOption === 'manual' ? '#FFF5F5' : '#fff',
-                        color: selectedOption === 'manual' ? '#D52D25' : '#4b5563',
-                        borderRadius: '6px',
-                        cursor: 'pointer',
-                        fontSize: '0.9rem',
-                        fontWeight: selectedOption === 'manual' ? 600 : 400,
-                        transition: 'all 0.2s ease',
-                        boxShadow: selectedOption === 'manual' ? '0 1px 2px rgba(213, 45, 37, 0.1)' : 'none',
-                      }}
-                    >
-                      {isFrench ? 'Sans Rétrolavage Automatique' : 'Without Automatic Backwash'}
-                    </button>
-                    <button
-                      onClick={() => setSelectedOption('auto')}
-                      style={{
-                        padding: '0.5rem 0.75rem',
-                        border: selectedOption === 'auto' ? '1px solid #D52D25' : '1px solid #e5e7eb',
-                        backgroundColor: selectedOption === 'auto' ? '#FFF5F5' : '#fff',
-                        color: selectedOption === 'auto' ? '#D52D25' : '#4b5563',
-                        borderRadius: '6px',
-                        cursor: 'pointer',
-                        fontSize: '0.9rem',
-                        fontWeight: selectedOption === 'auto' ? 600 : 400,
-                        transition: 'all 0.2s ease',
-                        boxShadow: selectedOption === 'auto' ? '0 1px 2px rgba(213, 45, 37, 0.1)' : 'none',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px'
-                      }}
-                    >
-                      {/* Image icon for Auto Backwash */}
-                      <div style={{ position: 'relative', width: '30px', height: '30px', flexShrink: 0 }}>
-                        <Image
-                          src="/images/products/PARTICLE FILTER/Autom. Backwash Unit 1.webp"
-                          alt="Automatic Backwash"
-                          fill
-                          style={{ objectFit: 'contain' }}
-                        />
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: '1.1' }}>
-                        <span>{isFrench ? 'Avec Rétrolavage Automatique' : 'With Automatic Backwash'}</span>
-                        <span style={{ fontSize: '0.85em', color: selectedOption === 'auto' ? '#D52D25' : '#888', fontWeight: 500 }}>
-                          {getRawPrice('addon-automatic-backwash') > 0
-                            ? (currency === 'MAD'
-                              ? `+${getRawPrice('addon-automatic-backwash')} Dhs`
-                              : `+${getRawPrice('addon-automatic-backwash')} ${currency || 'EUR'}`)
-                            : '+90 EUR'}
-                        </span>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-
                 <div className={styles.productPrice}>
-                  {isLoading ? 'Loading...' : getPrice(selectedOption === 'auto' ? `${PRODUCT_ID}-auto` : PRODUCT_ID)}
+                  {isLoading ? 'Loading...' : getPrice(PRODUCT_ID)}
                 </div>
               </div>
               <div className={styles.cartForm}>

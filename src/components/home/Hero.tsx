@@ -72,7 +72,7 @@ const CONTENT_EN = {
     {
       id: 'complete',
       name: 'Complete Set',
-      image: "/images/WEBSITE-P/products/COMPLETE_SET.webp",
+      image: "/images/products/autobackwash/complete_set_aqmos_auto_backwash.webp",
       // --- EDIT OUTPUT POINT HERE (x, y are % from top-left) ---
       outputPoint: { x: 90, y: 80 }, // Desktop: Bottom-Right
       mobileOutputPoint: { x: 10, y: 80 } // Mobile output
@@ -80,7 +80,7 @@ const CONTENT_EN = {
     {
       id: 'eco',
       name: 'Eco Set',
-      image: "/images/WEBSITE-P/products/ECO_SET.webp",
+      image: "/images/products/autobackwash/eco_set_aqmos_auto_backwash.webp",
       // --- EDIT OUTPUT POINT HERE (x, y are % from top-left) ---
       outputPoint: { x: 82, y: 10 }, // Desktop: Top-Right
       mobileOutputPoint: { x: 10, y: 10 }, // Mobile output
@@ -158,7 +158,7 @@ const CONTENT_FR = {
     {
       id: 'complete',
       name: 'Set Complet',
-      image: "/images/WEBSITE-P/products/COMPLETE_SET.webp",
+      image: "/images/products/autobackwash/complete_set_aqmos_auto_backwash.webp",
       // --- EDIT OUTPUT POINT HERE (x, y are % from top-left) ---
       outputPoint: { x: 80, y: 75 }, // Desktop: Bottom-Right
       mobileOutputPoint: { x: 10, y: 80 } // Mobile output
@@ -166,7 +166,7 @@ const CONTENT_FR = {
     {
       id: 'eco',
       name: 'Eco Set',
-      image: "/images/WEBSITE-P/products/ECO_SET.webp",
+      image: "/images/products/autobackwash/eco_set_aqmos_auto_backwash.webp",
       // --- EDIT OUTPUT POINT HERE (x, y are % from top-left) ---
       outputPoint: { x: 80, y: 25 }, // Desktop: Top-Right
       mobileOutputPoint: { x: 10, y: 10 }, // Mobile output

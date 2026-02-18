@@ -30,7 +30,7 @@ export default function CrossSellOffer() {
       id: 'promo-particle-lime-set',
       name: 'Special Offer: Particle Filter + Water Lime',
       desc: 'Complete your setup for only 330€ (instead of 452€)!',
-      price: isMad ? 3450 : isChf ? 310 : 330,
+      price: isMad ? 3719 : isChf ? 310 : 330,
       image: '/images/WEBSITE-P/products/particle_+_water_lime.webp' // Replace with actual combo image
     };
   } else if (hasEssentialPlus && !hasPromo2) {

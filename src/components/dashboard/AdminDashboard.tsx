@@ -11,6 +11,7 @@ import { generateInvoicePDF } from '@/utils/generateInvoice';
 import ClientDate from '@/components/ui/ClientDate';
 import StatusBadge from './StatusBadge';
 import PriceManagement from './PriceManagement';
+import { PRICES } from '@/data/prices';
 
 const CONTENT_EN = {
   header: {
@@ -166,23 +167,64 @@ export default function AdminDashboard() {
     }
   };
 
+  // --- SHIPPING MODAL STATE ---
+  const [isShippingModalOpen, setIsShippingModalOpen] = useState(false);
+  const [shippingData, setShippingData] = useState({ orderId: '', trackingNumber: '', trackingLink: '' });
+
   // --- UPDATED: UPDATE STATUS AND SEND EMAIL ---
-  const updateOrderStatus = async (id: string, newStatus: string, orderData: any) => {
+  const handleStatusChange = (id: string, newStatus: string, orderData: any) => {
+    if (newStatus === 'shipped') {
+      setShippingData({ orderId: id, trackingNumber: orderData.tracking_number || '', trackingLink: orderData.tracking_link || '' });
+      setIsShippingModalOpen(true);
+      return;
+    }
+    updateOrderStatus(id, newStatus, orderData);
+  };
+
+  const confirmShipping = async () => {
+    if (!shippingData.trackingNumber) {
+      alert("Please enter a tracking number.");
+      return;
+    }
+    await updateOrderStatus(shippingData.orderId, 'shipped', null, shippingData.trackingNumber, shippingData.trackingLink);
+    setIsShippingModalOpen(false);
+  };
+
+  const updateOrderStatus = async (id: string, newStatus: string, orderData: any | null, trackingNumber?: string, trackingLink?: string) => {
     // 1. Optimistic UI update
-    setOrders(orders.map(o => o.id === id ? { ...o, status: newStatus } : o));
+    const prevOrders = [...orders];
+    setOrders(orders.map(o => o.id === id ? { ...o, status: newStatus, tracking_number: trackingNumber, tracking_link: trackingLink } : o));
 
-    // 2. Update Database
-    const { error } = await supabase.from('orders').update({ status: newStatus }).eq('id', id);
+    // 2. Update Database (via API to bypass RLS)
+    try {
+      const response = await fetch('/api/admin/update-order-status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orderId: id,
+          newStatus,
+          trackingNumber,
+          trackingLink
+        })
+      });
 
-    if (error) {
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to update status');
+      }
+    } catch (error: any) {
       console.error("Failed to update status in DB:", error);
-      alert("Failed to update status in database.");
+      alert(`Failed to update status: ${error.message}`);
+      // Revert optimism if failed
+      setOrders(prevOrders);
       return;
     }
 
     // 3. Trigger Email Notification
-    // We only send emails for major status changes that the customer needs to know about.
-    const notableStatuses = ['processing', 'shipped', 'delivered', 'cancelled'];
+    const notableStatuses = ['paid', 'processing', 'shipped', 'delivered', 'cancelled'];
+
+    // Retrieve fresh order data if not passed (e.g. from modal)
+    const currentOrder = orderData || orders.find(o => o.id === id);
 
     if (notableStatuses.includes(newStatus)) {
       try {
@@ -190,11 +232,13 @@ export default function AdminDashboard() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            email: orderData.customer_email,
-            firstName: orderData.customer_name.split(' ')[0],
-            orderNumber: orderData.order_number || orderData.id.slice(0, 8).toUpperCase(),
+            email: currentOrder.customer_email,
+            firstName: currentOrder.customer_name.split(' ')[0],
+            orderNumber: currentOrder.order_number || currentOrder.id.slice(0, 8).toUpperCase(),
             newStatus: newStatus,
-            language: language // Sends in the admin's current language, or you could read from a user pref if saved
+            language: language,
+            trackingNumber: trackingNumber,
+            trackingLink: trackingLink
           })
         });
         console.log(`Email triggered for status: ${newStatus}`);
@@ -212,8 +256,63 @@ export default function AdminDashboard() {
 
 
 
+  // --- PRICE MAPPING ---
+  const ID_TO_PRICE_KEY: Record<string, string> = {
+    'eco-set': 'mam-nature-eco-set',
+    'eco-set-plus': 'mam-nature-eco-set-plus',
+    'complete-set': 'mam-nature-water-treatment-complete-set',
+    'complete-set-plus': 'mam-nature-water-treatment-complete-set-plus',
+    'particle-filter': 'water-particle-filter',
+    'water-lime': 'mam-nature-water-lime',
+    'dynamizer': 'the-swiss-water-dynamizer',
+    'particle-lime-set': 'mam-nature-particle-lime-set',
+    'hydrogen-booster': 'swiss-hydrogen-booster',
+    'cartridge': 'water-fine-filter-cartridge',
+    // Matches
+    'mam-nature-essential-set': 'mam-nature-essential-set',
+    'mam-nature-essential-plus': 'mam-nature-essential-plus',
+    // French IDs (if different) - usually same IDs used in code
+  };
+
+  const getBaseEuroPrice = (id: string): number => {
+    const key = ID_TO_PRICE_KEY[id] || id; // Fallback to ID if no map
+    // Import PRICES from data/prices (we need to move this outside or import)
+    // For now, hardcoding or importing is tricky inside a function if not imported.
+    // I will use the imported PRICES if I add the import.
+    // Assuming PRICES is imported below.
+    const priceGroup = PRICES[key];
+    if (priceGroup) return priceGroup.Europe;
+    return 0;
+  };
+
   // CALCULATE KPIS
-  const totalRevenue = orders && orders.length > 0 ? orders.reduce((acc, o) => acc + (o.status === 'paid' || o.status === 'delivered' || o.status === 'shipped' ? (Number(o.total_amount) || 0) : 0), 0) : 0;
+  const totalRevenue = orders && orders.length > 0 ? orders.reduce((acc, o) => {
+    // Filter valid statuses
+    if (o.status === 'paid' || o.status === 'delivered' || o.status === 'shipped') {
+
+      // 1. Calculate Products Value based on Base Euro Price
+      let productsValue = 0;
+      if (o.cart_items && Array.isArray(o.cart_items)) {
+        productsValue = o.cart_items.reduce((sum: number, item: any) => {
+          const basePrice = getBaseEuroPrice(item.id);
+          return sum + (basePrice * (item.quantity || 1));
+        }, 0);
+      }
+
+      // 2. Add Shipping (Converted to EUR if necessary)
+      let shippingValue = Number(o.shipping_cost) || 0;
+      const currency = o.currency ? o.currency.toUpperCase() : 'EUR';
+
+      if (currency === 'CHF') {
+        shippingValue = shippingValue * 1.07;
+      } else if (currency === 'MAD' || currency === 'DHS') {
+        shippingValue = shippingValue * 0.092;
+      }
+
+      return acc + productsValue + shippingValue;
+    }
+    return acc;
+  }, 0) : 0;
   const pendingOrders = orders ? orders.filter(o => o.status === 'processing' || o.status === 'payment_pending').length : 0;
   const openTickets = tickets ? tickets.filter(t => t.status === 'open').length : 0;
 
@@ -314,7 +413,7 @@ export default function AdminDashboard() {
                         <select
                           className={styles.input}
                           value={order.status}
-                          onChange={(e) => updateOrderStatus(order.id, e.target.value, order)}
+                          onChange={(e) => handleStatusChange(order.id, e.target.value, order)}
                           style={{ padding: '6px', fontSize: '0.85rem', width: '140px' }}
                         >
                           <option value="awaiting_payment">{content.orders.statuses.awaiting_payment}</option>
@@ -447,6 +546,60 @@ export default function AdminDashboard() {
       {/* PRICE MANAGEMENT */}
       {activeTab === 'prices' && (
         <PriceManagement />
+      )}
+
+      {/* SHIPPING INFO MODAL */}
+      {isShippingModalOpen && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+        }}>
+          <div style={{ backgroundColor: 'white', padding: '30px', borderRadius: '8px', width: '400px', maxWidth: '90%' }}>
+            <h3 style={{ marginTop: 0 }}>Shipping Information</h3>
+            <p style={{ fontSize: '0.9rem', color: '#666' }}>Enter tracking details for this order.</p>
+
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 600 }}>Tracking Number *</label>
+              <input
+                type="text"
+                className={styles.input}
+                style={{ width: '100%' }}
+                value={shippingData.trackingNumber}
+                onChange={(e) => setShippingData({ ...shippingData, trackingNumber: e.target.value })}
+                placeholder="e.g. 1Z9999999999999999"
+              />
+            </div>
+
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 600 }}>Tracking Link</label>
+              <input
+                type="text"
+                className={styles.input}
+                style={{ width: '100%' }}
+                value={shippingData.trackingLink}
+                onChange={(e) => setShippingData({ ...shippingData, trackingLink: e.target.value })}
+                placeholder="https://ups.com/track?..."
+              />
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+              <button
+                onClick={() => setIsShippingModalOpen(false)}
+                className={styles.btn}
+                style={{ background: '#e2e8f0', color: '#0f172a' }}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmShipping}
+                className={styles.btn}
+                style={{ background: '#2563eb', color: 'white' }}
+              >
+                Confirm & Send Email
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

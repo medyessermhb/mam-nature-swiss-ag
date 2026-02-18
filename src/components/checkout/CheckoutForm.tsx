@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useCart } from '@/context/CartContext';
+import { usePricing } from '@/context/PricingContext';
 import styles from '@/styles/Checkout.module.css';
 import { supabase } from '@/lib/supabase';
 import {
@@ -132,6 +133,7 @@ const CONTENT_FR = {
 
 export default function CheckoutForm() {
   const { cart, cartTotal, clearCart } = useCart();
+  const { region } = usePricing();
   const { language } = useLanguage();
 
   const content = language === 'fr' ? CONTENT_FR : CONTENT_EN;
@@ -219,39 +221,50 @@ export default function CheckoutForm() {
     if (isoCurrency === 'MAD') impliedTaxRate = 0.20;
     if (isoCurrency === 'CHF') impliedTaxRate = 0.081;
 
-    let isDestExport = false;
+    let currentVatRate = 0;
+    let currentIsExport = false;
 
     if (shipping.country === 'CH') {
-      setVatRate(0.081);
-      setIsExport(false);
-      if (isoCurrency !== 'CHF') setIsExport(true);
+      currentVatRate = 0.081;
+      currentIsExport = false;
+      if (isoCurrency !== 'CHF') currentIsExport = true;
     }
     else if (shipping.country === 'MA') {
-      setVatRate(0.20);
-      setIsExport(false);
-      if (isoCurrency !== 'MAD') setIsExport(true);
+      currentVatRate = 0.20;
+      currentIsExport = false;
+      if (isoCurrency !== 'MAD') currentIsExport = true;
     }
     else if (EU_COUNTRIES.includes(shipping.country)) {
-      setVatRate(0.19);
-      setIsExport(false);
-      if (isoCurrency === 'MAD') setIsExport(true);
-      if (isoCurrency === 'CHF') setIsExport(true);
+      currentVatRate = 0.19;
+      currentIsExport = false;
+      if (isoCurrency === 'MAD') currentIsExport = true;
+      if (isoCurrency === 'CHF') currentIsExport = true;
     }
     else {
       // ROW
-      setVatRate(0);
-      setIsExport(true);
+      currentVatRate = 0;
+      currentIsExport = true;
     }
 
+    setVatRate(currentVatRate);
+    setIsExport(currentIsExport);
+
     // Calculate Final Product Total
-    if (isExport) {
-      // Remove implied tax
-      setFinalProductTotal(cartTotal / (1 + impliedTaxRate));
+    if (currentIsExport) {
+      // Check if we are already in RestOfWorld region (prices are already ex-VAT)
+      // If region is 'RestOfWorld' and currency is likely EUR (default for RoW), 
+      // the price in cart is already tax-free.
+      if (region === 'RestOfWorld' && isoCurrency !== 'CHF' && isoCurrency !== 'MAD') {
+        setFinalProductTotal(cartTotal);
+      } else {
+        // Remove implied tax (e.g. European using site shipping to US)
+        setFinalProductTotal(cartTotal / (1 + impliedTaxRate));
+      }
     } else {
       setFinalProductTotal(cartTotal);
     }
 
-  }, [shipping.country, isoCurrency, cart, cartTotal]);
+  }, [shipping.country, isoCurrency, cart, cartTotal, region]);
 
   const grandTotal = finalProductTotal + shippingCost;
 
@@ -394,7 +407,9 @@ export default function CheckoutForm() {
       vatAmount = grandTotal - (grandTotal / (1 + vatRate));
     }
 
-    const { error } = await supabase.from('orders').upsert({
+    // Use INSERT instead of UPSERT to avoid RLS complexities with guest updates.
+    // Check for duplicate key errors and regenerate order number if needed.
+    const orderData = {
       user_id: userId,
       order_number: orderNumber,
       customer_email: email,
@@ -409,10 +424,30 @@ export default function CheckoutForm() {
       stripe_payment_id: paymentId,
       status: status,
       payment_method: paymentMethod,
-      vat_rate: vatRate,           // NEW
-      vat_amount: vatAmount,       // NEW
+      vat_rate: vatRate,
+      vat_amount: vatAmount,
       created_at: new Date().toISOString()
-    }, { onConflict: 'order_number' });
+    };
+
+    let { error } = await supabase.from('orders').insert(orderData);
+
+    // Handle Duplicate Key Error (Unique Constraint Violation)
+    if (error && error.code === '23505') {
+      // 23505 = unique_violation in Postgres
+      console.warn("Duplicate order number detected. Regenerating...");
+
+      const newOrderNum = generateOrderNumber(); // Generate new fallback ID
+      setOrderNumber(newOrderNum); // Update state for UI
+      sessionStorage.setItem('mns_order_ref', newOrderNum); // Update session
+
+      // Retry with new number
+      const retryData = { ...orderData, order_number: newOrderNum };
+      const { error: retryError } = await supabase.from('orders').insert(retryData);
+
+      if (retryError) throw retryError;
+    } else if (error) {
+      throw error;
+    }
 
     if (error) throw error;
   };
@@ -468,25 +503,56 @@ export default function CheckoutForm() {
       // Status Logic: 
       // Card -> 'payment_pending' (User is redirected to Stripe)
       // Bank -> 'awaiting_payment' (User needs to send money manually)
-      const status = paymentMethod === 'card' ? 'payment_pending' : 'awaiting_payment';
-      const paymentId = paymentMethod === 'card' ? 'STRIPE_PENDING' : 'WISE_PENDING';
-      await saveOrder(status, paymentId);
+
+      // FOR STRIPE (CARD): DO NOT SAVE ORDER YET. Pass info to Metadata.
+      // FOR BANK: SAVE ORDER NOW (Status: awaiting_payment)
+
+      if (paymentMethod === 'bank') {
+        await saveOrder('awaiting_payment', 'WISE_PENDING');
+      }
+      // Note: for card, we skip saveOrder() here. We'll do it in verify-session.
 
       if (paymentMethod === 'card') {
+
+        // Calculate VAT Amount for metadata
+        let vatAmount = 0;
+        if (!isExport) {
+          vatAmount = grandTotal - (grandTotal / (1 + vatRate));
+        }
+
+        const billingDetails = billingSame ? shipping : billing;
+
         const response = await fetch('/api/create-checkout-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             items: cart.map(item => {
+              // ---------------------------------------------------------
+              // RE-DERIVE EXPORT STATUS TO ENSURE SAFETY
+              // ---------------------------------------------------------
+              let isItemExport = false;
+              if (shipping.country !== 'CH' && shipping.country !== 'MA' && !EU_COUNTRIES.includes(shipping.country)) {
+                isItemExport = true;
+              }
+              // Override/Refine based on currency match (like in useEffect)
+              if (shipping.country === 'CH' && isoCurrency !== 'CHF') isItemExport = true;
+              if (shipping.country === 'MA' && isoCurrency !== 'MAD') isItemExport = true;
+              if (EU_COUNTRIES.includes(shipping.country) && (isoCurrency === 'MAD' || isoCurrency === 'CHF')) isItemExport = true;
+
               // Logic to handle VAT deduction for Exports
               let finalPrice = item.price;
 
               // Only deduct VAT if it is explicitly an EXPORT scenario
-              if (isExport) {
-                // Determine the applicable VAT rate to remove based on the currency logic
-                // (If we are in 'MAD' mode, we assume 20% is included, etc.)
-                const divisor = isoCurrency === 'CHF' ? 1.081 : isoCurrency === 'MAD' ? 1.20 : 1.19;
-                finalPrice = item.price / divisor;
+              if (isItemExport) {
+                // If we are already in RestOfWorld, price is already Net. Don't deduct again.
+                if (region === 'RestOfWorld' && isoCurrency !== 'CHF' && isoCurrency !== 'MAD') {
+                  // Keeps original price (which is ex-VAT)
+                  finalPrice = item.price;
+                } else {
+                  // We are in EU/CH/MA mode but shipping to Export -> Deduct VAT
+                  const divisor = isoCurrency === 'CHF' ? 1.081 : isoCurrency === 'MAD' ? 1.20 : 1.19;
+                  finalPrice = item.price / divisor;
+                }
               }
 
               // DOUBLE CHECK: If shipping to Morocco and paying in MAD, FORCE raw price (10 Dhs)
@@ -503,7 +569,15 @@ export default function CheckoutForm() {
             currency: isoCurrency,
             shippingCost: shippingCost,
             customerEmail: email,
-            orderNumber: orderNumber
+            orderNumber: orderNumber,
+            // Extra Data for Post-Payment Creation
+            customerName: `${shipping.firstName} ${shipping.lastName}`,
+            customerPhone: phone,
+            shippingAddress: shipping,
+            billingAddress: billingDetails,
+            vatRate: vatRate,
+            vatAmount: vatAmount,
+            totalAmount: grandTotal
           }),
         });
 
@@ -826,6 +900,24 @@ export default function CheckoutForm() {
               <span className={styles.totalLabel}>{content.summary.total}</span>
               <span className={styles.totalAmount}>{currencySymbol} {grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
             </div>
+
+            {isExport && (
+              <div style={{
+                marginTop: 15,
+                marginBottom: 15,
+                padding: '10px',
+                background: '#fff7ed',
+                border: '1px solid #ffedd5',
+                borderRadius: 6,
+                fontSize: '0.85rem',
+                color: '#9a3412',
+                textAlign: 'left'
+              }}>
+                <strong>Note:</strong> {language === 'fr'
+                  ? "Des droits de douane et taxes peuvent s'appliquer à l'arrivée dans votre pays."
+                  : "Import duties and taxes may apply upon arrival in your destination country."}
+              </div>
+            )}
 
             <button
               type="submit"

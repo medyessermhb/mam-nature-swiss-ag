@@ -99,9 +99,9 @@ export const PRICES: Record<string, Record<Region, number>> = {
 
     // 13. PARTICLE LIME SET
     'mam-nature-particle-lime-set': {
-        Morocco: 3450,
-        Switzerland: 305,
-        Europe: 330,
-        RestOfWorld: 277.31
+        Morocco: 4274.96,
+        Switzerland: 385.20,
+        Europe: 409.50,
+        RestOfWorld: 344.12
     }
 };

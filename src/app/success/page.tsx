@@ -2,12 +2,13 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { CheckCircle, Download, Home, Mail, Check } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { CheckCircle, Download, Home, Mail, Check, AlertTriangle } from 'lucide-react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCart } from '@/context/CartContext';
+import { supabase } from '@/lib/supabase';
 
 const LOGO_URL = "/images/website_details/mam-nature_full_logo_website.png";
 
@@ -17,10 +18,11 @@ const CONTENT_EN = {
   emailNote: "A confirmation email has been sent to",
   downloadBtn: "Download Invoice",
   homeBtn: "Return to Home",
-  loading: "Finalizing your order...",
+  loading: "Finalizing your order... Please wait.",
   resendBtn: "Resend Confirmation Email",
   resending: "Sending...",
-  resendSuccess: "Email sent successfully!"
+  resendSuccess: "Email sent successfully!",
+  error: "Something went wrong verifying your order. Please contact support."
 };
 
 const CONTENT_FR = {
@@ -29,100 +31,137 @@ const CONTENT_FR = {
   emailNote: "Un email de confirmation a été envoyé à",
   downloadBtn: "Télécharger la Facture",
   homeBtn: "Retour à l'accueil",
-  loading: "Finalisation de votre commande...",
+  loading: "Finalisation de votre commande... Veuillez patienter.",
   resendBtn: "Renvoyer l'email de confirmation",
   resending: "Envoi en cours...",
-  resendSuccess: "Email envoyé avec succès !"
+  resendSuccess: "Email envoyé avec succès !",
+  error: "Une erreur est survenue lors de la vérification. Veuillez contacter le support."
 };
 
 export default function SuccessPage() {
   const [order, setOrder] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [errorMsg, setErrorMsg] = useState('');
   const [isResending, setIsResending] = useState(false);
   const [emailSentMsg, setEmailSentMsg] = useState('');
+
+  const searchParams = useSearchParams();
+  const sessionId = searchParams.get('session_id');
+  const router = useRouter();
 
   const { language } = useLanguage();
   const { clearCart } = useCart();
   const content = language === 'fr' ? CONTENT_FR : CONTENT_EN;
 
-  const hasInitialized = useRef(false);
+  const hasVerified = useRef(false);
 
   useEffect(() => {
-    // 1. ABSOLUTE LOCK: Prevent any re-runs caused by React StrictMode or state changes
-    if (hasInitialized.current) return;
-    hasInitialized.current = true;
+    if (hasVerified.current) return;
+    hasVerified.current = true;
 
-    const initializeSuccessPage = async () => {
-      // Fetch the order
-      const { data: { session } } = await supabase.auth.getSession();
+    const verifyAndFetchOrder = async () => {
+      try {
+        // SCENARIO A: STRIPE REDIRECT (Has session_id)
+        if (sessionId) {
+          console.log("Verifying session:", sessionId);
 
-      let query = supabase
-        .from('orders')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(1);
+          // 1. Call Verify API
+          const res = await fetch('/api/verify-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ sessionId })
+          });
 
-      if (session?.user) {
-        query = query.eq('user_id', session.user.id);
-      }
+          const data = await res.json();
 
-      const { data } = await query.single();
+          if (!res.ok) {
+            throw new Error(data.error || 'Verification failed');
+          }
 
-      if (data) {
-        setOrder(data);
+          // 2. Use the returned order data directly
+          // This avoids RLS issues since the API (admin) already fetched/created it.
+          if (data.order) {
+            setOrder(data.order);
+            await triggerEmail(data.order);
+          } else {
+            throw new Error("API verified session but returned no order data.");
+          }
 
-        // 2. SESSION STORAGE LOCK: The ultimate guard against infinite loops
-        const emailLockKey = `auto_email_sent_${data.id}`;
-        const hasSentAutoEmail = sessionStorage.getItem(emailLockKey);
+        } else {
+          // SCENARIO B: MANUAL/BANK (No session_id, logic handled in CheckoutForm)
+          // Fallback to finding latest order for this user/browser?
+          // Or just rely on sessionStorage 'mns_order_ref' if we want to show something?
+          // CheckoutForm saved order and redirected here.
+          // We can try to fetch the latest order for the user.
 
-        if (data.payment_method === 'card' && data.status === 'awaiting_payment' && !hasSentAutoEmail) {
+          const { data: { session } } = await supabase.auth.getSession();
 
-          // Lock it BEFORE doing the fetch
-          sessionStorage.setItem(emailLockKey, 'true');
+          // If we have an order ref in session storage (from Bank transfer flow)
+          const localRef = sessionStorage.getItem('mns_order_ref');
 
-          try {
-            await fetch('/api/send-order-email', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                orderDetails: {
-                  firstName: data.customer_name.split(' ')[0],
-                  lastName: data.customer_name.split(' ').slice(1).join(' '),
-                  email: data.customer_email,
-                  address: data.address.address,
-                  city: data.address.city,
-                  zip: data.address.zip,
-                  country: data.address.country,
-                  paymentMethod: 'card',
-                  orderNumber: data.order_number
-                },
-                cartItems: data.cart_items,
-                total: data.total_amount,
-                currency: data.currency
-              })
-            });
+          let query = supabase.from('orders').select('*').order('created_at', { ascending: false }).limit(1);
 
-            // Update status (ignoring errors if Guest RLS blocks it)
-            supabase.from('orders').update({ status: 'paid' }).eq('id', data.id).then();
-          } catch (err) {
-            console.error("Auto email failed", err);
+          if (localRef) {
+            query = query.eq('order_number', localRef);
+          } else if (session?.user) {
+            query = query.eq('user_id', session.user.id);
+          } else {
+            // Guest with no ref and no session_id? 
+            // Maybe just show generic "Success" without details if we can't find it.
+            setLoading(false);
+            return;
+          }
+
+          const { data: orderData } = await query.single();
+          if (orderData) {
+            setOrder(orderData);
           }
         }
-      }
-
-      // 3. Clear cart and session storage securely
-      clearCart();
-      if (typeof window !== 'undefined') {
+      } catch (err: any) {
+        console.error("Success Page Error:", err);
+        setErrorMsg(err.message || content.error);
+      } finally {
+        clearCart();
         sessionStorage.removeItem('mns_order_ref');
+        setLoading(false);
       }
-
-      setLoading(false);
     };
 
-    initializeSuccessPage();
-
+    verifyAndFetchOrder();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Empty array ensures it fires strictly once
+  }, [sessionId]);
+
+  const triggerEmail = async (orderData: any) => {
+    // Logic from previous implementation
+    const emailLockKey = `auto_email_sent_${orderData.id}`;
+    if (sessionStorage.getItem(emailLockKey)) return;
+    sessionStorage.setItem(emailLockKey, 'true');
+
+    try {
+      await fetch('/api/send-order-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orderDetails: {
+            firstName: orderData.customer_name.split(' ')[0],
+            lastName: orderData.customer_name.split(' ').slice(1).join(' '),
+            email: orderData.customer_email,
+            address: orderData.address.address,
+            city: orderData.address.city,
+            zip: orderData.address.zip,
+            country: orderData.address.country,
+            paymentMethod: orderData.payment_method,
+            orderNumber: orderData.order_number
+          },
+          cartItems: orderData.cart_items,
+          total: orderData.total_amount,
+          currency: orderData.currency,
+          vatRate: orderData.vat_rate,
+          vatAmount: orderData.vat_amount
+        })
+      });
+    } catch (e) { console.error("Email send failed", e); }
+  };
 
   // --- MANUAL RESEND EMAIL HANDLER ---
   const handleResendEmail = async () => {
@@ -148,7 +187,9 @@ export default function SuccessPage() {
           },
           cartItems: order.cart_items,
           total: order.total_amount,
-          currency: order.currency
+          currency: order.currency,
+          vatRate: order.vat_rate,
+          vatAmount: order.vat_amount
         })
       });
 
@@ -198,27 +239,50 @@ export default function SuccessPage() {
     doc.text(`Status: Paid`, 15, 70);
 
     // --- 3. BILL TO / SHIP TO ---
+    const billing = order.billing_address || order.address;
+    const isSameAddress = (
+      billing.firstName === order.address.firstName &&
+      billing.lastName === order.address.lastName &&
+      billing.address === order.address.address &&
+      billing.city === order.address.city &&
+      billing.zip === order.address.zip &&
+      billing.country === order.address.country
+    );
+
     doc.setFontSize(11);
     doc.setTextColor(0);
-    doc.text("Bill To:", 15, 85);
+
+    if (!isSameAddress) {
+      doc.text("Bill To:", 15, 85);
+    }
     doc.text("Ship To:", 110, 85);
 
     doc.setFontSize(10);
     doc.setTextColor(80);
 
-    // Billing Info
-    const billing = order.billing_address || order.address;
-    doc.text(billing.firstName + " " + billing.lastName, 15, 91);
-    doc.text(billing.address, 15, 96);
-    doc.text(`${billing.city}, ${billing.zip}`, 15, 101);
-    doc.text(billing.country, 15, 106);
-    doc.text(order.customer_email, 15, 111);
+    // Billing Info (Only if different)
+    if (!isSameAddress) {
+      doc.text(billing.firstName + " " + billing.lastName, 15, 91);
+      doc.text(billing.address, 15, 96);
+      doc.text(`${billing.city}, ${billing.zip}`, 15, 101);
+      doc.text(billing.country, 15, 106);
+      doc.text(order.customer_email, 15, 111);
+    }
 
     // Shipping Info
     doc.text(order.address.firstName + " " + order.address.lastName, 110, 91);
     doc.text(order.address.address, 110, 96);
     doc.text(`${order.address.city}, ${order.address.zip}`, 110, 101);
     doc.text(order.address.country, 110, 106);
+    if (!isSameAddress) {
+      // Maybe show email under shipping too if billing is hidden?
+      // Usually email is under billing.
+      // If billing is hidden, email is hidden. 
+      // Start showing email under shipping if billing is hidden?
+    } else {
+      // Show email under shipping if billing is hidden
+      doc.text(order.customer_email, 110, 111);
+    }
 
     // --- 4. ITEMS TABLE ---
     const tableRows = order.cart_items.map((item: any) => [
@@ -241,18 +305,32 @@ export default function SuccessPage() {
     const finalY = (doc as any).lastAutoTable.finalY || 150;
 
     const subtotal = order.cart_items.reduce((acc: number, item: any) => acc + (item.price * item.quantity), 0);
-    const shippingCost = order.total_amount - subtotal;
+    // Use stored total amount to ensure we respect what was paid (incl shipping)
+    const paidTotal = order.total_amount;
+    const shippingCost = paidTotal - subtotal;
+    // Approx calculation, might differ slightly if VAT deduction logic was used differently, 
+    // but total_amount is the source of truth for payment.
 
     doc.text(`Subtotal:`, 140, finalY + 10);
     doc.text(`${currency} ${subtotal.toLocaleString()}`, 195, finalY + 10, { align: 'right' });
 
     doc.text(`Shipping:`, 140, finalY + 16);
-    doc.text(shippingCost > 0 ? `${currency} ${shippingCost.toLocaleString()}` : 'Free', 195, finalY + 16, { align: 'right' });
+    // If shipping is negative (math error due to VAT deduction), show 0 or handle gracefullly
+    doc.text(shippingCost > 0.01 ? `${currency} ${shippingCost.toLocaleString()}` : 'Free/Included', 195, finalY + 16, { align: 'right' });
+
+    // --- VAT DISPLAY ---
+    if (order.vat_amount > 0) {
+      doc.text(`VAT (${(order.vat_rate * 100).toFixed(1)}%):`, 140, finalY + 22);
+      doc.text(`${currency} ${order.vat_amount.toLocaleString()}`, 195, finalY + 22, { align: 'right' });
+    } else {
+      doc.text(`VAT (Export):`, 140, finalY + 22);
+      doc.text(`${currency} 0.00`, 195, finalY + 22, { align: 'right' });
+    }
 
     doc.setFontSize(12);
     doc.setTextColor(0);
-    doc.text(`Total:`, 140, finalY + 25);
-    doc.text(`${currency} ${order.total_amount.toLocaleString()}`, 195, finalY + 25, { align: 'right' });
+    doc.text(`Total:`, 140, finalY + 31);
+    doc.text(`${currency} ${order.total_amount.toLocaleString()}`, 195, finalY + 31, { align: 'right' });
 
     // --- 6. FOOTER ---
     doc.setFontSize(9);
@@ -269,6 +347,17 @@ export default function SuccessPage() {
       <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <div className="loader" style={{ marginBottom: 20 }}></div>
         <p style={{ color: '#64748b' }}>{content.loading}</p>
+      </div>
+    );
+  }
+
+  if (errorMsg) {
+    return (
+      <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: 20 }}>
+        <div style={{ color: '#ef4444', marginBottom: 20 }}><AlertTriangle size={48} /></div>
+        <h2 style={{ fontSize: '1.5rem', marginBottom: 10 }}>Error</h2>
+        <p style={{ color: '#64748b' }}>{errorMsg}</p>
+        <Link href="/" style={{ marginTop: 20, color: '#0f172a', textDecoration: 'underline' }}>{content.homeBtn}</Link>
       </div>
     );
   }

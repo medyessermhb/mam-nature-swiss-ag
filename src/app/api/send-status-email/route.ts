@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server';
 import { sendEmail } from '@/lib/email';
 
 const STATUS_MESSAGES = {
+  paid: {
+    en: { subject: "Payment Received - Order Confirmed", title: "Payment Received", desc: "We have received your payment. Your order is now confirmed and will be processed shortly." },
+    fr: { subject: "Paiement Reçu - Commande Confirmée", title: "Paiement Reçu", desc: "Nous avons bien reçu votre paiement. Votre commande est confirmée et sera traitée prochainement." }
+  },
   processing: {
     en: { subject: "We're processing your order!", title: "Order Processing", desc: "Great news! We have started processing your order and are getting it ready for shipment." },
     fr: { subject: "Nous préparons votre commande !", title: "Commande en cours de traitement", desc: "Bonne nouvelle ! Nous avons commencé à préparer votre commande pour l'expédition." }
@@ -22,7 +26,7 @@ const STATUS_MESSAGES = {
 
 export async function POST(req: Request) {
   try {
-    const { email, firstName, orderNumber, newStatus, language = 'en' } = await req.json();
+    const { email, firstName, orderNumber, newStatus, language = 'en', trackingNumber, trackingLink } = await req.json();
 
     // 1. Validate status
     const statusInfo = STATUS_MESSAGES[newStatus as keyof typeof STATUS_MESSAGES];
@@ -41,7 +45,7 @@ export async function POST(req: Request) {
       <body style="font-family: Arial, sans-serif; background-color: ${colors.bg}; margin: 0; padding: 20px;">
         <div style="max-width: 600px; margin: 0 auto; background-color: ${colors.white}; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
           <div style="background-color: ${colors.white}; padding: 30px; text-align: center; border-bottom: 3px solid ${colors.primary};">
-            <img src="${process.env.NEXT_PUBLIC_SITE_URL}/images/website_details/mam-nature_full_logo_website.png" alt="Mam Nature" style="width: 150px;">
+            <img src="https://mam-nature.com/images/website_details/mam-nature_full_logo_website.png" alt="Mam Nature" style="width: 150px;">
           </div>
           <div style="padding: 30px; text-align: center;">
             <h2 style="color: ${colors.text}; margin-top: 0;">${langContent.title}</h2>
@@ -51,6 +55,14 @@ export async function POST(req: Request) {
             <div style="background-color: #F1F5F9; padding: 15px; border-radius: 6px; margin: 25px 0; font-family: monospace; font-size: 18px; color: ${colors.text}; font-weight: bold;">
               Order Ref: ${orderNumber}
             </div>
+
+            ${newStatus === 'shipped' && trackingNumber ? `
+            <div style="background-color: #ECFDF5; border: 1px solid #10B981; padding: 20px; border-radius: 6px; margin: 25px 0; text-align: left;">
+              <h3 style="margin: 0 0 10px 0; color: #065F46; font-size: 18px;">🚚 Tracking Information</h3>
+              <p style="margin: 0 0 5px 0; color: #064E3B;"><strong>Tracking Number:</strong> ${trackingNumber}</p>
+              ${trackingLink ? `<a href="${trackingLink}" style="color: #059669; font-weight: bold; text-decoration: underline;">Track your package &rarr;</a>` : ''}
+            </div>
+            ` : ''}
 
             <a href="${SITE_URL}/dashboard" style="background-color: ${colors.primary}; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">
                ${language === 'fr' ? 'Voir ma commande' : 'View My Order'}

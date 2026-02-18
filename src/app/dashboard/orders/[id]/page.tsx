@@ -219,6 +219,26 @@ export default function OrderDetailsPage() {
     );
   };
 
+  // --- TRACKING DISPLAY ---
+  const TrackingInfo = () => {
+    if (order.status !== 'shipped' || !order.tracking_number) return null;
+    return (
+      <div style={{ marginTop: 15, padding: '15px', backgroundColor: '#ecfdf5', border: '1px solid #a7f3d0', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: 15 }}>
+        <div style={{ backgroundColor: '#10b981', padding: '8px', borderRadius: '50%', color: 'white' }}>
+          <Truck size={20} />
+        </div>
+        <div>
+          <strong style={{ color: '#064e3b', display: 'block' }}>Tracking Number: {order.tracking_number}</strong>
+          {order.tracking_link && (
+            <a href={order.tracking_link} target="_blank" rel="noopener noreferrer" style={{ color: '#059669', textDecoration: 'underline', fontWeight: 600 }}>
+              Track Package
+            </a>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className={styles.container} style={{ maxWidth: 1200, margin: '0 auto', padding: '40px 20px' }}>
 
@@ -264,11 +284,14 @@ export default function OrderDetailsPage() {
               {displayId}
             </span>
           </h1>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 15, marginTop: 15 }}>
-            {getStatusBadge(order.status)}
-            <span style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: 4 }}>
-              <Clock size={14} /> {new Date(order.created_at).toLocaleString(language === 'fr' ? 'fr-FR' : 'en-US', { dateStyle: 'medium', timeStyle: 'short' })}
-            </span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 15, marginTop: 15 }}>
+              {getStatusBadge(order.status)}
+              <span style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: 4 }}>
+                <Clock size={14} /> {new Date(order.created_at).toLocaleString(language === 'fr' ? 'fr-FR' : 'en-US', { dateStyle: 'medium', timeStyle: 'short' })}
+              </span>
+            </div>
+            <TrackingInfo />
           </div>
         </div>
 

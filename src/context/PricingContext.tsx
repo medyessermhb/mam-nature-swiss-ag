@@ -10,7 +10,6 @@ interface PricingContextType {
   currency: string;
   getPrice: (slug: string) => string;
   getRawPrice: (slug: string) => number;
-  formatPrice: (price: number, region: Region) => string;
   isLoading: boolean;
 }
 
@@ -153,7 +152,6 @@ export function PricingProvider({ children }: { children: React.ReactNode }) {
       currency,
       getPrice,
       getRawPrice,
-      formatPrice,
       isLoading
     }}>
       {children}

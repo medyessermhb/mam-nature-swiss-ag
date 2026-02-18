@@ -128,11 +128,11 @@ export default function WaterLime() {
             <div className={styles.imageGallery}>
               <div className={styles.galleryGrid}>
                 <div className={styles.galleryItem}>
-                  <img src="/images/WEBSITE-P/water_lime/Calcite_1.webp" alt="Calcite 1" loading="lazy" />
+                  <img src="/images/WEBSITE-P/water_lime/calcite 1.webp" alt="Calcite 1" loading="lazy" />
                   <p className={styles.galleryLabel}>{content.galleryCalcite}</p>
                 </div>
                 <div className={styles.galleryItem}>
-                  <img src="/images/WEBSITE-P/water_lime/Calcite_2.webp" alt="Calcite 2" loading="lazy" />
+                  <img src="/images/WEBSITE-P/water_lime/calcite 2.webp" alt="Calcite 2" loading="lazy" />
                   <p className={styles.galleryLabel}>{content.galleryCalcite}</p>
                 </div>
                 <div className={styles.galleryItem}>

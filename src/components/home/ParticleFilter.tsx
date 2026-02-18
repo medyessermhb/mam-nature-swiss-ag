@@ -38,7 +38,7 @@ export default function ParticleFilter() {
           {/* Left Column: Image */}
           <div className={styles.imageBlock} data-aos="fade-up">
             <img
-              src="/images/products/PARTICLE FILTER/PARTICLE FILTER NO BACKWASH Aqmos AQ1 Particle Filter 1.webp"
+              src="/images/WEBSITE-P/products/particles_home_page.webp"
               alt="Mam Nature Swiss Water Particles Filter"
               loading="lazy"
             />

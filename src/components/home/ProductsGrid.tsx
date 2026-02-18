@@ -66,7 +66,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'whole house solution',
     slug: 'eco-set',
     priceKey: 'mam-nature-eco-set',
-    image: '/images/products/WITHOUT AUTO BACKWASH/Eco Set+Aqmos 1 WITHOUT AUTOMATIC BACKWASH.webp',
+    image: '/images/products/autobackwash/eco_set_aqmos_auto_backwash.webp',
     imageHeight: 320,
     features: [
       "Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.",
@@ -84,7 +84,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'whole house solution',
     slug: 'eco-set-plus',
     priceKey: 'mam-nature-eco-set-plus',
-    image: '/images/products/WITHOUT AUTO BACKWASH/Eco Set Plus + Aqmos 1 WITHOUT AUTOMATIC BACKWASH.webp',
+    image: '/images/products/autobackwash/eco_set_plus_aqmos_auto_backwash.webp',
     imageHeight: 300,
     features: [
       "Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.",
@@ -102,7 +102,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'whole house solution',
     slug: 'complete-set',
     priceKey: 'mam-nature-water-treatment-complete-set',
-    image: '/images/products/WITHOUT AUTO BACKWASH/mam nature complete set + WITHOUT AUTOMATIC BACKWASH.webp',
+    image: '/images/products/autobackwash/complete_set_aqmos_auto_backwash.webp',
     imageHeight: 320,
     features: [
       "Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.",
@@ -121,7 +121,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'whole house solution',
     slug: 'complete-set-plus',
     priceKey: 'mam-nature-water-treatment-complete-set-plus',
-    image: '/images/products/WITHOUT AUTO BACKWASH/complete set plus+ WITHOUT AUTOMATIC BACKWASH.webp',
+    image: '/images/products/autobackwash/complete_set_plus_aqmos_auto_backwash.webp',
     imageHeight: 300,
     features: [
       "Made of medical-grade stainless steel, 10-year warranty, built to last a lifetime.",
@@ -140,7 +140,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Individual Component',
     slug: 'particles-filter',
     priceKey: 'water-particle-filter',
-    image: '/images/products/PARTICLE FILTER/PARTICLE FILTER NO BACKWASH Aqmos AQ1 Particle Filter 1.webp',
+    image: '/images/products/particle_filter/particle_filter_auto_backwash_front.webp',
     imageHeight: 320,
     features: [
       "The first line of protection for your system",
@@ -189,7 +189,7 @@ const PRODUCTS_EN: ProductType[] = [
     subtitle: 'Sediment + Scale Protection',
     slug: 'particle-lime-set',
     priceKey: 'mam-nature-particle-lime-set',
-    image: '/images/products/PARTICLE FILTER/water lime + particle filter.webp',
+    image: '/images/products/particle_filter/water_lime_particle_filter_auto_backwash.webp',
     imageHeight: 300,
     features: [
       "Dual protection for plumbing and appliances.",
@@ -279,7 +279,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'eco-set',
     priceKey: 'mam-nature-eco-set',
-    image: '/images/products/WITHOUT AUTO BACKWASH/Eco Set+Aqmos 1 WITHOUT AUTOMATIC BACKWASH.webp',
+    image: '/images/products/autobackwash/eco_set_aqmos_auto_backwash.webp',
     imageHeight: 320,
     features: [
       "Fabriqué en inox médical, garantie 10 ans, conçu pour durer toute la vie",
@@ -297,7 +297,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'eco-set-plus',
     priceKey: 'mam-nature-eco-set-plus',
-    image: '/images/products/WITHOUT AUTO BACKWASH/Eco Set Plus + Aqmos 1 WITHOUT AUTOMATIC BACKWASH.webp',
+    image: '/images/products/autobackwash/eco_set_plus_aqmos_auto_backwash.webp',
     imageHeight: 300,
     features: [
       "Fabriqué en inox médical, garantie 10 ans, conçu pour durer toute la vie",
@@ -315,7 +315,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'complete-set',
     priceKey: 'mam-nature-water-treatment-complete-set',
-    image: '/images/products/WITHOUT AUTO BACKWASH/mam nature complete set + WITHOUT AUTOMATIC BACKWASH.webp',
+    image: '/images/products/autobackwash/complete_set_aqmos_auto_backwash.webp',
     imageHeight: 320,
     features: [
       "Fabriqué en inox médical, garantie 10 ans, conçu pour durer toute la vie",
@@ -334,7 +334,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Pour toute la maison',
     slug: 'complete-set-plus',
     priceKey: 'mam-nature-water-treatment-complete-set-plus',
-    image: '/images/products/WITHOUT AUTO BACKWASH/complete set plus+ WITHOUT AUTOMATIC BACKWASH.webp',
+    image: '/images/products/autobackwash/complete_set_plus_aqmos_auto_backwash.webp',
     imageHeight: 300,
     features: [
       "Fabriqué en inox médical, garantie 10 ans, conçu pour durer toute la vie",
@@ -353,7 +353,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Composant Individuel',
     slug: 'particles-filter',
     priceKey: 'water-particle-filter',
-    image: '/images/products/PARTICLE FILTER/PARTICLE FILTER NO BACKWASH Aqmos AQ1 Particle Filter 1.webp',
+    image: '/images/products/particle_filter/particle_filter_auto_backwash_front.webp',
     imageHeight: 320,
     features: [
       "La première ligne de défense de votre système.",
@@ -402,7 +402,7 @@ const PRODUCTS_FR: ProductType[] = [
     subtitle: 'Sédiments + Protection Tartre',
     slug: 'set-particules-calcaire',
     priceKey: 'mam-nature-particle-lime-set',
-    image: '/images/products/PARTICLE FILTER/water lime + particle filter.webp',
+    image: '/images/products/particle_filter/water_lime_particle_filter_auto_backwash.webp',
     imageHeight: 300,
     features: [
       "Double protection plomberie et appareils.",

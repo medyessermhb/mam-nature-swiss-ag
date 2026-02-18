@@ -93,7 +93,7 @@ export default function PerfectSystem() {
             {/* Left Column: Image */}
             <div className={styles.imagePanel} data-aos="fade-up" data-aos-delay="100">
               <img
-                src="/images/WEBSITE-P/products/COMPLETE_SET.webp"
+                src="/images/products/autobackwash/complete_set_aqmos_auto_backwash.webp"
                 alt="Complete Mam Nature water treatment system"
                 loading="lazy"
               />
