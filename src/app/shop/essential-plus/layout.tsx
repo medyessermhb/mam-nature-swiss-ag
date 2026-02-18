@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: 'The Essential Plus | Mam Nature Swiss',
     description: 'Advanced dual-stage filtration for superior water quality and plumbing protection.',
     url: '/shop/essential-plus',
-    images: ['/images/WEBSITE-P/products/ESSENTIAL_PLUS.webp']
+    images: ['/images/products/autobackwash/Essential plus +Aqmos 1 with AUTOMATIC BACKWASH.webp']
   }
 };
 
@@ -16,7 +16,7 @@ export default function EssentialPlusLayout({ children }: { children: React.Reac
   const jsonLd = getProductJsonLd({
     name: 'The Essential Plus',
     description: 'Double protection with fine filtration and sediment pre-filter. Removes sand, rust, chlorine, and heavy metals while protecting your plumbing.',
-    image: '/images/WEBSITE-P/products/ESSENTIAL_PLUS.webp',
+    image: '/images/products/autobackwash/Essential plus +Aqmos 1 with AUTOMATIC BACKWASH.webp',
     slug: 'essential-plus',
     priceKey: 'mam-nature-essential-plus',
     brand: 'Mam Nature Swiss'

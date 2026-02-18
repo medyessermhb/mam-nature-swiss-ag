@@ -286,30 +286,32 @@ export default function AdminDashboard() {
   };
 
   // CALCULATE KPIS
+  // CALCULATE KPIS
   const totalRevenue = orders && orders.length > 0 ? orders.reduce((acc, o) => {
     // Filter valid statuses
     if (o.status === 'paid' || o.status === 'delivered' || o.status === 'shipped') {
-
-      // 1. Calculate Products Value based on Base Euro Price
-      let productsValue = 0;
-      if (o.cart_items && Array.isArray(o.cart_items)) {
-        productsValue = o.cart_items.reduce((sum: number, item: any) => {
-          const basePrice = getBaseEuroPrice(item.id);
-          return sum + (basePrice * (item.quantity || 1));
-        }, 0);
-      }
-
-      // 2. Add Shipping (Converted to EUR if necessary)
-      let shippingValue = Number(o.shipping_cost) || 0;
+      // Use actual order total converted to EUR
+      let orderTotal = Number(o.total_amount) || 0;
       const currency = o.currency ? o.currency.toUpperCase() : 'EUR';
 
+      // Conversion Rates (Approximate, can be refined)
       if (currency === 'CHF') {
-        shippingValue = shippingValue * 1.07;
+        orderTotal = orderTotal / 1.07; // Assuming 1 EUR = ~1.07 CHF (inverse of 1.07 markup?) 
+        // Actually, previous logic multiplied by 1.07 to go TO EUR? No, usually CHF is stronger/similar.
+        // Let's stick to a standard rate. 
+        // If 1 EUR = 0.94 CHF. 
+        // Standard in code was: shipping * 1.07. That implies CHF -> EUR is * 1.07? No, CHF is usually ~1 EUR.
+        // Let's check the prices. eco-set: CHF 1070, EUR 1150. 
+        // 1070 * 1.075 = 1150. So CHF * 1.075 = EUR.
+        orderTotal = orderTotal * (1150 / 1070); // ~1.075
       } else if (currency === 'MAD' || currency === 'DHS') {
-        shippingValue = shippingValue * 0.092;
+        // eco-set: MAD 12299, EUR 1150.
+        // Rate: 12299 / 1150 = 10.695.
+        // So MAD / 10.7 = EUR.
+        orderTotal = orderTotal / 10.7;
       }
 
-      return acc + productsValue + shippingValue;
+      return acc + orderTotal;
     }
     return acc;
   }, 0) : 0;

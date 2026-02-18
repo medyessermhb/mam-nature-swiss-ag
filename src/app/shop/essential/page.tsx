@@ -155,7 +155,7 @@ export default function EssentialSetPage() {
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const IMAGES = [
-    "/images/WEBSITE-P/products/FINE_FILTER.webp",
+    "/images/WEBSITE-P/products/ESSENTIAL.webp",
     "/images/WEBSITE-P/products/cartridge.webp"
   ];
 
