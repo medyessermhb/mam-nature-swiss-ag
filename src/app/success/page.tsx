@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { CheckCircle, Download, Home, Mail, Check, AlertTriangle } from 'lucide-react';
@@ -38,7 +38,7 @@ const CONTENT_FR = {
   error: "Une erreur est survenue lors de la vérification. Veuillez contacter le support."
 };
 
-export default function SuccessPage() {
+function SuccessContent() {
   const [order, setOrder] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
@@ -89,10 +89,6 @@ export default function SuccessPage() {
 
         } else {
           // SCENARIO B: MANUAL/BANK (No session_id, logic handled in CheckoutForm)
-          // Fallback to finding latest order for this user/browser?
-          // Or just rely on sessionStorage 'mns_order_ref' if we want to show something?
-          // CheckoutForm saved order and redirected here.
-          // We can try to fetch the latest order for the user.
 
           const { data: { session } } = await supabase.auth.getSession();
 
@@ -106,8 +102,7 @@ export default function SuccessPage() {
           } else if (session?.user) {
             query = query.eq('user_id', session.user.id);
           } else {
-            // Guest with no ref and no session_id? 
-            // Maybe just show generic "Success" without details if we can't find it.
+            // Guest with no ref and no session_id
             setLoading(false);
             return;
           }
@@ -132,7 +127,6 @@ export default function SuccessPage() {
   }, [sessionId]);
 
   const triggerEmail = async (orderData: any) => {
-    // Logic from previous implementation
     const emailLockKey = `auto_email_sent_${orderData.id}`;
     if (sessionStorage.getItem(emailLockKey)) return;
     sessionStorage.setItem(emailLockKey, 'true');
@@ -163,7 +157,6 @@ export default function SuccessPage() {
     } catch (e) { console.error("Email send failed", e); }
   };
 
-  // --- MANUAL RESEND EMAIL HANDLER ---
   const handleResendEmail = async () => {
     if (!order) return;
     setIsResending(true);
@@ -194,7 +187,7 @@ export default function SuccessPage() {
       });
 
       setEmailSentMsg(content.resendSuccess);
-      setTimeout(() => setEmailSentMsg(''), 5000); // Hide message after 5 seconds
+      setTimeout(() => setEmailSentMsg(''), 5000);
     } catch (err) {
       console.error(err);
       alert("Failed to resend email.");
@@ -275,10 +268,6 @@ export default function SuccessPage() {
     doc.text(`${order.address.city}, ${order.address.zip}`, 110, 101);
     doc.text(order.address.country, 110, 106);
     if (!isSameAddress) {
-      // Maybe show email under shipping too if billing is hidden?
-      // Usually email is under billing.
-      // If billing is hidden, email is hidden. 
-      // Start showing email under shipping if billing is hidden?
     } else {
       // Show email under shipping if billing is hidden
       doc.text(order.customer_email, 110, 111);
@@ -305,17 +294,13 @@ export default function SuccessPage() {
     const finalY = (doc as any).lastAutoTable.finalY || 150;
 
     const subtotal = order.cart_items.reduce((acc: number, item: any) => acc + (item.price * item.quantity), 0);
-    // Use stored total amount to ensure we respect what was paid (incl shipping)
     const paidTotal = order.total_amount;
     const shippingCost = paidTotal - subtotal;
-    // Approx calculation, might differ slightly if VAT deduction logic was used differently, 
-    // but total_amount is the source of truth for payment.
 
     doc.text(`Subtotal:`, 140, finalY + 10);
     doc.text(`${currency} ${subtotal.toLocaleString()}`, 195, finalY + 10, { align: 'right' });
 
     doc.text(`Shipping:`, 140, finalY + 16);
-    // If shipping is negative (math error due to VAT deduction), show 0 or handle gracefullly
     doc.text(shippingCost > 0.01 ? `${currency} ${shippingCost.toLocaleString()}` : 'Free/Included', 195, finalY + 16, { align: 'right' });
 
     // --- VAT DISPLAY ---
@@ -452,5 +437,18 @@ export default function SuccessPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={
+      <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="loader" style={{ marginBottom: 20 }}></div>
+        <p style={{ color: '#64748b' }}>Loading...</p>
+      </div>
+    }>
+      <SuccessContent />
+    </Suspense>
   );
 }
