@@ -7,9 +7,21 @@ export function getOrganizationJsonLd() {
         '@context': 'https://schema.org',
         '@type': 'Organization',
         name: 'Mam Nature Swiss AG',
+        alternateName: 'Mam Nature',
         url: baseUrl,
         logo: '/images/website_details/mam-nature_full_logo.svg',
-        description: 'Swiss-engineered water filtration, revitalization, and anti-limescale solutions.',
+        description: 'Pioneers in 100% natural, Swiss-engineered water filtration, revitalization, and anti-limescale solutions. Our patented protein-fiber adsorption technology selectively removes PFAS, heavy metals, and microplastics while preserving essential minerals.',
+        slogan: 'Solving the impossible: Perfectly filtered, soft, and naturally mineralized water.',
+        knowsAbout: [
+            'Water filtration',
+            'Anti-limescale solutions',
+            'PFAS removal',
+            'Water revitalization',
+            'Swiss engineering',
+            'Selective adsorption filtration',
+            'Hydrogen infused water',
+            'Whole house water filters'
+        ],
         address: {
             '@type': 'PostalAddress',
             addressCountry: 'CH'
