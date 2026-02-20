@@ -352,13 +352,129 @@ const CONTENT_DE = {
   ]
 };
 
+const CONTENT_ES = {
+  seoTitle: 'Condiciones Generales de Venta | Mam Nature Swiss AG',
+  seoDesc: 'Términos y condiciones legales completos que rigen la relación entre Mam Nature Swiss AG y sus clientes.',
+  backBtn: 'Volver a la página principal',
+  title: 'Condiciones Generales de Venta',
+  noticeTitle: 'AVISO PREVIO:',
+  noticeText: 'Las presentes condiciones generales de venta también están disponibles bajo petición en otros idiomas (francés, alemán, español e italiano). En caso de diferencias de interpretación, se considerará el idioma inglés como lengua de referencia. De no solicitarse esos otros idiomas, las presentes condiciones generales de venta en inglés se consideran aceptadas.',
+  company: {
+    reg: 'Registro Comercial:',
+    vat: 'Nº IVA (CH):',
+    eori: 'Nº EORI:',
+    dir: 'Director:',
+    support: 'Soporte:'
+  },
+  articles: [
+    {
+      title: 'Artículo 1: Aplicabilidad',
+      content: [
+        '1.1. Salvo acuerdo expreso en contrario, la aceptación del pedido o el pago de los dispositivos solicitados o de la factura por el cliente implica su adhesión a las presentes condiciones generales.',
+        '1.2. Estas condiciones regulan la relación entre el vendedor y el cliente. Sólo las modificaciones escritas y firmadas por ambas partes, en el pedido, factura o cualquier otro documento, derogarán estas condiciones generales.',
+        '1.3. Las condiciones del pedido del cliente no podrán oponerse al vendedor.'
+      ]
+    },
+    {
+      title: 'Artículo 2: Precios',
+      content: [
+        '2.1. Los precios comunicados para cada producto en el sitio web de Mam Nature (www.mam-nature.com) y en las facturas están en <strong>CHF</strong> (si se pide en Suiza) o <strong>EUR</strong> (si se pide fuera de Suiza). Los precios deben cumplir con la legislación fiscal y de impuestos especiales de Suiza y la UE.',
+        'Si los productos de Mam Nature Swiss AG van a ser exportados, deben cumplir con la legislación local en materia de despacho de aduanas e impuestos locales. Los precios en el sitio web incluyen el IVA correspondiente (para CH/UE). Los gastos de transporte se indican por separado. Los gastos de instalación no están incluidos y serán facturados por el instalador sanitario elegido por el cliente.',
+        '2.2. Los precios pueden ser modificados en cualquier momento. Mam Nature Swiss AG puede ofrecer descuentos a sus distribuidores y clientes. El pedido se realiza codificando el formulario de pedido en el sitio web o por correo electrónico a info@mam-nature.com.',
+        '2.3. <strong>Aplicación del IVA:</strong>',
+        '<ul><li><strong>Persona Privada (CH/UE):</strong> Precio de venta neto + IVA del país de la dirección de entrega.</li><li><strong>Profesional (UE - Intracomunitario):</strong> Venta sin IVA (Inversión del sujeto pasivo - Art. 39bis), siempre que se proporcione un Número de IVA-UE válido.</li><li><strong>Exportación (Fuera de la UE):</strong> Precio de venta neto sin IVA. Exención según la ley de exportación de la UE. El transportista/Aduanas facturará los gastos de importación + IVA local al cliente.</li></ul>',
+        '2.4. Los gastos de transporte serán comunicados antes del pago y facturados al mejor precio del transportista.'
+      ]
+    },
+    {
+      title: 'Artículo 3: Oferta y Aceptación',
+      content: [
+        '3.1. La oferta y pedido generados en el sitio de pedidos es válida por 15 días. El pago implica la aceptación de estas condiciones generales.',
+        '3.2. Los datos que aparecen en ilustraciones, planos y folletos se proporcionan solo a título informativo. Las fotos no son contractuales. El cliente no puede responsabilizar al vendedor por esta información.',
+        '3.3. En proyectos más grandes, el costo de estudios e investigación correrá a cargo del cliente previa aprobación de los presupuestos.',
+        '3.5. La instalación se realiza por el cliente o su subcontratista bajo su responsabilidad. Los gastos de instalación corren a cargo del cliente.'
+      ]
+    },
+    {
+      title: 'Artículo 4: Pago',
+      content: [
+        '4.1. <strong>Pedidos en línea:</strong>',
+        '<ul><li>Codificación del pedido en la tienda web.</li><li>Cálculo automático del precio incluyendo impuestos (CH/UE) y transporte (UE).</li><li>Validación mediante pago en línea.</li><li>Generación automática de factura enviada por correo electrónico.</li><li>Envío en 15 días laborables. El riesgo de transporte depende del transportista a menos que se adquiera un seguro.</li></ul>',
+        '4.2. <strong>Pedidos por correo electrónico:</strong> La facturación y entrega siguen el mismo plazo de envío de 15 días al recibir el pago.'
+      ]
+    },
+    {
+      title: 'Artículo 5: Transferencia de Propiedad y Riesgos',
+      content: [
+        '5.1. La propiedad se transfiere solo después del pago completo.',
+        '5.2. El riesgo se transfiere al cliente en el momento de la entrega.',
+        '5.3. <strong>Importante:</strong> El cliente debe verificar el paquete de inmediato. Para proteger sus derechos frente al transportista, escriba en el albarán de entrega: <em>"Aceptado bajo reserva de daños de transporte ocultos a la mercancía entregada"</em>.'
+      ]
+    },
+    {
+      title: 'Artículo 6: Términos de Entrega',
+      content: [
+        '6.1. Los plazos de entrega son indicativos y nunca vinculantes.',
+        '6.3. Mam Nature Swiss AG intenta agrupar los envíos, pero pueden llegar paquetes separados en diferentes fechas por logística.'
+      ]
+    },
+    {
+      title: 'Artículo 7: Modificación y Retirada',
+      content: [
+        '7.4. <strong>Derecho de desistimiento (14 Días):</strong> Los clientes tienen derecho de desistimiento de 14 días naturales desde su recepción. Para ejercerlo, envíe un correo electrónico a info@mam-nature.com.',
+        '<strong>Devoluciones:</strong> El cliente debe devolver la mercancía a <strong>Mam Nature Swiss AG, Spinnereistr. 16, CH-8645 Jona</strong> a su cargo en los 14 días siguientes a la notificación. La mercancía debe estar en su embalaje original y sin daños.',
+        '<strong>Exclusión:</strong> Si los dispositivos han sido desembalados o conectados a la red sanitaria, se pierde el derecho de desistimiento por razones de higiene/salud.'
+      ]
+    },
+    {
+      title: 'Artículo 8: Garantía',
+      content: [
+        '8.1. Las quejas por defectos externos deben realizarse dentro de los 8 días naturales a su recepción.',
+        '8.2. <strong>Requisitos de Instalación:</strong> El cliente debe cumplir con las Instrucciones de Instalación. Es imperativo un reductor de presión (ajustado a 4-5 bar máx). Las tuberías no deben ser de plomo. Los dispositivos no pueden estar precedidos por un descalcificador.',
+        '8.5. <strong>Calidad del Agua:</strong> El cliente debe garantizar que el pH del agua > 6.5 y la dureza > 15 °f para prevenir la corrosión, incluso con piezas de acero inoxidable 316L.',
+        '8.10. <strong>Daños de Transporte:</strong> En caso de daños, envíe lo siguiente a info@mam-nature.com en 7 días:',
+        '<ul><li>Foto del daño.</li><li>Fotos del paquete completo (exterior/interior).</li><li>Foto del código de barras del transportista.</li></ul>',
+        '8.11. <strong>Garantía Legal:</strong><br />• Piezas metálicas (Water LIME, DYNAMIZER): <strong>10 Años de Garantía.</strong><br />• Piezas no metálicas (Filtros): <strong>2 Años de Garantía Legal.</strong>'
+      ]
+    },
+    {
+      title: 'Artículo 9: Reclamaciones',
+      content: [
+        '9.1. Las reclamaciones de facturas deben remitirse dentro de 8 días naturales.',
+        '9.4. <strong>Resolución de litigios en línea:</strong> <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">Plataforma Europea en línea</a>.'
+      ]
+    },
+    {
+      title: 'Artículo 10: Confidencialidad de los Datos',
+      content: [
+        'Mam Nature Swiss AG registra los datos de los clientes para la gestión de pedidos. No vendemos ni arrendamos datos a terceros. Los clientes tienen derecho a acceder y modificar sus datos enviando un correo a info@mam-nature.com.',
+        '<strong>Cookies:</strong> Nuestro sitio utiliza cookies para la navegación y gestión técnica. No se almacena información bancaria en línea.'
+      ]
+    },
+    {
+      title: 'Artículo 11: Responsabilidad',
+      content: [
+        'Mam Nature Swiss AG no se hace responsable de las interrupciones inherentes a Internet, las roturas de stock o los casos de fuerza mayor. Las fotografías y los gráficos no tienen carácter contractual.'
+      ]
+    },
+    {
+      title: 'Artículo 12: Legislación Aplicable',
+      content: [
+        '12.1. La relación está sujeta a la <strong>Ley Suiza</strong>.',
+        '12.3. Cualquier acción está bajo la jurisdicción exclusiva de los tribunales de <strong>Jona, Suiza</strong>.'
+      ]
+    }
+  ]
+};
+
 
 
 export default function TermsAndConditions() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const jsonLd = {
     "@context": "https://schema.org",

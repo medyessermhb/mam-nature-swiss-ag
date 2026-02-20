@@ -47,6 +47,19 @@ const CONTENT_DE = {
   promoTitle: "Exklusives Angebot"
 };
 
+const CONTENT_ES = {
+  title: "Carrito de Compras",
+  empty: "Su carrito está vacío actualmente.",
+  continue: "Continuar Comprando",
+  summaryTitle: "Resumen del Pedido",
+  subtotal: "Subtotal",
+  shipping: "Envío",
+  shippingCalc: "Calculado al finalizar",
+  total: "Total",
+  checkout: "Proceder al Pago",
+  promoTitle: "Oferta Exclusiva"
+};
+
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, cartTotal, addToCart } = useCart();
   const [loading, setLoading] = useState(false);
@@ -54,7 +67,8 @@ export default function CartPage() {
 
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   // Route to your custom Checkout page instead of direct Stripe redirect
   const handleCheckout = () => {
@@ -87,12 +101,14 @@ export default function CartPage() {
 
     offer = {
       id: 'promo-particle-lime-set',
-      name: isFrench ? 'Filtre à Particules + Water LIME' : isGerman ? 'Partikelfilter + Water LIME' : 'Particle Filter + Water LIME',
+      name: isFrench ? 'Filtre à Particules + Water LIME' : isGerman ? 'Partikelfilter + Water LIME' : isSpanish ? 'Filtro de Partículas + Water LIME' : 'Particle Filter + Water LIME',
       desc: isFrench
         ? `Complétez votre installation pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
         : isGerman
           ? `Vervollständigen Sie Ihre Installation für nur ${promoPrice} ${currencySymbol} (anstelle von ${originalPrice} ${currencySymbol})!`
-          : `Complete your setup for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
+          : isSpanish
+            ? `¡Complete su instalación por solo ${promoPrice} ${currencySymbol} (en lugar de ${originalPrice} ${currencySymbol})!`
+            : `Complete your setup for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
       image: '/images/WEBSITE-P/products/particle_+_water_lime.webp'
     };
@@ -105,12 +121,14 @@ export default function CartPage() {
 
     offer = {
       id: 'promo-water-lime',
-      name: isFrench ? 'Filtre Water LIME' : isGerman ? 'Water LIME Filter' : 'Water LIME Filter',
+      name: isFrench ? 'Filtre Water LIME' : isGerman ? 'Water LIME Filter' : isSpanish ? 'Filtro Water LIME' : 'Water LIME Filter',
       desc: isFrench
         ? `Ajoutez la protection anti-calcaire pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
         : isGerman
           ? `Fügen Sie den Antikalk-Schutz für nur ${promoPrice} ${currencySymbol} hinzu (anstelle von ${originalPrice} ${currencySymbol})!`
-          : `Add anti-limescale protection for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
+          : isSpanish
+            ? `¡Añada protección antical por solo ${promoPrice} ${currencySymbol} (en lugar de ${originalPrice} ${currencySymbol})!`
+            : `Add anti-limescale protection for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
       image: '/images/WEBSITE-P/products/water_lime_vertical.webp'
     };
@@ -179,7 +197,7 @@ export default function CartPage() {
                   alignSelf: 'flex-start', marginTop: '5px'
                 }}
               >
-                <PlusCircle size={20} /> {isFrench ? 'Ajouter à la commande' : isGerman ? 'Zur Bestellung hinzufügen' : 'Add to Order'}
+                <PlusCircle size={20} /> {isFrench ? 'Ajouter à la commande' : isGerman ? 'Zur Bestellung hinzufügen' : isSpanish ? 'Agregar al Pedido' : 'Add to Order'}
               </button>
             </div>
           )}
@@ -201,7 +219,7 @@ export default function CartPage() {
             <span>{currencySymbol} {cartTotal.toLocaleString()}</span>
           </div>
           <button className={styles.checkoutBtn} onClick={handleCheckout} disabled={loading}>
-            {loading ? (isFrench ? 'Traitement...' : isGerman ? 'Wird bearbeitet...' : 'Processing...') : content.checkout} <ArrowRight size={18} style={{ marginLeft: '10px', display: 'inline-block', verticalAlign: 'middle' }} />
+            {loading ? (isFrench ? 'Traitement...' : isGerman ? 'Wird bearbeitet...' : isSpanish ? 'Procesando...' : 'Processing...') : content.checkout} <ArrowRight size={18} style={{ marginLeft: '10px', display: 'inline-block', verticalAlign: 'middle' }} />
           </button>
         </div>
       </div>

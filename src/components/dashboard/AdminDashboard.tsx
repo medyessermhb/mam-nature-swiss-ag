@@ -151,12 +151,59 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  header: {
+    title: "Panel de Administración",
+    subtitle: "Gestionar pedidos y tickets de soporte.",
+    logout: "Cerrar Sesión"
+  },
+  tabs: {
+    orders: "Gestionar Pedidos",
+    tickets: "Tickets de Soporte",
+    prices: "Gestionar Precios",
+    users: "Usuarios Registrados"
+  },
+  users: {
+    name: "Nombre",
+    contact: "Contacto",
+    role: "Rol",
+    address: "Dirección",
+    joined: "Registrado",
+    empty: "No se encontraron usuarios."
+  },
+  orders: {
+    customer: "Cliente",
+    total: "Total",
+    payment: "Pago",
+    status: "Estado",
+    action: "Acción",
+    empty: "No se encontraron pedidos.",
+    statuses: {
+      paid: "Pagado",
+      processing: "Procesando",
+      shipped: "Enviado",
+      delivered: "Entregado",
+      cancelled: "Cancelado",
+      awaiting_payment: "Esperando Pago",
+      pending_transfer: "Transferencia Pendiente",
+      payment_pending: "Pago Pendiente"
+    }
+  },
+  tickets: {
+    empty: "No se encontraron tickets de soporte.",
+    viewChat: "Abrir Chat y Responder",
+    statusOpen: "Abierto",
+    statusClosed: "Cerrado"
+  }
+};
+
 export default function AdminDashboard() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
+  const isSpanish = language === 'es';
   const router = useRouter();
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const [activeTab, setActiveTab] = useState<'orders' | 'tickets' | 'prices' | 'users'>('orders');
   const [orders, setOrders] = useState<any[]>([]);

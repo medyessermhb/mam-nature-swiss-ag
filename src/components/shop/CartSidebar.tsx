@@ -38,6 +38,16 @@ const CONTENT_DE = {
   promoTitle: "Exklusives Angebot"
 };
 
+const CONTENT_ES = {
+  title: "Tu Carrito",
+  empty: "Tu carrito está vacío.",
+  total: "Total",
+  subtotal: "Subtotal",
+  checkout: "Proceder al Pago",
+  viewCart: "Ver Carrito",
+  promoTitle: "Oferta Exclusiva"
+};
+
 export default function CartSidebar() {
   // Added addToCart here so we can add the promo items
   const { cart, isCartOpen, toggleCart, removeFromCart, updateQuantity, cartTotal, cartCount, addToCart } = useCart();
@@ -45,7 +55,8 @@ export default function CartSidebar() {
 
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const handleViewCart = () => {
     toggleCart();
@@ -125,7 +136,9 @@ export default function CartSidebar() {
         ? `Complétez votre installation pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
         : isGerman
           ? `Komplettieren Sie Ihre Installation für nur ${promoPrice} ${currencySymbol} (statt ${originalPrice} ${currencySymbol})!`
-          : `Complete your setup for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
+          : isSpanish
+            ? `¡Complete su instalación por solo ${promoPrice} ${currencySymbol} (en lugar de ${originalPrice} ${currencySymbol})!`
+            : `Complete your setup for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
       image: '/images/WEBSITE-P/products/particle_+_water_lime.webp'
     };
@@ -143,7 +156,9 @@ export default function CartSidebar() {
         ? `Ajoutez la protection anti-calcaire pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
         : isGerman
           ? `Fügen Sie Kalkschutz für nur ${promoPrice} ${currencySymbol} (statt ${originalPrice} ${currencySymbol}) hinzu!`
-          : `Add anti-limescale protection for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
+          : isSpanish
+            ? `¡Añada protección antical por solo ${promoPrice} ${currencySymbol} (en lugar de ${originalPrice} ${currencySymbol})!`
+            : `Add anti-limescale protection for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
       image: '/images/WEBSITE-P/products/water_lime_vertical.webp'
     };
@@ -222,7 +237,7 @@ export default function CartSidebar() {
                       cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
                     }}
                   >
-                    <PlusCircle size={18} /> {isFrench ? 'Ajouter à la commande' : isGerman ? 'Zur Bestellung hinzufügen' : 'Add to Order'}
+                    <PlusCircle size={18} /> {isFrench ? 'Ajouter à la commande' : isGerman ? 'Zur Bestellung hinzufügen' : isSpanish ? 'Añadir al pedido' : 'Add to Order'}
                   </button>
                 </div>
               )}
@@ -245,7 +260,7 @@ export default function CartSidebar() {
 
               {/* VAT Details */}
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#94a3b8' }}>
-                <span>{isFrench ? `Dont TVA (${taxLabel})` : isGerman ? `Inkl. MwSt (${taxLabel})` : `Includes VAT (${taxLabel})`}</span>
+                <span>{isFrench ? `Dont TVA (${taxLabel})` : isGerman ? `Inkl. MwSt (${taxLabel})` : isSpanish ? `Incluye IVA (${taxLabel})` : `Includes VAT (${taxLabel})`}</span>
                 <span>{currencySymbol} {vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
               </div>
             </div>

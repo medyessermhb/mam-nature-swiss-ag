@@ -91,7 +91,7 @@ const CONTENT_FR = {
   reports: {
     title: 'Rapports & Certificats',
     btnIso: 'Certificat ISO 13485',
-    btnCert: 'Cértificat de Swiss Safety System'
+    btnCert: 'Certificat de Swiss Safety System'
   }
 };
 
@@ -134,6 +134,45 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    product: 'Producto',
+    details: 'Detalles Técnicos',
+    install: 'Instalación',
+    maint: 'Mantenimiento',
+    reports: 'Informes'
+  },
+  product: {
+    title: 'Filtro de Partículas',
+    btnAdd: 'Añadir al carrito',
+    desc: 'Filtro de partículas con retrolavado automático, regulador de presión y conector de 360°.',
+    descBold: 'Solución compacta totalmente integrada fabricada en material médico (Acero inoxidable 316L).'
+  },
+  details: {
+    title: 'Detalles Técnicos',
+    specs: {
+      material: { title: 'Materiales', val: 'Carcasa de acero inoxidable 316L y latón de alta calidad (Filtro de Partículas)' },
+      connection: { title: 'Conexiones', val: '1 pulgada (adaptadores de 3/4 pulgada incluidos para ambas unidades)' },
+      flow: { title: 'Caudal', val: '1,5 m³/h (a 4 bares)' }
+    }
+  },
+  install: {
+    title: 'Instalación',
+    cardTitle: 'Instalación Profesional',
+    cardText: 'Se instala directamente después del contador de agua principal por un fontanero cualificado para tratar todo su hogar.'
+  },
+  maint: {
+    title: 'Mantenimiento',
+    cardTitle: 'Mantenimiento Automatizado',
+    cardText: 'El filtro se limpia automáticamente mediante el mecanismo de retrolavado, que invierte el flujo de agua para expulsar las partículas acumuladas. Este funcionamiento autónomo garantiza una eficacia constante y prolonga la vida útil del elemento filtrante.'
+  },
+  reports: {
+    title: 'Informes y Certificados',
+    btnIso: 'Certificado ISO 13485',
+    btnCert: 'Certificado del Sistema de Seguridad Suizo'
+  }
+};
+
 export default function ParticleFilterPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
@@ -141,7 +180,8 @@ export default function ParticleFilterPage() {
 
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

@@ -78,7 +78,7 @@ const CONTENT_FR = {
   },
   overview: {
     title: 'FINE FILTER',
-    desc: "Réduit : le chlore, le chloroforme, les pesticides, les produits pétrochimiques, le phénol, les microplastiques, les métaux lourds jusqu'à 97 - 99 %. Filtration sélective : préserve la structure du l'eau et sa composition (comme minéraux).",
+    desc: "Réduit : le chlore, le chloroforme, les pesticides, les produits pétrochimiques, le phénol, les microplastiques, les métaux lourds jusqu'à 97 - 99 %. Filtration sélective : préserve la structure de l'eau et sa composition (comme les minéraux).",
     features: [
       { label: 'Physique :', text: 'Filtre à membrane avec 20 µm & 5 µm', icon: Filter },
       { label: 'Charbon actif :', text: 'Filtration par adsorption', icon: CheckCircle },
@@ -190,13 +190,73 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    overview: 'RESUMEN',
+    technical: 'DATOS TÉCNICOS',
+    other: 'OTRAS SOLUCIONES'
+  },
+  overview: {
+    title: 'FILTRO FINO DE AGUA',
+    desc: 'Un sistema de filtración cuádruple único:',
+    features: [
+      { label: 'Físico:', text: 'Filtro de membrana con 20 µm y 5 µm', icon: Filter },
+      { label: 'Carbón activo:', text: 'filtración por adsorción', icon: CheckCircle },
+      { label: 'AqualenTM:', text: 'Fibras adsortivas para la filtración efectiva de metales pesados', icon: FlaskConical },
+      { label: 'Plata ionizada:', text: 'Esterilidad en el cartucho del filtro sin que la plata penetre en el agua potable.', icon: Shield }
+    ],
+    btnOrder: 'Pedir Cartucho'
+  },
+  technical: {
+    title: 'Datos Técnicos',
+    specs: {
+      materials: { label: 'Materiales:', text: 'Carcasa y conector de Acero Inoxidable 316L (sin piezas de latón que contengan plomo)' },
+      quality: { label: 'Calidad:', text: 'Todas las partes no metálicas son seguras para alimentos' },
+      maintenance: { label: 'Mantenimiento:', text: 'Cambiar cartucho cada 150 m3 (promedio 1x al año)' },
+      connections: { label: 'Conexiones:', text: '1 pulgada (incluye 2 adaptadores de 3/4 de pulgada)' },
+      flow: { label: 'Caudal:', text: '1.5 m3 / h (a 4 bares de presión de agua)' },
+      capacity: { label: 'Capacidad del cartucho:', text: '150 m3' }
+    }
+  },
+  otherSolutions: {
+    title: 'Descubra nuestras otras soluciones',
+    btnLearn: 'Saber Más',
+    items: [
+      {
+        title: 'WATER LIME',
+        desc: 'Una alternativa comprobada sobre una base puramente física. Evita los depósitos duros de cal.',
+        link: '/solutions/water-lime',
+        img: '/images/WEBSITE-P/products/water_lime_vertical.webp'
+      },
+      {
+        title: 'PARTICLE FILTER',
+        desc: 'Filtro de Partículas sin plomo (acero inoxidable 316L) con tecnología de retrolavado automático.',
+        link: '/solutions/particle-filter',
+        img: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp'
+      },
+      {
+        title: 'The Swiss Water DYNAMIZER',
+        desc: 'Reestructura y revitaliza el agua. Conduce a un sabor suave y mejor hidratación celular.',
+        link: '/solutions/dynamizer',
+        img: '/images/WEBSITE-P/products/DYNAMIZER.webp'
+      },
+      {
+        title: 'SISTEMA COMPLETO',
+        desc: 'Nuestra solución completa para agua pura, saludable y revitalizada en toda su casa.',
+        link: '/solutions/mam-nature-complete-system',
+        img: '/images/WEBSITE-P/products/COMPLETE_SET_PLUS.webp'
+      }
+    ]
+  }
+};
+
 export default function FineFilterSolution() {
   const [activeSection, setActiveSection] = useState('presentation');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -260,7 +320,7 @@ export default function FineFilterSolution() {
               <p>{content.overview.desc}</p>
 
               <ul className={`${styles.componentSpecs} ${styles.transparentSpecs}`}>
-                {content.overview.features.map((feature, idx) => (
+                {content.overview.features.map((feature: any, idx: number) => (
                   <li key={idx}>
                     <feature.icon className={styles.specIcon} />
                     <div className={styles.specContent}>
@@ -333,7 +393,7 @@ export default function FineFilterSolution() {
           <div className={styles.sectionHeader}><h2>{content.otherSolutions.title}</h2></div>
           <div className={styles.solutionsGrid}>
 
-            {content.otherSolutions.items.map((item, idx) => (
+            {content.otherSolutions.items.map((item: any, idx: number) => (
               <div key={idx} className={styles.solutionCard}>
                 <img src={item.img} alt={item.title} />
                 <h3>{item.title}</h3>

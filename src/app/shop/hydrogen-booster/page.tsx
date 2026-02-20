@@ -241,6 +241,81 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  hero: {
+    badge: 'Dispositivo Médico de Clase 1',
+    title: 'SWISS HYDROGEN',
+    titleSpan: 'BOOSTER',
+    features: [
+      "7500 PPB de hidrógeno puro — récord mundial",
+      "Batería: hasta 15 usos",
+      "Proceso físico (Electrólisis PEM + 10 bares de presión)",
+      "Compacto, recargable, sin retrogusto",
+      "+1000 estudios científicos sobre los beneficios del H₂",
+      "Innovación suiza, materiales certificados",
+      "Capacidad: 280ml, Garantía: 2 años"
+    ],
+    certText: 'Certificado CE\nDispositivo Médico Certificado ISO 13485',
+    btnAdd: 'Añadir al carrito',
+    badges: {
+      concTitle: 'Récord Mundial',
+      concLabel: 'Concentración',
+      concVal: '7500 PPB',
+      battLabel: 'Batería',
+      battVal: '15 Usos',
+      chargeLabel: 'Carga Rápida',
+      chargeVal: '0-100% en 1h',
+      capLabel: 'Capacidad',
+      capVal: '280ml',
+      warLabel: 'Garantía',
+      warVal: '2 Años'
+    }
+  },
+  nav: {
+    benefits: 'Beneficios',
+    usage: 'Uso',
+    details: 'Mantenimiento y Garantía',
+    science: 'Informes y Certificados'
+  },
+  benefits: {
+    title: 'Una herramienta de salud para tu día a día',
+    cards: [
+      { title: 'Concentración de 7500 PPB', text: 'Saturación récord mundial utilizando electrólisis PEM de alta presión (10 bares). Un verdadero avance en la tecnología del agua hidrogenada.' },
+      { title: 'Cerebral y Atlético', text: 'El hidrógeno molecular ayuda a proteger las células cerebrales contra el estrés oxidativo y, al mismo tiempo, mejora la recuperación y reduce la fatiga muscular.' },
+      { title: 'Antioxidante', text: 'Combate los radicales libres y apoya el sistema de defensa natural de su cuerpo.' },
+      { title: 'Salud Diaria', text: 'Incorpore fácilmente un poderoso impulso de salud a su rutina de hidratación diaria.' },
+      { title: 'Larga Duración', text: 'Capacidad de la batería para hasta 15 usos por carga. Carga completa del 0% al 100% en solo 1 hora mediante USB.' },
+      { title: 'Tecnología SPE', text: 'La tecnología de Electrolito de Polímero Sólido garantiza hidrógeno puro al 99,9%.' },
+      { title: 'Capacidad de 280ml', text: 'Tamaño perfecto para su portabilidad. Construido con materiales certificados de alta calidad.' }
+    ]
+  },
+  usage: {
+    title: 'Uso sencillo en 3 pasos',
+    steps: [
+      { title: 'Llenar', text: 'Abra su booster y llénelo de agua potable hasta la marca indicada.' },
+      { title: 'Activar', text: 'Pulse el botón para iniciar el proceso de electrólisis. Espere unos minutos.' },
+      { title: 'Beber', text: 'Su agua enriquecida con hidrógeno está lista. Disfrute de sus beneficios durante todo el día.' }
+    ]
+  },
+  details: {
+    title: 'Mantenimiento y Garantía',
+    maintTitle: 'Mantenimiento Fácil',
+    maintText: 'Limpie regularmente la botella con agua y jabón suave. Recargue la batería a través de USB cuando sea necesario (vida útil de la batería hasta 15 ciclos).',
+    warrantyTitle: 'Garantía del Fabricante',
+    warrantyYears: '2 AÑOS',
+    warrantyText: 'Su SWISS HYDROGEN BOOSTER está cubierto por una garantía de 2 años para su total tranquilidad.'
+  },
+  science: {
+    title: 'Informes y Certificados',
+    items: [
+      { id: 'ce', title: 'Certificado CE', btn: 'Ver Certificado', icon: 'FlaskConical', url: '/images/website-assets/certificates/Mam_Nature_Swiss_Hydrogen_Booster_CE-Certificate_2025-005-DOC_sign_2025.04.29.pdf', type: 'pdf' },
+      { id: 'manual', title: 'Manual de Usuario', btn: 'Ver Manual (9 Páginas)', icon: 'Book', url: '/images/website-assets/certificates/manual/page_1.jpg,/images/website-assets/certificates/manual/page_2.jpg,/images/website-assets/certificates/manual/page_3.jpg,/images/website-assets/certificates/manual/page_4.jpg,/images/website-assets/certificates/manual/page_5.jpg,/images/website-assets/certificates/manual/page_6.jpg,/images/website-assets/certificates/manual/page_7.jpg,/images/website-assets/certificates/manual/page_8.jpg,/images/website-assets/certificates/manual/page_9.jpg', type: 'image' },
+      { id: 'iso', title: 'Certificado ISO 13485', btn: 'Ver Certificado', icon: 'Award', url: '/images/website-assets/certificates/ISO.pdf', type: 'pdf' },
+      { id: 'conformity', title: 'Evaluación de Conformidad CE', btn: 'Ver Documento (PDF)', icon: 'FileText', url: '/images/website-assets/certificates/Mam_Nature_Swiss_Hydrogen_Booster_CE-Conformity_Assessment_2025-005-CR-01_signed.pdf', type: 'pdf' }
+    ]
+  }
+};
+
 export default function HydrogenBoosterPage() {
   const { getPrice, getRawPrice, isLoading, currency } = usePricing();
   const { addToCart } = useCart();
@@ -248,7 +323,8 @@ export default function HydrogenBoosterPage() {
 
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const [activeSection, setActiveSection] = useState('benefits');
   const [modalUrls, setModalUrls] = useState<string[] | null>(null);

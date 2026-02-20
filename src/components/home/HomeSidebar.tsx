@@ -2,8 +2,9 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import styles from '@/styles/HomeSidebar.module.css';
+import { useLanguage } from '@/context/LanguageContext';
 
-const LINKS = [
+const LINKS_EN = [
   { id: 'comparison', label: 'Perfect System' },
   { id: 'water-lime', label: 'Cartridge' },
   { id: 'dynamizer', label: 'Dynamiser' },
@@ -12,7 +13,37 @@ const LINKS = [
   { id: 'products', label: 'Products' },
 ];
 
+const LINKS_FR = [
+  { id: 'comparison', label: 'Système Parfait' },
+  { id: 'water-lime', label: 'Cartouche' },
+  { id: 'dynamizer', label: 'Dynamiseur' },
+  { id: 'shower', label: 'Water Lime' },
+  { id: 'particles-filter', label: 'Filtre Particules' },
+  { id: 'products', label: 'Produits' },
+];
+
+const LINKS_DE = [
+  { id: 'comparison', label: 'Perfektes System' },
+  { id: 'water-lime', label: 'Kartusche' },
+  { id: 'dynamizer', label: 'Dynamisierer' },
+  { id: 'shower', label: 'Wasser Lime' },
+  { id: 'particles-filter', label: 'Partikelfilter' },
+  { id: 'products', label: 'Produkte' },
+];
+
+const LINKS_ES = [
+  { id: 'comparison', label: 'Sistema Perfecto' },
+  { id: 'water-lime', label: 'Cartucho' },
+  { id: 'dynamizer', label: 'Dinamizador' },
+  { id: 'shower', label: 'Water Lime' },
+  { id: 'particles-filter', label: 'Filtro Partículas' },
+  { id: 'products', label: 'Productos' },
+];
+
 export default function HomeSidebar() {
+  const { language } = useLanguage();
+  const LINKS = language === 'fr' ? LINKS_FR : language === 'de' ? LINKS_DE : language === 'es' ? LINKS_ES : LINKS_EN;
+
   const [activeId, setActiveId] = useState('');
   const [status, setStatus] = useState<'hidden' | 'fixed' | 'absolute'>('hidden');
   const [absoluteTop, setAbsoluteTop] = useState(0);
@@ -101,7 +132,7 @@ export default function HomeSidebar() {
       { rootMargin: '-20% 0px -50% 0px' }
     );
 
-    LINKS.forEach(link => {
+    LINKS_EN.forEach(link => {
       const el = document.getElementById(link.id);
       if (el) observer.observe(el);
     });

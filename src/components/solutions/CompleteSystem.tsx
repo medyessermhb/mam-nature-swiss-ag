@@ -224,13 +224,84 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    overview: 'RESUMEN',
+    technical: 'DATOS TÉCNICOS',
+    components: 'COMPONENTES'
+  },
+  overview: {
+    title: 'Sistema Completo Mam Nature',
+    desc: 'Nuestra tecnología de filtración avanzada asegura que disfrute de agua potable limpia y segura todos los días. Experimente la diferencia con nuestra solución ecológica.',
+    benefits: [
+      'Elimina el 99% de los contaminantes para una hidratación pura.',
+      'Diseño fácil de usar para instalación y mantenimiento sin esfuerzo.',
+      'Los materiales ecológicos promueven la sostenibilidad y la salud.'
+    ],
+    subtitle: 'Mam Nature Swiss - nuestra solución para el agua en toda su casa:',
+    components: [
+      { bold: 'WATER LIME:', text: 'Anti-Cal - Tratamiento de cal puramente físico' },
+      { bold: 'PARTICLE FILTER:', text: '40 μm + Retrolavado automático + sin plomo' },
+      { bold: 'FINE FILTER:', text: 'Filtración de Cloro + Metales pesados + Pesticidas' },
+      { bold: 'DYNAMIZER:', text: 'Sabor único y piel increíblemente suave' }
+    ]
+  },
+  technical: {
+    title: 'Datos Técnicos',
+    specs: [
+      { label: 'Instalación:', text: 'Conexión después de la tubería principal - agua fría máx. 38°C', icon: Plug },
+      { label: 'Materiales:', text: 'Todas las partes conductoras de agua del sistema de acero inoxidable 316L. Partes no metálicas seguras para alimentos.', icon: Shield },
+      { label: 'Capacidad:', text: 'Ilimitada para LIME, FILTRO DE PARTÍCULAS y DINAMIZADOR; 150 m3 o 1 año por cartucho de FILTRO FINO', icon: InfinityIcon },
+      { label: 'Caudal:', text: '1,5 m3 / h (a 4 bares de presión de agua)', icon: Gauge },
+      { label: 'De mantenimiento:', text: 'Ninguno para unidades LIME, PARTÍCULAS y DINAMIZADOR. FILTRO FINO: Cambio fácil de cartucho cada 150 m3/1 año', icon: Euro },
+      { label: 'Dimensiones (AlxAnxP):', text: '850 mm x 850 mm x 180 mm', icon: Ruler },
+      { label: 'Peso:', text: '27,8 kg', icon: Weight },
+      { label: 'Filtración única (5 niveles):', text: 'PARTÍCULAS: filtro físico 40 μm. FINO: membrana 20 µm y 5 µm, carbón activo, AqualenTM, plata ionizada.', icon: Filter },
+      { label: 'Filtración selectiva:', text: 'Reduce el cloro, cloroformo, pesticidas, petroquímicos, microplásticos, metales pesados (97-99%).', icon: FlaskConical },
+      { label: 'Presión de servicio:', text: 'Máx. 6,5 bar; 0,1 bar pérdida de presión solo si entrada <= 1,5 bar', icon: Gauge },
+      { label: 'Garantía:', text: '10 años (Certificado por el Swiss Safety Center)', icon: Award }
+    ],
+    btnShop: 'Ver en la Tienda'
+  },
+  components: {
+    title: 'Componentes Incluidos',
+    items: [
+      {
+        title: 'WATER LIME',
+        desc: 'Una alternativa comprobada sobre una base puramente física. Evita los depósitos duros de cal.',
+        link: '/solutions/water-lime',
+        img: '/images/WEBSITE-P/products/water_lime_vertical.webp'
+      },
+      {
+        title: 'PARTICLE FILTER',
+        desc: 'Filtro de Partículas sin plomo (acero inoxidable 316L) con tecnología de retrolavado automático.',
+        link: '/solutions/particle-filter',
+        img: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp'
+      },
+      {
+        title: 'WATER FINE FILTER',
+        desc: 'Un sistema cuádruple único: Físico (20 µm y 5 µm), carbón activo, AqualenTM y plata ionizada.',
+        link: '/solutions/fine-filter',
+        img: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png'
+      },
+      {
+        title: 'The Swiss Water DYNAMIZER',
+        desc: 'Reestructura y revitaliza el agua. Conduce a un sabor suave y mejor hidratación celular.',
+        link: '/solutions/dynamizer',
+        img: '/images/WEBSITE-P/products/DYNAMIZER.webp'
+      }
+    ],
+    btnLearn: 'Saber Más'
+  }
+};
+
 export default function CompleteSystem() {
   const [activeSection, setActiveSection] = useState('presentation');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {

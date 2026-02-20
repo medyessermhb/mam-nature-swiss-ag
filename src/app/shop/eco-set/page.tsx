@@ -197,14 +197,14 @@ const CONTENT_FR = {
     },
     fine: {
       title: '3. WATER FINE FILTER',
-      summary: 'Unique filtration technology eliminating PFAS, heavy metals, aluminium, chlorine, fluoride, pesticides, pharmaceutical residues, industrial chemicals, arsenic, cadmium, chromium & radioactive substances.',
+      summary: 'Technologie de filtration unique éliminant les PFAS, métaux lourds, aluminium, chlore, fluorure, pesticides, résidus pharmaceutiques, produits chimiques industriels, arsenic, cadmium, chrome et substances radioactives.',
       content: {
-        text: 'Unique selective Whole-House Adsorption Filtration System:',
+        text: 'Système de filtration par adsorption sélective unique pour toute la maison :',
         list: [
-          '1. Filter Media: Exclusive Mam Nature technology based on proteins fibers (combined with activated carbon) for the most complete & world unique adsorption filtration',
-          '2. Sterile cartridge: Sterility (by copper & iron hydroxide) in the cartridge without sterilizing agents entering the drinking water.'
+          '1. Média filtrant : Technologie exclusive Mam Nature basée sur des fibres protéiques (combinées à du charbon actif) pour la filtration par adsorption la plus complète et unique au monde',
+          '2. Cartouche stérile : Stérilité (par hydroxyde de cuivre et de fer) dans la cartouche sans que des agents stérilisants n\'entrent dans l\'eau potable.'
         ],
-        reduces: 'Reduces Chlorine, Pesticides, PFAS, Drug Residues, Phenol, Heavy Metals, Aluminium, Microplastics & including radioactive substances at a reduction rate of 95 - 99.9 % at large volumes of 2000 litres/hour.'
+        reduces: 'Réduit le chlore, les pesticides, les PFAS, les résidus médicamenteux, le phénol, les métaux lourds, l\'aluminium, les microplastiques et y compris les substances radioactives à un taux de réduction de 95 à 99,9 % à de grands volumes de 2000 litres/heure.'
       }
     },
     cartridge: {
@@ -364,6 +364,121 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    product: 'Producto',
+    usages: 'Usos',
+    details: 'Detalles Técnicos',
+    install: 'Instalación',
+    maint: 'Mantenimiento',
+    reports: 'Informes'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    btnAdd: 'Añadir al carrito',
+    features: [
+      "Hecho de acero inoxidable médico, garantía de 10 años, diseñado para durar toda la vida",
+      "Agua excepcional en toda su casa: ducha, bebida, cocina, té, café…",
+      "Convierte la cal y trata partículas y contaminantes (95 – 99.9% - único en el mundo) preservando la mineralización natural.",
+      "Purifica el agua naturalmente, sin electricidad, sin desperdicio, sin químicos.",
+      "Un solo cartucho al año, 10 minutos (sin herramientas)."
+    ]
+  },
+  usages: {
+    title: 'Un agua perfecta para cada uso',
+    desc: 'Disfrute de agua pura, sana y revitalizada en cada grifo. Nuestro sistema transforma su rutina diaria mejorando la calidad del agua para todos sus usos.',
+    cards: [
+      { title: 'Bebida', text: 'Agua de manantial pura y revitalizada, libre de impurezas.', icon: GlassWater, img: '/images/WEBSITE-P/drinking_big.webp' },
+      { title: 'Cocina', text: 'Revele los sabores de sus alimentos y conserve sus nutrientes.', icon: Utensils, img: '/images/WEBSITE-P/washing_big.webp' },
+      { title: 'Té y Café', text: 'Libere todo el potencial aromático de sus bebidas calientes.', icon: Coffee, img: '/images/WEBSITE-P/coffee_big.webp' },
+      { title: 'Ducha y Baño', text: 'Proteja su piel y cabello de la cal para una sensación de suavidad.', icon: ShowerHead, img: '/images/WEBSITE-P/shower_big.webp' }
+    ]
+  },
+  details: {
+    title: 'Detalles Técnicos en 3 Pasos',
+    lime: {
+      title: '1. WATER LIME',
+      summary: 'Transformación física de la cal para evitar depósitos incrustados. Capacidad ilimitada y sin mantenimiento.',
+      content: {
+        h4: 'Eficaz, duradero y sin esfuerzo.',
+        quote: 'Nota: La cal no es más que calcio y magnesio, que son esenciales para el equilibrio biológico del agua. Lo problemático es la forma incrustante; un tratamiento responsable no los elimina, sino que los suaviza, previniendo los depósitos duros a la vez que se conservan los minerales y oligoelementos naturalmente presentes en el agua.',
+        challengeTitle: 'El desafío:',
+        challenge: 'La calcita, la forma dura de la cal en el agua, se acumula, provocando daños técnicos (fallos de funcionamiento y reducción de la vida útil de los aparatos) y estéticos (superficies opacas).',
+        limitsTitle: 'Los límites de las soluciones tradicionales:',
+        limits: 'Los descalcificadores a base de sal intercambian iones de calcio y magnesio por sodio, eliminando minerales (el agua desmineralizada es peligrosa para la salud), alterando gravemente la composición y el sabor del agua, requieren un mantenimiento regular y costoso y provocan una carga bacteriana inaceptable.',
+        solutionTitle: 'Mam Nature Swiss® Water Lime: Una conversión física de la cal.',
+        solution: 'Nuestro dispositivo no funciona eliminando la cal, sino alterando su estructura cristalina mediante la acción de potentes imanes permanentes. Convierte la calcita (forma incrustante) en aragonito (forma no adhesiva).',
+        benefitsTitle: 'Beneficios directos:',
+        benefitsList: [
+          'Protección activa: Reducción de depósitos sólidos en tuberías, calentadores de agua y electrodomésticos.',
+          'Agua conservada: Preserva el sabor, los minerales y los oligoelementos del agua.',
+          'Sencillez absoluta, económica y ecológica: Sin consumibles (sal, cartuchos), sin energía, sin desperdicio de agua.'
+        ],
+        specs: 'Capacidad: ilimitada<br>Mantenimiento: Ninguno.'
+      }
+    },
+    particle: {
+      title: '2. FILTRO DE PARTÍCULAS DE AGUA',
+      summary: 'Filtra sedimentos y partículas en suspensión con retrolavado automático y regulador de presión integrado.',
+      content: {
+        text: 'Filtro de partículas con retrolavado automático, regulador de presión y conector de 360°. Solución compacta totalmente integrada fabricada en material médico (Acero inoxidable 316L).',
+        specs: 'Capacidad: ilimitada<br>Mantenimiento: ninguno (solución totalmente automatizada).'
+      }
+    },
+    fine: {
+      title: '3. FILTRO FINO DE AGUA',
+      summary: 'Tecnología de filtración única que elimina PFAS, metales pesados, aluminio, cloro, flúor, pesticidas, residuos farmacéuticos, químicos industriales, arsénico, cadmio, cromo y sustancias radiactivas.',
+      content: {
+        text: 'Sistema Único de Filtración por Adsorción Selectiva para Toda la Casa:',
+        list: [
+          '1. Medio Filtrante: Tecnología exclusiva de Mam Nature basada en fibras de proteínas (combinadas con carbón activo) para la filtración por adsorción más completa y única en el mundo',
+          '2. Cartucho estéril: Esterilidad (por hidróxido de cobre y hierro) en el cartucho sin que los agentes esterilizantes entren en el agua potable.'
+        ],
+        reduces: 'Reduce cloro, pesticidas, PFAS, residuos de medicamentos, fenol, metales pesados, aluminio, microplásticos e incluso sustancias radiactivas a una tasa de reducción del 95 - 99.9% a grandes volúmenes de 2000 litros/hora.'
+      }
+    },
+    cartridge: {
+      title: 'CARTUCHO',
+      summary: 'Tecnología patentada que elimina contaminantes y conserva minerales esenciales.',
+      content: {
+        h4: 'El Cartucho de Agua Suizo',
+        text1: 'Mam Nature Swiss® – Resolviendo lo imposible: Agua perfectamente filtrada, blanda y mineralizada de forma natural.',
+        text2: 'El « SWISS WATER CARTRIDGE » : MÁS ALLÁ DE LA FILTRACIÓN – UNA VERDADERA PROTECCIÓN CON UNA RETENCIÓN DE CONTAMINANTES INIGUALABLE',
+        text3: 'Nuestra tecnología de filtración 100% natural, exclusiva de Mam Nature Swiss®, combina fibras de proteínas naturales con carbón activo para lograr una adsorción total, una primicia mundial. Elimina los contaminantes conservando los minerales y oligoelementos naturalmente presentes en el agua. Gracias a su sistema de filtración selectiva por adsorción completa, esta invención suiza patentada es la solución universal única en el mundo, 100% natural, capaz de eliminar PFAS, metales pesados, aluminio, cloro, flúor, pesticidas, residuos de medicamentos, productos químicos industriales, arsénico, cadmio, cromo, etc. - e incluso las sustancias radiactivas presentes en el agua nuclear.',
+        specs: 'Caudal: hasta 1800 litros/hora.<br>Capacidad del cartucho filtrante (vida útil): 150m³<br>Mantenimiento: 10 minutos una vez al año (sencillo y sin necesidad de herramientas).'
+      }
+    }
+  },
+  install: {
+    title: 'Instalación sencilla y guiada',
+    introTitle: 'Diseñado para una configuración eficiente',
+    introText: 'El sistema Mam Nature está diseñado para una instalación rápida por parte de un fontanero cualificado. Se coloca justo después de su contador de agua para tratar todo su hogar.',
+    neededTitle: 'Qué necesita',
+    neededList: [
+      'Un fontanero profesional',
+      'Espacio requerido: 80cm (H) x 80cm (L)',
+      'Herramientas estándar de fontanería',
+      'Tiempo estimado: 2 a 3 horas'
+    ]
+  },
+  maint: {
+    title: 'Mantenimiento y Garantía',
+    maintTitle: 'Mantenimiento Simplificado',
+    maintText: 'El único mantenimiento es cambiar el cartucho filtrante una vez al año. Una sencilla operación de 10 minutos, realizable sin herramientas.',
+    btnOrder: 'Pedir un cartucho',
+    warrantyTitle: 'Garantía de Excelencia',
+    warrantyYears: '10 AÑOS',
+    warrantyText: 'La parte en contacto con el agua está fabricada en acero inoxidable de grado médico duradero.'
+  },
+  reports: {
+    title: 'Informes de prueba y Certificados',
+    list: [
+      { title: "Informe de Rendimiento de Filtración" },
+      { title: "Certificado del Sistema de Seguridad Suizo" }
+    ]
+  }
+};
+
 export default function EcoSetPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
@@ -371,7 +486,8 @@ export default function EcoSetPage() {
 
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

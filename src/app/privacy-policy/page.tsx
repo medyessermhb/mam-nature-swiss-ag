@@ -45,11 +45,25 @@ const CONTENT_DE = {
   contact: 'Für Datenzugriff oder Änderungen kontaktieren Sie <strong>info@mam-nature.com</strong>.'
 };
 
+const CONTENT_ES = {
+  title: 'Privacidad de Datos',
+  info: {
+    title: 'Su Información',
+    desc: 'Mam Nature Swiss AG registra los detalles de los clientes estrictamente para la gestión de pedidos. No vendemos ni arrendamos sus datos a terceros.'
+  },
+  cookies: {
+    title: 'Cookies y Navegación',
+    desc: 'Utilizamos cookies para la gestión técnica del sitio y la navegación. No se almacena información bancaria en línea.'
+  },
+  contact: 'Para el acceso o modificación de datos, contacte con <strong>info@mam-nature.com</strong>.'
+};
+
 export default function PrivacyPolicy() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   return (
     <div className={styles.container}>

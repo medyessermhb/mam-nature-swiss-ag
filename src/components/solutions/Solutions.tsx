@@ -269,6 +269,92 @@ const CONTENT_DE = {
   ]
 };
 
+const CONTENT_ES = {
+  nav: {
+    complete: 'SISTEMA COMPLETO',
+    lime: 'WATER LIME',
+    particle: 'FILTRO DE PARTÍCULAS',
+    fine: 'FILTRO FINO',
+    dynamizer: 'The Swiss Water DYNAMIZER'
+  },
+  btnLearn: 'Saber Más',
+  sections: [
+    {
+      id: 'complete-system',
+      title: 'SISTEMA COMPLETO',
+      image: '/images/WEBSITE-P/products/COMPLETE_SET_PLUS.webp',
+      desc: 'Nuestra solución completa para agua pura, saludable y revitalizada en toda su casa. El Sistema Completo combina nuestras cuatro tecnologías avanzadas.',
+      link: '/solutions/mam-nature-complete-system',
+      specs: [
+        { label: 'Water LIME:', text: 'Anti-Cal - tratamiento físico puramente', icon: CheckCircle },
+        { label: 'Water PARTICLE FILTER:', text: '40 μm + Retrolavado + sin plomo', icon: CheckCircle },
+        { label: 'Water FINE FILTER:', text: 'Filtración de Cloro + Metales pesados + Pesticidas', icon: CheckCircle },
+        { label: 'Water DYNAMIZER:', text: 'Sabor único y piel increíblemente suave', icon: CheckCircle }
+      ]
+    },
+    {
+      id: 'water-lime',
+      title: 'WATER LIME',
+      image: '/images/WEBSITE-P/products/water_lime_vertical.webp',
+      desc: 'Una alternativa comprobada a los sistemas de descalcificación tradicionales sobre una base puramente física. "Water LIME" convierte la forma dura de la cal (Calcita) en una forma suave (Aragonito).',
+      link: '/solutions/water-lime',
+      specs: [
+        { text: 'Basado en Imanes Permanentes de Neodimio', icon: Magnet },
+        { text: 'Carcasa de Acero Inoxidable 316L', icon: ShieldCheck },
+        { text: 'No requiere mantenimiento', icon: Wrench },
+        { text: 'Conexiones: 1 pulgada (variante de 3/4 también disponible)', icon: Plug },
+        { text: 'Capacidad de caudal: 1.5 m3 / h', icon: Gauge },
+        { text: 'Vida útil: ilimitada', icon: InfinityIcon }
+      ]
+    },
+    {
+      id: 'particle-filter',
+      title: 'FILTRO DE PARTÍCULAS',
+      image: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp',
+      desc: 'Mam Nature Swiss presenta con orgullo el primer filtro de partículas SIN PLOMO del mundo hecho en Suiza, fabricado en acero inoxidable 316L de primera calidad.',
+      link: '/solutions/particle-filter',
+      specs: [
+        { text: 'Todas las partes de metal en Acero Inoxidable 316L', icon: ShieldCheck },
+        { text: 'Partes no metálicas seguras para alimentos', icon: CheckCircle },
+        { text: 'Sin costes de mantenimiento', icon: Euro },
+        { text: 'Mantenimiento: Retrolavado 1x/mes', icon: Wrench },
+        { text: 'Conexiones: 1 pulgada (adaptadores de 3/4 incluidos)', icon: Plug },
+        { text: 'Capacidad de caudal: 4.2 m3 / h (a 4 bares)', icon: Gauge },
+        { text: 'Vida útil: ilimitada', icon: InfinityIcon }
+      ]
+    },
+    {
+      id: 'fine-filter',
+      title: 'FILTRO FINO',
+      image: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png',
+      desc: 'Un sistema de filtración cuádruple único que reduce cloro, metales pesados, pesticidas y microplásticos, preservando los minerales esenciales.',
+      link: '/solutions/fine-filter',
+      specs: [
+        { text: 'Físico: Filtro de membrana (20 µm y 5 µm)', icon: Filter },
+        { text: 'Carbón activo: filtración por adsorción', icon: CheckCircle },
+        { text: 'AqualenTM: Fibras adsortivas para metales pesados', icon: FlaskConical },
+        { text: 'Plata ionizada: para la esterilidad en el cartucho', icon: ShieldCheck },
+        { text: 'Mantenimiento: Cambio de cartucho (150 m3 / 1x al año)', icon: Wrench },
+        { text: 'Capacidad de cartucho: 150 m3', icon: InfinityIcon }
+      ]
+    },
+    {
+      id: 'dynamizer',
+      title: 'The Swiss Water DYNAMIZER',
+      image: '/images/WEBSITE-P/products/DYNAMIZER.webp',
+      desc: 'El agua es transportada en tubos rectos, lo cual no corresponde a su movimiento natural. El dinamizador reestructura y revitaliza el agua.',
+      link: '/solutions/dynamizer',
+      specs: [
+        { text: 'Parte conductora de agua en Acero Inoxidable 316L', icon: ShieldCheck },
+        { text: 'Mantenimiento: libre de mantenimiento', icon: Wrench },
+        { text: 'Conexiones: 1 pulgada', icon: Plug },
+        { text: 'Capacidad de caudal: 5 m3 / h (a 4 bares)', icon: Gauge },
+        { text: 'Vida útil: ilimitada', icon: InfinityIcon }
+      ]
+    }
+  ]
+};
+
 export default function Solutions() {
   const [activeSection, setActiveSection] = useState('complete-system');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
@@ -276,7 +362,7 @@ export default function Solutions() {
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
 
   // Scrollspy Logic
   useEffect(() => {

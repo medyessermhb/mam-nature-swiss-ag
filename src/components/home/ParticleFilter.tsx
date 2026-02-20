@@ -34,10 +34,19 @@ const CONTENT_DE = {
   maintenanceDesc: "Vollautomatische Lösung."
 };
 
+const CONTENT_ES = {
+  headline: "Mam Nature Swiss « FILTRO DE PARTÍCULAS de Agua »",
+  subheadline: "Filtro de partículas con retrolavado automático, regulador de presión y conector de 360°.",
+  description: "Solución compacta y totalmente integrada fabricada con materiales de grado médico (acero inoxidable 316L).",
+  capacity: "Capacidad: ilimitada",
+  maintenanceTitle: "Mantenimiento: ninguno",
+  maintenanceDesc: "Solución totalmente automatizada."
+};
+
 export default function ParticleFilter() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
 
   return (
     <section className={styles.section}>

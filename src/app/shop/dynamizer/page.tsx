@@ -210,6 +210,70 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    product: 'Producto',
+    benefits: 'Beneficios',
+    details: 'Detalles Técnicos',
+    science: 'Ciencia',
+    install: 'Instalación',
+    maint: 'Mantenimiento'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    tagline: 'La inteligencia de la naturaleza al servicio de su bienestar.',
+    descBold: 'Devuelva a su agua su vitalidad original con The Swiss Water Dynamizer.',
+    desc: "The Swiss Water Dynamizer funciona de forma puramente física para restaurar las propiedades beneficiosas del agua. No filtra, revitaliza.",
+    btnAdd: 'Añadir al carrito'
+  },
+  benefits: {
+    title: 'Beneficios para usted y su familia',
+    cards: [
+      { title: 'Sabor excepcional', text: 'Descubra un agua suave, notablemente digerible y agradable de beber.' },
+      { title: 'Hidratación celular óptima', text: 'Favorece el buen funcionamiento del organismo.' },
+      { title: 'Reducción de depósitos de cal', text: 'Protege de forma natural sus electrodomésticos y superficies sin usar sal ni productos químicos.' },
+      { title: 'Rendimiento inigualable', text: 'Con una capacidad de tratamiento de 5.000 litros/hora, satisface las necesidades de toda la casa.' }
+    ]
+  },
+  details: {
+    title: 'El Problema y La Solución',
+    intro: 'El agua es fuente de vida. Sin embargo, el agua potable moderna, aunque esté tratada, a menudo pierde su capacidad natural para hidratar profundamente nuestras células. Por lo tanto, es esencial consumir agua que no solo sea pura y mineralizada, sino también viva y estructurada.',
+    problem: {
+      title: 'El problema del agua moderna',
+      p1: { title: 'Baja biodisponibilidad celular', text: 'Los tratamientos industriales alteran la estructura molecular del agua, creando "grandes racimos" que nuestras células apenas absorben.' },
+      p2: { title: 'Agua desestructurada', text: 'En su estado natural, un agua de calidad tiene una estructura hexagonal perfecta. Desgraciadamente, esta estructura se destruye durante su transporte.' }
+    },
+    solution: {
+      title: 'La Solución: Su triple acción',
+      s1: { title: '1. Reestructuración y revitalización', text: 'Rompe los grandes racimos en micro-racimos, haciendo que el agua sea altamente biodisponible. Restaura su estructura hexagonal natural.' },
+      s2: { title: '2. Transformación de la cal', text: 'Gracias a los campos magnéticos, la cal (Calcita dura) se convierte en Aragonito blando.', quote: 'Nota: La cal no es más que calcio y magnesio... Un tratamiento responsable no los elimina, sino que los suaviza...' },
+      s3: { title: '3. Estabilización duradera', text: 'El agua dinamizada adquiere una estructura biológicamente estable que perdura en el tiempo.' }
+    },
+    specs: {
+      flow: { title: 'Caudal', val: '5.000 L/hora' },
+      cap: { title: 'Capacidad', val: 'Ilimitada' },
+      maint: { title: 'Mantenimiento', val: 'Cero mantenimiento' }
+    }
+  },
+  install: {
+    title: 'Instalación',
+    cardTitle: 'Instalación Profesional',
+    cardText: 'El Dinamizador se instala en su toma de agua principal por un fontanero cualificado. Su diseño compacto permite una fácil integración en su sistema existente.'
+  },
+  maint: {
+    title: 'Mantenimiento y Garantía',
+    maintTitle: 'Mantenimiento Cero',
+    maintText: 'The Swiss Water Dynamizer está diseñado para funcionar durante décadas sin ningún tipo de mantenimiento. Una vez instalado, no tiene que preocuparse por él.',
+    warrantyTitle: 'Garantía de Excelencia',
+    warrantyYears: '10 AÑOS',
+    warrantyText: 'Fabricado en acero inoxidable médico duradero, su dinamizador está cubierto por una garantía del fabricante de 10 años para su total tranquilidad.'
+  },
+  science: {
+    title: 'Certificados',
+    btnCert: 'Certificado ISO 13485'
+  }
+};
+
 export default function DynamizerPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
@@ -217,7 +281,8 @@ export default function DynamizerPage() {
 
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

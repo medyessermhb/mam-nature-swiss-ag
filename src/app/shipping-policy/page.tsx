@@ -31,7 +31,7 @@ const CONTENT_FR = {
   },
   international: {
     title: 'International & Maroc',
-    desc1: 'Les exportations hors UE sont nettes de TVA. Le dédouanement local, les taxes et les frais d\'importation sont facturés directement au client par le transporteur.',
+    desc1: 'Les exportations hors UE sont exemptées de TVA. Le dédouanement local, les taxes et les frais d\'importation sont facturés directement au client par le transporteur.',
     desc2: 'Pour le Maroc, les frais de transport sont communiqués avant le paiement pour garantir le meilleur prix du transporteur.'
   },
   verification: {

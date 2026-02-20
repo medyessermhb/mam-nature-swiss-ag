@@ -37,8 +37,8 @@ const CONTENT_FR = {
     "Eau dynamisée",
     "Conversion du calcaire (Calcite) en Aragonite (plus douce)",
     "Eau adoucie tout en gardant sa minéralisation naturelle",
-    "Global, chaque goute dans toute la maison est soigneusement traitée (eau potable, douche, cuisine, etc.)",
-    "Aucun gaspillage d’eaux contrairement à l’osmose inverse",
+    "Global, chaque goutte dans toute la maison est soigneusement traitée (eau potable, douche, cuisine, etc.)",
+    "Aucun gaspillage d'eau contrairement à l’osmose inverse",
     "Presque aucun entretien n’est nécessaire",
     "Respect de l’environnement, pas de rejet de contaminants retenus dans la nature",
     "Conçu pour durer toute une vie",
@@ -70,6 +70,26 @@ const CONTENT_DE = {
   btnCert: "Zertifikat von Swiss Safety System"
 };
 
+const CONTENT_ES = {
+  headline: "¿Qué es el Sistema de Tratamiento de Agua Perfecto?",
+  features: [
+    "Agua libre de contaminantes",
+    "Agua dinamizada",
+    "Conversión de la cal (calcita) en aragonito (más suave)",
+    "Agua suave con mineralización natural",
+    "Solución para toda la casa (agua potable, ducha, cocina, etc.)",
+    "Sin desperdicio de agua, a diferencia de la ósmosis inversa",
+    "Casi no requiere mantenimiento",
+    "Evita la introducción de contaminantes eliminados en la naturaleza",
+    "Construido para durar toda la vida",
+    "Una experiencia gustativa única"
+  ],
+  summaryTitle: "Mam Nature Swiss® – Resolviendo lo imposible",
+  summaryDesc: "Agua perfectamente filtrada, naturalmente mineralizada y dinamizada.",
+  btnShop: "Visitar la Tienda",
+  btnCert: "Certificado del Swiss Safety System"
+};
+
 const PDF_URL = "/images/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure_Test_MNS-CS.pdf";
 
 export default function PerfectSystem() {
@@ -79,7 +99,7 @@ export default function PerfectSystem() {
 
   // Determine content based on language
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
 
   useEffect(() => {
     AOS.init({

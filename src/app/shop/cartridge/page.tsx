@@ -81,7 +81,7 @@ const CONTENT_FR = {
     title: 'Technologie de Filtration Avancée',
     p1: 'Notre technologie 100% naturelle de filtration, exclusive Mam Nature Swiss®, basée sur des fibres naturelles associées à du charbon actif permettant une adsorption complète et unique au monde. Élimine les contaminants en préservant minéraux et oligo-éléments naturellement présents dans l’eau.',
     p2Part1: 'Grâce à ce système unique de filtration sélective par adsorption intégrale, cette invention suisse brevetée constitue l’unique solution universelle au monde, 100% naturelle, capable d’éliminer ',
-    p2Bold: 'PFAS, métaux lourds, aluminium, chlore, fluor, pesticides, résidus médicamenteux, produits chimiques, tous les arsenics, mercure, chrome, et capable même de filtrer les substances radioactives de l’eau nucléaire…',
+    p2Bold: 'PFAS, métaux lourds, aluminium, chlore, fluor, pesticides, résidus médicamenteux, produits chimiques, l\'arsenic, le mercure, le chrome, et capable même de filtrer les substances radioactives de l’eau nucléaire…',
     specs: {
       flow: { title: 'Débit', val: 'Jusqu’à 1800 L/heure' },
       cap: { title: 'Capacité', val: '150m³ par cartouche' },
@@ -96,12 +96,12 @@ const CONTENT_FR = {
   maint: {
     title: 'Maintenance',
     cardTitle: 'Remplacement Annuel',
-    cardText: "L'unique entretien est le remplacement de la cartouche une fois par an (ou après 150m³ d'utilisation). C'est une opération simple de 10 minutes qui ne nécessite aucun outil."
+    cardText: "L\'unique entretien est le remplacement de la cartouche une fois par an (ou après 150m³ d\'utilisation). C\'est une opération simple de 10 minutes qui ne nécessite aucun outil."
   },
   reports: {
     title: 'Rapports & Certificats',
     btnCert: 'Rapport de Performance',
-    btnIso: 'Cértificat de Swiss Safety System'
+    btnIso: 'Certificat de Swiss Safety System'
   }
 };
 
@@ -148,6 +148,49 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    product: 'Producto',
+    details: 'Detalles Técnicos',
+    install: 'Instalación',
+    maint: 'Mantenimiento',
+    reports: 'Informes'
+  },
+  product: {
+    title: 'The Swiss Water Cartridge',
+    tagline: 'Mam Nature Swiss® – Resolviendo lo imposible',
+    descBold: 'Agua perfectamente filtrada, blanda y naturalmente mineralizada.',
+    desc: 'El « SWISS WATER CARTRIDGE » : MÁS ALLÁ DE LA FILTRACIÓN – UNA VERDADERA PROTECCIÓN CON UNA RETENCIÓN DE CONTAMINANTES INIGUALABLE.',
+    btnAdd: 'Añadir al carrito'
+  },
+  details: {
+    title: 'Tecnología de Filtración Avanzada',
+    p1: 'Nuestra tecnología de filtración 100% natural, exclusiva de Mam Nature Swiss®, combina fibras de proteínas naturales con carbón activo para lograr una adsorción total, una primicia mundial. Elimina los contaminantes conservando los minerales y oligoelementos naturalmente presentes en el agua.',
+    p2Part1: 'Gracias a su sistema de filtración selectiva por adsorción total, esta invención suiza patentada es la solución universal única en el mundo, 100% natural, capaz de eliminar ',
+    p2Bold: 'PFAS, metales pesados, aluminio, cloro, flúor, pesticidas, residuos de medicamentos, productos químicos industriales, arsénico, cadmio, cromo, etc. - e incluso las sustancias radiactivas presentes en el agua nuclear…',
+    specs: {
+      flow: { title: 'Caudal', val: 'Hasta 2.000+ L/hora' },
+      cap: { title: 'Capacidad', val: '150m³ por cartucho' },
+      maint: { title: 'Mantenimiento', val: '10 min / año (sin herramientas)' }
+    }
+  },
+  install: {
+    title: 'Instalación',
+    cardTitle: 'Instalación Fácil',
+    cardText: 'El cartucho simplemente se inserta en la carcasa del Filtro Fino de Agua. No se requieren conocimientos técnicos.'
+  },
+  maint: {
+    title: 'Mantenimiento',
+    cardTitle: 'Reemplazo Anual',
+    cardText: "El único mantenimiento es reemplazar el cartucho una vez al año (o después de 150m³ de uso). Es una operación sencilla de 10 minutos que no requiere herramientas."
+  },
+  reports: {
+    title: 'Informes y Certificados',
+    btnCert: 'Ver Certificación Suiza',
+    btnIso: 'Certificado ISO 13485'
+  }
+};
+
 export default function CartridgePage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
@@ -155,7 +198,8 @@ export default function CartridgePage() {
 
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

@@ -169,12 +169,50 @@ const CONTENT_DE = {
   errors: { unexpected: "Ein unerwarteter Fehler ist aufgetreten.", country: "Bitte wählen Sie ein Land aus." }
 };
 
+const CONTENT_ES = {
+  header: "Pago Seguro",
+  auth: {
+    title: "¿Cómo le gustaría realizar su pedido?",
+    tabs: { guest: "Invitado", login: "Iniciar sesión", register: "Registrarse" },
+    guestDesc: "No se requiere cuenta. Rápido y fácil.",
+    loginDesc: "Acceda a sus datos guardados.",
+    regDesc: "Rastree su pedido y ahorre tiempo.",
+    welcome: "Bienvenido de nuevo,",
+    switch: "¿No es usted? Cerrar sesión"
+  },
+  contact: { title: "Detalles de Contacto", email: "Dirección de Correo Electrónico", phone: "Número de Teléfono" },
+  shipping: { title: "Dirección de Envío", first: "Nombre", last: "Apellidos", address: "Dirección", city: "Ciudad", zip: "Código Postal", country: "País", select: "Seleccionar..." },
+  billing: { title: "Dirección de Facturación", sameLabel: "La dirección de facturación es igual a la de envío" },
+  payment: {
+    title: "Método de Pago",
+    card: "Tarjeta de Crédito",
+    cardDesc: "Visa, Mastercard, Amex y las principales tarjetas",
+    bank: "Transferencia Bancaria",
+    payWithWise: "Pagar con Wise",
+    ssl: "Pago Seguro SSL",
+    redirectNote: "Será redirigido a Stripe para completar de manera segura su pago."
+  },
+  summary: {
+    title: "Resumen del Pedido",
+    sub: "Subtotal",
+    ship: "Envío",
+    free: "Gratis",
+    contested: "Por determinar (Contáctenos)",
+    total: "Total a Pagar",
+    payBtn: "Pagar",
+    placeBtn: "Realizar Pedido",
+    process: "Procesando..."
+  },
+  bank: { bene: "Beneficiario", addr: "Dirección", iban: "IBAN", swift: "SWIFT/BIC", ref: "Referencia", bankName: "Nombre del Banco", rib: "RIB (24 dígitos)" },
+  errors: { unexpected: "Ocurrió un error inesperado.", country: "Por favor seleccione un país." }
+};
+
 export default function CheckoutForm() {
   const { cart, cartTotal, clearCart } = useCart();
   const { region } = usePricing();
   const { language } = useLanguage();
 
-  const content = language === 'fr' ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = language === 'fr' ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
   const rawCurrency = cart[0]?.currency || 'EUR';
   const isoCurrency = rawCurrency === 'Dhs' ? 'MAD' : rawCurrency;
   const currencySymbol = isoCurrency === 'EUR' ? '€' : isoCurrency === 'CHF' ? 'CHF' : 'Dhs';

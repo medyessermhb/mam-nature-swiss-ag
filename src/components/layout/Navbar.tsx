@@ -35,13 +35,14 @@ export default function Navbar() {
     en: "🇺🇸 English",
     fr: "🇫🇷 Français",
     de: "🇩🇪 Deutsch",
+    es: "🇪🇸 Español",
   };
 
   const handleLangChange = (lang: string) => {
     if (lang === 'ma') {
       setLanguage('fr');
-    } else if (lang === 'en' || lang === 'fr' || lang === 'de') {
-      setLanguage(lang as 'en' | 'fr' | 'de');
+    } else if (lang === 'en' || lang === 'fr' || lang === 'de' || lang === 'es') {
+      setLanguage(lang as 'en' | 'fr' | 'de' | 'es');
     } else {
       setLanguage('en');
     }
@@ -127,6 +128,13 @@ export default function Navbar() {
               title="Deutsch"
             >
               🇩🇪 DE
+            </button>
+            <button
+              className={language === 'es' ? 'active' : ''}
+              onClick={() => handleLangChange('es')}
+              title="Español"
+            >
+              🇪🇸 ES
             </button>
           </div>
         </div>

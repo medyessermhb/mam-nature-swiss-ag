@@ -117,7 +117,7 @@ const CONTENT_FR = {
       title: "Soin Personnel",
       texts: [
         "Votre peau absorbe. Offrez-lui une eau qui soigne.",
-        "Votre peau mérite mieux que du chlore. PFAS"
+        "Votre peau mérite mieux que du chlore et des PFAS."
       ],
       image: "/images/WEBSITE-P/composents/SHOWER.webp"
     },
@@ -132,16 +132,16 @@ const CONTENT_FR = {
     {
       title: "Santé",
       texts: [
-        "Bio à l'achat Toxique au lavage Plus maintenant",
-        "Bio à l'achat pur au lavage Enfin."
+        "Bio à l'achat, toxique au lavage. Plus maintenant.",
+        "Bio à l'achat, pur au lavage. Enfin."
       ],
       image: "/images/WEBSITE-P/composents/WASHING_VEGIES.webp"
     },
     {
       title: "Durabilité",
       texts: [
-        "Moins de calcaire plus de vie pour vos appareils et vous.",
-        "Vos électroménager mérite l'excellence votre corps aussi."
+        "Moins de calcaire, plus de vie pour vos appareils et vous.",
+        "Vos électroménagers méritent l'excellence, votre corps aussi."
       ],
       image: "/images/WEBSITE-P/composents/WASHING_MACHINE.webp"
     },
@@ -261,6 +261,89 @@ const CONTENT_DE = {
     swiss: "Hergestellt in der Schweiz",
     warranty: "Lebenslange Garantie",
     eco: "Umweltfreundlich"
+  }
+};
+
+const CONTENT_ES = {
+  headline: {
+    line1: "Simplicidad",
+    line2: "Absoluta.",
+    line3: "Económico y Ecológico."
+  },
+  features: {
+    cartridge: {
+      title: "El Cartucho Swiss Water",
+      text: "Más allá de una simple filtración. Un escudo que ofrece un agua perfectamente filtrada, suave, naturalmente mineralizada y energizada."
+    },
+    dynamizer: {
+      title: "El Dinamizador Swiss Water",
+      text: "La inteligencia de la naturaleza al servicio del bienestar."
+    }
+  },
+  cta: "Transforme Su Agua",
+  benefits: [
+    {
+      title: "Cuidado Personal",
+      texts: [
+        "Su piel absorbe. Ofrézcale agua que cura.",
+        "Su piel merece algo mejor que cloro y PFAS."
+      ],
+      image: "/images/WEBSITE-P/composents/SHOWER.webp"
+    },
+    {
+      title: "Sabor",
+      texts: [
+        "Pureza en cada taza. Excelencia en boca.",
+        "Infundir excelencia, taza tras taza."
+      ],
+      image: "/images/WEBSITE-P/composents/COFFEE.webp"
+    },
+    {
+      title: "Salud",
+      texts: [
+        "Orgánico al comprar. Tóxico al lavar. Ya no.",
+        "Orgánico al comprar, puro al lavar. Finalmente."
+      ],
+      image: "/images/WEBSITE-P/composents/WASHING_VEGIES.webp"
+    },
+    {
+      title: "Durabilidad",
+      texts: [
+        "Menos cal, más vida para sus dispositivos y para usted.",
+        "Sus electrodomésticos merecen excelencia. Su cuerpo también."
+      ],
+      image: "/images/WEBSITE-P/composents/WASHING_MACHINE.webp"
+    },
+    {
+      title: "Hidratación",
+      texts: [
+        "La única agua que habla el idioma del cuerpo.",
+        "El agua que la naturaleza quería para usted."
+      ],
+      image: "/images/WEBSITE-P/composents/WATER_DRINKING.webp"
+    }
+  ],
+  products: [
+    {
+      id: 'complete',
+      name: 'Set Completo',
+      image: "/images/products/autobackwash/complete_set_aqmos_auto_backwash.webp",
+      outputPoint: { x: 80, y: 75 },
+      mobileOutputPoint: { x: 10, y: 80 }
+    },
+    {
+      id: 'eco',
+      name: 'Eco Set',
+      image: "/images/products/autobackwash/eco_set_aqmos_auto_backwash.webp",
+      outputPoint: { x: 80, y: 25 },
+      mobileOutputPoint: { x: 10, y: 10 },
+      mobileTrunkControlPoint: { x: 10, y: 80 }
+    }
+  ],
+  trust: {
+    swiss: "Fabricado en Suiza",
+    warranty: "Garantía de por Vida",
+    eco: "Ecológico"
   }
 };
 
@@ -590,7 +673,7 @@ export default function Hero() {
   const dropletRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
 
   // Auto-play slider
   useEffect(() => {

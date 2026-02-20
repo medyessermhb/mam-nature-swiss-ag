@@ -169,13 +169,66 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    overview: 'RESUMEN',
+    technical: 'DATOS TÉCNICOS',
+    other: 'OTRAS SOLUCIONES'
+  },
+  overview: {
+    title: 'WATER LIME',
+    desc: "Una alternativa comprobada a los sistemas de descalcificación tradicionales sobre una base puramente física. « Water LIME » convierte la forma dura de la cal (Calcita) en una forma suave (Aragonito), lo que previene los depósitos calcáreos duros."
+  },
+  technical: {
+    title: 'Datos Técnicos',
+    specs: {
+      technology: { label: 'Tecnología:', text: 'Basado en Imanes Permanentes de Neodimio' },
+      materials: { label: 'Materiales:', text: 'Carcasa en Acero Inoxidable 316L' },
+      maintenance: { label: 'Mantenimiento:', text: 'No requiere mantenimiento' },
+      connections: { label: 'Conexiones:', text: '1 pulgada (variante en 3/4 pulgada también disponible)' },
+      flow: { label: 'Caudal:', text: '1.5 m3 / h' },
+      lifetime: { label: 'Vida útil / Capacidad:', text: 'Ilimitada' }
+    }
+  },
+  otherSolutions: {
+    title: 'Descubra nuestras otras soluciones',
+    btnLearn: 'Saber Más',
+    items: [
+      {
+        title: 'PARTICLE FILTER',
+        desc: 'Filtro de Partículas sin plomo (acero inoxidable 316L) con tecnología de retrolavado automático.',
+        link: '/solutions/particle-filter',
+        img: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp'
+      },
+      {
+        title: 'WATER FINE FILTER',
+        desc: 'Un sistema cuádruple único: Físico (20 µm y 5 µm), carbón activo, AqualenTM y plata ionizada.',
+        link: '/solutions/fine-filter',
+        img: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png'
+      },
+      {
+        title: 'The Swiss Water DYNAMIZER',
+        desc: 'Reestructura y revitaliza el agua. Conduce a un sabor suave y mejor hidratación celular.',
+        link: '/solutions/dynamizer',
+        img: '/images/WEBSITE-P/products/DYNAMIZER.webp'
+      },
+      {
+        title: 'SISTEMA COMPLETO',
+        desc: 'Nuestra solución completa para agua pura, saludable y revitalizada en toda su casa.',
+        link: '/solutions/mam-nature-complete-system',
+        img: '/images/WEBSITE-P/products/COMPLETE_SET_PLUS.webp'
+      }
+    ]
+  }
+};
+
 export default function WaterLimeSolution() {
   const [activeSection, setActiveSection] = useState('presentation');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -295,7 +348,7 @@ export default function WaterLimeSolution() {
           <div className={styles.sectionHeader}><h2>{content.otherSolutions.title}</h2></div>
           <div className={styles.solutionsGrid}>
 
-            {content.otherSolutions.items.map((item, idx) => (
+            {content.otherSolutions.items.map((item: any, idx: number) => (
               <div key={idx} className={styles.solutionCard}>
                 <img src={item.img} alt={item.title} />
                 <h3>{item.title}</h3>

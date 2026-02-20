@@ -39,11 +39,23 @@ const CONTENT_DE = {
     error: "Fehler beim Senden der E-Mail. Bitte versuchen Sie es erneut."
 };
 
+const CONTENT_ES = {
+    title: "Restablecer contraseña",
+    subtitle: "Ingrese su correo electrónico para recibir un enlace",
+    email: "Dirección de correo electrónico",
+    btn: "Enviar enlace",
+    loading: "Enviando...",
+    back: "Volver a iniciar sesión",
+    success: "¡Revise su correo para el enlace de restablecimiento!",
+    error: "Error al enviar el correo. Por favor, inténtelo de nuevo."
+};
+
 export default function ForgotPasswordPage() {
     const { language } = useLanguage();
     const isFrench = language === 'fr';
     const isGerman = language === 'de';
-    const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+    const isSpanish = language === 'es';
+    const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);

@@ -83,6 +83,82 @@ const CONTENT_FR = {
   ]
 };
 
+const CONTENT_DE = {
+  title: "Berichte & Zertifizierungen",
+  subtitle: "Transparenz und Qualitätssicherung: Konsultieren Sie unsere offiziellen Dokumente.",
+  viewPreview: "Vorschau ansehen",
+  reports: [
+    {
+      title: "Filtrationsleistungsbericht",
+      desc: "Zertifiziert von der ETH Zürich, detailliert die Rückhalteraten unserer patentierten Filtrationstechnologie.",
+      icon: FileText,
+      url: "/images/website-assets/certificates/The_Swiss_Water_Cartridge_Retention_Rates_Certificated_ETH_Zurich.pdf"
+    },
+    {
+      title: "Zertifikat Schweizer Sicherheitssystem",
+      desc: "Bestätigt die strukturelle Integrität und Sicherheit unseres Systemgehäuses unter hohem Druck.",
+      icon: ShieldCheck,
+      url: "/images/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure_Test_MNS-CS.pdf"
+    },
+    {
+      title: "ISO-Zertifikat",
+      desc: "Bestätigt die Einhaltung internationaler Standards für Qualitätsmanagementsysteme.",
+      icon: Award,
+      url: "/images/website-assets/certificates/ISO.pdf"
+    },
+    {
+      title: "H2 Booster Zertifikat",
+      desc: "Offizielles CE-Zertifikat für unsere fortschrittliche Hydrogen Booster Technologie.",
+      icon: Atom,
+      url: "/images/website-assets/certificates/Mam_Nature_Swiss_Hydrogen_Booster_CE-Certificate_2025-005-DOC_sign_2025.04.29.pdf"
+    },
+    {
+      title: "H2 Konformitätsbewertung",
+      desc: "Offizielle Bewertung zur Bestätigung der Einhaltung gesetzlicher Vorschriften für den Hydrogen Booster.",
+      icon: ClipboardCheck,
+      url: "/images/website-assets/certificates/Mam_Nature_Swiss_Hydrogen_Booster_CE-Conformity_Assessment_2025-005-CR-01_signed.pdf"
+    }
+  ]
+};
+
+const CONTENT_ES = {
+  title: "Informes y Certificaciones",
+  subtitle: "Transparencia y garantía de calidad: consulte nuestros documentos oficiales.",
+  viewPreview: "Ver vista previa",
+  reports: [
+    {
+      title: "Informe de Rendimiento de Filtración",
+      desc: "Certificado por ETH Zurich, detallando las tasas de retención de nuestra tecnología de filtración patentada.",
+      icon: FileText,
+      url: "/images/website-assets/certificates/The_Swiss_Water_Cartridge_Retention_Rates_Certificated_ETH_Zurich.pdf"
+    },
+    {
+      title: "Certificado del Sistema de Seguridad Suizo",
+      desc: "Verifica la integridad estructural y la seguridad de la carcasa de nuestro sistema bajo alta presión.",
+      icon: ShieldCheck,
+      url: "/images/website-assets/certificates/Certificate_SwissSafetyCenter_Pressure_Test_MNS-CS.pdf"
+    },
+    {
+      title: "Certificado ISO",
+      desc: "Confirma nuestra adhesión a las normas internacionales para los sistemas de gestión de calidad.",
+      icon: Award,
+      url: "/images/website-assets/certificates/ISO.pdf"
+    },
+    {
+      title: "Certificado del H2 Booster",
+      desc: "Certificado CE oficial para nuestra avanzada tecnología Hydrogen Booster.",
+      icon: Atom,
+      url: "/images/website-assets/certificates/Mam_Nature_Swiss_Hydrogen_Booster_CE-Certificate_2025-005-DOC_sign_2025.04.29.pdf"
+    },
+    {
+      title: "Evaluación de Conformidad H2",
+      desc: "Evaluación oficial que confirma el cumplimiento normativo del Hydrogen Booster.",
+      icon: ClipboardCheck,
+      url: "/images/website-assets/certificates/Mam_Nature_Swiss_Hydrogen_Booster_CE-Conformity_Assessment_2025-005-CR-01_signed.pdf"
+    }
+  ]
+};
+
 export default function ReportsPage() {
   const [modalUrl, setModalUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -90,7 +166,9 @@ export default function ReportsPage() {
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const isGerman = language === 'de';
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   // Detect Mobile
   useEffect(() => {

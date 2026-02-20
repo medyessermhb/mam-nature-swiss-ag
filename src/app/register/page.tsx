@@ -48,11 +48,26 @@ const CONTENT_DE = {
   error: "Bei der Registrierung ist ein Fehler aufgetreten."
 };
 
+const CONTENT_ES = {
+  title: "Crear una cuenta",
+  subtitle: "Únase a Mam Nature para un seguimiento de pedidos más fácil",
+  name: "Nombre completo",
+  email: "Dirección de correo electrónico",
+  password: "Contraseña",
+  btn: "Crear una cuenta",
+  loading: "Creando cuenta...",
+  hasAccount: "¿Ya tiene una cuenta?",
+  login: "Iniciar sesión",
+  success: "¡Registro exitoso! Por favor verifique su correo para confirmar su cuenta.",
+  error: "Ocurrió un error durante el registro."
+};
+
 export default function RegisterPage() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');

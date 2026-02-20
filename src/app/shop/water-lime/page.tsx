@@ -172,6 +172,57 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    product: 'Producto',
+    details: 'Cómo funciona',
+    install: 'Instalación',
+    maint: 'Mantenimiento',
+    reports: 'Informes'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    subtitle: 'Solución Antical: Eficaz, duradera y sin esfuerzo.',
+    btnAdd: 'Añadir al carrito',
+    priceTBD: 'Precio próximamente',
+    descBold: 'El desafío de la cal: La calcita (cal dura) se acumula en sus tuberías y electrodomésticos, provocando averías y empañando las superficies.',
+    desc: "Nuestra solución: Conversión Física. Mam Nature Swiss® Water LIME no elimina la cal; transforma su estructura. Utilizando potentes imanes permanentes, la Calcita incrustante se convierte en Aragonito, una forma no adhesiva."
+  },
+  details: {
+    title: 'Por qué la Conversión Física es Superior',
+    list: [
+      { label: 'Protección activa:', text: 'Protege tuberías, calentadores de agua y electrodomésticos.' },
+      { label: 'Agua conservada:', text: 'El sabor natural, los minerales y los oligoelementos permanecen intactos.' },
+      { label: 'Capacidad ilimitada:', text: 'Funcionamiento sostenible, ecológico y sin límites.' },
+      { label: 'Mantenimiento cero:', text: 'Sin sal, sin cartuchos, sin energía, sin residuos.' }
+    ],
+    reduces: "Los límites de los descalcificadores tradicionales: Alteran el agua (cambiando minerales esenciales por sodio), aumentan el riesgo bacteriano y requieren un alto mantenimiento (sal, regeneración y desperdicio de agua).",
+    specs: {
+      material: { title: 'Tecnología', val: 'Conversión por imanes permanents (Calcita a Aragonito)' },
+      conn: { title: 'Vida útil', val: 'Capacidad ilimitada' },
+      flow: { title: 'Mantenimiento', val: 'Absolutamente cero' }
+    }
+  },
+  install: {
+    title: 'Instalación',
+    cardTitle: 'Integración Simple y Profesional',
+    cardText: 'El Water LIME se instala directamente en su línea principal de agua. Su diseño compacto permite una fácil integración en la fontanería existente, proporcionando protección inmediata para toda la casa.'
+  },
+  maint: {
+    title: 'Mantenimiento y Garantía',
+    maintTitle: 'Mantenimiento Cero',
+    maintText: 'Sin sal, sin cartuchos, sin energía, sin residuos. El sistema no requiere absolutamente ningún mantenimiento una vez instalado.',
+    warrantyTitle: 'Garantía de Excelencia',
+    warrantyYears: '10 AÑOS',
+    warrantyText: "Fabricado con materiales de alta calidad y potentes imanes permanentes, el Water LIME está cubierto por una amplia garantía del fabricante de 10 años."
+  },
+  reports: {
+    title: 'Informes y Certificados',
+    btnPerf: 'Ver Informe de Rendimiento',
+    btnCert: 'Ver Certificación Suiza'
+  }
+};
+
 export default function WaterLimeFilterPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
@@ -179,7 +230,8 @@ export default function WaterLimeFilterPage() {
 
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

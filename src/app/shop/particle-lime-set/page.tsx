@@ -170,6 +170,57 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    product: 'Producto',
+    details: 'Cómo Funciona',
+    install: 'Instalación',
+    maint: 'Mantenimiento',
+    reports: 'Informes'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    subtitle: 'Paquete de Protección Total: Filtro de Partículas + Antical',
+    btnAdd: 'Añadir al carrito',
+    priceTBD: 'Precio Próximamente',
+    descBold: 'El paquete de protección definitivo: Filtre sedimentos y trate la cal en un solo conjunto completo.',
+    desc: "Este paquete combina nuestros dos sistemas esenciales para la protección total del hogar. Obtiene el Filtro de Partículas de 50µm para eliminar arena y óxido, más el sistema antical físico Water LIME para evitar la acumulación de cal. Se venden juntos como un paquete completo para una máxima eficiencia y valor."
+  },
+  details: {
+    title: 'Tecnología de Doble Protección',
+    list: [
+      { label: 'Pre-filtración:', text: 'La malla de acero inoxidable de 50 µm (Filtro de Partículas) elimina arena, óxido y sedimentos.' },
+      { label: 'Prevención Activa de la Cal:', text: 'Los imanes permanentes (Water LIME) convierten la Calcita en Aragonito no adhesivo.' },
+      { label: 'Protección de Electrodomésticos:', text: 'Prolonga significativamente la vida útil de calderas, lavadoras y tuberías.' },
+      { label: 'Ecológico y Saludable:', text: 'Cero sal, cero productos químicos. El calcio y el magnesio saludables permanecen en el agua.' }
+    ],
+    reduces: "Reduce: Partículas grandes, sedimentos y depósitos duros de cal en superficies y elementos calefactores.",
+    specs: {
+      material: { title: 'Tecnología', val: 'Malla 50µm + Conversión Magnética' },
+      conn: { title: 'Conexiones', val: '1 pulgada (Integración de fontanería estándar)' },
+      flow: { title: 'Mantenimiento', val: 'Lavado manual (Partículas) / Cero (Cal)' }
+    }
+  },
+  install: {
+    title: 'Instalación',
+    cardTitle: 'Instalación Profesional Secuencial',
+    cardText: 'El conjunto se instala directamente en su línea principal de agua por un fontanero cualificado. El Filtro de Partículas se instala primero para atrapar los residuos, seguido inmediatamente por el filtro Water LIME para tratar la cal. Su diseño compacto permite una fácil integración.'
+  },
+  maint: {
+    title: 'Mantenimiento y Garantía',
+    maintTitle: 'Bajo Mantenimiento',
+    maintText: 'Filtro de Partículas: Purgue la válvula manualmente cada 1-2 meses para limpiar los residuos atrapados. Water LIME: No requiere absolutamente ningún mantenimiento una vez instalado.',
+    warrantyTitle: 'Garantía de Excelencia',
+    warrantyYears: '10 AÑOS',
+    warrantyText: "Fabricados con latón de alta calidad, acero inoxidable duradero e imanes permanentes, ambas unidades están cubiertas por una amplia garantía del fabricante de 10 años."
+  },
+  reports: {
+    title: 'Informes y Certificados',
+    btnPerf: 'Ver Informe de Rendimiento',
+    btnCert: 'Ver Certificación Suiza'
+  }
+};
+
 export default function ParticleLimeSetPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
@@ -177,7 +228,8 @@ export default function ParticleLimeSetPage() {
 
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

@@ -659,6 +659,218 @@ const PRODUCTS_DE: ProductType[] = [
   }
 ];
 
+const PRODUCTS_ES: ProductType[] = [
+  // 1. THE ESSENTIAL
+  {
+    id: 'mam-nature-essential-set',
+    name: 'THE ESSENTIAL',
+    subtitle: 'Solución para toda la casa',
+    slug: 'essential',
+    priceKey: 'mam-nature-essential-set',
+    image: '/images/WEBSITE-P/products/essential.webp',
+    imageHeight: 300,
+    features: [
+      "Hecho de acero inoxidable médico, garantía de 10 años, diseñado para durar toda la vida.",
+      "Agua excepcional en toda su casa: ducha, bebida, cocina, té, café…",
+      "Convierte la cal y trata partículas y contaminantes (95 – 99,9% - único en el mundo) preservando la mineralización natural",
+      "Purifica el agua naturalmente, sin electricidad, sin desperdicio, sin químicos.",
+      "Mantenimiento: un cartucho por año, 10 minutos (sin necesidad de herramientas)."
+    ],
+    sliderGroups: SHARED_SLIDER_GROUPS
+  },
+  // 2. THE ESSENTIAL PLUS
+  {
+    id: 'mam-nature-essential-plus',
+    name: 'THE ESSENTIAL PLUS',
+    subtitle: 'Solución para toda la casa',
+    slug: 'essential-plus',
+    priceKey: 'mam-nature-essential-plus',
+    image: '/images/WEBSITE-P/products/essential_plus.webp',
+    imageHeight: 300,
+    features: [
+      "Hecho de acero inoxidable médico, garantía de 10 años, diseñado para durar toda la vida.",
+      "Agua excepcional en toda su casa: ducha, bebida, cocina, té, café…",
+      "Convierte la cal y trata partículas y contaminantes (95 – 99,9% - único en el mundo) preservando la mineralización natural",
+      "Purifica el agua naturalmente, sin electricidad, sin desperdicio, sin químicos.",
+      "Mantenimiento: un cartucho por año, 10 minutos (sin necesidad de herramientas)."
+    ],
+    sliderGroups: SHARED_SLIDER_GROUPS
+  },
+  // 3. ECO SET
+  {
+    id: 'mam-nature-eco-set',
+    name: 'ECO SET',
+    subtitle: 'Solución para toda la casa',
+    slug: 'eco-set',
+    priceKey: 'mam-nature-eco-set',
+    image: '/images/products/autobackwash/eco_set_aqmos_auto_backwash.webp',
+    imageHeight: 320,
+    features: [
+      "Hecho de acero inoxidable médico, garantía de 10 años, diseñado para durar toda la vida.",
+      "Agua excepcional en toda su casa: ducha, bebida, cocina, té, café…",
+      "Convierte la cal y trata partículas y contaminantes (95 – 99,9% - único en el mundo) preservando la mineralización natural",
+      "Purifica el agua naturalmente, sin electricidad, sin desperdicio, sin químicos.",
+      "Mantenimiento: un cartucho por año, 10 minutos (sin necesidad de herramientas)."
+    ],
+    sliderGroups: SHARED_SLIDER_GROUPS
+  },
+  // 4. ECO SET PLUS
+  {
+    id: 'mam-nature-eco-set-plus',
+    name: 'ECO SET PLUS',
+    subtitle: 'Solución para toda la casa',
+    slug: 'eco-set-plus',
+    priceKey: 'mam-nature-eco-set-plus',
+    image: '/images/products/autobackwash/eco_set_plus_aqmos_auto_backwash.webp',
+    imageHeight: 300,
+    features: [
+      "Hecho de acero inoxidable médico, garantía de 10 años, diseñado para durar toda la vida.",
+      "Agua excepcional en toda su casa: ducha, bebida, cocina, té, café…",
+      "Convierte la cal y trata partículas y contaminantes (95 – 99,9% - único en el mundo) preservando la mineralización natural",
+      "Purifica el agua naturalmente, sin electricidad, sin desperdicio, sin químicos.",
+      "Mantenimiento: un cartucho por año, 10 minutos (sin necesidad de herramientas)."
+    ],
+    sliderGroups: SHARED_SLIDER_GROUPS
+  },
+  // 5. COMPLETE SET
+  {
+    id: 'mam-nature-water-treatment-complete-set',
+    name: 'COMPLETE SET',
+    subtitle: 'Solución para toda la casa',
+    slug: 'complete-set',
+    priceKey: 'mam-nature-water-treatment-complete-set',
+    image: '/images/products/autobackwash/complete_set_aqmos_auto_backwash.webp',
+    imageHeight: 320,
+    features: [
+      "Hecho de acero inoxidable médico, garantía de 10 años, diseñado para durar toda la vida.",
+      "Incluye el Dynamizer para agua revitalizada y reestructurada.",
+      "Agua excepcional en toda su casa: ducha, bebida, cocina, té, café…",
+      "Convierte la cal y trata partículas y contaminantes (95 – 99,9% - único en el mundo) preservando la mineralización natural",
+      "Purifica el agua naturalmente, sin electricidad, sin desperdicio, sin químicos.",
+      "Mantenimiento: un cartucho por año, 10 minutos (sin necesidad de herramientas)."
+    ],
+    sliderGroups: SHARED_SLIDER_GROUPS
+  },
+  // 6. COMPLETE SET PLUS
+  {
+    id: 'mam-nature-water-treatment-complete-set-plus',
+    name: 'COMPLETE SET PLUS',
+    subtitle: 'Solución para toda la casa',
+    slug: 'complete-set-plus',
+    priceKey: 'mam-nature-water-treatment-complete-set-plus',
+    image: '/images/products/autobackwash/complete_set_plus_aqmos_auto_backwash.webp',
+    imageHeight: 300,
+    features: [
+      "Hecho de acero inoxidable médico, garantía de 10 años, diseñado para durar toda la vida.",
+      "Incluye el Dynamizer para agua revitalizada y reestructurada.",
+      "Agua excepcional en toda su casa: ducha, bebida, cocina, té, café…",
+      "Convierte la cal y trata partículas y contaminantes (95 – 99,9% - único en el mundo) preservando la mineralización natural",
+      "Purifica el agua naturalmente, sin electricidad, sin desperdicio, sin químicos.",
+      "Mantenimiento: un cartucho por año, 10 minutos (sin necesidad de herramientas)."
+    ],
+    sliderGroups: SHARED_SLIDER_GROUPS
+  },
+  // 7. WATER PARTICLE FILTER
+  {
+    id: 'particle-filter',
+    name: 'FILTRO DE PARTÍCULAS',
+    subtitle: 'Componente Individual',
+    slug: 'particles-filter',
+    priceKey: 'water-particle-filter',
+    image: '/images/products/particle_filter/particle_filter_auto_backwash_front.webp',
+    imageHeight: 320,
+    features: [
+      "La primera línea de defensa para su sistema.",
+      "Elimina arena, sedimentos y toda materia sólida en el agua con retrolavado automático. No requiere mantenimiento ni consumibles."
+    ]
+  },
+  // 8. WATER LIME
+  {
+    id: 'mam-nature-water-lime',
+    name: 'WATER LIME',
+    subtitle: 'Solución Anti-Cal',
+    slug: 'water-lime',
+    priceKey: 'mam-nature-water-lime',
+    image: '/images/WEBSITE-P/products/water_lime_vertical.webp',
+    imageHeight: 320,
+    features: [
+      "Conversión física de la cal.",
+      "Protege los electrodomésticos.",
+      "Conserva el calcio y el magnesio saludables.",
+      "Cero sal, cero electricidad, cero químicos.",
+      "Vida útil y capacidad ilimitadas."
+    ]
+  },
+  // 9. THE SWISS WATER DYNAMIZER
+  {
+    id: 'the-swiss-water-dynamizer',
+    name: 'THE SWISS WATER DYNAMIZER',
+    subtitle: 'Componente Individual',
+    slug: 'dynamizer',
+    priceKey: 'the-swiss-water-dynamizer',
+    image: '/images/WEBSITE-P/products/DYNAMIZER.webp',
+    imageHeight: 320,
+    features: [
+      "Acción 100% física para restaurar las propiedades beneficiosas al agua del grifo.",
+      "Revitaliza y reestructura el agua a nivel molecular.",
+      "Transformación de la cal en Aragonito suave.",
+      "Agua con un sabor excepcional y muy fácil de digerir.",
+      "Hidratación celular óptima.",
+      "Instalación sencilla, sin mantenimiento ni electricidad."
+    ]
+  },
+  // 10. PARTICLE & LIME SET
+  {
+    id: 'mam-nature-particle-lime-set',
+    name: 'SET DE PARTÍCULAS Y CAL',
+    subtitle: 'Sedimentos + Protección contra cal',
+    slug: 'particle-lime-set',
+    priceKey: 'mam-nature-particle-lime-set',
+    image: '/images/products/particle_filter/water_lime_particle_filter_auto_backwash.webp',
+    imageHeight: 300,
+    features: [
+      "Doble protección para tuberías y electrodomésticos.",
+      "Detiene arena y óxido con retrolavado automático.",
+      "Convierte la cal dura en Aragonito suave.",
+      "Cero sal, cero químicos, cero desperdicios.",
+      "No se necesita mantenimiento para la protección contra cal."
+    ]
+  },
+  // 11. SWISS HYDROGEN BOOSTER
+  {
+    id: 'swiss-hydrogen-booster',
+    name: 'SWISS HYDROGEN BOOSTER',
+    subtitle: 'Dispositivo Médico de Clase 1',
+    slug: 'hydrogen-booster',
+    priceKey: 'swiss-hydrogen-booster',
+    image: '/images/WEBSITE-P/products/HYDROGEEN_BOOSTER.webp',
+    imageHeight: 320,
+    features: [
+      "La concentración más alta del mercado: 7500 ppb de Hidrógeno molecular.",
+      "Recarga rápida: 0 a 100% en 1 hora.",
+      "Batería de 150 minutos o hasta 15 usos.",
+      "Componentes que cumplen normativas de seguridad alimentaria.",
+      "Las burbujas ultrafinas garantizan una eficacia inigualable supersando dispositivos estándar.",
+      "Portátil y de fácil uso para el bienestar diario."
+    ]
+  },
+  // 12. SWISS WATER CARTRIDGE
+  {
+    id: 'water-fine-filter-cartridge',
+    name: 'SWISS WATER CARTRIDGE',
+    subtitle: 'Cartucho de Repuesto',
+    slug: 'cartridge',
+    priceKey: 'water-fine-filter-cartridge',
+    image: '/images/WEBSITE-P/products/cartridge.webp',
+    imageHeight: 320,
+    features: [
+      "Cartucho de Repuesto para su Filtro Fino después de máx. 150 m3 o 1 año.",
+      "Elimina cloro, PFAS, PFOS, metales pesados, aluminio, pesticidas y sustancias radiactivas...",
+      "Instalación fácil y rápida, no requiere herramientas."
+    ]
+  }
+];
+
 const CONTENT_UI = {
   en: {
     headerTitle: "All Products",
@@ -692,6 +904,17 @@ const CONTENT_UI = {
     sortPriceLow: "Preis: Aufsteigend",
     sortPriceHigh: "Preis: Absteigend",
     layoutTitle: "Unsere Produkte"
+  },
+  es: {
+    headerTitle: "Todos los Productos",
+    headerDesc: "Descubra nuestras soluciones de vanguardia diseñadas en Suiza para agua pura y saludable en casa.",
+    sortName: "Ordenar por Nombre",
+    sortNameAZ: "Nombre: A-Z",
+    sortNameZA: "Nombre: Z-A",
+    sortPrice: "Ordenar por Precio",
+    sortPriceLow: "Precio: Menor a Mayor",
+    sortPriceHigh: "Precio: Mayor a Menor",
+    layoutTitle: "Nuestros Productos"
   }
 };
 
@@ -699,8 +922,9 @@ export default function ShopPage() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const products = isFrench ? PRODUCTS_FR : isGerman ? PRODUCTS_DE : PRODUCTS_EN;
-  const ui = isFrench ? CONTENT_UI.fr : isGerman ? CONTENT_UI.de : CONTENT_UI.en;
+  const isSpanish = language === 'es';
+  const products = isFrench ? PRODUCTS_FR : isGerman ? PRODUCTS_DE : isSpanish ? PRODUCTS_ES : PRODUCTS_EN;
+  const ui = isFrench ? CONTENT_UI.fr : isGerman ? CONTENT_UI.de : isSpanish ? CONTENT_UI.es : CONTENT_UI.en;
 
   const [sortedProducts, setSortedProducts] = useState(products);
 

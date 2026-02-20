@@ -187,57 +187,57 @@ const CONTENT_FR = {
     ]
   },
   details: {
-    title: 'Technical Details in 4 Steps',
+    title: 'Détails Techniques en 4 Étapes',
     lime: {
       title: '1. WATER LIME',
-      summary: 'Physical transformation of limestone to prevent scaling deposits. Unlimited capacity and maintenance-free.',
+      summary: 'Transformation physique du calcaire pour prévenir les dépôts incrustants. Capacité illimitée et sans entretien.',
       content: {
-        h4: 'Effective, durable, and effortless.',
-        quote: 'Note: Limescale is nothing more than calcium and magnesium, which are essential to the biological balance of water. It is the scaling form that is problematic; a responsible treatment does not eliminate limestone, but softens it,, which prevents hard deposits while preserving the minerals and trace elements naturally present in the water.',
-        challengeTitle: 'The challenge:',
-        challenge: 'Calcite, the hard form of limestone in water, builds up deposits, causing technical (malfunctions and reduced lifespan of appliances) and aesthetic (dull surfaces) damage.',
-        limitsTitle: 'The limits of traditional solutions:',
-        limits: 'Salt-based water softeners exchange calcium and magnesium ions for sodium, removing minerals (demineralized water is dangerous to health), thus the composition and taste of the water are seriously altered, requires regular & expensive maintenance and causes an inadmissible bacterial load.',
-        solutionTitle: 'Mam Nature Swiss® Water Lime: A physical conversion of limestone.',
-        solution: 'Our device works not by removing limestone, but by modifying its crystalline structure through the action of permanent magnets. It converts Calcite (scaling form) into Aragonite (non-adhesive form).',
-        benefitsTitle: 'The direct benefits:',
+        h4: 'Efficace, durable et sans effort.',
+        quote: 'Note : Le calcaire n\'est rien d\'autre que du calcium et du magnésium, qui sont essentiels à l\'équilibre biologique de l\'eau. C\'est la forme incrustante qui est problématique ; un traitement responsable ne les élimine pas mais les adoucit, ce qui empêche les dépôts durs tout en préservant les minéraux et oligo-éléments naturellement présents dans l\'eau.',
+        challengeTitle: 'Le défi :',
+        challenge: 'La Calcite, forme dure du calcaire dans l\'eau, s\'accumule, causant des dommages techniques (dysfonctionnements et réduction de la durée de vie des appareils) et esthétiques (surfaces ternes).',
+        limitsTitle: 'Les limites des solutions traditionnelles :',
+        limits: 'Les adoucisseurs à sel échangent les ions calcium et magnésium contre du sodium, éliminant les minéraux (l\'eau déminéralisée est dangereuse pour la santé), altérant ainsi gravement la composition et le goût de l\'eau, nécessitant un entretien régulier et causant une charge bactérienne inadmissible.',
+        solutionTitle: 'Mam Nature Swiss® Water Lime : Une conversion physique du calcaire.',
+        solution: 'Notre appareil ne fonctionne pas en éliminant le calcaire, mais en modifiant sa structure cristalline par l\'action d\'aimants permanents. Il convertit la Calcite (forme incrustante) en Aragonite (forme non adhésive).',
+        benefitsTitle: 'Les bénéfices directs :',
         benefitsList: [
-          'Active protection: Reduction of solid deposits in pipes, water heaters, and appliances.',
-          'Preserved water: preserves the taste, minerals, and trace elements naturally present in the water.',
-          'Absolute simplicity, economical and ecological: No consumables (salt, cartridges), no energy, no water waste.'
+          'Protection active : Réduction des dépôts solides dans les tuyaux, chauffe-eau et appareils.',
+          'Eau préservée : préserve le goût, les minéraux et les oligo-éléments naturellement présents dans l\'eau.',
+          'Simplicité absolue, Économique et écologique : Pas de consommables (sel, cartouches), pas d\'énergie, pas de gaspillage d\'eau.'
         ],
-        specs: 'Capacity: unlimited<br>Maintenance: None.'
+        specs: 'Capacité : illimitée<br>Entretien : Aucun.'
       }
     },
     particle: {
       title: '2. WATER PARTICLE FILTER',
-      summary: 'Filters sediments and suspended particles with automatic backwash and integrated pressure regulator.',
+      summary: 'Filtre les sédiments et particules en suspension avec retro-lavage automatique et régulateur de pression intégré.',
       content: {
-        text: 'Particle filter with automatic backwash, pressure regulator, and 360° connector. Compact, fully integrated solution made from medical-grade materials (316L stainless steel).',
-        specs: 'Capacity: unlimited<br>Maintenance: none (fully automated solution).'
+        text: 'Filtre à particules avec retro-lavage automatique, régulateur de pression et connecteur 360°. Solution compacte en inox médical (316L).',
+        specs: 'Capacité : illimitée<br>Entretien : aucun (solution entièrement automatisée).'
       }
     },
     fine: {
       title: '3. WATER FINE FILTER',
-      summary: 'Unique filtration technology eliminating PFAS, heavy metals, aluminium, chlorine, fluoride, pesticides, pharmaceutical residues, industrial chemicals, arsenic, cadmium, chromium & radioactive substances.',
+      summary: 'Technologie de filtration unique éliminant les PFAS, métaux lourds, aluminium, chlore, fluorure, pesticides, résidus pharmaceutiques, produits chimiques industriels, arsenic, cadmium, chrome et substances radioactives.',
       content: {
-        text: 'Unique selective Whole-House Adsorption Filtration System:',
+        text: 'Système de filtration par adsorption sélective unique pour toute la maison :',
         list: [
-          '1. Filter Media: Exclusive Mam Nature technology based on proteins fibers (combined with activated carbon) for the most complete & world unique adsorption filtration',
-          '2. Sterile cartridge: Sterility (by copper & iron hydroxide) in the cartridge without sterilizing agents entering the drinking water.'
+          '1. Média filtrant : Technologie exclusive Mam Nature basée sur des fibres protéiques (combinées à du charbon actif) pour la filtration par adsorption la plus complète et unique au monde',
+          '2. Cartouche stérile : Stérilité (par hydroxyde de cuivre et de fer) dans la cartouche sans que des agents stérilisants n\'entrent dans l\'eau potable.'
         ],
-        reduces: 'Reduces Chlorine, Pesticides, PFAS, Drug Residues, Phenol, Heavy Metals, Aluminium, Microplastics & including radioactive substances at a reduction rate of 95 - 99.9 % at large volumes of 2000 litres/hour.'
+        reduces: 'Réduit le chlore, les pesticides, les PFAS, les résidus médicamenteux, le phénol, les métaux lourds, l\'aluminium, les microplastiques et y compris les substances radioactives à un taux de réduction de 95 à 99,9 % à de grands volumes de 2000 litres/heure.'
       }
     },
     cartridge: {
-      title: 'CARTRIDGE',
-      summary: 'Patented technology that eliminates contaminants while preserving essential minerals.',
+      title: 'CARTOUCHE',
+      summary: 'Technologie brevetée qui élimine les contaminants en préservant les minéraux essentiels.',
       content: {
         h4: 'The Swiss Water Cartridge',
-        text1: 'Mam Nature Swiss® – Solving the impossible: Perfectly filtered, soft, and naturally mineralized water.',
-        text2: 'The « SWISS WATER CARTRIDGE » : BEYOND FILTRATION – A TRUE PROTECTION UNMATCHED CONTAMINANT RENTENTION ',
-        text3: 'Our 100% natural filtration technology, exclusive to Mam Nature Swiss®, combines natural protein fibers with activated carbon to achieve total adsorption, a world first. It eliminates contaminants while preserving minerals and trace elements being naturally present in water. Owing to its selective filtration system by full adsorption, this patented Swiss invention is the world unique universal solution, 100% natural, capable of eliminating PFAS, heavy metals, aluminum, chlorine, fluoride, pesticides, pharmaceutical residues, industrial chemicals, arsenic, cadmium, chromium, etc. - and even radioactive substances found in nuclear water.',
-        specs: 'Flow rate: up to 1800 liters/hour.<br>Filter cartridge capacity (lifespan): 150m³<br>Maintenance: 10 minutes once per year (simple and no tools required).'
+        text1: 'Mam Nature Swiss® – Résoudre l\'impossible : Une eau parfaitement filtrée, douce et naturellement minéralisée.',
+        text2: 'La « SWISS WATER CARTRIDGE » : Au-delà de la filtration, un véritable bouclier. SÉCURITÉ & PURETÉ INÉGALÉES',
+        text3: 'Notre technologie de filtration 100% naturelle, exclusive à Mam Nature Swiss®, combine des fibres de protéines naturelles avec du charbon actif pour obtenir une adsorption totale, une première mondiale. Elle élimine les contaminants tout en préservant les minéraux et les oligo-éléments naturellement présents dans l\'eau. Grâce à son système de filtration sélective par adsorption complète, cette invention suisse brevetée est la solution universelle unique au monde, 100% naturelle, capable d\'éliminer PFAS, métaux lourds, aluminium, chlore, fluor, pesticides, résidus pharmaceutiques, produits chimiques industriels, arsenic, cadmium, chrome, etc. - et même les substances radioactives présentes dans l\'eau nucléaire.',
+        specs: 'Débit : jusqu\'à 1800 litres/heure.<br>Capacité de la cartouche filtrante (durée de vie) : 150m³<br>Entretien : 10 minutes une fois par an (simple et sans outil).'
       }
     },
     dynamizer: {
@@ -285,7 +285,7 @@ const CONTENT_FR = {
     title: 'Rapports de tests & Certificats',
     list: [
       { title: "Rapport de Performance" },
-      { title: "Cértificat de Swiss Safety System" },
+      { title: "Certificat de Swiss Safety System" },
       { title: "ISO Certificate" }
     ]
   }
@@ -427,6 +427,142 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    product: 'Producto',
+    usages: 'Usos',
+    details: 'Detalles Técnicos',
+    install: 'Instalación',
+    maint: 'Mantenimiento',
+    reports: 'Informes'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    btnAdd: 'Añadir al carrito',
+    features: [
+      "Hecho de acero inoxidable médico, garantía de 10 años, diseñado para durar toda la vida.",
+      "Incluye el Dynamizer para agua revitalizada y reestructurada.",
+      "Agua excepcional en toda su casa: ducha, bebida, cocina, té, café…",
+      "Convierte la cal y trata partículas y contaminantes preservando la mineralización natural.",
+      "Purifica el agua naturalmente, sin electricidad, sin desperdicio, sin químicos.",
+      "Mantenimiento: un cartucho por año, 10 minutos (sin necesidad de herramientas)."
+    ]
+  },
+  usages: {
+    title: 'Un agua perfecta para cada uso',
+    desc: 'Disfrute de agua pura, sana y revitalizada en cada grifo. Nuestro sistema transforma su rutina diaria mejorando la calidad del agua para todos sus usos.',
+    cards: [
+      { title: 'Bebida', text: 'Agua de manantial pura y libre de contaminantes.', icon: GlassWater, img: '/images/WEBSITE-P/drinking_big.webp' },
+      { title: 'Cocina', text: 'Revele los sabores de sus alimentos y conserve sus nutrientes con agua libre de contaminantes.', icon: Utensils, img: '/images/WEBSITE-P/washing_big.webp' },
+      { title: 'Té y Café', text: 'Prepare sus bebidas calientes con agua libre de contaminantes.', icon: Coffee, img: '/images/WEBSITE-P/coffee_big.webp' },
+      { title: 'Ducha y Baño', text: 'Proteja su piel y cabello con agua suave y libre de contaminantes para una sensación de suavidad.', icon: ShowerHead, img: '/images/WEBSITE-P/shower_big.webp' }
+    ]
+  },
+  details: {
+    title: 'Detalles Técnicos en 4 Pasos',
+    lime: {
+      title: '1. WATER LIME',
+      summary: 'Transformación física de la cal para evitar depósitos incrustados. Capacidad ilimitada y sin mantenimiento.',
+      content: {
+        h4: 'Eficaz, duradero y sin esfuerzo.',
+        quote: 'Nota: La cal no es más que calcio y magnesio, que son esenciales para el equilibrio biológico del agua. Lo problemático es la forma incrustante; un tratamiento responsable no los elimina, sino que los suaviza, previniendo los depósitos duros a la vez que se conservan los minerales y oligoelementos naturalmente presentes en el agua.',
+        challengeTitle: 'El desafío:',
+        challenge: 'La calcita, la forma dura de la cal en el agua, se acumula, provocando daños técnicos (fallos de funcionamiento y reducción de la vida útil de los aparatos) y estéticos (superficies opacas).',
+        limitsTitle: 'Los límites de las soluciones tradicionales:',
+        limits: 'Los descalcificadores a base de sal intercambian iones de calcio y magnesio por sodio, eliminando minerales (el agua desmineralizada es peligrosa para la salud), alterando gravemente la composición y el sabor del agua, requieren un mantenimiento regular y costoso y provocan una carga bacteriana inaceptable.',
+        solutionTitle: 'Mam Nature Swiss® Water Lime: Una conversión física de la cal.',
+        solution: 'Nuestro dispositivo no funciona eliminando la cal, sino alterando su estructura cristalina mediante la acción de potentes imanes permanentes. Convierte la calcita (forma incrustante) en aragonito (forma no adhesiva).',
+        benefitsTitle: 'Beneficios directos:',
+        benefitsList: [
+          'Protección activa: Reducción de depósitos sólidos en tuberías, calentadores de agua y electrodomésticos.',
+          'Agua conservada: Preserva el sabor, los minerales y los oligoelementos del agua.',
+          'Sencillez absoluta, económica y ecológica: Sin consumibles (sal, cartuchos), sin energía, sin desperdicio de agua.'
+        ],
+        specs: 'Capacidad: ilimitada<br>Mantenimiento: Ninguno.'
+      }
+    },
+    particle: {
+      title: '2. FILTRO DE PARTÍCULAS DE AGUA',
+      summary: 'Filtra sedimentos y partículas en suspensión con retrolavado automático y regulador de presión integrado.',
+      content: {
+        text: 'Filtro de partículas con retrolavado automático, regulador de presión y conector de 360°. Solución compacta totalmente integrada fabricada en material médico (Acero inoxidable 316L).',
+        specs: 'Capacidad: ilimitada<br>Mantenimiento: ninguno (solución totalmente automatizada).'
+      }
+    },
+    fine: {
+      title: '3. FILTRO FINO DE AGUA',
+      summary: 'Tecnología de filtración única que elimina PFAS, metales pesados, aluminio, cloro, flúor, pesticidas, residuos farmacéuticos, químicos industriales, arsénico, cadmio, cromo y sustancias radiactivas.',
+      content: {
+        text: 'Sistema Único de Filtración por Adsorción Selectiva para Toda la Casa:',
+        list: [
+          '1. Medio Filtrante: Tecnología exclusiva de Mam Nature basada en fibras de proteínas (combinadas con carbón activo) para la filtración por adsorción más completa y única en el mundo',
+          '2. Cartucho estéril: Esterilidad (por hidróxido de cobre y hierro) en el cartucho sin que los agentes esterilizantes entren en el agua potable.'
+        ],
+        reduces: 'Reduce cloro, pesticidas, PFAS, residuos de medicamentos, fenol, metales pesados, aluminio, microplásticos e incluso sustancias radiactivas a una tasa de reducción del 95 - 99.9% a grandes volúmenes de 2000 litros/hora.'
+      }
+    },
+    cartridge: {
+      title: 'CARTUCHO',
+      summary: 'Tecnología patentada que elimina contaminantes y conserva minerales esenciales.',
+      content: {
+        h4: 'El Cartucho de Agua Suizo',
+        text1: 'Mam Nature Swiss® – Resolviendo lo imposible: Agua perfectamente filtrada, blanda y mineralizada de forma natural.',
+        text2: 'El « SWISS WATER CARTRIDGE » : MÁS ALLÁ DE LA FILTRACIÓN – UNA VERDADERA PROTECCIÓN CON UNA RETENCIÓN DE CONTAMINANTES INIGUALABLE',
+        text3: 'Nuestra tecnología de filtración 100% natural, exclusiva de Mam Nature Swiss®, combina fibras de proteínas naturales con carbón activo para lograr una adsorción total, una primicia mundial. Elimina los contaminantes conservando los minerales y oligoelementos naturalmente presentes en el agua. Gracias a su sistema de filtración selectiva por adsorción completa, esta invención suiza patentada es la solución universal única en el mundo, 100% natural, capaz de eliminar PFAS, metales pesados, aluminio, cloro, flúor, pesticidas, residuos de medicamentos, productos químicos industriales, arsénico, cadmio, cromo, etc. - e incluso las sustancias radiactivas presentes en el agua nuclear.',
+        specs: 'Caudal: hasta 1800 litros/hora.<br>Capacidad del cartucho filtrante (vida útil): 150m³<br>Mantenimiento: 10 minutos una vez al año (sencillo y sin necesidad de herramientas).'
+      }
+    },
+    dynamizer: {
+      title: '4. THE SWISS WATER DYNAMIZER',
+      summary: 'Revitaliza el agua para una mejor hidratación y transforma la cal.',
+      problemTitle: 'El Problema con el Agua Moderna',
+      prob1: { title: 'Baja biodisponibilidad celular', text: 'Los tratamientos industriales y la desmineralización alteran la estructura molecular del agua, creando "grandes racimos de moléculas de agua" que las células apenas absorben.' },
+      prob2: { title: 'Agua desestructurada', text: 'En su estado natural, el agua de alta calidad tiene una estructura hexagonal perfecta, clave para una hidratación óptima. Esta estructura, vital para nuestro cuerpo, lamentablemente se destruye en su viaje hasta nuestro grifo.' },
+      solutionTitle: 'La Solución',
+      sol1: { title: 'Reestructuración y Revitalización', text: 'Rompe los grandes racimos de moléculas de agua en micro-racimos, haciendo que el agua sea altamente biodisponible para las células. Al mismo tiempo, transmite frecuencias naturales y vibraciones armoniosas, restaurando la estructura hexagonal natural del agua.' },
+      sol2: { title: 'Transformación de la cal', text: 'A través de potentes imanes y turbulencia extrema, convierte la Calcita dura (responsable de los depósitos) en Aragonito blando. Esta forma de cal no se incrusta, protegiendo así sus electrodomésticos y tuberías sin alterar el sabor del agua.' },
+      sol3: { title: 'Estabilización a largo plazo', text: 'El agua dinamizada adquiere una estructura biológicamente estable que perdura en el tiempo.' },
+      pipeStraight: { title: 'Tubería de agua recta:', text: 'El agua se agrupa y pierde su poder biofísico.' },
+      pipeSpiral: { title: 'Tubería de agua en espiral:', text: 'Los grupos moleculares se disuelven y el agua recupera su poder biofísico.' },
+      benefitsTitle: 'Beneficios diarios',
+      benefit1: { title: 'Sabor excepcional', text: 'Descubra un agua increíblemente suave, notablemente digerible y agradable.' },
+      benefit2: { title: 'Hidratación celular óptima', text: 'Apoya el buen funcionamiento del cuerpo y reduce la acidez, fuente de muchos desequilibrios.' },
+      benefit3: { title: 'Protección natural contra la cal', text: 'Protege naturalmente sus electrodomésticos y superficies sin usar sal ni productos químicos.' },
+      benefit4: { title: 'Rendimiento inigualable', text: 'Con una capacidad de procesamiento de 5.000 litros/hora, el dinamizador satisface las necesidades de toda la casa.' },
+      specs: { cap: 'Capacidad: Ilimitada', maint: 'Mantenimiento: Ninguno' }
+    }
+  },
+  install: {
+    title: 'Instalación sencilla y guiada',
+    introTitle: 'Diseñado para una configuración eficiente',
+    introText: 'El sistema Mam Nature está diseñado para una instalación rápida por parte de un fontanero cualificado. Se coloca justo después de su contador de agua para tratar todo su hogar.',
+    neededTitle: 'Qué necesita',
+    neededList: [
+      'Un fontanero profesional',
+      'Espacio requerido: 80cm (H) x 80cm (L)',
+      'Herramientas estándar de fontanería',
+      'Tiempo estimado: 2 a 3 horas'
+    ]
+  },
+  maint: {
+    title: 'Mantenimiento y Garantía',
+    maintTitle: 'Mantenimiento Simplificado',
+    maintText: 'El único mantenimiento es cambiar el cartucho filtrante una vez al año. Una sencilla operación de 10 minutos, realizable sin herramientas.',
+    btnOrder: 'Pedir un cartucho',
+    warrantyTitle: 'Garantía de Excelencia',
+    warrantyYears: '10 AÑOS',
+    warrantyText: 'La parte en contacto con el agua está fabricada en acero inoxidable de grado médico duradero.'
+  },
+  reports: {
+    title: 'Informes de prueba y Certificados',
+    list: [
+      { title: "Informe de Rendimiento de Filtración" },
+      { title: "Certificado del Sistema de Seguridad Suizo" },
+      { title: "Certificado ISO" }
+    ]
+  }
+};
+
 export default function CompleteSetPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
@@ -434,7 +570,8 @@ export default function CompleteSetPage() {
 
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

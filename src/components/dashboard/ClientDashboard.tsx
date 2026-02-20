@@ -134,6 +134,47 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  logout: "Cerrar Sesión",
+  tabs: { orders: "Mis Pedidos", support: "Tickets de Soporte" },
+  orders: {
+    title: "Historial de Pedidos",
+    id: "ID de Pedido",
+    date: "Fecha",
+    total: "Total",
+    status: "Estado",
+    invoice: "Factura",
+    empty: "No se encontraron pedidos."
+  },
+  tickets: {
+    title: "Tickets de Soporte",
+    newBtn: "Nuevo Ticket",
+    formTitle: "Crear Nuevo Ticket",
+    formCategory: "Categoría",
+    formSubject: "Asunto",
+    formMessage: "Mensaje",
+    submit: "Enviar Ticket",
+    cancel: "Cancelar",
+    empty: "No se encontraron tickets.",
+    viewChat: "Abrir Chat",
+    categories: {
+      general: "Pregunta General",
+      warranty: "Reclamo de Garantía",
+      technical: "Soporte Técnico",
+      shipping: "Problema de Envío"
+    },
+    statusOpen: "Abierto",
+    statusClosed: "Cerrado"
+  },
+  status: {
+    paid: "Pagado",
+    shipped: "Enviado",
+    delivered: "Entregado",
+    open: "Abierto",
+    closed: "Cerrado"
+  }
+};
+
 export default function ClientDashboard({ session }: { session: any }) {
   const { language } = useLanguage();
   const isFrench = language === 'fr';

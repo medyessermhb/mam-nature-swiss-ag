@@ -75,11 +75,11 @@ const CONTENT_FR = {
   technical: {
     title: 'Données Techniques',
     specs: {
-      materials: { label: 'Matériaux :', text: 'Part aquifère en Inox 316L' },
+      materials: { label: 'Matériaux :', text: 'Partie aquifère en Inox 316L' },
       maintenance: { label: 'Maintenance :', text: 'Entièrement sans maintenance' },
       connections: { label: 'Connexions :', text: '1 pouce' },
       flow: { label: 'Débit :', text: "5 m3 / h (à 4 bars de pression d'eau)" },
-      lifetime: { label: 'Durée de vie / Capacité :', text: 'Illimité' }
+      lifetime: { label: 'Durée de vie / Capacité :', text: 'Illimitée' }
     }
   },
   otherSolutions: {
@@ -166,13 +166,65 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    overview: 'RESUMEN',
+    technical: 'DATOS TÉCNICOS',
+    other: 'OTRAS SOLUCIONES'
+  },
+  presentation: {
+    title: 'The Swiss Water DYNAMIZER',
+    desc: "El agua se transporta a nivel mundial en tubos rectos que no corresponden al movimiento natural del agua. Como resultado, la calidad del agua sufre, lo que impacta en el sabor, una digestión lenta, piel seca y susceptibilidad a la carga bacteriana."
+  },
+  technical: {
+    title: 'Datos Técnicos',
+    specs: {
+      materials: { label: 'Materiales:', text: 'Parte conductora de agua en Acero Inoxidable 316L' },
+      maintenance: { label: 'Mantenimiento:', text: 'Completamente libre de mantenimiento' },
+      connections: { label: 'Conexiones:', text: '1 pulgada' },
+      flow: { label: 'Caudal:', text: '5 m3 / h (a 4 bares de presión de agua)' },
+      lifetime: { label: 'Vida útil / Capacidad:', text: 'Ilimitada' }
+    }
+  },
+  otherSolutions: {
+    title: 'Descubra nuestras otras soluciones',
+    btnLearn: 'Saber Más',
+    items: [
+      {
+        title: 'WATER LIME',
+        desc: 'Una alternativa comprobada a los sistemas de descalcificación tradicionales sobre una base puramente física.',
+        link: '/solutions/water-lime',
+        img: '/images/WEBSITE-P/products/water_lime_vertical.webp'
+      },
+      {
+        title: 'PARTICLE FILTER',
+        desc: 'Filtro de Partículas sin plomo (acero inoxidable 316L) con tecnología de retrolavado automático.',
+        link: '/solutions/particle-filter',
+        img: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp'
+      },
+      {
+        title: 'FINE FILTER',
+        desc: 'Un sistema cuádruple único: Físico (20 µm y 5 µm), carbón activo, AqualenTM y plata ionizada.',
+        link: '/solutions/fine-filter',
+        img: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png'
+      },
+      {
+        title: 'SISTEMA COMPLETO',
+        desc: 'Nuestra solución completa para agua pura, saludable y revitalizada en toda su casa.',
+        link: '/solutions/mam-nature-complete-system',
+        img: '/images/WEBSITE-P/products/COMPLETE_SET_PLUS.webp'
+      }
+    ]
+  }
+};
+
 export default function DynamizerSolution() {
   const [activeSection, setActiveSection] = useState('presentation');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -285,7 +337,7 @@ export default function DynamizerSolution() {
           <div className={styles.sectionHeader}><h2>{content.otherSolutions.title}</h2></div>
           <div className={styles.solutionsGrid}>
 
-            {content.otherSolutions.items.map((item, idx) => (
+            {content.otherSolutions.items.map((item: any, idx: number) => (
               <div key={idx} className={styles.solutionCard}>
                 <img src={item.img} alt={item.title} />
                 <h3>{item.title}</h3>

@@ -100,10 +100,41 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  tagline: "Agua pura, saludable y revitalizada en toda la casa, para su salud.",
+  headers: {
+    company: "Empresa",
+    solutions: "Soluciones",
+    support: "Soporte"
+  },
+  links: {
+    home: "Inicio",
+    solutions: "Soluciones",
+    shop: "Tienda",
+    contact: "Contactar a la Fábrica",
+    complete: "Sistema Completo",
+    lime: "Agua LIME",
+    particle: "Filtro de Partículas",
+    fine: "Filtro Fino",
+    dynamizer: "Dinamizador",
+    hydrogen: "Potenciador de Hidrógeno",
+    faq: "FAQ",
+    guide: "Guía de Instalación",
+    warranty: "Garantía"
+  },
+  legal: {
+    rights: "Todos los derechos reservados.",
+    terms: "Téminos y Condiciones",
+    privacy: "Política de Privacidad",
+    shipping: "Política de Envío",
+    returns: "Devoluciones y Garantía"
+  }
+};
+
 export default function Footer() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
 
   return (
     <footer className="footer-container">

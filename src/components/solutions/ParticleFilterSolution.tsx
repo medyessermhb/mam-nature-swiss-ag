@@ -175,13 +175,68 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    overview: 'RESUMEN',
+    technical: 'DATOS TÉCNICOS',
+    other: 'OTRAS SOLUCIONES'
+  },
+  overview: {
+    title: 'FILTRO DE PARTÍCULAS',
+    desc: 'Mam Nature Swiss presenta con orgullo el primer filtro de partículas SIN PLOMO del mundo hecho en Suiza, fabricado en acero inoxidable 316L de primera calidad. Su tecnología de lavado a contracorriente autolimpiante* funciona sin costes de mantenimiento. A diferencia de los filtros clásicos, que acumulan contaminantes con el paso de los meses, nuestra tecnología previene la acumulación dañina y el crecimiento de bacterias, garantizando agua más limpia para su hogar.',
+    btnShop: 'Ver en la Tienda'
+  },
+  technical: {
+    title: 'Datos Técnicos',
+    specs: {
+      materials: { label: 'Materiales:', text: 'Todas las partes metálicas (conector, malla filtrante etc.) en Acero Inoxidable 316L' },
+      quality: { label: 'Calidad:', text: 'Todas las partes no metálicas son seguras para alimentos' },
+      costs: { label: 'Costes de Mantenimiento:', text: 'Sin costes de mantenimiento' },
+      maintenance: { label: 'Mantenimiento Requerido:', text: 'Retrolavado 1 x / mes o al detectar reducción de presión' },
+      connections: { label: 'Conexiones:', text: '1 pulgada (incluye 2 adaptadores de 3/4)' },
+      flow: { label: 'Caudal:', text: '4.2 m3 / h (a 4 bares de presión)' },
+      lifetime: { label: 'Vida útil / Capacidad:', text: 'Ilimitada' }
+    }
+  },
+  otherSolutions: {
+    title: 'Descubra nuestras otras soluciones',
+    btnLearn: 'Saber Más',
+    items: [
+      {
+        title: 'WATER LIME',
+        desc: 'Una alternativa comprobada sobre una base puramente física. Evita los depósitos duros de cal.',
+        link: '/solutions/water-lime',
+        img: '/images/WEBSITE-P/products/water_lime_vertical.webp'
+      },
+      {
+        title: 'WATER FINE FILTER',
+        desc: 'Un sistema cuádruple único: Físico (20 µm y 5 µm), carbón activo, AqualenTM y plata ionizada.',
+        link: '/solutions/fine-filter',
+        img: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png'
+      },
+      {
+        title: 'The Swiss Water DYNAMIZER',
+        desc: 'Reestructura y revitaliza el agua. Conduce a un sabor suave y mejor hidratación celular.',
+        link: '/solutions/dynamizer',
+        img: '/images/WEBSITE-P/products/DYNAMIZER.webp'
+      },
+      {
+        title: 'SISTEMA COMPLETO',
+        desc: 'Nuestra solución completa para agua pura, saludable y revitalizada en toda su casa.',
+        link: '/solutions/mam-nature-complete-system',
+        img: '/images/WEBSITE-P/products/COMPLETE_SET_PLUS.webp'
+      }
+    ]
+  }
+};
+
 export default function ParticleFilterSolution() {
   const [activeSection, setActiveSection] = useState('presentation');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -313,7 +368,7 @@ export default function ParticleFilterSolution() {
           <div className={styles.sectionHeader}><h2>{content.otherSolutions.title}</h2></div>
           <div className={styles.solutionsGrid}>
 
-            {content.otherSolutions.items.map((item, idx) => (
+            {content.otherSolutions.items.map((item: any, idx: number) => (
               <div key={idx} className={styles.solutionCard}>
                 <img src={item.img} alt={item.title} />
                 <h3>{item.title}</h3>

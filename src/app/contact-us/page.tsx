@@ -107,11 +107,45 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  subLabel: "Contacto",
+  title: "Póngase en contacto",
+  subtitle: "Estamos aquí para ayudarle con sus necesidades de filtración de agua.",
+
+  form: {
+    firstName: "Nombre",
+    lastName: "Apellidos",
+    email: "Dirección de correo electrónico",
+    phone: "Número de teléfono",
+    topicLabel: "Seleccione un tema",
+    topicPlaceholder: "Elija uno...",
+    topics: {
+      general: "Solicitud general",
+      product: "Solicitud de producto",
+      service: "Solicitud de servicio"
+    },
+    message: "Mensaje",
+    btnSubmit: "Enviar mensaje",
+    btnSending: "Enviando...",
+    success: "¡Gracias! Su mensaje ha sido enviado con éxito.",
+    error: "Algo salió mal. Por favor, inténtelo de nuevo más tarde."
+  },
+
+  info: {
+    emailTitle: "Correo electrónico",
+    emailText: "Contáctenos en cualquier momento para soporte o consultas.",
+    factoryTitle: "Fábrica",
+    factoryText: "Mam Nature Swiss AG, Spinnereistr. 16, CH-8645 Jona / Suiza",
+    directions: "Cómo llegar"
+  }
+};
+
 export default function ContactPage() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -270,6 +304,8 @@ export default function ContactPage() {
                   <>Mam Nature Swiss AG,<br />Spinnereistr. 16, CH-8645 Jona / Suisse</>
                 ) : isGerman ? (
                   <>Mam Nature Swiss AG,<br />Spinnereistr. 16, CH-8645 Jona / Schweiz</>
+                ) : isSpanish ? (
+                  <>Mam Nature Swiss AG,<br />Spinnereistr. 16, CH-8645 Jona / Suiza</>
                 ) : (
                   <>Mam Nature Swiss AG,<br />Spinnereistr. 16, CH-8645 Jona / Switzerland</>
                 )}

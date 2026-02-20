@@ -196,13 +196,75 @@ const CONTENT_DE = {
   specMaintValue: "Keine"
 };
 
+const CONTENT_ES = {
+  headerTitle: "EL DINAMIZADOR SWISS WATER",
+  tagline1: "Restaura la vitalidad original del agua.",
+  tagline2: "La inteligencia de la naturaleza al servicio de su bienestar.",
+
+  // Problem Section
+  problemTitle: "El Problema con el Agua Moderna",
+  problemDesc: "El agua es vida. El agua potable moderna, aunque tratada, a menudo pierde su capacidad natural para hidratar profundamente las células y facilitar la eliminación de residuos. Dos grandes problemas explican esta pérdida de eficiencia biológica:",
+  problems: [
+    {
+      title: "Baja biodisponibilidad celular",
+      desc: "Los tratamientos industriales alteran la estructura molecular del agua, creando 'grandes grupos de moléculas' que las células apenas absorben."
+    },
+    {
+      title: "Agua desestructurada",
+      desc: "En su estado natural, el agua de alta calidad tiene una estructura hexagonal perfecta, clave para una hidratación óptima. Esta estructura se destruye en su viaje hasta los grifos finales."
+    }
+  ],
+
+  // Solution Section
+  solutionTitle: "Nuestra Solución: El Dinamizador Swiss Water",
+  solutionDesc: "Funciona de manera totalmente física para restaurar las propiedades beneficiosas del agua. No filtra, revitaliza.",
+  solutions: [
+    {
+      title: "Reestructuración y Revitalización",
+      desc: "Divide los grandes grupos en micro-grupos, haciendo el agua altamente biodisponible. Restaura la estructura hexagonal natural."
+    },
+    {
+      title: "Transformación de la Cal",
+      desc: "Mediante imanes permanentes y turbulencia extrema, convierte la calcita (dura) en aragonito (suave), protegiendo electrodomésticos y tuberías mientras crea un increíble sabor natural."
+    },
+    {
+      title: "Estabilización a Largo Plazo",
+      desc: "El agua dinamizada adquiere la más alta estabilidad biológica."
+    }
+  ],
+
+  // Conclusion Section
+  conclusionTitle: "EL DINAMIZADOR SWISS WATER",
+  conclusionText: "Por eso es esencial beber agua que no solo sea pura y mineralizada, sino también viva y estructurada.",
+  pipeStraightTitle: "Tubería recta:",
+  pipeStraightDesc: "El agua se agrupa y pierde su poder biofísico.",
+  pipeSpiralTitle: "Tubería en espiral:",
+  pipeSpiralDesc: "Los grupos moleculares se disuelven y el agua recupera su poder.",
+
+  // Benefits Section
+  benefitsTitle: "Beneficios diarios",
+  benefit1Title: "Sabor sin precedentes",
+  benefit1Desc: "Descubra un agua increíblemente ligera, notablemente fácil de digerir y agradable.",
+  benefit2Title: "Hidratación celular óptima",
+  benefit2Desc: "Favorece el buen funcionamiento del cuerpo y ayuda a reducir la acidez.",
+  benefit3Title: "Conversión natural de la cal",
+  benefit3Desc: "Convierte la cal de dura a suave, protegiendo sus electrodomésticos y superficies sin sal.",
+  benefit4Title: "Rendimiento inigualable",
+  benefit4Desc: "Con una capacidad de 5.000 litros/hora, el Dinamizador Swiss Water cubre las necesidades de toda la casa.",
+
+  specCapacityTitle: "Capacidad",
+  specCapacityValue: "Ilimitada",
+  specMaintTitle: "Mantenimiento",
+  specMaintValue: "Ninguno"
+};
+
 export default function Dynamizer() {
   const [activeProblem, setActiveProblem] = useState<number | null>(null);
   const [activeSolution, setActiveSolution] = useState<number | null>(null);
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
 
   const toggleProblem = (idx: number) => setActiveProblem(activeProblem === idx ? null : idx);
   const toggleSolution = (idx: number) => setActiveSolution(activeSolution === idx ? null : idx);

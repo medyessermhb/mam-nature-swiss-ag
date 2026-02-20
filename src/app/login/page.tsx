@@ -43,11 +43,24 @@ const CONTENT_DE = {
   error: "Ungültige E-Mail oder Passwort."
 };
 
+const CONTENT_ES = {
+  title: "Bienvenido de nuevo",
+  subtitle: "Inicie sesión para acceder a su panel",
+  email: "Dirección de correo electrónico",
+  password: "Contraseña",
+  btn: "Iniciar sesión",
+  loading: "Iniciando sesión...",
+  noAccount: "¿No tiene una cuenta?",
+  register: "Regístrese aquí",
+  error: "Correo electrónico o contraseña no válidos."
+};
+
 export default function LoginPage() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const router = useRouter();
   const [email, setEmail] = useState('');
@@ -106,7 +119,7 @@ export default function LoginPage() {
             />
             <div style={{ textAlign: 'right', marginTop: '5px' }}>
               <Link href="/forgot-password" className={styles.link} style={{ fontSize: '13px' }}>
-                {isFrench ? 'Mot de passe oublié ?' : isGerman ? 'Passwort vergessen?' : 'Forgot Password?'}
+                {isFrench ? 'Mot de passe oublié ?' : isGerman ? 'Passwort vergessen?' : isSpanish ? '¿Olvidó su contraseña?' : 'Forgot Password?'}
               </Link>
             </div>
           </div>

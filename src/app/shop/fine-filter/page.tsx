@@ -167,6 +167,56 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    product: 'Producto',
+    details: 'Detalles Técnicos',
+    install: 'Instalación',
+    maint: 'Mantenimiento',
+    reports: 'Informes'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    subtitle: 'Filtro Fino de Agua',
+    btnAdd: 'Añadir al carrito',
+    descBold: 'Se entrega con 1 x cartucho filtrante incluido.',
+    desc: "Filtración selectiva: conserva la estructura y composición del agua (como los minerales): Esto significa que todos los minerales y oligoelementos permanecen en el agua potable."
+  },
+  details: {
+    title: 'Sistema Único de Cuádruple Filtración',
+    list: [
+      { label: 'Físico:', text: 'Filtro de membrana de 20 µm y 5 µm' },
+      { label: 'Carbón Activo:', text: 'filtración por adsorción' },
+      { label: 'Aqualen™:', text: 'Fibras adsorbentes para una filtración eficaz de metales pesados' },
+      { label: 'Plata Ionizada:', text: 'esterilidad en el cartucho filtrante sin que la plata penetre en el agua potable.' }
+    ],
+    reduces: 'Reduce: cloro, cloroformo, pesticidas, productos petroquímicos, fenol, microplásticos, metales pesados hasta en un 97 – 99 %',
+    specs: {
+      material: { title: 'Material', val: 'Carcasa de acero inoxidable 316L y piezas de grado alimentario' },
+      conn: { title: 'Conexiones', val: '1 pulgada (2 adaptadores de 3/4 de pulgada incluidos)' },
+      flow: { title: 'Caudal', val: '1,5 m³/h (a 4 bares)' }
+    }
+  },
+  install: {
+    title: 'Instalación',
+    cardTitle: 'Instalación Profesional',
+    cardText: 'El Filtro Fino de Agua se instala en su línea principal de agua por un fontanero cualificado. Su diseño compacto permite una fácil integración.'
+  },
+  maint: {
+    title: 'Mantenimiento y Garantía',
+    maintTitle: 'Mantenimiento Simplificado',
+    maintText: 'Mantenimiento requerido: Cambio de cartucho filtrante cada 150 m³ (en promedio 1 vez al año)',
+    warrantyTitle: 'Garantía de Excelencia',
+    warrantyYears: '10 AÑOS',
+    warrantyText: "Fabricada en acero inoxidable duradero de grado médico, la carcasa de su filtro está cubierta por una garantía del fabricante de 10 años."
+  },
+  reports: {
+    title: 'Informes y Certificados',
+    btnPerf: 'Ver Informe de Rendimiento',
+    btnCert: 'Ver Certificación Suiza'
+  }
+};
+
 export default function FineFilterPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
@@ -174,7 +224,8 @@ export default function FineFilterPage() {
 
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

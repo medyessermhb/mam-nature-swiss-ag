@@ -113,10 +113,47 @@ const CONTENT_DE = {
   benefitMaintDesc: "Kein Salz, keine Kartuschen, keine Energie, kein Abfall."
 };
 
+const CONTENT_ES = {
+  headline: "Water LIME",
+  highlight: "Solución de conversión de cal: Efectiva, duradera y sin mantenimiento.",
+
+  // Problem Block
+  problemTitle: "El Desafío de la Cal",
+  problemText: "La calcita, la forma dura de la cal, se acumula en sus tuberías y electrodomésticos, causando fallos técnicos y superficies opacas.",
+
+  limitsTitle: "Los Límites de los Descalcificadores",
+  limits: [
+    { bold: "Altera el agua:", text: " El sodio reemplaza minerales esenciales y deteriora el sabor." },
+    { bold: "Riesgo bacteriano:", text: " Puede promover el desarrollo de bacterias." },
+    { bold: "Alto mantenimiento:", text: " Requiere sal para la regeneración, desperdicia agua y contamina el medio ambiente." }
+  ],
+
+  galleryCalcite: "Calcita (incrustante)",
+  galleryAragonite: "Aragonito (no adhesivo)",
+
+  // Solution Block
+  solutionTitle: "Nuestra Solución: Conversión Física",
+  solutionTextPrefix: " Water LIME no elimina la cal, ",
+  solutionTextBold1: "transforma su estructura",
+  solutionTextMiddle: ". Mediante imanes permanentes, la calcita incrustante se convierte en ",
+  solutionTextBold2: "Aragonito",
+  solutionTextSuffix: ", una forma no adhesiva.",
+
+  features: [
+    { bold: "Protección activa:", text: " Protege tuberías, calentadores de agua y electrodomésticos." },
+    { bold: "Agua preservada:", text: " El sabor, los minerales y los oligoelementos permanecen presentes de forma natural." }
+  ],
+
+  benefitCapTitle: "Capacidad Ilimitada",
+  benefitCapDesc: "Funcionamiento sostenible y ecológico.",
+  benefitMaintTitle: "Cero Mantenimiento",
+  benefitMaintDesc: "Sin sal, sin cartuchos, sin energía, sin residuos."
+};
+
 export default function WaterLime() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
 
   return (
     <section className={styles.section}>

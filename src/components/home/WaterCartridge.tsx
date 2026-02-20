@@ -64,6 +64,25 @@ const CONTENT_DE = {
   viewPreview: "Vorschau ansehen"
 };
 
+const CONTENT_ES = {
+  title: "El Cartucho Swiss Water",
+  subtitle: "Más allá de la filtración, un verdadero escudo.",
+  tagline: "SEGURIDAD Y PUREZA INIGUALABLES",
+  desc1: "Nuestra tecnología de filtración 100% natural, exclusiva de Mam Nature Swiss® y primicia mundial, combina fibras de proteínas naturales con carbón activado para lograr una filtración perfecta.",
+  desc2: "Solución para toda la casa (POE): Elimina contaminantes mientras mantiene los minerales y oligoelementos presentes de forma natural en el agua.",
+  desc3Part1: "Gracias a su sistema de filtración selectiva por adsorción total, esta invención suiza patentada es la única solución universal en el mundo, 100% natural, capaz de eliminar ",
+  desc3Bold: "PFAS, metales pesados, aluminio, cloro, flúor, pesticidas, residuos farmacéuticos, productos químicos industriales, arsénico, cadmio, cromo, etc. - e incluso sustancias radiactivas.",
+  specFlowTitle: "Caudal",
+  specFlowValue: "2.000+ litros/hora",
+  specCapTitle: "Capacidad de la cartucho",
+  specCapValue: "Mín. 100 m³ por cartucho",
+  specMaintTitle: "Mantenimiento",
+  specMaintValue: "10 min / año (sin herramientas)",
+  reportsTitle: "Informes y Certificaciones",
+  reportName: "Informe de Rendimiento",
+  viewPreview: "Ver Vista Previa"
+};
+
 const REPORT_URL = "/images/website-assets/certificates/The_Swiss_Water_Cartridge_Retention_Rates_Certificated_ETH_Zurich.pdf";
 
 export default function WaterCartridge() {
@@ -73,7 +92,7 @@ export default function WaterCartridge() {
 
   // Determine content based on language
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : language === 'es' ? CONTENT_ES : CONTENT_EN;
 
   // Helper to handle body scroll lock
   useEffect(() => {

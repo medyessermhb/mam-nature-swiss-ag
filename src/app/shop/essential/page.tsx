@@ -90,20 +90,20 @@ const CONTENT_FR = {
     btnAdd: 'Ajouter au panier',
     priceTBD: 'Prix à venir',
     descBold: 'Système de filtration complet pour toute la maison. Livré avec 1 x Boîtier de Filtre et 1 x Cartouche Filtrante.',
-    desc: "Filtration sélective : préserve la structure de l'eau et sa composition. Cela signifie que tous les minéraux essentiels restent dans votre eau potable tout en protégeant la plomberie de toute votre maison."
+    desc: "Filtration sélective : préserve la structure de l\'eau et sa composition. Cela signifie que tous les minéraux essentiels restent dans votre eau potable tout en protégeant la plomberie de toute votre maison."
   },
   details: {
     title: 'Détails Techniques en 2 Étapes',
     fine: {
       title: '1. WATER FINE FILTER',
-      summary: 'Unique filtration technology eliminating PFAS, heavy metals, aluminium, chlorine, fluoride, pesticides, pharmaceutical residues, industrial chemicals, arsenic, cadmium, chromium & radioactive substances.',
+      summary: 'Technologie de filtration unique éliminant les PFAS, métaux lourds, aluminium, chlore, fluorure, pesticides, résidus pharmaceutiques, produits chimiques industriels, arsenic, cadmium, chrome et substances radioactives.',
       content: {
-        text: 'Unique selective Whole-House Adsorption Filtration System:',
+        text: 'Système de filtration par adsorption sélective unique pour toute la maison :',
         list: [
-          '1. Filter Media: Exclusive Mam Nature technology based on proteins fibers (combined with activated carbon) for the most complete & world unique adsorption filtration',
-          '2. Sterile cartridge: Sterility (by copper & iron hydroxide) in the cartridge without sterilizing agents entering the drinking water.'
+          '1. Média filtrant : Technologie exclusive Mam Nature basée sur des fibres protéiques (combinées à du charbon actif) pour la filtration par adsorption la plus complète et unique au monde',
+          '2. Cartouche stérile : Stérilité (par hydroxyde de cuivre et de fer) dans la cartouche sans que des agents stérilisants n\'entrent dans l\'eau potable.'
         ],
-        reduces: 'Reduces Chlorine, Pesticides, PFAS, Drug Residues, Phenol, Heavy Metals, Aluminium, Microplastics & including radioactive substances at a reduction rate of 95 - 99.9 % at large volumes of 2000 litres/hour.'
+        reduces: 'Réduit le chlore, les pesticides, les PFAS, les résidus médicamenteux, le phénol, les métaux lourds, l\'aluminium, les microplastiques et y compris les substances radioactives à un taux de réduction de 95 à 99,9 % à de grands volumes de 2000 litres/heure.'
       }
     },
     cartridge: {
@@ -121,7 +121,7 @@ const CONTENT_FR = {
   install: {
     title: 'Installation',
     cardTitle: 'Installation Professionnelle',
-    cardText: "Le Set Essentiel est installé directement sur votre arrivée d'eau principale par un plombier qualifié, garantissant une eau filtrée à chaque robinet. Son design compact permet une intégration facile."
+    cardText: "Le Set Essentiel est installé directement sur votre arrivée d\'eau principale par un plombier qualifié, garantissant une eau filtrée à chaque robinet. Son design compact permet une intégration facile."
   },
   maint: {
     title: 'Maintenance & Garantie',
@@ -200,14 +200,78 @@ const CONTENT_DE = {
   }
 };
 
+const CONTENT_ES = {
+  nav: {
+    product: 'Producto',
+    details: 'Detalles Técnicos',
+    install: 'Instalación',
+    maint: 'Mantenimiento',
+    reports: 'Informes'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    subtitle: 'Filtro Fino de Agua + Cartucho',
+    btnAdd: 'Añadir al carrito',
+    priceTBD: 'Precio próximamente',
+    descBold: 'Sistema de filtración completo para toda la casa. Se entrega con 1 x Carcasa de filtro y 1 x Cartucho filtrante.',
+    desc: "Filtración selectiva: preserva la estructura y composición del agua. Esto significa que todos los minerales y oligoelementos esenciales permanecen en su agua potable mientras protege las tuberías de toda su casa."
+  },
+  details: {
+    title: 'Detalles Técnicos en 2 Pasos',
+    fine: {
+      title: '1. FILTRO FINO DE AGUA',
+      summary: 'Tecnología de filtración única que elimina PFAS, metales pesados, aluminio, cloro, flúor, pesticidas, residuos farmacéuticos, químicos industriales, arsénico, cadmio, cromo y sustancias radiactivas.',
+      content: {
+        text: 'Sistema Único de Filtración por Adsorción Selectiva para Toda la Casa:',
+        list: [
+          '1. Medio Filtrante: Tecnología exclusiva de Mam Nature basada en fibras de proteínas (combinadas con carbón activo) para la filtración por adsorción más completa y única en el mundo',
+          '2. Cartucho estéril: Esterilidad (por hidróxido de cobre y hierro) en el cartucho sin que los agentes esterilizantes entren en el agua potable.'
+        ],
+        reduces: 'Reduce cloro, pesticidas, PFAS, residuos de medicamentos, fenol, metales pesados, aluminio, microplásticos e incluso sustancias radiactivas a una tasa de reducción del 95 - 99.9% a grandes volúmenes de 2000 litros/hora.'
+      }
+    },
+    cartridge: {
+      title: '2. CARTUCHO',
+      summary: 'Tecnología patentada que elimina contaminantes y conserva minerales esenciales.',
+      content: {
+        h4: 'El Cartucho de Agua Suizo',
+        text1: 'Mam Nature Swiss® – Resolviendo lo imposible: Agua perfectamente filtrada, blanda y mineralizada de forma natural.',
+        text2: 'El « SWISS WATER CARTRIDGE » : MÁS ALLÁ DE LA FILTRACIÓN – UNA VERDADERA PROTECCIÓN CON UNA RETENCIÓN DE CONTAMINANTES INIGUALABLE',
+        text3: 'Nuestra tecnología de filtración 100% natural, exclusiva de Mam Nature Swiss®, combina fibras de proteínas naturales con carbón activo para lograr una adsorción total, una primicia mundial. Elimina los contaminantes conservando los minerales y oligoelementos naturalmente presentes en el agua. Gracias a su sistema de filtración selectiva por adsorción completa, esta invención suiza patentada es la solución universal única en el mundo, 100% natural, capaz de eliminar PFAS, metales pesados, aluminio, cloro, flúor, pesticidas, residuos de medicamentos, productos químicos industriales, arsénico, cadmio, cromo, etc. - e incluso las sustancias radiactivas presentes en el agua nuclear.',
+        specs: 'Caudal: hasta 1800 litros/hora.<br>Capacidad del cartucho filtrante (vida útil): 150m³<br>Mantenimiento: 10 minutos una vez al año (sencillo y sin necesidad de herramientas).'
+      }
+    }
+  },
+  install: {
+    title: 'Instalación',
+    cardTitle: 'Instalación Profesional',
+    cardText: 'El Essential Set es instalado directamente en su línea principal de agua por un fontanero cualificado, garantizando agua filtrada para cada grifo de su casa. Su diseño compacto permite una fácil integración.'
+  },
+  maint: {
+    title: 'Mantenimiento y Garantía',
+    maintTitle: 'Mantenimiento Simplificado',
+    maintText: 'Mantenimiento requerido: Cambio del cartucho filtrante cada 150 m³ (en promedio 1 x al año)',
+    warrantyTitle: 'Garantía de Excelencia',
+    warrantyYears: '10 AÑOS',
+    warrantyText: "Fabricada con acero inoxidable médico duradero, la carcasa de su filtro está cubierta por una garantía del fabricante de 10 años."
+  },
+  reports: {
+    title: 'Informes y Certificados',
+    btnPerf: 'Ver Informe de Rendimiento',
+    btnCert: 'Ver Certificación Suiza'
+  }
+};
+
 export default function EssentialSetPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
+
   const isFrench = language === 'fr';
   const isGerman = language === 'de';
-  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+  const isSpanish = language === 'es';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

@@ -115,14 +115,14 @@ const CONTENT_FR = {
         },
         fine: {
             title: '2. WATER FINE FILTER',
-            summary: 'Unique filtration technology eliminating PFAS, heavy metals, aluminium, chlorine, fluoride, pesticides, pharmaceutical residues, industrial chemicals, arsenic, cadmium, chromium & radioactive substances.',
+            summary: 'Technologie de filtration unique éliminant les PFAS, métaux lourds, aluminium, chlore, fluorure, pesticides, résidus pharmaceutiques, produits chimiques industriels, arsenic, cadmium, chrome et substances radioactives.',
             content: {
-                text: 'Unique selective Whole-House Adsorption Filtration System:',
+                text: 'Système de filtration par adsorption sélective unique pour toute la maison :',
                 list: [
-                    '1. Filter Media: Exclusive Mam Nature technology based on proteins fibers (combined with activated carbon) for the most complete & world unique adsorption filtration',
-                    '2. Sterile cartridge: Sterility (by copper & iron hydroxide) in the cartridge without sterilizing agents entering the drinking water.'
+                    '1. Média filtrant : Technologie exclusive Mam Nature basée sur des fibres protéiques (combinées à du charbon actif) pour la filtration par adsorption la plus complète et unique au monde',
+                    '2. Cartouche stérile : Stérilité (par hydroxyde de cuivre et de fer) dans la cartouche sans que des agents stérilisants n\'entrent dans l\'eau potable.'
                 ],
-                reduces: 'Reduces Chlorine, Pesticides, PFAS, Drug Residues, Phenol, Heavy Metals, Aluminium, Microplastics & including radioactive substances at a reduction rate of 95 - 99.9 % at large volumes of 2000 litres/hour.'
+                reduces: 'Réduit le chlore, les pesticides, les PFAS, les résidus médicamenteux, le phénol, les métaux lourds, l\'aluminium, les microplastiques et y compris les substances radioactives à un taux de réduction de 95 à 99,9 % à de grands volumes de 2000 litres/heure.'
             }
         },
         cartridge: {
@@ -140,7 +140,7 @@ const CONTENT_FR = {
     install: {
         title: 'Installation',
         cardTitle: 'Installation Professionnelle',
-        cardText: "Le Set Essentiel Plus est installé de manière séquentielle sur votre arrivée d'eau principale par un plombier qualifié (Filtre à particules en premier, suivi du filtre fin). Cela garantit une eau propre et filtrée à chaque robinet."
+        cardText: "Le Set Essentiel Plus est installé de manière séquentielle sur votre arrivée d\'eau principale par un plombier qualifié (Filtre à particules en premier, suivi du filtre fin). Cela garantit une eau propre et filtrée à chaque robinet."
     },
     maint: {
         title: 'Maintenance & Garantie',
@@ -227,6 +227,76 @@ const CONTENT_DE = {
     }
 };
 
+const CONTENT_ES = {
+    nav: {
+        product: 'Producto',
+        details: 'Detalles Técnicos',
+        install: 'Instalación',
+        maint: 'Mantenimiento',
+        reports: 'Informes'
+    },
+    product: {
+        title: PRODUCT_NAME,
+        subtitle: 'Filtro Fino + Cartucho + Filtro de Partículas',
+        btnAdd: 'Añadir al carrito',
+        priceTBD: 'Precio próximamente',
+        descBold: 'El dúo definitivo de filtración para toda la casa. Se entrega con 1 x Filtro de partículas, 1 x Carcasa de Filtro Fino y 1 x Cartucho Filtrante.',
+        desc: "Protección completa para su hogar y su salud. El filtro de partículas prefiltra arena, óxido y residuos grandes, protegiendo las tuberías. Posteriormente, el Filtro Fino realiza una filtración selectiva, eliminando metales pesados, cloro y microplásticos mientras preserva los minerales esenciales."
+    },
+    details: {
+        title: 'Detalles Técnicos en 3 Pasos',
+        particle: {
+            title: '1. FILTRO DE PARTÍCULAS',
+            summary: 'Filtra sedimentos y partículas en suspensión con retrolavado automático y regulador de presión integrado.',
+            content: {
+                text: 'Filtro de partículas con retrolavado automático, regulador de presión y conector de 360°. Solución compacta 100% integrada fabricada en material médico (Acero inoxidable 316L).',
+                specs: 'Capacidad: ilimitada<br>Mantenimiento: ninguno (solución totalmente automatizada).'
+            }
+        },
+        fine: {
+            title: '2. FILTRO FINO DE AGUA',
+            summary: 'Tecnología de filtración única que elimina PFAS, metales pesados, aluminio, cloro, flúor, pesticidas, residuos farmacéuticos, químicos industriales, arsénico, cadmio, cromo y sustancias radiactivas.',
+            content: {
+                text: 'Sistema Único de Filtración por Adsorción Selectiva para Toda la Casa:',
+                list: [
+                    '1. Medio Filtrante: Tecnología exclusiva de Mam Nature basada en fibras de proteínas (combinadas con carbón activo) para la filtración por adsorción más completa y única en el mundo',
+                    '2. Cartucho estéril: Esterilidad (por hidróxido de cobre y hierro) en el cartucho sin que los agentes esterilizantes entren en el agua potable.'
+                ],
+                reduces: 'Reduce cloro, pesticidas, PFAS, residuos de medicamentos, fenol, metales pesados, aluminio, microplásticos e incluso sustancias radiactivas a una tasa de reducción del 95 - 99.9% a grandes volúmenes de 2000 litros/hora.'
+            }
+        },
+        cartridge: {
+            title: '3. CARTUCHO',
+            summary: 'Tecnología patentada que elimina contaminantes y conserva minerales esenciales.',
+            content: {
+                h4: 'El Cartucho de Agua Suizo',
+                text1: 'Mam Nature Swiss® – Resolviendo lo imposible: Agua perfectamente filtrada, blanda y mineralizada de forma natural.',
+                text2: 'El « SWISS WATER CARTRIDGE » : MÁS ALLÁ DE LA FILTRACIÓN – UNA VERDADERA PROTECCIÓN CON UNA RETENCIÓN DE CONTAMINANTES INIGUALABLE',
+                text3: 'Nuestra tecnología de filtración 100% natural, exclusiva de Mam Nature Swiss®, combina fibras de proteínas naturales con carbón activo para lograr una adsorción total, una primicia mundial. Elimina los contaminantes conservando los minerales y oligoelementos naturalmente presentes en el agua. Gracias a su sistema de filtración selectiva por adsorción completa, esta invención suiza patentada es la solución universal única en el mundo, 100% natural, capaz de eliminar PFAS, metales pesados, aluminio, cloro, flúor, pesticidas, residuos de medicamentos, productos químicos industriales, arsénico, cadmio, cromo, etc. - e incluso las sustancias radiactivas presentes en el agua nuclear.',
+                specs: 'Caudal: hasta 1800 litros/hora.<br>Capacidad del cartucho filtrante (vida útil): 150m³<br>Mantenimiento: 10 minutos una vez al año (sencillo y sin necesidad de herramientas).'
+            }
+        }
+    },
+    install: {
+        title: 'Instalación',
+        cardTitle: 'Instalación Profesional',
+        cardText: 'El Essential Plus Set es instalado de forma secuencial en su línea principal de agua por un fontanero cualificado (Filtro de partículas primero, seguido del Filtro Fino). Esto asegura agua limpia y filtrada para cada grifo de su casa.'
+    },
+    maint: {
+        title: 'Mantenimiento y Garantía',
+        maintTitle: 'Rutina de Mantenimiento',
+        maintText: 'Filtro de partículas: Purgar la válvula manualmente cada 1-2 meses. Filtro fino: Cambiar el cartucho cada 150 m³ (en promedio 1 x al año).',
+        warrantyTitle: 'Garantía de Excelencia',
+        warrantyYears: '10 AÑOS',
+        warrantyText: "Fabricadas con materiales duraderos, las carcasas de sus filtros están cubiertas por una garantía del fabricante de 10 años."
+    },
+    reports: {
+        title: 'Informes y Certificados',
+        btnPerf: 'Ver Informe de Rendimiento',
+        btnCert: 'Ver Certificación Suiza'
+    }
+};
+
 export default function EssentialPlusSetPage() {
     const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
     const { addToCart } = useCart();
@@ -234,7 +304,8 @@ export default function EssentialPlusSetPage() {
 
     const isFrench = language === 'fr';
     const isGerman = language === 'de';
-    const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+    const isSpanish = language === 'es';
+    const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
 
     const [currentSlide, setCurrentSlide] = useState(0);
     const [activeSection, setActiveSection] = useState('produit');

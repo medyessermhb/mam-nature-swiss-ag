@@ -40,11 +40,23 @@ const CONTENT_DE = {
     login: "Zur Anmeldung"
 };
 
+const CONTENT_ES = {
+    title: "Establecer nueva contraseña",
+    subtitle: "Ingrese su nueva contraseña a continuación",
+    password: "Nueva contraseña",
+    btn: "Actualizar contraseña",
+    loading: "Actualizando...",
+    success: "¡Contraseña actualizada con éxito!",
+    error: "Error al actualizar la contraseña.",
+    login: "Ir a Iniciar Sesión"
+};
+
 export default function ResetPasswordPage() {
     const { language } = useLanguage();
     const isFrench = language === 'fr';
     const isGerman = language === 'de';
-    const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
+    const isSpanish = language === 'es';
+    const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : isSpanish ? CONTENT_ES : CONTENT_EN;
     const router = useRouter();
 
     const [password, setPassword] = useState('');
