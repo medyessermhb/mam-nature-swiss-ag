@@ -407,15 +407,15 @@ export default function HydrogenBoosterPage() {
           <section id="usage" className={styles.section} style={{ background: '#F8FAFC' }}>
             <h2 className={styles.sectionTitle}>{content.usage.title}</h2>
             <div className={styles.stepsGrid}>
-              <div className={styles.stepItem} style={{ backgroundImage: `url('/images/WEBSITE-P/products/hydrogeen%20booster/hydrogen%20booser%203.webp')` }}>
+              <div className={styles.stepItem} style={{ backgroundImage: `url('/images/products/hydrogen_booster/hydrogen_booster_3.webp')` }}>
                 <div className={styles.stepNumber}>1</div>
                 <div className={styles.stepContent}><h3><Droplet /> {content.usage.steps[0].title}</h3><p>{content.usage.steps[0].text}</p></div>
               </div>
-              <div className={styles.stepItem} style={{ backgroundImage: `url('/images/WEBSITE-P/products/hydrogeen%20booster/hydrogen%20booser%208.webp')` }}>
+              <div className={styles.stepItem} style={{ backgroundImage: `url('/images/products/hydrogen_booster/hydrogen_booster_8.webp')` }}>
                 <div className={styles.stepNumber}>2</div>
                 <div className={styles.stepContent}><h3><Zap /> {content.usage.steps[1].title}</h3><p>{content.usage.steps[1].text}</p></div>
               </div>
-              <div className={styles.stepItem} style={{ backgroundImage: `url('/images/WEBSITE-P/products/hydrogeen%20booster/hydrogen%20booser%205.webp')` }}>
+              <div className={styles.stepItem} style={{ backgroundImage: `url('/images/products/hydrogen_booster/hydrogen_booster_5.webp')` }}>
                 <div className={styles.stepNumber}>3</div>
                 <div className={styles.stepContent}><h3><Smile /> {content.usage.steps[2].title}</h3><p>{content.usage.steps[2].text}</p></div>
               </div>
