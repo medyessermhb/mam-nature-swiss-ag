@@ -282,9 +282,12 @@ export default function CheckoutForm() {
   ];
 
   const BANK_DETAILS_MOROCCO = [
-    { label: content.bank.bene, value: "ENTER MOROCCAN COMPANY NAME" },
-    { label: content.bank.bankName, value: "ENTER YOUR MOROCCAN BANK NAME" },
-    { label: content.bank.rib, value: "000 000 0000000000000000 00" },
+    { label: content.bank.bene, value: "MAM NATURE" },
+    { label: content.bank.addr, value: "56 BD MLY YOUSSEF ETG 3 APT 14, 20040 CASABLANCA MAROC" },
+    { label: content.bank.bankName, value: "BMCE (AGENCE FAR PART PRO)" },
+    { label: content.bank.rib, value: "011 780 0000 162100 011578 59" },
+    { label: content.bank.iban, value: "MA64 0117 8000 0016 2100 0115 7859" },
+    { label: content.bank.swift, value: "BMCEMAMC" },
     { label: content.bank.ref, value: orderNumber, highlight: true }
   ];
 

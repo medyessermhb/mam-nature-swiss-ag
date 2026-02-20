@@ -157,13 +157,84 @@ const CONTENT_FR = {
     }
 };
 
+const CONTENT_DE = {
+    nav: {
+        product: 'Produkt',
+        details: 'Technische Details',
+        install: 'Installation',
+        maint: 'Wartung',
+        reports: 'Berichte'
+    },
+    product: {
+        title: PRODUCT_NAME,
+        subtitle: 'Feinfilter + Kartusche + Partikelfilter',
+        btnAdd: 'In den Warenkorb',
+        priceTBD: 'Preis auf Anfrage',
+        descBold: 'Das ultimative Filtrations-Duo für das ganze Haus. Wird geliefert mit 1 x Partikelfilter, 1 x Feinfiltergehäuse und 1 x Filterkartusche.',
+        desc: "Rundumschutz für Ihr Zuhause und Ihre Gesundheit. Der Partikelfilter filtert Sand, Rost und grobe Verunreinigungen vor und schützt so Ihre Rohrleitungen. Der Feinfilter übernimmt anschließend die selektive Filtration und entfernt Schwermetalle, Chlor und Mikroplastik, während wichtige Mineralien erhalten bleiben."
+    },
+    details: {
+        title: 'Technische Details in 3 Schritten',
+        particle: {
+            title: '1. WATER PARTICLE FILTER',
+            summary: 'Filtert Sedimente und Schwebstoffe mit automatischer Rückspülung und integriertem Druckminderer.',
+            content: {
+                text: 'Partikelfilter mit automatischer Rückspülung, Druckminderer und 360°-Anschluss. Kompakte, voll integrierte Lösung aus medizinischem Material (Edelstahl 316L).',
+                specs: 'Kapazität: unbegrenzt<br>Wartung: keine (vollautomatische Lösung).'
+            }
+        },
+        fine: {
+            title: '2. WATER FINE FILTER',
+            summary: 'Einzigartige Filtrationstechnologie zur Eliminierung von PFAS, Schwermetallen, Aluminium, Chlor, Fluorid, Pestiziden, Medikamentenrückständen, Industriechemikalien, Arsen, Cadmium, Chrom & radioaktiven Substanzen.',
+            content: {
+                text: 'Einzigartiges selektives Haus-Adsorptions-Filtrationssystem:',
+                list: [
+                    '1. Filtermedium: Exklusive Mam Nature Technologie, basierend auf Proteinfasern (in Kombination mit Aktivkohle) für die vollständigste & weltweit einzigartige Adsorptionsfiltration',
+                    '2. Sterile Kartusche: Sterilität (durch Kupfer- und Eisenhydroxid) in der Kartusche, ohne dass Sterilisationsmittel ins Trinkwasser gelangen.'
+                ],
+                reduces: 'Reduziert Chlor, Pestizide, PFAS, Medikamentenrückstände, Phenol, Schwermetalle, Aluminium, Mikroplastik & einschließlich radioaktiver Substanzen mit einer Reduktionsrate von 95 - 99,9 % bei großen Mengen von 2000 Litern/Stunde.'
+            }
+        },
+        cartridge: {
+            title: '3. KARTUSCHE',
+            summary: 'Patentierte Technologie, die Verunreinigungen eliminiert und wichtige Mineralien bewahrt.',
+            content: {
+                h4: 'The Swiss Water Cartridge',
+                text1: 'Mam Nature Swiss® – Wir machen das Unmögliche möglich: Perfekt gefiltertes, weiches und natürlich mineralisiertes Wasser.',
+                text2: 'Die « SWISS WATER CARTRIDGE » : MEHR ALS NUR FILTRATION – EIN WAHRER SCHUTZ MIT UNERREICHTER SCHADSTOFFRÜCKHALTUNG.',
+                text3: 'Unsere 100% natürliche Filtrationstechnologie, exklusiv bei Mam Nature Swiss®, kombiniert natürliche Proteinfasern mit Aktivkohle, um eine vollständige Adsorption zu erreichen – eine Weltneuheit. Sie eliminiert Verunreinigungen und bewahrt gleichzeitig die natürlich im Wasser vorkommenden Mineralien und Spurenelemente. Dank ihres selektiven Filtrationssystems durch vollständige Adsorption ist diese patentierte Schweizer Erfindung die weltweit einzige 100% natürliche Universallösung, die in der Lage ist, PFAS, Schwermetalle, Aluminium, Chlor, Fluorid, Pestizide, Medikamentenrückstände, Industriechemikalien, Arsen, Cadmium, Chrom usw. zu eliminieren – und sogar radioaktive Substanzen, die in nuklearem Wasser vorkommen.',
+                specs: 'Durchflussrate: bis zu 1800 Liter/Stunde.<br>Filterkartuschen-Kapazität (Lebensdauer): 150m³<br>Wartung: 10 Minuten einmal pro Jahr (einfach und ohne Werkzeug).'
+            }
+        }
+    },
+    install: {
+        title: 'Installation',
+        cardTitle: 'Professionelle Installation',
+        cardText: 'Das Essential Plus Set wird nacheinander (zuerst Partikelfilter, dann Feinfilter) von einem qualifizierten Klempner an Ihre Hauptwasserleitung angeschlossen. Dies gewährleistet sauberes, gefiltertes Wasser an jedem Wasserhahn in Ihrem Haus.'
+    },
+    maint: {
+        title: 'Wartung & Garantie',
+        maintTitle: 'Wartungsroutine',
+        maintText: 'Partikelfilter: Ventil 1-2 mal im Monat manuell spülen. Feinfilter: Kartuschenwechsel alle 150 m³ (durchschnittlich 1 x pro Jahr).',
+        warrantyTitle: 'Exzellenz-Garantie',
+        warrantyYears: '10 JAHRE',
+        warrantyText: "Die Gehäuse Ihrer Filter bestehen aus langlebigen Materialien und sind durch eine 10-jährige Herstellergarantie abgedeckt."
+    },
+    reports: {
+        title: 'Prüfberichte & Zertifikate',
+        btnPerf: 'Leistungsbericht anzeigen',
+        btnCert: 'Schweizer Zertifizierung ansehen'
+    }
+};
+
 export default function EssentialPlusSetPage() {
     const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
     const { addToCart } = useCart();
     const { language } = useLanguage();
 
     const isFrench = language === 'fr';
-    const content = isFrench ? CONTENT_FR : CONTENT_EN;
+    const isGerman = language === 'de';
+    const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
     const [currentSlide, setCurrentSlide] = useState(0);
     const [activeSection, setActiveSection] = useState('produit');

@@ -105,13 +105,57 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  nav: {
+    product: 'Produkt',
+    details: 'Technische Details',
+    install: 'Installation',
+    maint: 'Wartung',
+    reports: 'Berichte'
+  },
+  product: {
+    title: 'The Swiss Water Cartridge',
+    tagline: 'Mam Nature Swiss® – Wir machen das Unmögliche möglich',
+    descBold: 'Perfekt gefiltertes, weiches und natürlich mineralisiertes Wasser.',
+    desc: 'Die « SWISS WATER CARTRIDGE » : MEHR ALS NUR FILTRATION – EIN WAHRER SCHUTZ MIT UNERREICHTER SCHADSTOFFRÜCKHALTUNG.',
+    btnAdd: 'In den Warenkorb'
+  },
+  details: {
+    title: 'Fortschrittliche Filtrationstechnologie',
+    p1: 'Unsere 100% natürliche Filtrationstechnologie, exklusiv bei Mam Nature Swiss®, kombiniert natürliche Proteinfasern mit Aktivkohle, um eine vollständige Adsorption zu erreichen – eine Weltneuheit. Sie eliminiert Verunreinigungen und bewahrt gleichzeitig die natürlich im Wasser vorkommenden Mineralien und Spurenelemente.',
+    p2Part1: 'Dank ihres selektiven Filtrationssystems durch vollständige Adsorption ist diese patentierte Schweizer Erfindung die weltweit einzige 100% natürliche Universallösung, die in der Lage ist, ',
+    p2Bold: 'PFAS, Schwermetalle, Aluminium, Chlor, Fluorid, Pestizide, Medikamentenrückstände, Industriechemikalien, Arsen, Cadmium, Chrom usw. zu eliminieren – und sogar radioaktive Substanzen, die in nuklearem Wasser vorkommen…',
+    specs: {
+      flow: { title: 'Durchflussrate', val: 'Bis zu 1800 L/Stunde' },
+      cap: { title: 'Kapazität', val: '150m³ pro Kartusche' },
+      maint: { title: 'Wartung', val: '10 Min / Jahr (ohne Werkzeug)' }
+    }
+  },
+  install: {
+    title: 'Installation',
+    cardTitle: 'Einfache Installation',
+    cardText: 'Die Kartusche wird einfach in das Gehäuse des Water Fine Filters eingesetzt. Es sind keine technischen Kenntnisse erforderlich.'
+  },
+  maint: {
+    title: 'Wartung',
+    cardTitle: 'Jährlicher Austausch',
+    cardText: "Die einzige Wartung besteht darin, die Kartusche einmal im Jahr (oder nach 150m³ Nutzung) auszutauschen. Es ist ein einfacher, 10-minütiger Vorgang, für den kein Werkzeug erforderlich ist."
+  },
+  reports: {
+    title: 'Berichte & Zertifikate',
+    btnCert: 'Leistungsbericht',
+    btnIso: 'Zertifikat des Swiss Safety Systems'
+  }
+};
+
 export default function CartridgePage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const isGerman = language === 'de';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

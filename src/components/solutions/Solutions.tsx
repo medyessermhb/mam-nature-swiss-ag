@@ -183,6 +183,92 @@ const CONTENT_FR = {
   ]
 };
 
+const CONTENT_DE = {
+  nav: {
+    complete: 'KOMPLETTSET',
+    lime: 'WATER LIME',
+    particle: 'PARTIKELFILTER',
+    fine: 'FEINFILTER',
+    dynamizer: 'Der Swiss Water DYNAMIZER'
+  },
+  btnLearn: 'Mehr erfahren',
+  sections: [
+    {
+      id: 'complete-system',
+      title: 'KOMPLETTSET',
+      image: '/images/WEBSITE-P/products/COMPLETE_SET_PLUS.webp',
+      desc: 'Unsere Komplettlösung für reines, gesundes und revitalisiertes Wasser im ganzen Haus. Das Komplettsystem bündelt unsere vier fortschrittlichsten Technologien.',
+      link: '/solutions/mam-nature-complete-system',
+      specs: [
+        { label: 'Water LIME:', text: 'Anti-Kalk - rein physikalische Kalkumwandlung', icon: CheckCircle },
+        { label: 'Water PARTICLE FILTER:', text: '40 μm + Rückspülung + bleifrei', icon: CheckCircle },
+        { label: 'Water FINE FILTER:', text: 'Filtert Chlor + Schwermetalle + Pestizide', icon: CheckCircle },
+        { label: 'Water DYNAMIZER:', text: 'Einzigartiger Geschmack & unglaublich weiche Haut', icon: CheckCircle }
+      ]
+    },
+    {
+      id: 'water-lime',
+      title: 'WATER LIME',
+      image: '/images/WEBSITE-P/products/water_lime_vertical.webp',
+      desc: 'Eine bewährte Alternative zu herkömmlichen Wasserenthärtungsanlagen auf rein physikalischer Basis. « Water LIME » wandelt die harte Form von Kalk (Calcit) in weichen Aragonit um.',
+      link: '/solutions/water-lime',
+      specs: [
+        { text: 'Basierend auf Neodym-Permanentmagneten', icon: Magnet },
+        { text: 'Gehäuse aus 316L Edelstahl', icon: ShieldCheck },
+        { text: 'Keine Wartung erforderlich', icon: Wrench },
+        { text: 'Anschlüsse: 1 Zoll (Variante 3/4 Zoll verfügbar)', icon: Plug },
+        { text: 'Durchflusskapazität: 1,5 m³/h', icon: Gauge },
+        { text: 'Lebensdauer: unbegrenzt', icon: InfinityIcon }
+      ]
+    },
+    {
+      id: 'particle-filter',
+      title: 'PARTIKELFILTER',
+      image: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp',
+      desc: 'Mam Nature Swiss präsentiert stolz den weltweit ersten bleifreien Partikelfilter "Swiss Made" aus hochwertigem 316L Edelstahl.',
+      link: '/solutions/particle-filter',
+      specs: [
+        { text: 'Alle Metallteile aus 316L Edelstahl', icon: ShieldCheck },
+        { text: 'Alle nichtmetallischen Teile sind lebensmittelecht', icon: CheckCircle },
+        { text: 'Keine Wartungskosten', icon: Euro },
+        { text: 'Wartung: Rückspülung 1x/Monat', icon: Wrench },
+        { text: 'Anschlüsse: 1 Zoll (3/4 Zoll Adapter enthalten)', icon: Plug },
+        { text: 'Durchflusskapazität: 4,2 m³/h (bei 4 bar)', icon: Gauge },
+        { text: 'Lebensdauer: unbegrenzt', icon: InfinityIcon }
+      ]
+    },
+    {
+      id: 'fine-filter',
+      title: 'FEINFILTER',
+      image: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png',
+      desc: 'Einzigartiges 4-Stufen-Filtrationssystem: reduziert Chlor, Schwermetalle, Pestizide und Mikroplastik, bewahrt gleichzeitig essenzielle Mineralien.',
+      link: '/solutions/fine-filter',
+      specs: [
+        { text: 'Physikalisch: Membranfilter (20 µm & 5 µm)', icon: Filter },
+        { text: 'Aktivkohle: Filterung durch Adsorption', icon: CheckCircle },
+        { text: 'AqualenTM: Adsorbierende Fasern für Schwermetalle', icon: FlaskConical },
+        { text: 'Ionisiertes Silber: sorgt für Sterilität in der Kartusche', icon: ShieldCheck },
+        { text: 'Wartung: Kartuschenwechsel (150 m³ / 1x jährlich)', icon: Wrench },
+        { text: 'Kartuschenkapazität: 150 m³', icon: InfinityIcon }
+      ]
+    },
+    {
+      id: 'dynamizer',
+      title: 'Der Swiss Water DYNAMIZER',
+      image: '/images/WEBSITE-P/products/DYNAMIZER.webp',
+      desc: 'Wasser fließt standardmäßig durch gerade Rohre, was nicht seiner natürlichen Bewegung entspricht. Der Dynamisierer restrukturiert und revitalisiert das Wasser.',
+      link: '/solutions/dynamizer',
+      specs: [
+        { text: 'Wasserführende Teile aus 316L Edelstahl', icon: ShieldCheck },
+        { text: 'Wartung: komplett wartungsfrei', icon: Wrench },
+        { text: 'Anschlüsse: 1 Zoll', icon: Plug },
+        { text: 'Durchflusskapazität: 5 m³/h (bei 4 bar)', icon: Gauge },
+        { text: 'Lebensdauer: unbegrenzt', icon: InfinityIcon }
+      ]
+    }
+  ]
+};
+
 export default function Solutions() {
   const [activeSection, setActiveSection] = useState('complete-system');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
@@ -190,7 +276,7 @@ export default function Solutions() {
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
 
   // Scrollspy Logic
   useEffect(() => {

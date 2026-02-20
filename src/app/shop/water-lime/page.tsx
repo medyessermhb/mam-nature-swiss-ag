@@ -121,13 +121,65 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  nav: {
+    product: 'Produkt',
+    details: 'Funktionsweise',
+    install: 'Installation',
+    maint: 'Wartung',
+    reports: 'Berichte'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    subtitle: 'Anti-Kalk-Lösung: Effektiv, langlebig und mühelos.',
+    btnAdd: 'In den Warenkorb',
+    priceTBD: 'Preis auf Anfrage',
+    descBold: 'Die Herausforderung durch Kalk: Calcit (harter Kalk) lagert sich in Ihren Rohren und Geräten ab, verursacht Ausfälle und trübt Oberflächen.',
+    desc: "Unsere Lösung: Physikalische Umwandlung. Mam Nature Swiss® Water LIME entfernt Kalk nicht; es verändert seine Struktur. Mithilfe von Permanentmagneten wird anhaftender Calcit in Aragonit umgewandelt, eine nicht haftende Form."
+  },
+  details: {
+    title: 'Warum Physikalische Umwandlung überlegen ist',
+    list: [
+      { label: 'Aktiver Schutz:', text: 'Schützt Rohre, Warmwasserbereiter und Haushaltsgeräte.' },
+      { label: 'Geschütztes Wasser:', text: 'Der natürliche Geschmack, Mineralien und Spurenelemente bleiben unberührt.' },
+      { label: 'Unbegrenzte Kapazität:', text: 'Nachhaltiger, umweltfreundlicher Betrieb ohne Einschränkungen.' },
+      { label: 'Null Wartung:', text: 'Kein Salz, keine Kartuschen, keine Energie, kein Abfall.' }
+    ],
+    reduces: "Die Grenzen traditioneller Wasserenthärter: Sie verändern das Wasser (ersetzen essenzielle Mineralien durch Natrium), erhöhen das bakterielle Risiko und erfordern hohen Wartungsaufwand (Salz, Regeneration und Wasserverschwendung).",
+    specs: {
+      material: { title: 'Technologie', val: 'Umwandlung durch Permanentmagnete (Calcit in Aragonit)' },
+      conn: { title: 'Lebensdauer', val: 'Unbegrenzte Kapazität' },
+      flow: { title: 'Wartung', val: 'Absolut keine' }
+    }
+  },
+  install: {
+    title: 'Installation',
+    cardTitle: 'Einfache & Professionelle Integration',
+    cardText: 'Der Water LIME wird direkt an Ihrer Hauptwasserleitung installiert. Sein kompaktes Design ermöglicht eine einfache Integration in bestehende Sanitäranlagen und bietet sofortigen Schutz für das gesamte Haus.'
+  },
+  maint: {
+    title: 'Wartung & Garantie',
+    maintTitle: 'Null Wartung',
+    maintText: 'Kein Salz, keine Kartuschen, keine Energie, kein Abfall. Das System benötigt nach der Installation absolut keine Wartung.',
+    warrantyTitle: 'Exzellenz-Garantie',
+    warrantyYears: '10 JAHRE',
+    warrantyText: "Hergestellt aus langlebigen Materialien und leistungsstarken Permanentmagneten, ist der Water LIME durch eine umfassende 10-jährige Herstellergarantie abgedeckt."
+  },
+  reports: {
+    title: 'Prüfberichte & Zertifikate',
+    btnPerf: 'Leistungsbericht anzeigen',
+    btnCert: 'Schweizer Zertifizierung ansehen'
+  }
+};
+
 export default function WaterLimeFilterPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const isGerman = language === 'de';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

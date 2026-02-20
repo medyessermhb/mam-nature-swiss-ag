@@ -28,13 +28,24 @@ const CONTENT_FR = {
   promoTitle: "Offre Exclusive"
 };
 
+const CONTENT_DE = {
+  title: "Ihr Warenkorb",
+  empty: "Ihr Warenkorb ist leer.",
+  total: "Gesamt",
+  subtotal: "Zwischensumme",
+  checkout: "Zur Kasse",
+  viewCart: "Warenkorb ansehen",
+  promoTitle: "Exklusives Angebot"
+};
+
 export default function CartSidebar() {
   // Added addToCart here so we can add the promo items
   const { cart, isCartOpen, toggleCart, removeFromCart, updateQuantity, cartTotal, cartCount, addToCart } = useCart();
   const { language } = useLanguage();
 
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const isGerman = language === 'de';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
   const handleViewCart = () => {
     toggleCart();
@@ -112,7 +123,9 @@ export default function CartSidebar() {
       name: isFrench ? 'Filtre à Particules + Water LIME' : 'Particle Filter + Water LIME',
       desc: isFrench
         ? `Complétez votre installation pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
-        : `Complete your setup for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
+        : isGerman
+          ? `Komplettieren Sie Ihre Installation für nur ${promoPrice} ${currencySymbol} (statt ${originalPrice} ${currencySymbol})!`
+          : `Complete your setup for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
       image: '/images/WEBSITE-P/products/particle_+_water_lime.webp'
     };
@@ -128,7 +141,9 @@ export default function CartSidebar() {
       name: isFrench ? 'Filtre Water LIME' : 'Water LIME Filter',
       desc: isFrench
         ? `Ajoutez la protection anti-calcaire pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
-        : `Add anti-limescale protection for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
+        : isGerman
+          ? `Fügen Sie Kalkschutz für nur ${promoPrice} ${currencySymbol} (statt ${originalPrice} ${currencySymbol}) hinzu!`
+          : `Add anti-limescale protection for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
       image: '/images/WEBSITE-P/products/water_lime_vertical.webp'
     };
@@ -207,7 +222,7 @@ export default function CartSidebar() {
                       cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
                     }}
                   >
-                    <PlusCircle size={18} /> {isFrench ? 'Ajouter à la commande' : 'Add to Order'}
+                    <PlusCircle size={18} /> {isFrench ? 'Ajouter à la commande' : isGerman ? 'Zur Bestellung hinzufügen' : 'Add to Order'}
                   </button>
                 </div>
               )}
@@ -230,7 +245,7 @@ export default function CartSidebar() {
 
               {/* VAT Details */}
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#94a3b8' }}>
-                <span>{isFrench ? `Dont TVA (${taxLabel})` : `Includes VAT (${taxLabel})`}</span>
+                <span>{isFrench ? `Dont TVA (${taxLabel})` : isGerman ? `Inkl. MwSt (${taxLabel})` : `Includes VAT (${taxLabel})`}</span>
                 <span>{currencySymbol} {vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
               </div>
             </div>

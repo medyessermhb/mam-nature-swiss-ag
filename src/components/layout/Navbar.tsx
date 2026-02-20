@@ -34,13 +34,14 @@ export default function Navbar() {
   const langLabels: Record<string, string> = {
     en: "🇺🇸 English",
     fr: "🇫🇷 Français",
+    de: "🇩🇪 Deutsch",
   };
 
   const handleLangChange = (lang: string) => {
     if (lang === 'ma') {
       setLanguage('fr');
-    } else if (lang === 'en' || lang === 'fr') {
-      setLanguage(lang as 'en' | 'fr');
+    } else if (lang === 'en' || lang === 'fr' || lang === 'de') {
+      setLanguage(lang as 'en' | 'fr' | 'de');
     } else {
       setLanguage('en');
     }
@@ -119,6 +120,13 @@ export default function Navbar() {
               title="Français"
             >
               🇫🇷 FR
+            </button>
+            <button
+              className={language === 'de' ? 'active' : ''}
+              onClick={() => handleLangChange('de')}
+              title="Deutsch"
+            >
+              🇩🇪 DE
             </button>
           </div>
         </div>

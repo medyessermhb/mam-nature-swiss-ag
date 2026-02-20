@@ -69,10 +69,41 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  tagline: "Reines, gesundes und vitalisiertes Wasser im ganzen Haus, für Ihre Gesundheit.",
+  headers: {
+    company: "Unternehmen",
+    solutions: "Lösungen",
+    support: "Support"
+  },
+  links: {
+    home: "Startseite",
+    solutions: "Lösungen",
+    shop: "Shop",
+    contact: "Kontakt zur Fabrik",
+    complete: "Komplettsystem",
+    lime: "Wasser LIME",
+    particle: "Partikelfilter",
+    fine: "Feinfilter",
+    dynamizer: "Dynamisierer",
+    hydrogen: "Wasserstoff-Booster",
+    faq: "FAQ",
+    guide: "Installationsanleitung",
+    warranty: "Garantie"
+  },
+  legal: {
+    rights: "Alle Rechte vorbehalten.",
+    terms: "Allgemeine Geschäftsbedingungen",
+    privacy: "Datenschutzerklärung",
+    shipping: "Versandbedingungen",
+    returns: "Rückgabe & Garantie"
+  }
+};
+
 export default function Footer() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
 
   return (
     <footer className="footer-container">

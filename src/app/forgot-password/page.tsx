@@ -28,9 +28,22 @@ const CONTENT_FR = {
     error: "Erreur lors de l'envoi. Veuillez réessayer."
 };
 
+const CONTENT_DE = {
+    title: "Passwort zurücksetzen",
+    subtitle: "Geben Sie Ihre E-Mail-Adresse ein, um einen Link zu erhalten",
+    email: "E-Mail-Adresse",
+    btn: "Link senden",
+    loading: "Senden...",
+    back: "Zurück zur Anmeldung",
+    success: "Überprüfen Sie Ihre E-Mail auf den Wiederherstellungslink!",
+    error: "Fehler beim Senden der E-Mail. Bitte versuchen Sie es erneut."
+};
+
 export default function ForgotPasswordPage() {
     const { language } = useLanguage();
-    const content = language === 'fr' ? CONTENT_FR : CONTENT_EN;
+    const isFrench = language === 'fr';
+    const isGerman = language === 'de';
+    const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);

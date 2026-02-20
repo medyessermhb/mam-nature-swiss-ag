@@ -31,9 +31,23 @@ const CONTENT_FR = {
   error: "Email ou mot de passe incorrect."
 };
 
+const CONTENT_DE = {
+  title: "Willkommen zurück",
+  subtitle: "Melden Sie sich an, um auf Ihr Dashboard zuzugreifen",
+  email: "E-Mail-Adresse",
+  password: "Passwort",
+  btn: "Anmelden",
+  loading: "Anmeldung...",
+  noAccount: "Noch kein Konto?",
+  register: "Hier registrieren",
+  error: "Ungültige E-Mail oder Passwort."
+};
+
 export default function LoginPage() {
   const { language } = useLanguage();
-  const content = language === 'fr' ? CONTENT_FR : CONTENT_EN;
+  const isFrench = language === 'fr';
+  const isGerman = language === 'de';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
   const router = useRouter();
   const [email, setEmail] = useState('');
@@ -92,7 +106,7 @@ export default function LoginPage() {
             />
             <div style={{ textAlign: 'right', marginTop: '5px' }}>
               <Link href="/forgot-password" className={styles.link} style={{ fontSize: '13px' }}>
-                {language === 'fr' ? 'Mot de passe oublié ?' : 'Forgot Password?'}
+                {isFrench ? 'Mot de passe oublié ?' : isGerman ? 'Passwort vergessen?' : 'Forgot Password?'}
               </Link>
             </div>
           </div>

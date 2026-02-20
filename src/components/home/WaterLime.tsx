@@ -84,10 +84,39 @@ const CONTENT_FR = {
   benefitMaintDesc: "Pas de sel, pas de cartouches, pas d'énergie, pas de déchets."
 };
 
+const CONTENT_DE = {
+  headline: "Wasser LIME",
+  highlight: "Anti-Kalk-Lösung: Effektiv, langlebig und wartungsfrei.",
+  problemTitle: "Das Kalkproblem",
+  problemText: "Calcit, die harte Form des Kalks, lagert sich in Ihren Rohren und Geräten ab, verursacht Ausfälle und trübt Oberflächen.",
+  limitsTitle: "Die Grenzen von Wasserenthärtern",
+  limits: [
+    { bold: "Verändert das Wasser:", text: " Natrium ersetzt essentielle Mineralien und verändert den Geschmack." },
+    { bold: "Bakterienrisiko:", text: " Kann das Bakterienwachstum fördern." },
+    { bold: "Hoher Wartungsaufwand:", text: " Benötigt Salz, Regeneration und verschwendet Wasser." }
+  ],
+  galleryCalcite: "Calcit (verkrustend)",
+  galleryAragonite: "Aragonit (nicht haftend)",
+  solutionTitle: "Unsere Lösung: Physikalische Umwandlung",
+  solutionTextPrefix: " Wasser LIME entfernt den Kalk nicht, ",
+  solutionTextBold1: "es verändert seine Struktur",
+  solutionTextMiddle: ". Dank Permanentmagneten wird verkrustender Calcit in ",
+  solutionTextBold2: "Aragonit",
+  solutionTextSuffix: " umgewandelt, eine nicht haftende Form.",
+  features: [
+    { bold: "Aktiver Schutz:", text: " Schützt Rohre, Warmwasserbereiter und Haushaltsgeräte." },
+    { bold: "Wasser bleibt erhalten:", text: " Geschmack, Mineralien und Spurenelemente bleiben natürlich vorhanden." }
+  ],
+  benefitCapTitle: "Unbegrenzte Kapazität",
+  benefitCapDesc: "Nachhaltiger und umweltfreundlicher Betrieb.",
+  benefitMaintTitle: "Null Wartung",
+  benefitMaintDesc: "Kein Salz, keine Kartuschen, keine Energie, kein Abfall."
+};
+
 export default function WaterLime() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
 
   return (
     <section className={styles.section}>

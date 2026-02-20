@@ -117,13 +117,64 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  nav: {
+    product: 'Produkt',
+    details: 'Technische Details',
+    install: 'Installation',
+    maint: 'Wartung',
+    reports: 'Berichte'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    subtitle: 'Wasserfeinfilter',
+    btnAdd: 'In den Warenkorb',
+    descBold: 'Wird mit 1 x Filterkartusche geliefert.',
+    desc: "Selektive Filtration: erhält die Struktur und Zusammensetzung des Wassers (z. B. Mineralien): Das bedeutet, dass alle Mineralien und Spurenelemente im Trinkwasser verbleiben."
+  },
+  details: {
+    title: 'Einzigartiges 4-fach-Filtrationssystem',
+    list: [
+      { label: 'Physikalisch:', text: '20 µm und 5 µm Membranfilter' },
+      { label: 'Aktivkohle:', text: 'Adsorptionsfiltration' },
+      { label: 'Aqualen™:', text: 'Adsorbierende Fasern für eine effiziente Filtration von Schwermetallen' },
+      { label: 'Ionisiertes Silber:', text: 'Keimfreiheit in der Filterkartusche, ohne dass Silber ins Trinkwasser gelangt.' }
+    ],
+    reduces: 'Reduziert: Chlor, Chloroform, Pestizide, Petrochemikalien, Phenol, Mikroplastik, Schwermetalle bis zu 97 – 99 %',
+    specs: {
+      material: { title: 'Material', val: 'Gehäuse aus 316L Edelstahl & lebensmittelechte Teile' },
+      conn: { title: 'Anschlüsse', val: '1 Zoll (2 x 3/4 Zoll Adapter inklusive)' },
+      flow: { title: 'Durchflussrate', val: '1,5 m³/h (bei 4 bar)' }
+    }
+  },
+  install: {
+    title: 'Installation',
+    cardTitle: 'Professionelle Installation',
+    cardText: 'Der Wasserfeinfilter wird von einem qualifizierten Klempner an Ihrer Hauptwasserleitung installiert. Sein kompaktes Design ermöglicht eine einfache Integration.'
+  },
+  maint: {
+    title: 'Wartung & Garantie',
+    maintTitle: 'Vereinfachte Wartung',
+    maintText: 'Erforderliche Wartung: Wechsel der Filterkartusche alle 150 m³ (durchschnittlich 1 x pro Jahr)',
+    warrantyTitle: 'Exzellenz-Garantie',
+    warrantyYears: '10 JAHRE',
+    warrantyText: "Das Gehäuse Ihres Filters besteht aus langlebigem medizinischem Edelstahl und ist durch eine 10-jährige Herstellergarantie abgedeckt."
+  },
+  reports: {
+    title: 'Prüfberichte & Zertifikate',
+    btnPerf: 'Leistungsbericht anzeigen',
+    btnCert: 'Schweizer Zertifizierung ansehen'
+  }
+};
+
 export default function FineFilterPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const isGerman = language === 'de';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

@@ -45,15 +45,35 @@ const CONTENT_FR = {
   viewPreview: "Voir l'aperçu"
 };
 
+const CONTENT_DE = {
+  title: "Die Swiss Water Kartusche",
+  subtitle: "Weit mehr als ein Filter – ein echter Schutzschild.",
+  tagline: "UNÜBERTROFFENE SICHERHEIT & REINHEIT",
+  desc1: "Unsere 100% natürliche Technologie, exklusiv von Mam Nature Swiss®, kombiniert natürliche Proteinfasern mit Aktivkohle zu einer vollständigen Adsorption – eine Weltneuheit.",
+  desc2: "Ganzhauslösung (POE): Entfernt Schadstoffe, während im Wasser natürlich vorkommende Mineralien und Spurenelemente erhalten bleiben.",
+  desc3Part1: "Dank ihres selektiven Adsorptionssystems ist diese patentierte Schweizer Erfindung die weltweit einzige zu 100% natürliche Lösung zur Eliminierung von ",
+  desc3Bold: "PFAS, Schwermetallen, Aluminium, Chlor, Fluorid, Pestiziden, Medikamentenrückständen, Industriechemikalien – bis hin zu radioaktiven Substanzen.",
+  specFlowTitle: "Durchflussrate",
+  specFlowValue: "2.000+ Liter/Stunde",
+  specCapTitle: "Kartuschenkapazität",
+  specCapValue: "Mind. 100 m³ pro Kartusche",
+  specMaintTitle: "Wartung",
+  specMaintValue: "10 Min. / Jahr (ohne Werkzeug)",
+  reportsTitle: "Berichte & Zertifizierungen",
+  reportName: "Leistungsbericht",
+  viewPreview: "Vorschau ansehen"
+};
+
 const REPORT_URL = "/images/website-assets/certificates/The_Swiss_Water_Cartridge_Retention_Rates_Certificated_ETH_Zurich.pdf";
 
 export default function WaterCartridge() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoadingPdf, setIsLoadingPdf] = useState(false);
   const { language } = useLanguage();
 
   // Determine content based on language
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
 
   // Helper to handle body scroll lock
   useEffect(() => {
@@ -118,7 +138,7 @@ export default function WaterCartridge() {
                 <div className={styles.reportsGrid}>
                   <div
                     className={styles.reportCard}
-                    onClick={() => setIsModalOpen(true)}
+                    onClick={() => { setIsModalOpen(true); setIsLoadingPdf(true); }}
                   >
                     <FileText className={styles.reportIcon} size={24} />
                     <h4>{content.reportName}</h4>
@@ -136,19 +156,45 @@ export default function WaterCartridge() {
       {isModalOpen && (
         <div
           className={styles.modalOverlay}
-          onClick={() => setIsModalOpen(false)}
+          onClick={() => { setIsModalOpen(false); setIsLoadingPdf(false); }}
           onContextMenu={(e) => e.preventDefault()}
         >
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeButton} onClick={() => setIsModalOpen(false)}>
-              <X size={20} />
-            </button>
-            <iframe
-              src={REPORT_URL}
-              className={styles.modalFrame}
-              sandbox="allow-scripts allow-same-origin"
-              title="Report Preview"
-            />
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px', borderBottom: '1px solid #eee' }}>
+              <span style={{ fontWeight: 600 }}>Document Preview</span>
+              <button className={styles.closeButton} onClick={() => { setIsModalOpen(false); setIsLoadingPdf(false); }} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+                <X size={24} />
+              </button>
+            </div>
+            <div style={{ position: 'relative', width: '100%', height: 'calc(100% - 55px)' }}>
+              {isLoadingPdf && (
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Loading PDF...</p>
+                  </div>
+                </div>
+              )}
+              <object
+                data={REPORT_URL}
+                type="application/pdf"
+                style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
+                title="Document Preview"
+                onLoad={() => setIsLoadingPdf(false)}
+              >
+                <div style={{ padding: '20px', textAlign: 'center', color: 'gray' }}>
+                  <p>Preview not available.</p>
+                  <a href={REPORT_URL} download style={{ color: '#4ade80', textDecoration: 'underline' }}>
+                    Download PDF
+                  </a>
+                </div>
+              </object>
+            </div>
+            <style>{`
+              @keyframes spin {
+                to { transform: rotate(360deg); }
+              }
+            `}</style>
           </div>
         </div>
       )}

@@ -25,10 +25,19 @@ const CONTENT_FR = {
   maintenanceDesc: "Solution totalement automatisée."
 };
 
+const CONTENT_DE = {
+  headline: "Mam Nature Swiss « Wasser PARTIKELFILTER »",
+  subheadline: "Partikelfilter mit automatischer Rückspülung, Druckminderer und 360°-Anschluss.",
+  description: "Kompakte und vollständig integrierte Lösung aus medizinischem Edelstahl (316L).",
+  capacity: "Kapazität: unbegrenzt",
+  maintenanceTitle: "Zéro Wartung",
+  maintenanceDesc: "Vollautomatische Lösung."
+};
+
 export default function ParticleFilter() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
 
   return (
     <section className={styles.section}>

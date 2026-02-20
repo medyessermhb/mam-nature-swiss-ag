@@ -119,13 +119,65 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  nav: {
+    product: 'Produkt',
+    details: 'Funktionsweise',
+    install: 'Installation',
+    maint: 'Wartung',
+    reports: 'Berichte'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    subtitle: 'Komplettes Schutzpaket: Partikelfilter + Anti-Kalk',
+    btnAdd: 'In den Warenkorb',
+    priceTBD: 'Preis auf Anfrage',
+    descBold: 'Das ultimative Schutzpaket: Sedimente filtern und Kalk behandeln in einem Komplettset.',
+    desc: "Dieses Paket kombiniert unsere beiden wichtigsten Systeme für den umfassenden Schutz Ihres Hauses. Sie erhalten den 50µm Partikelfilter zur Entfernung von Sand und Rost sowie das physikalisch basierte Water LIME Anti-Kalk-System zur Vermeidung von Kalkablagerungen. Zusammen als Komplettpaket für maximale Effizienz und Wert angeboten."
+  },
+  details: {
+    title: 'Duale Schutztechnologie',
+    list: [
+      { label: 'Vorfiltration:', text: '50 µm Edelstahlgewebe (Partikelfilter) entfernt Sand, Rost und Sedimente.' },
+      { label: 'Aktive Kalkprävention:', text: 'Permanentmagnete (Water LIME) wandeln Calcit in nicht haftenden Aragonit um.' },
+      { label: 'Geräteschutz:', text: 'Verlängert die Lebensdauer von Boilern, Waschmaschinen und Rohren erheblich.' },
+      { label: 'Umweltfreundlich & Gesund:', text: 'Kein Salz, keine Chemikalien. Gesundes Kalzium und Magnesium verbleiben im Wasser.' }
+    ],
+    reduces: "Reduziert: Grobe Partikel, Sedimente und hartnäckige Kalkablagerungen auf Oberflächen und Heizelementen.",
+    specs: {
+      material: { title: 'Technologie', val: '50µm Gewebe + Magnetische Umwandlung' },
+      conn: { title: 'Anschlüsse', val: '1 Zoll (Standard-Sanitärintegration)' },
+      flow: { title: 'Wartung', val: 'Manuelle Spülung (Partikel) / Keine (Kalk)' }
+    }
+  },
+  install: {
+    title: 'Installation',
+    cardTitle: 'Sequenzielle Professionelle Installation',
+    cardText: 'Das Set wird von einem qualifizierten Klempner direkt an Ihrer Hauptwasserleitung installiert. Der Partikelfilter wird zuerst installiert, um Verunreinigungen aufzufangen, direkt gefolgt vom Water LIME Filter zur Kalkbehandlung. Ihr kompaktes Design ermöglicht eine einfache Integration.'
+  },
+  maint: {
+    title: 'Wartung & Garantie',
+    maintTitle: 'Geringer Wartungsaufwand',
+    maintText: 'Partikelfilter: Spülen Sie das Ventil manuell alle 1-2 Monate, um aufgefangene Ablagerungen zu entfernen. Water LIME: Benötigt nach der Installation absolut keine Wartung.',
+    warrantyTitle: 'Exzellenz-Garantie',
+    warrantyYears: '10 JAHRE',
+    warrantyText: "Hergestellt aus hochwertigem Messing, langlebigem Edelstahl und Permanentmagneten, sind beide Einheiten durch eine umfassende 10-jährige Herstellergarantie abgedeckt."
+  },
+  reports: {
+    title: 'Prüfberichte & Zertifikate',
+    btnPerf: 'Leistungsbericht anzeigen',
+    btnCert: 'Schweizer Zertifizierung ansehen'
+  }
+};
+
 export default function ParticleLimeSetPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const isGerman = language === 'de';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

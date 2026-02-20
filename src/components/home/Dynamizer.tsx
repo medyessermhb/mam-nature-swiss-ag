@@ -134,13 +134,75 @@ const CONTENT_FR = {
   specMaintValue: "Zéro entretien"
 };
 
+const CONTENT_DE = {
+  headerTitle: "THE SWISS WATER DYNAMIZER",
+  tagline1: "Gibt dem Wasser seine ursprüngliche Vitalität zurück.",
+  tagline2: "Die Intelligenz der Natur im Dienste Ihres Wohlbefindens.",
+
+  // Problem Section
+  problemTitle: "Das Problem mit modernem Wasser",
+  problemDesc: "Wasser ist Leben. Modernes Trinkwasser verliert, obwohl es aufbereitet ist, oft seine natürliche Fähigkeit, Zellen tief zu hydratisieren. Zwei Hauptprobleme erklären diesen Verlust der biologischen Effizienz:",
+  problems: [
+    {
+      title: "Geringe zelluläre Bioverfügbarkeit",
+      desc: "Industrielle Aufbereitung verändert die Molekularstruktur von Wasser, wodurch „große Wasser-Cluster“ entstehen, die von Zellen kaum aufgenommen werden können."
+    },
+    {
+      title: "Destrukturiertes Wasser",
+      desc: "Im natürlichen Zustand hat hochwertiges Wasser eine perfekte sechseckige Struktur, die der Schlüssel für eine optimale Hydratation ist. Diese Struktur wird auf dem Weg durch gerade Leitungen zerstört."
+    }
+  ],
+
+  // Solution Section
+  solutionTitle: "Unsere Lösung: Der Swiss Water Dynamisierer",
+  solutionDesc: "Er arbeitet rein physikalisch, um dem Wasser seine wohltuenden Eigenschaften zurückzugeben. Er filtert nicht – er revitalisiert.",
+  solutions: [
+    {
+      title: "Strukturierung & Revitalisierung",
+      desc: "Bricht große Cluster in Mikro-Cluster auf, wodurch das Wasser hochgradig bioverfügbar wird. Stellt die natürliche sechseckige Struktur wieder her."
+    },
+    {
+      title: "Umwandlung von Kalk",
+      desc: "Durch Permanentmagnete und extreme Verwirbelungen wird harter Kalk (Calcit) in weichen Aragonit umgewandelt. Schützt Geräte und sorgt für einen weichen Geschmack."
+    },
+    {
+      title: "Langfristige Stabilisierung",
+      desc: "Dynamisiertes Wasser erlangt höchste biologische Stabilität."
+    }
+  ],
+
+  // Conclusion Section
+  conclusionTitle: "THE SWISS WATER DYNAMIZER",
+  conclusionText: "Deshalb ist es wichtig, Wasser zu trinken, das nicht nur rein und mineralisiert, sondern auch lebendig und strukturiert ist.",
+  pipeStraightTitle: "Gerades Wasserrohr:",
+  pipeStraightDesc: "Wasser verklumpt und verliert seine biophysikalische Kraft.",
+  pipeSpiralTitle: "Spiralförmiges Wasserrohr:",
+  pipeSpiralDesc: "Molekulare Cluster werden aufgelöst und das Wasser gewinnt seine Kraft zurück.",
+
+  // Benefits Section
+  benefitsTitle: "Tägliche Vorteile",
+  benefit1Title: "Ein beispielloser Geschmack",
+  benefit1Desc: "Entdecken Sie ein unglaublich leichtes, gut verträgliches und angenehmes Wasser.",
+  benefit2Title: "Optimale zelluläre Hydratation",
+  benefit2Desc: "Unterstützt eine gute Körperfunktion und hilft, den Säurehaushalt zu reduzieren.",
+  benefit3Title: "Natürliche Kalkumwandlung",
+  benefit3Desc: "Verwandelt harten Kalk in weichen, um Ihre Haushaltsgeräte ohne Salz zu schützen.",
+  benefit4Title: "Unübertroffene Leistung",
+  benefit4Desc: "Mit einer Kapazität von 5.000 Litern/Stunde deckt der Wasser-Dynamisierer den Bedarf des ganzen Hauses.",
+
+  specCapacityTitle: "Kapazität",
+  specCapacityValue: "Unbegrenzt",
+  specMaintTitle: "Wartung",
+  specMaintValue: "Keine"
+};
+
 export default function Dynamizer() {
   const [activeProblem, setActiveProblem] = useState<number | null>(null);
   const [activeSolution, setActiveSolution] = useState<number | null>(null);
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
 
   const toggleProblem = (idx: number) => setActiveProblem(activeProblem === idx ? null : idx);
   const toggleSolution = (idx: number) => setActiveSolution(activeSolution === idx ? null : idx);

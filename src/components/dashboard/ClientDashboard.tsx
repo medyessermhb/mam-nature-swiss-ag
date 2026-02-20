@@ -93,10 +93,53 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  logout: "Abmelden",
+  tabs: { orders: "Meine Bestellungen", support: "Kundensupport" },
+  orders: {
+    title: "Bestellhistorie",
+    id: "Bestell-Nr.",
+    date: "Datum",
+    total: "Gesamt",
+    status: "Status",
+    invoice: "Rechnung",
+    empty: "Keine Bestellungen gefunden."
+  },
+  tickets: {
+    title: "Support-Tickets",
+    newBtn: "Neues Ticket",
+    formTitle: "Neues Ticket erstellen",
+    formCategory: "Kategorie",
+    formSubject: "Betreff",
+    formMessage: "Nachricht",
+    submit: "Senden",
+    cancel: "Abbrechen",
+    empty: "Keine Tickets gefunden.",
+    viewChat: "Chat öffnen",
+    categories: {
+      general: "Allgemeine Frage",
+      warranty: "Garantiefall",
+      technical: "Technischer Support",
+      shipping: "Lieferproblem"
+    },
+    statusOpen: "Offen",
+    statusClosed: "Geschlossen"
+  },
+  status: {
+    paid: "Bezahlt",
+    shipped: "Versandt",
+    delivered: "Geliefert",
+    open: "Offen",
+    closed: "Geschlossen"
+  }
+};
+
 export default function ClientDashboard({ session }: { session: any }) {
   const { language } = useLanguage();
+  const isFrench = language === 'fr';
+  const isGerman = language === 'de';
   const router = useRouter();
-  const content = language === 'fr' ? CONTENT_FR : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
   const [activeTab, setActiveTab] = useState<'orders' | 'support'>('orders');
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
@@ -201,8 +244,8 @@ export default function ClientDashboard({ session }: { session: any }) {
       {/* HEADER SECTION */}
       <div className={styles.header}>
         <div>
-          <h1 className={styles.title}>{language === 'fr' ? 'Mon Espace' : 'Client Dashboard'}</h1>
-          <p className={styles.subtitle}>{session?.user?.email} • {language === 'fr' ? 'Membre depuis 2024' : 'Member since 2024'}</p>
+          <h1 className={styles.title}>{isFrench ? 'Mon Espace' : isGerman ? 'Mein Bereich' : 'Client Dashboard'}</h1>
+          <p className={styles.subtitle}>{session?.user?.email} • {isFrench ? 'Membre depuis 2024' : isGerman ? 'Mitglied seit 2024' : 'Member since 2024'}</p>
         </div>
         <button
           onClick={handleLogout}
@@ -218,10 +261,10 @@ export default function ClientDashboard({ session }: { session: any }) {
         <div className={styles.statCard}>
           <div className={styles.statLabel}><Package size={16} /> {content.tabs.orders}</div>
           <div className={styles.statValue}>{orders ? orders.length : 0}</div>
-          <div className={styles.statTrend}>{language === 'fr' ? 'Commandes totales' : 'Total Orders Placed'}</div>
+          <div className={styles.statTrend}>{isFrench ? 'Commandes totales' : isGerman ? 'Gesamte Bestellungen' : 'Total Orders Placed'}</div>
         </div>
         <div className={styles.statCard}>
-          <div className={styles.statLabel}><Clock size={16} /> {language === 'fr' ? 'Dernière commande' : 'Last Order'}</div>
+          <div className={styles.statLabel}><Clock size={16} /> {isFrench ? 'Dernière commande' : isGerman ? 'Letzte Bestellung' : 'Last Order'}</div>
           <div className={styles.statValue} style={{ fontSize: '1.5rem' }}>
             {orders && orders.length > 0 ? (
               <ClientDate date={orders[0].created_at} fallback="-" />
@@ -232,7 +275,7 @@ export default function ClientDashboard({ session }: { session: any }) {
           <div className={styles.statLabel}><MessageSquare size={16} /> {content.tabs.support}</div>
           <div className={styles.statValue}>{openTicketsCount}</div>
           <div className={styles.statTrend} style={{ color: openTicketsCount > 0 ? '#eab308' : '#64748b' }}>
-            {language === 'fr' ? 'Tickets ouverts' : 'Open Tickets'}
+            {isFrench ? 'Tickets ouverts' : isGerman ? 'Offene Tickets' : 'Open Tickets'}
           </div>
         </div>
       </div>
@@ -246,7 +289,7 @@ export default function ClientDashboard({ session }: { session: any }) {
           <MessageSquare size={18} /> {content.tabs.support}
         </button>
         <Link href="/dashboard/settings" className={styles.tabBtn} style={{ textDecoration: 'none' }}>
-          <span style={{ fontSize: '18px' }}>⚙️</span> {language === 'fr' ? 'Paramètres' : 'Settings'}
+          <span style={{ fontSize: '18px' }}>⚙️</span> {isFrench ? 'Paramètres' : isGerman ? 'Einstellungen' : 'Settings'}
         </Link>
 
         {activeTab === 'orders' && (

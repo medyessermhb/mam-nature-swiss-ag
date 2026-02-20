@@ -153,13 +153,84 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  nav: {
+    overview: 'ÜBERSICHT',
+    technical: 'TECHNISCHE DATEN',
+    components: 'KOMPONENTEN'
+  },
+  overview: {
+    title: 'Mam Nature Komplettsystem',
+    desc: 'Unsere fortschrittliche Filtertechnologie sorgt jeden Tag für sauberes, sicheres Trinkwasser. Erleben Sie den Unterschied mit unserer umweltfreundlichen Lösung für gesundheitsbewusste Konsumenten.',
+    benefits: [
+      'Entfernt 99% aller Schadstoffe für reinste Hydratation.',
+      'Benutzerfreundliches Design für einfache Installation und Wartung.',
+      'Ökologische Materialien fördern Nachhaltigkeit und Gesundheit.'
+    ],
+    subtitle: 'Mam Nature Swiss - unsere Lösung für das Wasser in Ihrem gesamten Haus:',
+    components: [
+      { bold: 'WATER LIME:', text: 'Anti-Kalk - rein physikalische Kalkbehandlung' },
+      { bold: 'WATER PARTICLE FILTER:', text: '40 μm + automatische Rückspülung + bleifrei' },
+      { bold: 'WATER FINE FILTER:', text: 'Filterung von Chlor + Schwermetallen + Pestiziden' },
+      { bold: 'WATER DYNAMIZER:', text: 'Einzigartiger Geschmack & unglaublich weiche Haut' }
+    ]
+  },
+  technical: {
+    title: 'Technische Daten',
+    specs: [
+      { label: 'Installation:', text: 'Anschluss nach der Wasseruhr - Kaltwasser max. 38°C', icon: Plug },
+      { label: 'Materialien:', text: 'Alle wasserführenden Teile des Gesamtsystems aus 316L Edelstahl. Alle nichtmetallischen Teile sind lebensmittelecht.', icon: Shield },
+      { label: 'Kapazität:', text: 'Unbegrenzt für LIME, PARTIKELFILTER & DYNAMIZER; 150 m³ bzw. 1 Jahr pro Kartusche für FEINFILTER', icon: InfinityIcon },
+      { label: 'Durchflusskapazität:', text: '1,5 m³/h (bei 4 bar Wasserdruck)', icon: Gauge },
+      { label: 'Wartungskosten:', text: 'Keine für LIME, PARTIKELFILTER & DYNAMIZER. FEINFILTER: Alle 150 m³ / 1 Jahr einfacher Kartuschenwechsel', icon: Euro },
+      { label: 'Abmessungen (HxBxT):', text: '850 mm x 850 mm x 180 mm', icon: Ruler },
+      { label: 'Gewicht:', text: '27,8 kg', icon: Weight },
+      { label: 'Einzigartiges 5-fach-Filtersystem:', text: 'PARTIKELFILTER: Physikalischer Filter 40 μm. FEINFILTER: Membranfilter mit 20 µm & 5 µm, Aktivkohle, AqualenTM, ionisiertes Silber.', icon: Filter },
+      { label: 'Selektive Filtration:', text: 'Reduziert Chlor, Chloroform, Pestizide, Petrochemikalien, Mikroplastik und Schwermetalle (97-99%). Erhält gesunde Mineralien.', icon: FlaskConical },
+      { label: 'Betriebsdruck:', text: 'Max. 6,5 bar; 0,1 bar Druckverlust nur bei Eingangsdruck <= 1,5 bar', icon: Gauge },
+      { label: 'Garantie:', text: '10 Jahre (Zertifiziert durch Swiss Safety Center auf Druckfestigkeit bis 16 bar)', icon: Award }
+    ],
+    btnShop: 'Im Shop ansehen'
+  },
+  components: {
+    title: 'Enthaltene Komponenten',
+    items: [
+      {
+        title: 'WATER LIME',
+        desc: 'Auf physikalischer Basis: eine bewährte Alternative zur Wasserenthärtung. Verhindert harte Kalkablagerungen.',
+        link: '/solutions/water-lime',
+        img: '/images/WEBSITE-P/products/water_lime_vertical.webp'
+      },
+      {
+        title: 'PARTIKELFILTER',
+        desc: 'Der Swiss Made bleifreie Partikelfilter (316L Edelstahl) mit selbstreinigender Backwash-Technologie.',
+        link: '/solutions/particle-filter',
+        img: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp'
+      },
+      {
+        title: 'FEINFILTER',
+        desc: 'Einzigartiges 4-fach-Filtersystem: Physikalisch (20 µm & 5 µm), Aktivkohle, AqualenTM und ionisiertes Silber.',
+        link: '/solutions/fine-filter',
+        img: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png'
+      },
+      {
+        title: 'Der Swiss Water DYNAMIZER',
+        desc: 'Strukturiert und revitalisiert das Wasser. Führt zu einem weichen Geschmack und besserer Zellhydratation.',
+        link: '/solutions/dynamizer',
+        img: '/images/WEBSITE-P/products/DYNAMIZER.webp'
+      }
+    ],
+    btnLearn: 'Mehr erfahren'
+  }
+};
+
 export default function CompleteSystem() {
   const [activeSection, setActiveSection] = useState('presentation');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {

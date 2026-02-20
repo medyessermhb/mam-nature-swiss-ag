@@ -181,6 +181,89 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  headline: {
+    line1: "Absolute",
+    line2: "Einfachheit.",
+    line3: "Ökonomisch & Ökologisch."
+  },
+  features: {
+    cartridge: {
+      title: "Die Swiss Water Kartusche",
+      text: "Mehr als nur Filtration. Ein Schutzschild, das perfekt gefiltertes, weiches, natürlich mineralisiertes und energetisiertes Wasser bietet."
+    },
+    dynamizer: {
+      title: "Der Swiss Water Dynamisierer",
+      text: "Die Intelligenz der Natur im Dienste des Wohlbefindens."
+    }
+  },
+  cta: "Verwandeln Sie Ihr Wasser",
+  benefits: [
+    {
+      title: "Körperpflege",
+      texts: [
+        "Ihre Haut absorbiert. Geben Sie ihr Wasser, das heilt.",
+        "Ihre Haut verdient Besseres als Chlor und PFAS."
+      ],
+      image: "/images/WEBSITE-P/composents/SHOWER.webp"
+    },
+    {
+      title: "Geschmack",
+      texts: [
+        "Reinheit in jeder Tasse. Exzellenz im Geschmack.",
+        "Aufguss für Aufguss Exzellenz."
+      ],
+      image: "/images/WEBSITE-P/composents/COFFEE.webp"
+    },
+    {
+      title: "Gesundheit",
+      texts: [
+        "Bio gekauft. Giftig beim Waschen. Jetzt nicht mehr.",
+        "Bio gekauft, rein gewaschen. Endlich."
+      ],
+      image: "/images/WEBSITE-P/composents/WASHING_VEGIES.webp"
+    },
+    {
+      title: "Haltbarkeit",
+      texts: [
+        "Weniger Kalk, mehr Lebensdauer für Ihre Geräte und Sie.",
+        "Ihre Haushaltsgeräte verdienen Exzellenz. Ihr Körper auch."
+      ],
+      image: "/images/WEBSITE-P/composents/WASHING_MACHINE.webp"
+    },
+    {
+      title: "Hydratation",
+      texts: [
+        "Das einzige Wasser, das die Sprache des Körpers spricht.",
+        "Das Wasser, das die Natur für Sie vorgesehen hat."
+      ],
+      image: "/images/WEBSITE-P/composents/WATER_DRINKING.webp"
+    }
+  ],
+  products: [
+    {
+      id: 'complete',
+      name: 'Komplettset',
+      image: "/images/products/autobackwash/complete_set_aqmos_auto_backwash.webp",
+      outputPoint: { x: 80, y: 75 },
+      mobileOutputPoint: { x: 10, y: 80 }
+    },
+    {
+      id: 'eco',
+      name: 'Eco Set',
+      image: "/images/products/autobackwash/eco_set_aqmos_auto_backwash.webp",
+      outputPoint: { x: 80, y: 25 },
+      mobileOutputPoint: { x: 10, y: 10 },
+      mobileTrunkControlPoint: { x: 10, y: 80 }
+    }
+  ],
+  trust: {
+    swiss: "Hergestellt in der Schweiz",
+    warranty: "Lebenslange Garantie",
+    eco: "Umweltfreundlich"
+  }
+};
+
 // --- COMPONENTS ---
 
 const FeatureBlock = ({ title, text, delay }: { title: string, text: string, delay: number }) => (
@@ -507,7 +590,7 @@ export default function Hero() {
   const dropletRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
 
   // Auto-play slider
   useEffect(() => {

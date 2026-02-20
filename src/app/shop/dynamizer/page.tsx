@@ -146,13 +146,78 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  nav: {
+    product: 'Produkt',
+    benefits: 'Vorteile',
+    details: 'Technische Details',
+    science: 'Wissenschaft',
+    install: 'Installation',
+    maint: 'Wartung'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    tagline: 'Die Intelligenz der Natur im Dienste Ihres Wohlbefindens.',
+    descBold: 'Geben Sie Ihrem Wasser seine ursprüngliche Vitalität zurück mit The Swiss Water Dynamizer.',
+    desc: "The Swiss Water Dynamizer wirkt rein physikalisch, um die vorteilhaften Eigenschaften des Wassers wiederherzustellen. Er filtert nicht – er revitalisiert.",
+    btnAdd: 'In den Warenkorb'
+  },
+  benefits: {
+    title: 'Vorteile für Sie und Ihre Familie',
+    cards: [
+      { title: 'Außergewöhnlicher Geschmack', text: 'Entdecken Sie weiches, bemerkenswert bekömmliches und angenehmes Wasser zum Trinken.' },
+      { title: 'Optimale zelluläre Hydratation', text: 'Unterstützt die richtige Körperfunktion.' },
+      { title: 'Reduzierung von Kalkablagerungen', text: 'Schützt Ihre Geräte und Oberflächen auf natürliche Weise ohne Salz oder Chemikalien.' },
+      { title: 'Unerreichte Leistung', text: 'Mit einer Verarbeitungskapazität von 5.000 Litern/Stunde erfüllt er die Bedürfnisse des ganzen Hauses.' }
+    ]
+  },
+  details: {
+    title: 'Das Problem & Die Lösung',
+    intro: 'Wasser ist Leben. Dennoch verliert modernes Trinkwasser, auch wenn es behandelt ist, oft seine natürliche Fähigkeit, unsere Zellen tiefgreifend zu hydratisieren. Es ist daher essenziell, Wasser zu konsumieren, das nicht nur rein und mineralisiert, sondern auch lebendig und strukturiert ist.',
+    problem: {
+      title: 'Das Problem mit modernem Wasser',
+      p1: { title: 'Geringe zelluläre Bioverfügbarkeit', text: 'Industrielle Behandlungen und Demineralisierung verändern die molekulare Struktur des Wassers und erzeugen "große Wassermolekül-Cluster", die von unseren Zellen kaum aufgenommen werden.' },
+      p2: { title: 'Destrukturiertes Wasser', text: 'Im Naturzustand hat hochwertiges Wasser eine perfekte hexagonale Struktur, der Schlüssel zu optimaler Hydratation. Diese für unseren Körper lebenswichtige Struktur wird auf ihrem Weg zu unserem Wasserhahn leider zerstört.' }
+    },
+    solution: {
+      title: 'Die Lösung: Ihre dreifache Wirkung',
+      s1: { title: '1. Umstrukturierung und Revitalisierung', text: 'Bricht große Wassermolekül-Cluster in Mikro-Cluster auf, wodurch Wasser für Ihre Zellen hochgradig bioverfügbar wird. Gleichzeitig überträgt er natürliche Frequenzen und harmonische Schwingungen auf das Wasser und stellt seine natürliche hexagonale Struktur wieder her.' },
+      s2: { title: '2. Kalkumwandlung', text: 'Durch eine Kombination von Magnetfeldern mit präziser Intensität und Ausrichtung wird Kalk (harter Calcit) in weichen Aragonit umgewandelt.', quote: 'Hinweis: Kalk ist nichts anderes als Kalzium und Magnesium... Eine verantwortungsvolle Behandlung eliminiert sie nicht, sondern erweicht sie...' },
+      s3: { title: '3. Langzeitstabilisierung', text: 'Dynamisiertes Wasser erhält eine biologisch stabile Struktur, die über die Zeit anhält.' }
+    },
+    specs: {
+      flow: { title: 'Durchflussrate', val: '5.000 L/Stunde' },
+      cap: { title: 'Kapazität', val: 'Unbegrenzt' },
+      maint: { title: 'Wartung', val: 'Keine' }
+    }
+  },
+  install: {
+    title: 'Installation',
+    cardTitle: 'Professionelle Installation',
+    cardText: 'Der Dynamizer wird von einem qualifizierten Klempner an Ihre Hauptwasserleitung angeschlossen. Sein kompaktes Design ermöglicht eine einfache Integration in Ihr bestehendes System.'
+  },
+  maint: {
+    title: 'Wartung & Garantie',
+    maintTitle: 'Keine Wartung',
+    maintText: 'The Swiss Water Dynamizer ist für einen jahrzehntelangen Betrieb ganz ohne Wartung ausgelegt. Nach der Installation müssen Sie sich um nichts mehr kümmern.',
+    warrantyTitle: 'Exzellenz-Garantie',
+    warrantyYears: '10 JAHRE',
+    warrantyText: 'Ihr Dynamizer besteht aus langlebigem medizinischem Edelstahl und ist durch eine 10-jährige Herstellergarantie abgedeckt.'
+  },
+  science: {
+    title: 'Wissenschaft & Nützliche Links',
+    btnCert: 'ISO Zertifikat'
+  }
+};
+
 export default function DynamizerPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const isGerman = language === 'de';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

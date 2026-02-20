@@ -120,13 +120,68 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  nav: {
+    overview: 'ÜBERSICHT',
+    technical: 'TECHNISCHE DATEN',
+    other: 'WEITERE LÖSUNGEN'
+  },
+  overview: {
+    title: 'WASSER PARTIKELFILTER',
+    desc: "Mam Nature Swiss präsentiert stolz den weltweit ersten bleifreien Partikelfilter \"Swiss Made\" aus hochwertigem 316L Edelstahl. Seine selbstreinigende* Backwash-Technologie funktioniert ohne Wartungskosten. Im Gegensatz zu herkömmlichen Partikelfiltern, die Schadstoffe über Monate ansammeln, verhindert unsere Technologie schädliche Ablagerungen und Bakterienwachstum und sorgt so für saubereres Wasser in Ihrem Haus.",
+    btnShop: 'Im Shop ansehen'
+  },
+  technical: {
+    title: 'Technische Daten',
+    specs: {
+      materials: { label: 'Materialien:', text: 'Alle Metallteile (Anschlussstück, Filtergewebe etc.) aus 316L Edelstahl' },
+      quality: { label: 'Qualität:', text: 'Alle nichtmetallischen Teile sind lebensmittelecht' },
+      costs: { label: 'Wartungskosten:', text: 'Keine Wartungskosten' },
+      maintenance: { label: 'Benötigte Wartung:', text: 'Rückspülung (Backwash) 1 x / Monat oder bei festgestellter Druckminderung' },
+      connections: { label: 'Anschlüsse:', text: '1 Zoll (2 x 3/4 Zoll Adapter enthalten)' },
+      flow: { label: 'Durchflusskapazität:', text: '4,2 m³ / h (bei 4 bar Wasserdruck)' },
+      lifetime: { label: 'Lebensdauer / Kapazität:', text: 'Unbegrenzt' }
+    }
+  },
+  otherSolutions: {
+    title: 'Entdecken Sie unsere anderen Lösungen',
+    btnLearn: 'Mehr erfahren',
+    items: [
+      {
+        title: 'WATER LIME',
+        desc: 'Eine bewährte Alternative zu herkömmlichen Wasserenthärtungsanlagen auf rein physikalischer Basis.',
+        link: '/solutions/water-lime',
+        img: '/images/WEBSITE-P/products/water_lime_vertical.webp'
+      },
+      {
+        title: 'FEINFILTER',
+        desc: 'Einzigartiges 4-Stufen-Filtersystem: Physikalisch, Aktivkohle, AqualenTM und ionisiertes Silber.',
+        link: '/solutions/fine-filter',
+        img: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png'
+      },
+      {
+        title: 'Der Swiss Water DYNAMIZER',
+        desc: 'Strukturiert und revitalisiert das Wasser. Führt zu weichen Geschmack und besserer Zellhydratation.',
+        link: '/solutions/dynamizer',
+        img: '/images/WEBSITE-P/products/DYNAMIZER.webp'
+      },
+      {
+        title: 'KOMPLETTSET',
+        desc: 'Unsere Komplettlösung für reines, gesundes und revitalisiertes Wasser im ganzen Haus.',
+        link: '/solutions/mam-nature-complete-system',
+        img: '/images/WEBSITE-P/products/COMPLETE_SET_PLUS.webp'
+      }
+    ]
+  }
+};
+
 export default function ParticleFilterSolution() {
   const [activeSection, setActiveSection] = useState('presentation');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {

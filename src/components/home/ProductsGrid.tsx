@@ -447,6 +447,213 @@ const PRODUCTS_FR: ProductType[] = [
   }
 ];
 
+const PRODUCTS_DE: ProductType[] = [
+  // 1. THE ESSENTIAL
+  {
+    id: 'mam-nature-essential-set',
+    name: 'THE ESSENTIAL',
+    subtitle: 'Für das ganze Haus',
+    slug: 'essential',
+    priceKey: 'mam-nature-essential-set',
+    image: '/images/WEBSITE-P/products/essential.webp',
+    imageHeight: 300,
+    features: [
+      "Aus medizinischem Edelstahl, 10 Jahre Garantie, gebaut für ein Leben lang.",
+      "Außergewöhnliches Wasser im ganzen Haus: Duschen, Trinken, Kochen, Tee, Kaffee…",
+      "Wandelt Kalk um & filtert Partikel und Schadstoffe wie Chlor & PFAS.",
+      "Reinigt Wasser auf natürliche Weise, ohne Strom, ohne Abfall, ohne Chemie.",
+      "Wartung: eine Kartusche pro Jahr, 10 Minuten (kein Werkzeug erforderlich)."
+    ],
+    sliderGroups: SHARED_SLIDER_GROUPS
+  },
+  // 2. THE ESSENTIAL PLUS
+  {
+    id: 'mam-nature-essential-plus',
+    name: 'THE ESSENTIAL PLUS',
+    subtitle: 'Für das ganze Haus',
+    slug: 'essential-plus',
+    priceKey: 'mam-nature-essential-plus',
+    image: '/images/WEBSITE-P/products/essential_plus.webp',
+    imageHeight: 300,
+    features: [
+      "Aus medizinischem Edelstahl, 10 Jahre Garantie, gebaut für ein Leben lang.",
+      "Außergewöhnliches Wasser im ganzen Haus: Duschen, Trinken, Kochen, Tee, Kaffee…",
+      "Wandelt Kalk um & filtert Partikel und Schadstoffe wie Chlor & PFAS.",
+      "Reinigt Wasser auf natürliche Weise, ohne Strom, ohne Abfall, ohne Chemie.",
+      "Wartung: eine Kartusche pro Jahr, 10 Minuten (kein Werkzeug erforderlich)."
+    ],
+    sliderGroups: SHARED_SLIDER_GROUPS
+  },
+  // 3. ECO SET
+  {
+    id: 'eco-set',
+    name: 'ECO SET',
+    subtitle: 'Für das ganze Haus',
+    slug: 'eco-set',
+    priceKey: 'mam-nature-eco-set',
+    image: '/images/products/autobackwash/eco_set_aqmos_auto_backwash.webp',
+    imageHeight: 320,
+    features: [
+      "Aus medizinischem Edelstahl, 10 Jahre Garantie.",
+      "Außergewöhnliches Wasser im ganzen Haus.",
+      "Wandelt Kalk um & filtert Partikel und Schadstoffe wie Chlor & PFAS.",
+      "Kein Strom, kein Abfall, keine Chemie.",
+      "Wartung: eine Kartusche pro Jahr, 10 Minuten (kein Werkzeug erforderlich)."
+    ],
+    sliderGroups: SHARED_SLIDER_GROUPS
+  },
+  // 4. ECO SET PLUS
+  {
+    id: 'eco-set-plus',
+    name: 'ECO SET PLUS',
+    subtitle: 'Für das ganze Haus',
+    slug: 'eco-set-plus',
+    priceKey: 'mam-nature-eco-set-plus',
+    image: '/images/products/autobackwash/eco_set_plus_aqmos_auto_backwash.webp',
+    imageHeight: 300,
+    features: [
+      "Aus medizinischem Edelstahl, 10 Jahre Garantie, gebaut für ein Leben lang.",
+      "Außergewöhnliches Wasser im ganzen Haus: Duschen, Trinken, Kochen, Tee, Kaffee…",
+      "Wandelt Kalk um & filtert Partikel und Schadstoffe wie Chlor & PFAS.",
+      "Kein Strom, kein Abfall, keine Chemie.",
+      "Wartung: eine Kartusche pro Jahr, 10 Minuten (kein Werkzeug erforderlich)."
+    ],
+    sliderGroups: SHARED_SLIDER_GROUPS
+  },
+  // 5. COMPLETE SET
+  {
+    id: 'complete-set',
+    name: 'KOMPLETTSET',
+    subtitle: 'Für das ganze Haus',
+    slug: 'complete-set',
+    priceKey: 'mam-nature-water-treatment-complete-set',
+    image: '/images/products/autobackwash/complete_set_aqmos_auto_backwash.webp',
+    imageHeight: 320,
+    features: [
+      "Aus medizinischem Edelstahl, 10 Jahre Garantie.",
+      "Beinhaltet den Dynamizer für revitalisiertes und strukturiertes Wasser.",
+      "Außergewöhnliches Wasser im ganzen Haus.",
+      "Wandelt Kalk um, filtert Partikel und Schadstoffe (95-99%).",
+      "Kein Strom, kein Abfall, keine Chemie.",
+      "Wartung: eine Kartusche pro Jahr, 10 Minuten."
+    ],
+    sliderGroups: SHARED_SLIDER_GROUPS
+  },
+  // 6. COMPLETE SET PLUS
+  {
+    id: 'complete-set-plus',
+    name: 'KOMPLETTSET PLUS',
+    subtitle: 'Für das ganze Haus',
+    slug: 'complete-set-plus',
+    priceKey: 'mam-nature-water-treatment-complete-set-plus',
+    image: '/images/products/autobackwash/complete_set_plus_aqmos_auto_backwash.webp',
+    imageHeight: 300,
+    features: [
+      "Aus medizinischem Edelstahl, 10 Jahre Garantie.",
+      "Beinhaltet den Dynamizer für revitalisiertes und strukturiertes Wasser.",
+      "Außergewöhnliches Wasser im ganzen Haus.",
+      "Wandelt Kalk um, filtert Partikel und Schadstoffe (95-99%).",
+      "Kein Strom, kein Abfall, keine Chemie.",
+      "Wartung: eine Kartusche pro Jahr, 10 Minuten."
+    ],
+    sliderGroups: SHARED_SLIDER_GROUPS
+  },
+  // 7. WATER PARTICLE FILTER
+  {
+    id: 'particle-filter',
+    name: 'WASSER PARTIKELFILTER',
+    subtitle: 'Einzelkomponente',
+    slug: 'particles-filter',
+    priceKey: 'water-particle-filter',
+    image: '/images/products/particle_filter/particle_filter_auto_backwash_front.webp',
+    imageHeight: 320,
+    features: [
+      "Die erste Schutzlinie Ihres Systems.",
+      "Eliminiert Sand und Ablagerungen mit automatischer Rückspülung. Ohne Wartung."
+    ]
+  },
+  // 8. WATER LIME
+  {
+    id: 'water-lime',
+    name: 'WASSER LIME',
+    subtitle: 'Anti-Kalk-Lösung',
+    slug: 'water-lime',
+    priceKey: 'mam-nature-water-lime',
+    image: '/images/WEBSITE-P/products/water_lime_vertical.webp',
+    imageHeight: 320,
+    features: [
+      "Physikalische Umwandlung von Kalk.",
+      "Schützt Haushaltsgeräte.",
+      "Erhält gesundes Calcium und Magnesium.",
+      "Null Salz, null Strom, null Chemie.",
+      "Unbegrenzte Kapazität."
+    ]
+  },
+  // 9. THE SWISS WATER DYNAMIZER
+  {
+    id: 'dynamizer',
+    name: 'DER SWISS WATER DYNAMIZER',
+    subtitle: 'Einzelkomponente',
+    slug: 'dynamizer',
+    priceKey: 'the-swiss-water-dynamizer',
+    image: '/images/WEBSITE-P/products/DYNAMIZER.webp',
+    imageHeight: 320,
+    features: [
+      "100% physikalische Wirkung zur Wiederherstellung positiver Eigenschaften von Leitungswasser.",
+      "Revitalisiert und rekonstruiert Wasser auf molekularer Ebene.",
+      "Sorgt für optimal hydrierte Zellen und extrem angenehmen Geschmack.",
+      "Garantierte Hydratation ohne Strom oder Austausch."
+    ]
+  },
+  // 10. PARTICLE & LIME SET
+  {
+    id: 'particle-lime-set',
+    name: 'PARTIKEL & KALK SET',
+    subtitle: 'Schutz vor Sedimenten + Kalk',
+    slug: 'particle-lime-set',
+    priceKey: 'mam-nature-particle-lime-set',
+    image: '/images/products/particle_filter/water_lime_particle_filter_auto_backwash.webp',
+    imageHeight: 300,
+    features: [
+      "Doppelter Schutz für Leitungen und Geräte.",
+      "Stoppt Sand und Rost mit automatischer Rückspülung.",
+      "Kein Salz, keine Chemie, kein Abfall.",
+      "Wartungsfreier Kalkschutz."
+    ]
+  },
+  // 11. SWISS HYDROGEN BOOSTER
+  {
+    id: 'hydrogen-booster',
+    name: 'SWISS HYDROGEN BOOSTER',
+    subtitle: 'Medizinprodukt Klasse 1',
+    slug: 'hydrogen-booster',
+    priceKey: 'swiss-hydrogen-booster',
+    image: '/images/WEBSITE-P/products/HYDROGEEN_BOOSTER.webp',
+    imageHeight: 320,
+    features: [
+      "Höchste Konzentration auf dem Markt: 7500 ppb molekularer Wasserstoff.",
+      "Schnelles Aufladen in nur 1 Stunde.",
+      "Bis zu 15 Anwendungen mit einer Aufladung.",
+      "Tragbar und einfach, um freie Radikale zu bekämpfen."
+    ]
+  },
+  // 12. SWISS WATER CARTRIDGE
+  {
+    id: 'cartridge',
+    name: 'SWISS KARTUSCHE',
+    subtitle: 'Ersatzkartusche',
+    slug: 'cartridge',
+    priceKey: 'water-fine-filter-cartridge',
+    image: '/images/WEBSITE-P/products/cartridge.webp',
+    imageHeight: 320,
+    features: [
+      "Ersatzkartusche für Ihren Wasserfeinfilter nach max. 150 m³ bzw. 1 Jahr.",
+      "Entfernt unzählige Schadstoffe wie PFAS, Schwermetalle etc.",
+      "Einfache und werkzeuglose Installation."
+    ]
+  }
+];
+
 const CONTENT_UI = {
   en: {
     headerTitle: "All Products",
@@ -469,14 +676,25 @@ const CONTENT_UI = {
     sortPriceLow: "Prix : Croissant",
     sortPriceHigh: "Prix : Décroissant",
     layoutTitle: "Nos Produits"
+  },
+  de: {
+    headerTitle: "Alle Produkte",
+    headerDesc: "Entdecken Sie unsere in der Schweiz entwickelten Lösungen für reines und gesundes Wasser zu Hause.",
+    sortName: "Nach Name sortieren",
+    sortNameAZ: "Name: A-Z",
+    sortNameZA: "Name: Z-A",
+    sortPrice: "Nach Preis sortieren",
+    sortPriceLow: "Preis: Aufsteigend",
+    sortPriceHigh: "Preis: Absteigend",
+    layoutTitle: "Unsere Produkte"
   }
 };
 
 export default function ProductsGrid() {
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const products = isFrench ? PRODUCTS_FR : PRODUCTS_EN;
-  const ui = isFrench ? CONTENT_UI.fr : CONTENT_UI.en;
+  const products = isFrench ? PRODUCTS_FR : language === 'de' ? PRODUCTS_DE : PRODUCTS_EN;
+  const ui = CONTENT_UI[language as keyof typeof CONTENT_UI] || CONTENT_UI.en;
 
   const [sortedProducts, setSortedProducts] = useState(products);
 

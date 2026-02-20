@@ -291,13 +291,150 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  nav: {
+    product: 'Produkt',
+    usages: 'Anwendungen',
+    details: 'Technische Details',
+    install: 'Installation',
+    maint: 'Wartung',
+    reports: 'Berichte'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    btnAdd: 'In den Warenkorb',
+    features: [
+      "Aus medizinischem Edelstahl gefertigt, 10 Jahre Garantie, gebaut für ein ganzes Leben.",
+      "Enthält den Dynamizer für revitalisiertes und restrukturiertes Wasser",
+      "Außergewöhnliches Wasser im ganzen Haus: Duschen, Trinken, Kochen, Tee, Kaffee…",
+      "Wandelt Kalk um und behandelt Partikel sowie Schadstoffe bei gleichzeitiger Erhaltung der natürlichen Mineralien",
+      "Reinigt Wasser auf natürliche Weise, ohne Strom, ohne Abfall, ohne Chemie.",
+      "Wartung: eine Kartusche pro Jahr, 10 Minuten (kein Werkzeug erforderlich)."
+    ]
+  },
+  usages: {
+    title: 'Perfektes Wasser für jeden Zweck',
+    desc: 'Genießen Sie reines, gesundes und revitalisiertes Wasser an jedem Wasserhahn. Unser System verändert Ihren Alltag, indem es die Wasserqualität für all Ihre Anwendungen verbessert.',
+    cards: [
+      { title: 'Trinken', text: 'Reines Quellwasser, frei von Verunreinigungen', icon: GlassWater, img: '/images/WEBSITE-P/drinking_big.webp' },
+      { title: 'Kochen', text: 'Entfalten Sie die Aromen Ihrer Speisen und bewahren Sie die Nährstoffe mit wasser frei von Verunreinigungen', icon: Utensils, img: '/images/WEBSITE-P/washing_big.webp' },
+      { title: 'Tee & Kaffee', text: 'Bereiten Sie Ihre Heißgetränke mit wasser frei von Verunreinigungen zu', icon: Coffee, img: '/images/WEBSITE-P/coffee_big.webp' },
+      { title: 'Dusche & Bad', text: 'Schützen Sie Ihre Haut und Haare mit weichem und schadstofffreiem Wasser für ein geschmeidiges Gefühl.', icon: ShowerHead, img: '/images/WEBSITE-P/shower_big.webp' }
+    ]
+  },
+  details: {
+    title: 'Technische Details in 4 Schritten',
+    lime: {
+      title: '1. WATER LIME',
+      summary: 'Physikalische Umwandlung von Kalkstein zur Vermeidung hartnäckiger Ablagerungen. Unbegrenzte Kapazität und wartungsfrei.',
+      content: {
+        h4: 'Effektiv, langlebig und mühelos.',
+        quote: 'Hinweis: Kalk ist nichts anderes als Kalzium und Magnesium, die für das biologische Gleichgewicht des Wassers wichtig sind. Nur die ausfallende Form ist problematisch; eine verantwortungsvolle Behandlung eliminiert den Kalk nicht, sondern erweicht ihn, was harte Ablagerungen verhindert und gleichzeitig die natürlich im Wasser vorkommenden Mineralien und Spurenelemente bewahrt.',
+        challengeTitle: 'Die Herausforderung:',
+        challenge: 'Calcit, die harte Form von Kalkstein im Wasser, bildet Ablagerungen, die technische (Fehlfunktionen und verkürzte Lebensdauer von Geräten) und ästhetische (stumpfe Oberflächen) Schäden verursachen.',
+        limitsTitle: 'Die Grenzen traditioneller Lösungen:',
+        limits: 'Salzbasierte Wasserenthärter tauschen Kalzium- und Magnesiumionen gegen Natrium aus und entfernen Mineralien (demineralisiertes Wasser ist gesundheitsgefährdend). Dadurch wird die Zusammensetzung und der Geschmack des Wassers ernsthaft beeinträchtigt, sie erfordern regelmäßige & teure Wartung und verursachen eine unzulässige Bakterienbelastung.',
+        solutionTitle: 'Mam Nature Swiss® Water Lime: Eine physikalische Umwandlung von Kalk.',
+        solution: 'Unser Gerät entfernt keinen Kalk, sondern verändert dessen Kristallstruktur durch die Wirkung von Permanentmagneten. Es wandelt Calcit (kalkbildend) in Aragonit (nicht haftend) um.',
+        benefitsTitle: 'Die direkten Vorteile:',
+        benefitsList: [
+          'Aktiver Schutz: Reduzierung fester Ablagerungen in Rohren, Boilern und Geräten.',
+          'Geschütztes Wasser: Erhält den Geschmack, die Mineralien und die Spurenelemente, die natürlich im Wasser vorhanden sind.',
+          'Absolute Einfachheit, wirtschaftlich und ökologisch: Keine Verbrauchsmaterialien (Salz, Kartuschen), keine Energie, keine Wasserverschwendung.'
+        ],
+        specs: 'Kapazität: unbegrenzt<br>Wartung: Keine.'
+      }
+    },
+    particle: {
+      title: '2. WATER PARTICLE FILTER',
+      summary: 'Filtert Sedimente und Schwebstoffe mit automatischer Rückspülung und integriertem Druckminderer.',
+      content: {
+        text: 'Partikelfilter mit automatischer Rückspülung, Druckminderer und 360°-Anschluss. Kompakte, voll integrierte Lösung aus medizinischem Material (Edelstahl 316L).',
+        specs: 'Kapazität: unbegrenzt<br>Wartung: keine (vollautomatische Lösung).'
+      }
+    },
+    fine: {
+      title: '3. WATER FINE FILTER',
+      summary: 'Einzigartige Filtrationstechnologie zur Eliminierung von PFAS, Schwermetallen, Aluminium, Chlor, Fluorid, Pestiziden, Medikamentenrückständen, Industriechemikalien, Arsen, Cadmium, Chrom & radioaktiven Substanzen.',
+      content: {
+        text: 'Einzigartiges selektives Haus-Adsorptions-Filtrationssystem:',
+        list: [
+          '1. Filtermedium: Exklusive Mam Nature Technologie, basierend auf Proteinfasern (in Kombination mit Aktivkohle) für die vollständigste & weltweit einzigartige Adsorptionsfiltration',
+          '2. Sterile Kartusche: Sterilität (durch Kupfer- und Eisenhydroxid) in der Kartusche, ohne dass Sterilisationsmittel ins Trinkwasser gelangen.'
+        ],
+        reduces: 'Reduziert Chlor, Pestizide, PFAS, Medikamentenrückstände, Phenol, Schwermetalle, Aluminium, Mikroplastik & einschließlich radioaktiver Substanzen mit einer Reduktionsrate von 95 - 99,9 % bei großen Mengen von 2000 Litern/Stunde.'
+      }
+    },
+    cartridge: {
+      title: 'CARTRIDGE',
+      summary: 'Patentierte Technologie, die Verunreinigungen eliminiert und wichtige Mineralien bewahrt.',
+      content: {
+        h4: 'The Swiss Water Cartridge',
+        text1: 'Mam Nature Swiss® – Wir machen das Unmögliche möglich: Perfekt gefiltertes, weiches und natürlich mineralisiertes Wasser.',
+        text2: 'Die « SWISS WATER CARTRIDGE » : MEHR ALS NUR FILTRATION – EIN WAHRER SCHUTZ MIT UNERREICHTER SCHADSTOFFRÜCKHALTUNG. ',
+        text3: 'Unsere 100% natürliche Filtrationstechnologie, exklusiv bei Mam Nature Swiss®, kombiniert natürliche Proteinfasern mit Aktivkohle, um eine vollständige Adsorption zu erreichen – eine Weltneuheit. Sie eliminiert Verunreinigungen und bewahrt gleichzeitig die natürlich im Wasser vorkommenden Mineralien und Spurenelemente. Dank ihres selektiven Filtrationssystems durch vollständige Adsorption ist diese patentierte Schweizer Erfindung die weltweit einzige 100% natürliche Universallösung, die in der Lage ist, PFAS, Schwermetalle, Aluminium, Chlor, Fluorid, Pestizide, Medikamentenrückstände, Industriechemikalien, Arsen, Cadmium, Chrom usw. zu eliminieren – und sogar radioaktive Substanzen, die in nuklearem Wasser vorkommen.',
+        specs: 'Durchflussrate: bis zu 1800 Liter/Stunde.<br>Filterkartuschen-Kapazität (Lebensdauer): 150m³<br>Wartung: 10 Minuten einmal pro Jahr (einfach und ohne Werkzeug).'
+      }
+    },
+    dynamizer: {
+      title: '4. THE SWISS WATER DYNAMIZER',
+      summary: 'Revitalisiert Wasser für eine bessere Hydratation und wandelt Kalk um.',
+      problemTitle: 'Das Problem mit modernem Wasser',
+      prob1: { title: 'Geringe zelluläre Bioverfügbarkeit', text: 'Industrielle Behandlungen und Demineralisierung verändern die molekulare Struktur des Wassers und erzeugen "große Wassermolekül-Cluster", die von den Zellen kaum aufgenommen werden.' },
+      prob2: { title: 'Destrukturiertes Wasser', text: 'Im Naturzustand hat hochwertiges Wasser eine perfekte hexagonale Struktur, der Schlüssel zu optimaler Hydratation. Diese für unseren Körper lebenswichtige Struktur wird auf ihrem Weg zu unserem Wasserhahn leider zerstört.' },
+      solutionTitle: 'Die Lösung',
+      sol1: { title: 'Umstrukturierung & Revitalisierung', text: 'Bricht große Wassermolekül-Cluster in Mikro-Cluster auf, wodurch Wasser für die Zellen hochgradig bioverfügbar wird. Gleichzeitig überträgt er natürliche Frequenzen und harmonische Schwingungen und stellt die natürliche hexagonale Struktur des Wassers wieder her.' },
+      sol2: { title: 'Kalkumwandlung', text: 'Durch Permanentmagnete und extreme Turbulenz wandelt er harten Calcit (verantwortlich für Ablagerungen) in weichen Aragonit um. Diese Form des Kalks ist nicht kalkbildend und schützt Ihre Geräte und Rohrleitungen, ohne den Geschmack des Wassers zu verändern.' },
+      sol3: { title: 'Langzeitstabilisierung', text: 'Dynamisiert Wasser erhält eine biologisch stabile Struktur, die über die Zeit anhält.' },
+      pipeStraight: { title: 'Gerades Wasserrohr:', text: 'Wasser verklumpt und verliert seine biophysikalische Kraft.' },
+      pipeSpiral: { title: 'Spiralförmiges Wasserrohr:', text: 'Molekül-Cluster werden aufgelöst und das Wasser gewinnt seine biophysikalische Kraft zurück.' },
+      benefitsTitle: 'Tägliche Vorteile',
+      benefit1: { title: 'Außergewöhnlicher Geschmack', text: 'Entdecken Sie unglaublich weiches, bemerkenswert bekömmliches und angenehmes Wasser.' },
+      benefit2: { title: 'Optimale zelluläre Hydratation', text: 'Unterstützt die richtige Körperfunktion und reduziert die Säure, eine Quelle vieler Ungleichgewichte.' },
+      benefit3: { title: 'Natürlicher Kalkschutz', text: 'Schützt natürlich Ihre Geräte und Oberflächen ohne Salz oder Chemikalien.' },
+      benefit4: { title: 'Unerreichte Leistung', text: 'Mit einer Verarbeitungskapazität von 5.000 Litern/Stunde erfüllt der Dynamizer die Bedürfnisse des ganzen Hauses.' },
+      specs: { cap: 'Kapazität: Unbegrenzt', maint: 'Wartung: Keine' }
+    }
+  },
+  install: {
+    title: 'Einfache & geführte Installation',
+    introTitle: 'Für eine effiziente Einrichtung konzipiert',
+    introText: 'Das Mam Nature System ist für eine schnelle Installation durch einen qualifizierten Klempner ausgelegt. Es wird direkt hinter Ihrem Wasserzähler platziert, um Ihr gesamtes Haus zu versorgen.',
+    neededTitle: 'Was Sie benötigen',
+    neededList: [
+      'Einen professionellen Klempner',
+      'Benötigter Platz: 80cm (H) x 80cm (L)',
+      'Standard-Klempnerwerkzeuge',
+      'Geschätzte Zeit: 2 bis 3 Stunden'
+    ]
+  },
+  maint: {
+    title: 'Wartung & Garantie',
+    maintTitle: 'Vereinfachte Wartung',
+    maintText: 'Die einzige Wartung ist der Austausch der Filterkartusche einmal im Jahr. Ein einfacher, 10-minütiger Vorgang, der ohne Werkzeug durchgeführt werden kann.',
+    btnOrder: 'Kartusche bestellen',
+    warrantyTitle: 'Exzellenz-Garantie',
+    warrantyYears: '10 JAHRE',
+    warrantyText: 'Der wasserführende Teil besteht aus langlebigem medizinischem Edelstahl.'
+  },
+  reports: {
+    title: 'Prüfberichte & Zertifikate',
+    list: [
+      { title: "Leistungsbericht Filtration" },
+      { title: "Zertifikat des Swiss Safety Systems" },
+      { title: "ISO Zertifikat" }
+    ]
+  }
+};
+
 export default function CompleteSetPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const isGerman = language === 'de';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

@@ -41,9 +41,28 @@ const CONTENT_FR = {
     back: "Retour au tableau de bord"
 };
 
+const CONTENT_DE = {
+    title: "Kontoeinstellungen",
+    subtitle: "Aktualisieren Sie Ihre persönlichen Daten und Lieferinformationen.",
+    firstName: "Vorname",
+    lastName: "Nachname",
+    phone: "Telefonnummer",
+    address: "Straße und Hausnummer",
+    city: "Ort",
+    zip: "PLZ",
+    country: "Land",
+    btn: "Änderungen speichern",
+    loading: "Speichern...",
+    success: "Profil erfolgreich aktualisiert!",
+    error: "Fehler beim Aktualisieren des Profils.",
+    back: "Zurück zum Dashboard"
+};
+
 export default function SettingsPage() {
     const { language } = useLanguage();
-    const content = language === 'fr' ? CONTENT_FR : CONTENT_EN;
+    const isFrench = language === 'fr';
+    const isGerman = language === 'de';
+    const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
     const router = useRouter();
 
     const [loading, setLoading] = useState(true);

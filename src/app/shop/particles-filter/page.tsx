@@ -95,13 +95,53 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  nav: {
+    product: 'Produkt',
+    details: 'Technische Details',
+    install: 'Installation',
+    maint: 'Wartung',
+    reports: 'Berichte'
+  },
+  product: {
+    title: 'Partikelfilter',
+    btnAdd: 'In den Warenkorb',
+    desc: 'Partikelfilter mit automatischer Rückspülung, Druckminderer und 360°-Anschluss.',
+    descBold: 'Kompakte, voll integrierte Lösung aus medizinischem Material (Edelstahl 316L).'
+  },
+  details: {
+    title: 'Technische Details',
+    specs: {
+      material: { title: 'Materialien', val: 'Gehäuse aus 316L Edelstahl & hochwertiges Messing (Partikelfilter)' },
+      connection: { title: 'Anschlüsse', val: '1 Zoll (2 x 3/4 Zoll Adapter inklusive für beide Einheiten)' },
+      flow: { title: 'Durchflussrate', val: '1,5 m³/h (bei 4 bar)' }
+    }
+  },
+  install: {
+    title: 'Installation',
+    cardTitle: 'Professionelle Installation',
+    cardText: 'Wird direkt nach dem Hauptwasserzähler von einem qualifizierten Klempner installiert, um Ihr gesamtes Haus zu versorgen.'
+  },
+  maint: {
+    title: 'Wartung',
+    cardTitle: 'Automatisierte Wartung',
+    cardText: 'Der Filter reinigt sich automatisch durch den Rückspülmechanismus, der den Wasserfluss umkehrt, um angesammelte Partikel auszuspülen. Dieser autonome Betrieb sorgt für gleichbleibende Effizienz und verlängert die Lebensdauer des Filterelements.'
+  },
+  reports: {
+    title: 'Prüfberichte & Zertifikate',
+    btnIso: 'ISO 13485 Zertifikat',
+    btnCert: 'Zertifikat des Swiss Safety Systems'
+  }
+};
+
 export default function ParticleFilterPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const isGerman = language === 'de';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

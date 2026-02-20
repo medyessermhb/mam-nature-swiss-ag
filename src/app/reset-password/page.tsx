@@ -29,9 +29,22 @@ const CONTENT_FR = {
     login: "Aller à la connexion"
 };
 
+const CONTENT_DE = {
+    title: "Neues Passwort festlegen",
+    subtitle: "Geben Sie unten Ihr neues Passwort ein",
+    password: "Neues Passwort",
+    btn: "Passwort aktualisieren",
+    loading: "Aktualisierung...",
+    success: "Passwort erfolgreich aktualisiert!",
+    error: "Fehler beim Aktualisieren des Passworts.",
+    login: "Zur Anmeldung"
+};
+
 export default function ResetPasswordPage() {
     const { language } = useLanguage();
-    const content = language === 'fr' ? CONTENT_FR : CONTENT_EN;
+    const isFrench = language === 'fr';
+    const isGerman = language === 'de';
+    const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
     const router = useRouter();
 
     const [password, setPassword] = useState('');

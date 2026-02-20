@@ -105,10 +105,58 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  header: {
+    title: "Admin-Panel",
+    subtitle: "Bestellungen und Support-Tickets verwalten.",
+    logout: "Abmelden"
+  },
+  tabs: {
+    orders: "Bestellungen",
+    tickets: "Support-Tickets",
+    prices: "Preise verwalten",
+    users: "Registrierte Benutzer"
+  },
+  users: {
+    name: "Name",
+    contact: "Kontakt",
+    role: "Rolle",
+    address: "Adresse",
+    joined: "Beigetreten am",
+    empty: "Keine Benutzer gefunden."
+  },
+  orders: {
+    customer: "Kunde",
+    total: "Gesamt",
+    payment: "Zahlung",
+    status: "Status",
+    action: "Aktion",
+    empty: "Keine Bestellungen gefunden.",
+    statuses: {
+      paid: "Bezahlt",
+      processing: "In Bearbeitung",
+      shipped: "Versandt",
+      delivered: "Zugestellt",
+      cancelled: "Storniert",
+      awaiting_payment: "Warten auf Zahlung",
+      pending_transfer: "Überweisung ausstehend",
+      payment_pending: "Zahlung ausstehend"
+    }
+  },
+  tickets: {
+    empty: "Keine Support-Tickets gefunden.",
+    viewChat: "Chat öffnen & antworten",
+    statusOpen: "Offen",
+    statusClosed: "Geschlossen"
+  }
+};
+
 export default function AdminDashboard() {
   const { language } = useLanguage();
+  const isFrench = language === 'fr';
+  const isGerman = language === 'de';
   const router = useRouter();
-  const content = language === 'fr' ? CONTENT_FR : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
   const [activeTab, setActiveTab] = useState<'orders' | 'tickets' | 'prices' | 'users'>('orders');
   const [orders, setOrders] = useState<any[]>([]);
@@ -328,7 +376,7 @@ export default function AdminDashboard() {
         </div>
         <div style={{ display: 'flex', gap: '12px' }}>
           <button onClick={() => { fetchOrders(); fetchTickets(); fetchUsers(); }} className={styles.actionBtn}>
-            <RefreshCw size={18} className={loading ? 'spin' : ''} /> {language === 'fr' ? 'Actualiser' : 'Refresh'}
+            <RefreshCw size={18} className={loading ? 'spin' : ''} /> {isFrench ? 'Actualiser' : isGerman ? 'Aktualisieren' : 'Refresh'}
           </button>
           <button
             onClick={handleLogout}

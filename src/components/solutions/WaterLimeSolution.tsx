@@ -116,13 +116,66 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  nav: {
+    overview: 'ÜBERSICHT',
+    technical: 'TECHNISCHE DATEN',
+    other: 'WEITERE LÖSUNGEN'
+  },
+  overview: {
+    title: 'WATER LIME',
+    desc: "Eine bewährte Alternative zu herkömmlichen Wasserenthärtungsanlagen auf rein physikalischer Basis. « Water LIME » wandelt die harte Form von Kalk (Calcit) in eine weiche Form (Aragonit) um, was harte Kalkablagerungen verhindert."
+  },
+  technical: {
+    title: 'Technische Daten',
+    specs: {
+      technology: { label: 'Technologie:', text: 'Basierend auf Neodym-Permanentmagneten' },
+      materials: { label: 'Materialien:', text: 'Gehäuse aus 316L Edelstahl' },
+      maintenance: { label: 'Wartung:', text: 'Keine Wartung erforderlich' },
+      connections: { label: 'Anschlüsse:', text: '1 Zoll (Variante in 3/4 Zoll ebenfalls verfügbar)' },
+      flow: { label: 'Durchflusskapazität:', text: '1,5 m³ / h' },
+      lifetime: { label: 'Lebensdauer / Kapazität:', text: 'Unbegrenzt' }
+    }
+  },
+  otherSolutions: {
+    title: 'Entdecken Sie unsere anderen Lösungen',
+    btnLearn: 'Mehr erfahren',
+    items: [
+      {
+        title: 'PARTIKELFILTER',
+        desc: 'Der Swiss Made bleifreie Partikelfilter (316L Edelstahl) mit selbstreinigender Backwash-Technologie.',
+        link: '/solutions/particle-filter',
+        img: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp'
+      },
+      {
+        title: 'FEINFILTER',
+        desc: 'Einzigartiges 4-Stufen-Filtersystem: Physikalisch, Aktivkohle, AqualenTM und ionisiertes Silber.',
+        link: '/solutions/fine-filter',
+        img: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png'
+      },
+      {
+        title: 'Der Swiss Water DYNAMIZER',
+        desc: 'Strukturiert und revitalisiert das Wasser. Führt zu einem weichen Geschmack und besserer Zellhydratation.',
+        link: '/solutions/dynamizer',
+        img: '/images/WEBSITE-P/products/DYNAMIZER.webp'
+      },
+      {
+        title: 'KOMPLETTSET',
+        desc: 'Unsere Komplettlösung für reines, gesundes und revitalisiertes Wasser im ganzen Haus.',
+        link: '/solutions/mam-nature-complete-system',
+        img: '/images/WEBSITE-P/products/COMPLETE_SET_PLUS.webp'
+      }
+    ]
+  }
+};
+
 export default function WaterLimeSolution() {
   const [activeSection, setActiveSection] = useState('presentation');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {

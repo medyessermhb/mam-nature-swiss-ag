@@ -138,13 +138,76 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  nav: {
+    product: 'Produkt',
+    details: 'Technische Details',
+    install: 'Installation',
+    maint: 'Wartung',
+    reports: 'Berichte'
+  },
+  product: {
+    title: PRODUCT_NAME,
+    subtitle: 'Wasserfeinfilter + Kartusche',
+    btnAdd: 'In den Warenkorb',
+    priceTBD: 'Preis auf Anfrage',
+    descBold: 'Komplettes Filtrationssystem für das ganze Haus. Wird mit 1 x Filtergehäuse und 1 x Filterkartusche geliefert.',
+    desc: "Selektive Filtration: erhält die Struktur und Zusammensetzung des Wassers. Das bedeutet, dass alle wesentlichen Mineralien und Spurenelemente in Ihrem Trinkwasser erhalten bleiben, während die Rohrleitungen Ihres gesamten Hauses geschützt werden."
+  },
+  details: {
+    title: 'Technische Details in 2 Schritten',
+    fine: {
+      title: '1. WATER FINE FILTER',
+      summary: 'Einzigartige Filtrationstechnologie zur Eliminierung von PFAS, Schwermetallen, Aluminium, Chlor, Fluorid, Pestiziden, Medikamentenrückständen, Industriechemikalien, Arsen, Cadmium, Chrom & radioaktiven Substanzen.',
+      content: {
+        text: 'Einzigartiges selektives Haus-Adsorptions-Filtrationssystem:',
+        list: [
+          '1. Filtermedium: Exklusive Mam Nature Technologie, basierend auf Proteinfasern (in Kombination mit Aktivkohle) für die vollständigste & weltweit einzigartige Adsorptionsfiltration',
+          '2. Sterile Kartusche: Sterilität (durch Kupfer- und Eisenhydroxid) in der Kartusche, ohne dass Sterilisationsmittel ins Trinkwasser gelangen.'
+        ],
+        reduces: 'Reduziert Chlor, Pestizide, PFAS, Medikamentenrückstände, Phenol, Schwermetalle, Aluminium, Mikroplastik & einschließlich radioaktiver Substanzen mit einer Reduktionsrate von 95 - 99,9 % bei großen Mengen von 2000 Litern/Stunde.'
+      }
+    },
+    cartridge: {
+      title: '2. KARTUSCHE',
+      summary: 'Patentierte Technologie, die Verunreinigungen eliminiert und wichtige Mineralien bewahrt.',
+      content: {
+        h4: 'The Swiss Water Cartridge',
+        text1: 'Mam Nature Swiss® – Wir machen das Unmögliche möglich: Perfekt gefiltertes, weiches und natürlich mineralisiertes Wasser.',
+        text2: 'Die « SWISS WATER CARTRIDGE » : MEHR ALS NUR FILTRATION – EIN WAHRER SCHUTZ MIT UNERREICHTER SCHADSTOFFRÜCKHALTUNG.',
+        text3: 'Unsere 100% natürliche Filtrationstechnologie, exklusiv bei Mam Nature Swiss®, kombiniert natürliche Proteinfasern mit Aktivkohle, um eine vollständige Adsorption zu erreichen – eine Weltneuheit. Sie eliminiert Verunreinigungen und bewahrt gleichzeitig die natürlich im Wasser vorkommenden Mineralien und Spurenelemente. Dank ihres selektiven Filtrationssystems durch vollständige Adsorption ist diese patentierte Schweizer Erfindung die weltweit einzige 100% natürliche Universallösung, die in der Lage ist, PFAS, Schwermetalle, Aluminium, Chlor, Fluorid, Pestizide, Medikamentenrückstände, Industriechemikalien, Arsen, Cadmium, Chrom usw. zu eliminieren – und sogar radioaktive Substanzen, die in nuklearem Wasser vorkommen.',
+        specs: 'Durchflussrate: bis zu 1800 Liter/Stunde.<br>Filterkartuschen-Kapazität (Lebensdauer): 150m³<br>Wartung: 10 Minuten einmal pro Jahr (einfach und ohne Werkzeug).'
+      }
+    }
+  },
+  install: {
+    title: 'Installation',
+    cardTitle: 'Professionelle Installation',
+    cardText: 'Das Essential Set wird von einem qualifizierten Klempner direkt an Ihre Hauptwasserleitung angeschlossen und sorgt so für gefiltertes Wasser an jedem Wasserhahn in Ihrem Haus. Sein kompaktes Design ermöglicht eine einfache Integration.'
+  },
+  maint: {
+    title: 'Wartung & Garantie',
+    maintTitle: 'Vereinfachte Wartung',
+    maintText: 'Erforderliche Wartung: Wechsel der Filterkartusche alle 150 m³ (durchschnittlich 1 x pro Jahr)',
+    warrantyTitle: 'Exzellenz-Garantie',
+    warrantyYears: '10 JAHRE',
+    warrantyText: 'Das Gehäuse Ihres Filters besteht aus langlebigem medizinischem Edelstahl und ist durch eine 10-jährige Herstellergarantie abgedeckt.'
+  },
+  reports: {
+    title: 'Prüfberichte & Zertifikate',
+    btnPerf: 'Leistungsbericht anzeigen',
+    btnCert: 'Schweizer Zertifizierung ansehen'
+  }
+};
+
 export default function EssentialSetPage() {
   const { getPrice, getRawPrice, isLoading, currency, region } = usePricing();
   const { addToCart } = useCart();
   const { language } = useLanguage();
 
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const isGerman = language === 'de';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('produit');

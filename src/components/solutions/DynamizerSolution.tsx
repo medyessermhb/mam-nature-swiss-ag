@@ -114,13 +114,65 @@ const CONTENT_FR = {
   }
 };
 
+const CONTENT_DE = {
+  nav: {
+    overview: 'ÜBERSICHT',
+    technical: 'TECHNISCHE DATEN',
+    other: 'WEITERE LÖSUNGEN'
+  },
+  presentation: {
+    title: 'Der Swiss Water DYNAMIZER',
+    desc: "Wasser wird weltweit als Standard in geraden Wasserrohren transportiert, was nicht der natürlichen Bewegung des Wassers entspricht. Infolgedessen leidet die Wasserqualität, was sich auf den Geschmack, eine träge Verdauung, trockene Haut und die Anfälligkeit für bakterielle Belastungen auswirkt."
+  },
+  technical: {
+    title: 'Technische Daten',
+    specs: {
+      materials: { label: 'Materialien:', text: 'Wasserführende Teile aus 316L Edelstahl' },
+      maintenance: { label: 'Wartung:', text: 'Komplett wartungsfrei' },
+      connections: { label: 'Anschlüsse:', text: '1 Zoll' },
+      flow: { label: 'Durchflusskapazität:', text: '5 m³ / h (bei 4 bar Wasserdruck)' },
+      lifetime: { label: 'Lebensdauer / Kapazität:', text: 'Unbegrenzt' }
+    }
+  },
+  otherSolutions: {
+    title: 'Entdecken Sie unsere anderen Lösungen',
+    btnLearn: 'Mehr erfahren',
+    items: [
+      {
+        title: 'WATER LIME',
+        desc: 'Eine bewährte Alternative zu herkömmlichen Wasserenthärtungsanlagen auf rein physikalischer Basis.',
+        link: '/solutions/water-lime',
+        img: '/images/WEBSITE-P/products/water_lime_vertical.webp'
+      },
+      {
+        title: 'PARTIKELFILTER',
+        desc: 'Swiss Made bleifreier Partikelfilter (316L Edelstahl) mit Backwash-Technologie.',
+        link: '/solutions/particle-filter',
+        img: '/images/WEBSITE-P/products/PARTICLES_FILTER.webp'
+      },
+      {
+        title: 'FEINFILTER',
+        desc: 'Einzigartiges 4-Stufen-Filtersystem: Physikalisch, Aktivkohle, AqualenTM und ionisiertes Silber.',
+        link: '/solutions/fine-filter',
+        img: '/images/website-assets/PRODUCT/fine_filter_with_cartridge.png'
+      },
+      {
+        title: 'KOMPLETTSET',
+        desc: 'Unsere Komplettlösung für reines, gesundes und revitalisiertes Wasser im ganzen Haus.',
+        link: '/solutions/mam-nature-complete-system',
+        img: '/images/WEBSITE-P/products/COMPLETE_SET_PLUS.webp'
+      }
+    ]
+  }
+};
+
 export default function DynamizerSolution() {
   const [activeSection, setActiveSection] = useState('presentation');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const { language } = useLanguage();
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const content = isFrench ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
