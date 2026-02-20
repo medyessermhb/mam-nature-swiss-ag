@@ -34,13 +34,27 @@ const CONTENT_FR = {
   promoTitle: "Offre Exclusive"
 };
 
+const CONTENT_DE = {
+  title: "Warenkorb",
+  empty: "Ihr Warenkorb ist derzeit leer.",
+  continue: "Weiter einkaufen",
+  summaryTitle: "Bestellübersicht",
+  subtotal: "Zwischensumme",
+  shipping: "Versand",
+  shippingCalc: "Wird an der Kasse berechnet",
+  total: "Gesamt",
+  checkout: "Zur Kasse",
+  promoTitle: "Exklusives Angebot"
+};
+
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, cartTotal, addToCart } = useCart();
   const [loading, setLoading] = useState(false);
   const { language } = useLanguage();
 
   const isFrench = language === 'fr';
-  const content = isFrench ? CONTENT_FR : CONTENT_EN;
+  const isGerman = language === 'de';
+  const content = isFrench ? CONTENT_FR : isGerman ? CONTENT_DE : CONTENT_EN;
 
   // Route to your custom Checkout page instead of direct Stripe redirect
   const handleCheckout = () => {
@@ -73,10 +87,12 @@ export default function CartPage() {
 
     offer = {
       id: 'promo-particle-lime-set',
-      name: isFrench ? 'Filtre à Particules + Water LIME' : 'Particle Filter + Water LIME',
+      name: isFrench ? 'Filtre à Particules + Water LIME' : isGerman ? 'Partikelfilter + Water LIME' : 'Particle Filter + Water LIME',
       desc: isFrench
         ? `Complétez votre installation pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
-        : `Complete your setup for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
+        : isGerman
+          ? `Vervollständigen Sie Ihre Installation für nur ${promoPrice} ${currencySymbol} (anstelle von ${originalPrice} ${currencySymbol})!`
+          : `Complete your setup for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
       image: '/images/WEBSITE-P/products/particle_+_water_lime.webp'
     };
@@ -89,10 +105,12 @@ export default function CartPage() {
 
     offer = {
       id: 'promo-water-lime',
-      name: isFrench ? 'Filtre Water LIME' : 'Water LIME Filter',
+      name: isFrench ? 'Filtre Water LIME' : isGerman ? 'Water LIME Filter' : 'Water LIME Filter',
       desc: isFrench
         ? `Ajoutez la protection anti-calcaire pour seulement ${promoPrice} ${currencySymbol} (au lieu de ${originalPrice} ${currencySymbol}) !`
-        : `Add anti-limescale protection for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
+        : isGerman
+          ? `Fügen Sie den Antikalk-Schutz für nur ${promoPrice} ${currencySymbol} hinzu (anstelle von ${originalPrice} ${currencySymbol})!`
+          : `Add anti-limescale protection for only ${currencySymbol} ${promoPrice} (instead of ${currencySymbol} ${originalPrice})!`,
       price: promoPrice,
       image: '/images/WEBSITE-P/products/water_lime_vertical.webp'
     };
@@ -161,7 +179,7 @@ export default function CartPage() {
                   alignSelf: 'flex-start', marginTop: '5px'
                 }}
               >
-                <PlusCircle size={20} /> {isFrench ? 'Ajouter à la commande' : 'Add to Order'}
+                <PlusCircle size={20} /> {isFrench ? 'Ajouter à la commande' : isGerman ? 'Zur Bestellung hinzufügen' : 'Add to Order'}
               </button>
             </div>
           )}
@@ -183,7 +201,7 @@ export default function CartPage() {
             <span>{currencySymbol} {cartTotal.toLocaleString()}</span>
           </div>
           <button className={styles.checkoutBtn} onClick={handleCheckout} disabled={loading}>
-            {loading ? 'Processing...' : content.checkout} <ArrowRight size={18} style={{ marginLeft: '10px', display: 'inline-block', verticalAlign: 'middle' }} />
+            {loading ? (isFrench ? 'Traitement...' : isGerman ? 'Wird bearbeitet...' : 'Processing...') : content.checkout} <ArrowRight size={18} style={{ marginLeft: '10px', display: 'inline-block', verticalAlign: 'middle' }} />
           </button>
         </div>
       </div>

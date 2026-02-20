@@ -131,12 +131,50 @@ const CONTENT_FR = {
   errors: { unexpected: "Erreur inattendue.", country: "Veuillez sélectionner un pays." }
 };
 
+const CONTENT_DE = {
+  header: "Sichere Kasse",
+  auth: {
+    title: "Wie möchten Sie bestellen?",
+    tabs: { guest: "Gast", login: "Anmelden", register: "Registrieren" },
+    guestDesc: "Kein Konto erforderlich. Schnell und einfach.",
+    loginDesc: "Greifen Sie auf Ihre gespeicherten Daten zu.",
+    regDesc: "Verfolgen Sie Ihre Bestellung und sparen Sie Zeit.",
+    welcome: "Willkommen zurück,",
+    switch: "Nicht Sie? Abmelden"
+  },
+  contact: { title: "Kontaktdaten", email: "E-Mail-Adresse", phone: "Telefonnummer" },
+  shipping: { title: "Lieferadresse", first: "Vorname", last: "Nachname", address: "Adresse", city: "Stadt", zip: "Postleitzahl", country: "Land", select: "Auswählen..." },
+  billing: { title: "Rechnungsadresse", sameLabel: "Rechnungsadresse ist identisch mit Lieferadresse" },
+  payment: {
+    title: "Zahlungsmethode",
+    card: "Kreditkarte",
+    cardDesc: "Visa, Mastercard, Amex und alle gängigen Karten",
+    bank: "Banküberweisung",
+    payWithWise: "Mit Wise bezahlen",
+    ssl: "Sichere SSL-Zahlung",
+    redirectNote: "Sie werden zu Stripe weitergeleitet, um Ihre Zahlung sicher abzuschließen."
+  },
+  summary: {
+    title: "Bestellübersicht",
+    sub: "Zwischensumme",
+    ship: "Versand",
+    free: "Kostenlos",
+    contested: "Wird ermittelt (Kontaktieren Sie uns)",
+    total: "Gesamtbetrag",
+    payBtn: "Bezahlen",
+    placeBtn: "Bestellung aufgeben",
+    process: "Wird bearbeitet..."
+  },
+  bank: { bene: "Begünstigter", addr: "Adresse", iban: "IBAN", swift: "SWIFT/BIC", ref: "Referenz", bankName: "Name der Bank", rib: "RIB (24 Ziffern)" },
+  errors: { unexpected: "Ein unerwarteter Fehler ist aufgetreten.", country: "Bitte wählen Sie ein Land aus." }
+};
+
 export default function CheckoutForm() {
   const { cart, cartTotal, clearCart } = useCart();
   const { region } = usePricing();
   const { language } = useLanguage();
 
-  const content = language === 'fr' ? CONTENT_FR : CONTENT_EN;
+  const content = language === 'fr' ? CONTENT_FR : language === 'de' ? CONTENT_DE : CONTENT_EN;
   const rawCurrency = cart[0]?.currency || 'EUR';
   const isoCurrency = rawCurrency === 'Dhs' ? 'MAD' : rawCurrency;
   const currencySymbol = isoCurrency === 'EUR' ? '€' : isoCurrency === 'CHF' ? 'CHF' : 'Dhs';
@@ -705,7 +743,7 @@ export default function CheckoutForm() {
                         onChange={handleUseSavedAddress}
                         style={{ accentColor: '#D52D25', width: 16, height: 16 }}
                       />
-                      {language === 'fr' ? 'Utiliser mon adresse enregistrée' : 'Use my saved address'}
+                      {language === 'fr' ? 'Utiliser mon adresse enregistrée' : language === 'de' ? 'Meine gespeicherte Adresse verwenden' : 'Use my saved address'}
                     </label>
                   )}
                 </div>
