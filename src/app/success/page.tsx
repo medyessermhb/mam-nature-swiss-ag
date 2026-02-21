@@ -196,135 +196,150 @@ function SuccessContent() {
     }
   };
 
-  const generatePDF = () => {
+  const generatePDF = async () => {
     if (!order) return;
 
-    const doc = new jsPDF();
-    const currency = order.currency === 'EUR' ? '€' : order.currency === 'CHF' ? 'CHF' : 'Dhs';
-    const displayId = order.order_number || order.id.slice(0, 8).toUpperCase();
-
-    // --- 1. LOGO & HEADER ---
-    const img = new Image();
-    img.src = LOGO_URL;
-    img.crossOrigin = "Anonymous";
     try {
-      doc.addImage(img, 'PNG', 15, 15, 50, 15);
-    } catch (e) {
-      console.warn("Logo load failed", e);
+      const doc = new jsPDF();
+      const currency = order.currency === 'EUR' ? '€' : order.currency === 'CHF' ? 'CHF' : 'Dhs';
+      const displayId = order.order_number || (order.id ? String(order.id).slice(0, 8).toUpperCase() : 'UNKNOWN');
+
+      // --- 1. LOGO & HEADER ---
+      await new Promise<void>((resolve) => {
+        const img = new Image();
+        img.src = LOGO_URL;
+        img.crossOrigin = "Anonymous";
+        img.onload = () => {
+          try {
+            doc.addImage(img, 'PNG', 15, 15, 50, 15);
+          } catch (e) {
+            console.warn("Logo load failed", e);
+          }
+          resolve();
+        };
+        img.onerror = () => {
+          console.warn("Logo failed to load from URL");
+          resolve();
+        };
+      });
+
+      doc.setFontSize(10);
+      doc.setTextColor(100);
+      doc.text("Mam Nature Swiss AG", 200, 20, { align: "right" });
+      doc.text("Spinnereistr. 16", 200, 25, { align: "right" });
+      doc.text("CH-8645 Jona", 200, 30, { align: "right" });
+      doc.text("Switzerland", 200, 35, { align: "right" });
+
+      // --- 2. INVOICE TITLE & INFO ---
+      doc.setFontSize(18);
+      doc.setTextColor(0);
+      doc.text("INVOICE", 15, 50);
+
+      doc.setFontSize(10);
+      doc.setTextColor(50);
+      doc.text(`Invoice #: ${displayId}`, 15, 60);
+      doc.text(`Date: ${new Date(order.created_at || Date.now()).toLocaleDateString()}`, 15, 65);
+      doc.text(`Status: Paid`, 15, 70);
+
+      // --- 3. BILL TO / SHIP TO ---
+      const address = order.address || {};
+      const billing = order.billing_address || address;
+      const isSameAddress = (
+        billing.firstName === address.firstName &&
+        billing.lastName === address.lastName &&
+        billing.address === address.address &&
+        billing.city === address.city &&
+        billing.zip === address.zip &&
+        billing.country === address.country
+      );
+
+      doc.setFontSize(11);
+      doc.setTextColor(0);
+
+      if (!isSameAddress) {
+        doc.text("Bill To:", 15, 85);
+      }
+      doc.text("Ship To:", 110, 85);
+
+      doc.setFontSize(10);
+      doc.setTextColor(80);
+
+      // Billing Info (Only if different)
+      if (!isSameAddress) {
+        doc.text(`${billing.firstName || ''} ${billing.lastName || ''}`.trim(), 15, 91);
+        doc.text(billing.address || '', 15, 96);
+        doc.text(`${billing.city || ''}, ${billing.zip || ''}`.replace(/^, |, $/g, ''), 15, 101);
+        doc.text(billing.country || '', 15, 106);
+        doc.text(order.customer_email || '', 15, 111);
+      }
+
+      // Shipping Info
+      doc.text(`${address.firstName || ''} ${address.lastName || ''}`.trim(), 110, 91);
+      doc.text(address.address || '', 110, 96);
+      doc.text(`${address.city || ''}, ${address.zip || ''}`.replace(/^, |, $/g, ''), 110, 101);
+      doc.text(address.country || '', 110, 106);
+      if (isSameAddress) {
+        // Show email under shipping if billing is hidden
+        doc.text(order.customer_email || '', 110, 111);
+      }
+
+      // --- 4. ITEMS TABLE ---
+      const items = Array.isArray(order.cart_items) ? order.cart_items : [];
+      const tableRows = items.map((item: any) => [
+        item.name || 'Item',
+        item.quantity || 1,
+        `${currency} ${(item.price || 0).toLocaleString()}`,
+        `${currency} ${((item.price || 0) * (item.quantity || 1)).toLocaleString()}`
+      ]);
+
+      autoTable(doc, {
+        startY: 120,
+        head: [['Item Description', 'Qty', 'Unit Price', 'Total']],
+        body: tableRows,
+        theme: 'grid',
+        headStyles: { fillColor: [15, 23, 42] },
+        styles: { fontSize: 10 },
+      });
+
+      // --- 5. TOTALS ---
+      const finalY = (doc as any).lastAutoTable?.finalY || 150;
+
+      const subtotal = items.reduce((acc: number, item: any) => acc + ((item.price || 0) * (item.quantity || 1)), 0);
+      const paidTotal = order.total_amount || 0;
+      const shippingCost = Math.max(paidTotal - subtotal - (order.vat_amount || 0), 0);
+
+      doc.text(`Subtotal:`, 140, finalY + 10);
+      doc.text(`${currency} ${subtotal.toLocaleString()}`, 195, finalY + 10, { align: 'right' });
+
+      doc.text(`Shipping:`, 140, finalY + 16);
+      doc.text(shippingCost > 0.01 ? `${currency} ${shippingCost.toLocaleString()}` : 'Free/Included', 195, finalY + 16, { align: 'right' });
+
+      // --- VAT DISPLAY ---
+      if (order.vat_amount > 0) {
+        doc.text(`VAT (${((order.vat_rate || 0) * 100).toFixed(1)}%):`, 140, finalY + 22);
+        doc.text(`${currency} ${order.vat_amount.toLocaleString()}`, 195, finalY + 22, { align: 'right' });
+      } else {
+        doc.text(`VAT (Export):`, 140, finalY + 22);
+        doc.text(`${currency} 0.00`, 195, finalY + 22, { align: 'right' });
+      }
+
+      doc.setFontSize(12);
+      doc.setTextColor(0);
+      doc.text(`Total:`, 140, finalY + 31);
+      doc.text(`${currency} ${paidTotal.toLocaleString()}`, 195, finalY + 31, { align: 'right' });
+
+      // --- 6. FOOTER ---
+      doc.setFontSize(9);
+      doc.setTextColor(150);
+      doc.text("Thank you for your business!", 105, 280, { align: "center" });
+      doc.text("www.mam-nature.com", 105, 285, { align: "center" });
+
+      // Save
+      doc.save(`Invoice_${displayId}.pdf`);
+    } catch (error: any) {
+      console.error("PDF Generation Error:", error);
+      alert("Failed to generate PDF: " + (error.message || "Unknown error"));
     }
-
-    doc.setFontSize(10);
-    doc.setTextColor(100);
-    doc.text("Mam Nature Swiss AG", 200, 20, { align: "right" });
-    doc.text("Spinnereistr. 16", 200, 25, { align: "right" });
-    doc.text("CH-8645 Jona", 200, 30, { align: "right" });
-    doc.text("Switzerland", 200, 35, { align: "right" });
-
-    // --- 2. INVOICE TITLE & INFO ---
-    doc.setFontSize(18);
-    doc.setTextColor(0);
-    doc.text("INVOICE", 15, 50);
-
-    doc.setFontSize(10);
-    doc.setTextColor(50);
-    doc.text(`Invoice #: ${displayId}`, 15, 60);
-    doc.text(`Date: ${new Date(order.created_at).toLocaleDateString()}`, 15, 65);
-    doc.text(`Status: Paid`, 15, 70);
-
-    // --- 3. BILL TO / SHIP TO ---
-    const billing = order.billing_address || order.address;
-    const isSameAddress = (
-      billing.firstName === order.address.firstName &&
-      billing.lastName === order.address.lastName &&
-      billing.address === order.address.address &&
-      billing.city === order.address.city &&
-      billing.zip === order.address.zip &&
-      billing.country === order.address.country
-    );
-
-    doc.setFontSize(11);
-    doc.setTextColor(0);
-
-    if (!isSameAddress) {
-      doc.text("Bill To:", 15, 85);
-    }
-    doc.text("Ship To:", 110, 85);
-
-    doc.setFontSize(10);
-    doc.setTextColor(80);
-
-    // Billing Info (Only if different)
-    if (!isSameAddress) {
-      doc.text(billing.firstName + " " + billing.lastName, 15, 91);
-      doc.text(billing.address, 15, 96);
-      doc.text(`${billing.city}, ${billing.zip}`, 15, 101);
-      doc.text(billing.country, 15, 106);
-      doc.text(order.customer_email, 15, 111);
-    }
-
-    // Shipping Info
-    doc.text(order.address.firstName + " " + order.address.lastName, 110, 91);
-    doc.text(order.address.address, 110, 96);
-    doc.text(`${order.address.city}, ${order.address.zip}`, 110, 101);
-    doc.text(order.address.country, 110, 106);
-    if (!isSameAddress) {
-    } else {
-      // Show email under shipping if billing is hidden
-      doc.text(order.customer_email, 110, 111);
-    }
-
-    // --- 4. ITEMS TABLE ---
-    const tableRows = order.cart_items.map((item: any) => [
-      item.name,
-      item.quantity,
-      `${currency} ${item.price.toLocaleString()}`,
-      `${currency} ${(item.price * item.quantity).toLocaleString()}`
-    ]);
-
-    autoTable(doc, {
-      startY: 120,
-      head: [['Item Description', 'Qty', 'Unit Price', 'Total']],
-      body: tableRows,
-      theme: 'grid',
-      headStyles: { fillColor: [15, 23, 42] },
-      styles: { fontSize: 10 },
-    });
-
-    // --- 5. TOTALS ---
-    const finalY = (doc as any).lastAutoTable.finalY || 150;
-
-    const subtotal = order.cart_items.reduce((acc: number, item: any) => acc + (item.price * item.quantity), 0);
-    const paidTotal = order.total_amount;
-    const shippingCost = paidTotal - subtotal;
-
-    doc.text(`Subtotal:`, 140, finalY + 10);
-    doc.text(`${currency} ${subtotal.toLocaleString()}`, 195, finalY + 10, { align: 'right' });
-
-    doc.text(`Shipping:`, 140, finalY + 16);
-    doc.text(shippingCost > 0.01 ? `${currency} ${shippingCost.toLocaleString()}` : 'Free/Included', 195, finalY + 16, { align: 'right' });
-
-    // --- VAT DISPLAY ---
-    if (order.vat_amount > 0) {
-      doc.text(`VAT (${(order.vat_rate * 100).toFixed(1)}%):`, 140, finalY + 22);
-      doc.text(`${currency} ${order.vat_amount.toLocaleString()}`, 195, finalY + 22, { align: 'right' });
-    } else {
-      doc.text(`VAT (Export):`, 140, finalY + 22);
-      doc.text(`${currency} 0.00`, 195, finalY + 22, { align: 'right' });
-    }
-
-    doc.setFontSize(12);
-    doc.setTextColor(0);
-    doc.text(`Total:`, 140, finalY + 31);
-    doc.text(`${currency} ${order.total_amount.toLocaleString()}`, 195, finalY + 31, { align: 'right' });
-
-    // --- 6. FOOTER ---
-    doc.setFontSize(9);
-    doc.setTextColor(150);
-    doc.text("Thank you for your business!", 105, 280, { align: "center" });
-    doc.text("www.mam-nature.com", 105, 285, { align: "center" });
-
-    // Save
-    doc.save(`Invoice_${displayId}.pdf`);
   };
 
   if (loading) {
