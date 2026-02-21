@@ -673,7 +673,7 @@ export default function CheckoutForm() {
         if (shipping.country !== 'MA') {
           window.open(wiseUrl, '_blank');
         }
-        sessionStorage.removeItem('mns_order_ref');
+        // Let the Success Page remove 'mns_order_ref' after it loads the order
         clearCart();
         window.location.href = '/success';
       }
