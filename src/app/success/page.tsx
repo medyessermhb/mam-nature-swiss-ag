@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { CheckCircle, Download, Home, Mail, Check, AlertTriangle } from 'lucide-react';
+import { CheckCircle, Download, Home, Mail, Check, AlertTriangle, LayoutDashboard } from 'lucide-react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { useLanguage } from '@/context/LanguageContext';
@@ -22,7 +22,8 @@ const CONTENT_EN = {
   resendBtn: "Resend Confirmation Email",
   resending: "Sending...",
   resendSuccess: "Email sent successfully!",
-  error: "Something went wrong verifying your order. Please contact support."
+  error: "Something went wrong verifying your order. Please contact support.",
+  viewDashboardBtn: "View in Dashboard"
 };
 
 const CONTENT_FR = {
@@ -35,7 +36,8 @@ const CONTENT_FR = {
   resendBtn: "Renvoyer l'email de confirmation",
   resending: "Envoi en cours...",
   resendSuccess: "Email envoyé avec succès !",
-  error: "Une erreur est survenue lors de la vérification. Veuillez contacter le support."
+  error: "Une erreur est survenue lors de la vérification. Veuillez contacter le support.",
+  viewDashboardBtn: "Voir dans le Tableau de Bord"
 };
 
 function SuccessContent() {
@@ -431,6 +433,22 @@ function SuccessContent() {
           >
             <Download size={20} /> {content.downloadBtn}
           </button>
+
+          {/* DASHBOARD BUTTON */}
+          <Link
+            href="/dashboard"
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
+              width: '100%', padding: '14px', borderRadius: '12px',
+              background: '#f8fafc', color: '#0f172a', border: '1px solid #e2e8f0',
+              fontSize: '1rem', fontWeight: 600, textDecoration: 'none',
+              transition: 'background 0.2s',
+            }}
+            onMouseOver={(e) => { e.currentTarget.style.background = '#f1f5f9' }}
+            onMouseOut={(e) => { e.currentTarget.style.background = '#f8fafc' }}
+          >
+            <LayoutDashboard size={20} /> {content.viewDashboardBtn}
+          </Link>
 
           {/* HOME BUTTON */}
           <Link
