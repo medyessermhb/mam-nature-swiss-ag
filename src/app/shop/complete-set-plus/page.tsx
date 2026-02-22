@@ -578,8 +578,7 @@ export default function CompleteSetPlusPage() {
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
   const [activeSubAccordion, setActiveSubAccordion] = useState<Record<string, boolean>>({});
   const [modalUrl, setModalUrl] = useState<string | null>(null);
-  const [isLoadingPdf, setIsLoadingPdf] = useState(false);
-
+  
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const IMAGES = [
@@ -1035,10 +1034,7 @@ export default function CompleteSetPlusPage() {
               <button
                 key={i}
                 className={styles.reportLink}
-                onClick={() => {
-                  setModalUrl(reportUrls[i]);
-                  setIsLoadingPdf(true);
-                }}
+                onClick={() => setModalUrl(reportUrls[i])}
               >
                 <FileText className={styles.reportIcon} /> {rep.title}
               </button>
@@ -1050,27 +1046,20 @@ export default function CompleteSetPlusPage() {
 
       {/* PDF/IMAGE MODAL */}
       {modalUrl && (
-        <div className={styles.modalOverlay} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}>
+        <div className={styles.modalOverlay} onClick={() => setModalUrl(null)}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <div className={styles.modalHeader}>
               <span className={styles.modalTitle}>Document Preview</span>
-              <button className={styles.modalCloseBtn} onClick={() => { setModalUrl(null); setIsLoadingPdf(false); }}><X /></button>
+              <button className={styles.modalCloseBtn} onClick={() => setModalUrl(null)}><X /></button>
             </div>
             <div className={styles.modalBody}>
-              {isLoadingPdf && (
-                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-                    <div style={{ width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
-                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Loading PDF...</p>
-                  </div>
-                </div>
-              )}
-              <object
-                data={modalUrl}
-                type="application/pdf"
-                style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
+              
+              <iframe
+                src={modalUrl}
+                
+                style={{ width: '100%', height: '100%', border: 'none' }}
                 title="Document Preview"
-                onLoad={() => setIsLoadingPdf(false)}
+                
               >
                 <div style={{ padding: '20px', textAlign: 'center', color: 'gray' }}>
                   <p>Preview not available.</p>
@@ -1078,13 +1067,9 @@ export default function CompleteSetPlusPage() {
                     Download PDF
                   </a>
                 </div>
-              </object>
+              </iframe>
             </div>
-            <style>{`
-              @keyframes spin {
-                to { transform: rotate(360deg); }
-              }
-            `}</style>
+            
           </div>
         </div>
       )}

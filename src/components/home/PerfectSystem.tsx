@@ -94,8 +94,7 @@ const PDF_URL = "/images/website-assets/certificates/Certificate_SwissSafetyCent
 
 export default function PerfectSystem() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoadingPdf, setIsLoadingPdf] = useState(false);
-  const { language } = useLanguage();
+    const { language } = useLanguage();
 
   // Determine content based on language
   const isFrench = language === 'fr';
@@ -166,7 +165,7 @@ export default function PerfectSystem() {
 
               <button
                 className={styles.secondaryButton}
-                onClick={() => { setIsModalOpen(true); setIsLoadingPdf(true); }}
+                onClick={() => setIsModalOpen(true)}
               >
                 <FileText size={18} /> {content.btnCert}
               </button>
@@ -180,31 +179,24 @@ export default function PerfectSystem() {
       {isModalOpen && (
         <div
           className={styles.modalOverlay}
-          onClick={() => { setIsModalOpen(false); setIsLoadingPdf(false); }}
+          onClick={() => setIsModalOpen(false)}
           onContextMenu={(e) => e.preventDefault()} // Anti-save context menu
         >
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px', borderBottom: '1px solid #eee' }}>
               <span style={{ fontWeight: 600 }}>Certificate Preview</span>
-              <button className={styles.closeButton} onClick={() => { setIsModalOpen(false); setIsLoadingPdf(false); }} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+              <button className={styles.closeButton} onClick={() => setIsModalOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                 <X size={24} />
               </button>
             </div>
             <div style={{ position: 'relative', width: '100%', height: 'calc(100% - 55px)' }}>
-              {isLoadingPdf && (
-                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-                    <div style={{ width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
-                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Loading PDF...</p>
-                  </div>
-                </div>
-              )}
-              <object
-                data={PDF_URL}
-                type="application/pdf"
-                style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
+              
+              <iframe
+                src={PDF_URL}
+                
+                style={{ width: '100%', height: '100%', border: 'none' }}
                 title="Certificate Preview"
-                onLoad={() => setIsLoadingPdf(false)}
+                
               >
                 <div style={{ padding: '20px', textAlign: 'center', color: 'gray' }}>
                   <p>Preview not available.</p>
@@ -212,13 +204,9 @@ export default function PerfectSystem() {
                     Download PDF
                   </a>
                 </div>
-              </object>
+              </iframe>
             </div>
-            <style>{`
-              @keyframes spin {
-                to { transform: rotate(360deg); }
-              }
-            `}</style>
+            
           </div>
         </div>
       )}

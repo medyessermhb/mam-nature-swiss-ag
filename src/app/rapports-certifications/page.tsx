@@ -161,7 +161,6 @@ const CONTENT_ES = {
 
 export default function ReportsPage() {
   const [modalUrl, setModalUrl] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   const { language } = useLanguage();
@@ -179,14 +178,12 @@ export default function ReportsPage() {
   }, []);
 
   const openReport = (url: string) => {
-    setLoading(true);
     setModalUrl(url);
     document.body.style.overflow = 'hidden'; // Prevent scrolling
   };
 
   const closeReport = () => {
     setModalUrl(null);
-    setLoading(false);
     document.body.style.overflow = ''; // Restore scrolling
   };
 
@@ -231,15 +228,13 @@ export default function ReportsPage() {
             </button>
 
             <div className={styles.pdfContainer}>
-              {loading && <div className={styles.loader}></div>}
 
               {isMobile ? (
                 // Mobile: Google Viewer (Prevents download)
-                <object
-                  data={modalUrl}
-                  type="application/pdf"
+                <iframe
+                  src={modalUrl}
+                  
                   className={styles.iframe}
-                  onLoad={() => setLoading(false)}
                 >
                   <div style={{ padding: '20px', textAlign: 'center', color: 'white' }}>
                     <p>Preview not available.</p>
@@ -247,14 +242,13 @@ export default function ReportsPage() {
                       Download PDF
                     </a>
                   </div>
-                </object>
+                </iframe>
               ) : (
                 // Desktop: Embed with Toolbar Hiding
                 <embed
                   src={`${modalUrl}#toolbar=0&navpanes=0&scrollbar=0`}
-                  type="application/pdf"
+                  
                   className={styles.pdfObject}
-                  onLoad={() => setLoading(false)}
                 />
               )}
             </div>

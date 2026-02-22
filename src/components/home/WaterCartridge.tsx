@@ -87,7 +87,6 @@ const REPORT_URL = "/images/website-assets/certificates/The_Swiss_Water_Cartridg
 
 export default function WaterCartridge() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoadingPdf, setIsLoadingPdf] = useState(false);
   const { language } = useLanguage();
 
   // Determine content based on language
@@ -157,7 +156,7 @@ export default function WaterCartridge() {
                 <div className={styles.reportsGrid}>
                   <div
                     className={styles.reportCard}
-                    onClick={() => { setIsModalOpen(true); setIsLoadingPdf(true); }}
+                    onClick={() => setIsModalOpen(true)}
                   >
                     <FileText className={styles.reportIcon} size={24} />
                     <h4>{content.reportName}</h4>
@@ -175,31 +174,23 @@ export default function WaterCartridge() {
       {isModalOpen && (
         <div
           className={styles.modalOverlay}
-          onClick={() => { setIsModalOpen(false); setIsLoadingPdf(false); }}
+          onClick={() => setIsModalOpen(false)}
           onContextMenu={(e) => e.preventDefault()}
         >
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px', borderBottom: '1px solid #eee' }}>
               <span style={{ fontWeight: 600 }}>Document Preview</span>
-              <button className={styles.closeButton} onClick={() => { setIsModalOpen(false); setIsLoadingPdf(false); }} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+              <button className={styles.closeButton} onClick={() => setIsModalOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                 <X size={24} />
               </button>
             </div>
             <div style={{ position: 'relative', width: '100%', height: 'calc(100% - 55px)' }}>
-              {isLoadingPdf && (
-                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-                    <div style={{ width: '40px', height: '40px', border: '4px solid #E2E8F0', borderTop: '4px solid #D52D25', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
-                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Loading PDF...</p>
-                  </div>
-                </div>
-              )}
-              <object
-                data={REPORT_URL}
-                type="application/pdf"
-                style={{ width: '100%', height: '100%', border: 'none', opacity: isLoadingPdf ? 0.5 : 1, transition: 'opacity 0.3s ease' }}
-                title="Document Preview"
-                onLoad={() => setIsLoadingPdf(false)}
+
+              <iframe
+                src={REPORT_URL}
+                style={{ width: '100%', height: '100%', border: 'none' }}
+                title="Performance Report Preview"
+
               >
                 <div style={{ padding: '20px', textAlign: 'center', color: 'gray' }}>
                   <p>Preview not available.</p>
@@ -207,13 +198,9 @@ export default function WaterCartridge() {
                     Download PDF
                   </a>
                 </div>
-              </object>
+              </iframe>
             </div>
-            <style>{`
-              @keyframes spin {
-                to { transform: rotate(360deg); }
-              }
-            `}</style>
+
           </div>
         </div>
       )}
